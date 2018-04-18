@@ -141,8 +141,13 @@ get_quarter <- function(x){
 
 #' @export
 #' @rdname get_month
-month.date_xx <- function(x, label = FALSE, abbr = TRUE){
-  lubridate::month(get_month(x), label = label, abbr = abbr)
+month.date_xx <- function(
+  x,
+  label = FALSE,
+  abbr = TRUE,
+  locale = Sys.getlocale("LC_TIME")
+){
+  lubridate::month(get_month(x), label = label, abbr = abbr, locale = locale)
 }
 
 
