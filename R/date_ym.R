@@ -1,0 +1,329 @@
+# ctor --------------------------------------------------------------------
+
+#' A Simple Year-Month Date Format
+#'
+#' A simple data type for storing year-month dates in a human readable integer
+#' format, e.g.: December 2012 is stored as 201212. Supports simple arithmethics
+#' (`+` and `-`) as well formatting.
+#'
+#' @param y year
+#' @param m month (optional)
+#'
+#' @return `date_ym` returns an object of type `date_ym`
+#' @export
+#' @family simple dates
+#' @seealso [format.date_ym()]
+#' @md
+#'
+#' @examples
+#' date_ym(2013, 12)
+#'
+date_ym <- function(y, m) {
+  assert_that(is.numeric(y) || all(is.na(y)))
+  assert_that(is.numeric(m) || all(is.na(m)))
+  assert_that(all(m %in% c(1:12) | is.na(m)))
+
+  s <- ifelse(sign(y) >= 0, 1L, -1L)
+  res <- (as.integer(abs(y)) * 100L + as.integer(m)) * s
+
+  date_xx(res, 'date_ym')
+}
+
+
+
+
+# as_data_ym --------------------------------------------------------------
+
+#' @param x any R object
+#' @return `is_date_ym` returns `TRUE` or `FALSE` depending on whether its
+#'   argument is of type `date_ym` or not.
+#'
+#' @export
+#' @md
+#' @rdname date_ym
+is_date_ym <- function(x){
+  inherits(x, 'date_ym')
+}
+
+
+
+
+#' @md
+#' @return `as_date_ym` attempts to coerce its argument to `date_ym` type
+#' @export
+#' @rdname date_ym
+#'
+#' @examples
+#' as_date_ym(201612)
+#'
+as_date_ym <- function(x){
+  UseMethod('as_date_ym')
+}
+
+
+
+
+#' @export
+as_date_ym.default <- function(x){
+  as_date_ym.Date(as.Date(x))
+}
+
+
+
+
+#' @export
+as_date_ym.numeric <- function(x){
+  assert_that(all(x > 0 | x <= -101L))
+  d <- yms_matrix_from_numeric(x)
+  date_ym(y = d[, 1] * d[, 3], m = d[, 2])
+}
+
+
+
+
+#' @export
+as_date_ym.Date <- function(x){
+  y <- lubridate::year(x)
+  m <- lubridate::month(x)
+  date_ym(y = y, m = m)
+}
+
+
+
+
+# as.Date -----------------------------------------------------------------
+
+#' Convert date_ym to Date
+#'
+#' @param x a [date_ym] object
+#' @param ... ignored
+#'
+#' @return A [base::Date] object
+#' @md
+#' @export
+#'
+as.Date.date_ym <- function(x, ...){
+  y <- year(x)
+  m <- get_month(x)
+  lubridate::make_date(y, m, 1L)
+}
+
+
+
+
+# accessors ---------------------------------------------------------------
+
+#' @export
+get_year.date_ym <- function(x){
+  as.integer(x) %/% 100
+}
+
+
+
+
+#' @export
+get_quarter.date_ym <- function(x){
+  as.integer(ceiling(get_month(x) / 3))
+}
+
+
+
+
+#' @export
+get_month.date_ym <- function(x){
+  as.integer(as.integer(x) %% 100)
+}
+
+
+
+
+# format ------------------------------------------------------------------
+
+#' Format a date_ym object
+#'
+#' @param x a [date_ym] object
+#' @param format A scalar character, valid values are: `"iso"`, `"short"`, and
+#'   `"shorter"`
+#' @param ... ignored
+#'
+#' @return A character vector
+#'
+#' @md
+#' @export
+#' @examples
+#'
+#' x <- date_ym(2015, 12)
+#'
+#' format(x, format = "iso")
+#' # [1] "2015-M12"
+#'
+#' format(x, format = "short")
+#' # [1] "2015.12"
+#'
+#' format(x, format = "shorter")
+#' # [1] "15.12"
+#'
+format.date_ym <- function(
+  x,
+  format = 'iso',
+  ...
+){
+  switch(
+    tolower(format),
+    "iso"     = format_date_ym_iso(x),
+    "short"   = format_date_ym_short(x),
+    "shorter" = format_date_ym_shorter(x),
+    stop('wrong format specified')
+  )
+}
+
+
+
+
+format_date_ym_iso <- function(x){
+  d <- yms_matrix_from_numeric(x)
+  sprintf("%s-M%02i", d[, 1] * d[, 3], d[, 2])
+}
+
+
+
+
+format_date_ym_short <- function(x){
+  d <- yms_matrix_from_numeric(x)
+  sprintf("%s.%02i", d[, 1] * d[, 3], d[, 2])
+}
+
+
+
+
+format_date_ym_shorter <- function(x){
+  d <- yms_matrix_from_numeric(x)
+  y <- stringi::stri_sub(as.character(d[, 1]), -2, -1)
+  y <- ifelse(d[, 3] < 0, paste0('-', y), y)
+  sprintf("%s.%02i", y, d[, 2])
+}
+
+
+
+
+# algebra -----------------------------------------------------------------
+
+#' Date_ym arithmethic operations
+#'
+#' Currently only `+` and `-` are supported, all other basic arithmethic
+#' operations are disabled for date_ym objects.
+#'
+#' @param x a date_ym object
+#' @param y an integer
+#'
+#' @md
+#' @rdname date_ym_arithmetic
+#' @aliases date_ym_arithmetic
+#' @seealso [base::Arithmetic]
+#' @export
+`+.date_ym` <- function(x, y){
+  increment(x, as.integer(y))
+}
+
+
+
+
+#' @rdname date_ym_arithmetic
+#' @export
+`-.date_ym` <- function(x, y){
+  increment(x, as.integer(-y))
+}
+
+
+
+
+#' @rdname date_ym_arithmetic
+#' @export
+`*.date_ym` <- function(x, y){
+  stop('Operation not supported')
+}
+
+
+
+
+#' @rdname date_ym_arithmetic
+#' @export
+`/.date_ym` <- function(x, y){
+  stop('Operation not supported')
+}
+
+
+
+
+#' @rdname date_ym_arithmetic
+#' @export
+`^.date_ym` <- function(x, y){
+  stop('Operation not supported')
+}
+
+
+
+
+#' @rdname date_ym_arithmetic
+#' @export
+`%%.date_ym` <- function(x, y){
+  stop('Operation not supported')
+}
+
+
+
+
+#' @rdname date_ym_arithmetic
+#' @export
+`%/%.date_ym` <- function(x, y){
+  stop('Operation not supported')
+}
+
+
+
+
+# shortcuts ---------------------------------------------------------------
+
+#' Conveniently produce formatted Year-Month strings
+#'
+#' @param x,m Two integer (vectors). `m` is optional and the interpretation of
+#'   `x` will depend on whether `m` is supplied or not:
+#'   * if only `x` is supplied, `x` will be passed to [as_date_ym()]
+#'     (e.g. `x = 201604` means April 2016)
+#'   * if `x` and `m` are supplied, `x` is interpreted as year and `m` as
+#'     month.
+#'
+#' @inherit format.date_ym
+#'
+#' @md
+#' @family ym convenience functions
+#' @seealso [format.date_ym()]
+#' @export
+#' @examples
+#'
+#' format_ym(2015, 5)
+#' format_ym(201505, format = 'short')
+#' format_ym(201505, format = 'shorter')
+#'
+format_ym <- function(x, m = NULL, format = 'iso'){
+  if(is.null(m)){
+    d <- as_date_ym(x)
+  } else {
+    d <- date_ym(x, m)
+  }
+
+  format(d, format = format)
+}
+
+
+
+
+# utils -------------------------------------------------------------------
+
+yms_matrix_from_numeric <- function(x){
+  x <- unclass(x)
+  matrix(
+    c(abs(x) %/% 100, m = abs(x) %% 100, s = sign(x)),
+    ncol = 3
+  )
+}
