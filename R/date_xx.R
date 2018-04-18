@@ -12,7 +12,7 @@
 #' @md
 #'
 date_xx <- function(x, subclass){
-  attr(x, 'class') <- union(subclass, c('date_xx', 'integer'))
+  attr(x, "class") <- union(subclass, c("date_xx", "integer"))
   x
 }
 
@@ -27,7 +27,7 @@ date_xx <- function(x, subclass){
 #' @return `make_date_xx()` is a helper that returns a valid `date_xx`
 #'   object for assignment as reporting period.
 make_date_xx <- function(y, q = NULL, m = NULL){
-  if(!is.null(q)){
+  if (!is.null(q)){
     assert_that(is.null(m))
     date_yq(y, q)
   } else if (!is.null(m)){
@@ -38,6 +38,8 @@ make_date_xx <- function(y, q = NULL, m = NULL){
 }
 
 
+
+
 # is_date_xx --------------------------------------------------------------
 
 #' @return `is_date_xx` returns `TRUE` or `FALSE` depending on whether its
@@ -46,7 +48,7 @@ make_date_xx <- function(y, q = NULL, m = NULL){
 #' @rdname date_xx
 #' @export
 is_date_xx <- function(x){
-  inherits(x, 'date_xx')
+  inherits(x, "date_xx")
 }
 
 
@@ -96,7 +98,7 @@ as_datetime.date_xx <- function(x, ...){
 #' }
 #'
 get_year <- function(x){
-  UseMethod('get_year')
+  UseMethod("get_year")
 }
 
 
@@ -133,7 +135,7 @@ year.date_xx <- function(x){
 #' get_quarter(x)
 #'
 get_quarter <- function(x){
-  UseMethod('get_quarter')
+  UseMethod("get_quarter")
 }
 
 
@@ -177,5 +179,5 @@ month.date_xx <- function(
 #' get_month(x)
 #'
 get_month <- function(x){
-  UseMethod('get_month')
+  UseMethod("get_month")
 }

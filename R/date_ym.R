@@ -26,7 +26,7 @@ date_ym <- function(y, m) {
   s <- ifelse(sign(y) >= 0, 1L, -1L)
   res <- (as.integer(abs(y)) * 100L + as.integer(m)) * s
 
-  date_xx(res, 'date_ym')
+  date_xx(res, "date_ym")
 }
 
 
@@ -42,7 +42,7 @@ date_ym <- function(y, m) {
 #' @md
 #' @rdname date_ym
 is_date_ym <- function(x){
-  inherits(x, 'date_ym')
+  inherits(x, "date_ym")
 }
 
 
@@ -57,7 +57,7 @@ is_date_ym <- function(x){
 #' as_date_ym(201612)
 #'
 as_date_ym <- function(x){
-  UseMethod('as_date_ym')
+  UseMethod("as_date_ym")
 }
 
 
@@ -165,7 +165,7 @@ get_month.date_ym <- function(x){
 #'
 format.date_ym <- function(
   x,
-  format = 'iso',
+  format = "iso",
   ...
 ){
   switch(
@@ -173,7 +173,7 @@ format.date_ym <- function(
     "iso"     = format_date_ym_iso(x),
     "short"   = format_date_ym_short(x),
     "shorter" = format_date_ym_shorter(x),
-    stop('wrong format specified')
+    stop("wrong format specified")
   )
 }
 
@@ -199,7 +199,7 @@ format_date_ym_short <- function(x){
 format_date_ym_shorter <- function(x){
   d <- yms_matrix_from_numeric(x)
   y <- stringi::stri_sub(as.character(d[, 1]), -2, -1)
-  y <- ifelse(d[, 3] < 0, paste0('-', y), y)
+  y <- ifelse(d[, 3] < 0, paste0("-", y), y)
   sprintf("%s.%02i", y, d[, 2])
 }
 
@@ -240,7 +240,7 @@ format_date_ym_shorter <- function(x){
 #' @rdname date_ym_arithmetic
 #' @export
 `*.date_ym` <- function(x, y){
-  stop('Operation not supported')
+  stop("Operation not supported")
 }
 
 
@@ -249,7 +249,7 @@ format_date_ym_shorter <- function(x){
 #' @rdname date_ym_arithmetic
 #' @export
 `/.date_ym` <- function(x, y){
-  stop('Operation not supported')
+  stop("Operation not supported")
 }
 
 
@@ -258,7 +258,7 @@ format_date_ym_shorter <- function(x){
 #' @rdname date_ym_arithmetic
 #' @export
 `^.date_ym` <- function(x, y){
-  stop('Operation not supported')
+  stop("Operation not supported")
 }
 
 
@@ -267,7 +267,7 @@ format_date_ym_shorter <- function(x){
 #' @rdname date_ym_arithmetic
 #' @export
 `%%.date_ym` <- function(x, y){
-  stop('Operation not supported')
+  stop("Operation not supported")
 }
 
 
@@ -276,7 +276,7 @@ format_date_ym_shorter <- function(x){
 #' @rdname date_ym_arithmetic
 #' @export
 `%/%.date_ym` <- function(x, y){
-  stop('Operation not supported')
+  stop("Operation not supported")
 }
 
 
@@ -302,11 +302,11 @@ format_date_ym_shorter <- function(x){
 #' @examples
 #'
 #' format_ym(2015, 5)
-#' format_ym(201505, format = 'short')
-#' format_ym(201505, format = 'shorter')
+#' format_ym(201505, format = "short")
+#' format_ym(201505, format = "shorter")
 #'
-format_ym <- function(x, m = NULL, format = 'iso'){
-  if(is.null(m)){
+format_ym <- function(x, m = NULL, format = "iso"){
+  if (is.null(m)){
     d <- as_date_ym(x)
   } else {
     d <- date_ym(x, m)

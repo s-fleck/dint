@@ -15,7 +15,7 @@
 #'
 date_y <- function(y){
   assert_that(is.numeric(y) || all(is.na(y)))
-  date_xx(as.integer(y), 'date_y')
+  date_xx(as.integer(y), "date_y")
 }
 
 
@@ -29,7 +29,7 @@ date_y <- function(y){
 #' @md
 #' @rdname date_y
 is_date_y <- function(x){
-  inherits(x, 'date_y')
+  inherits(x, "date_y")
 }
 
 
@@ -46,7 +46,7 @@ is_date_y <- function(x){
 #' as_date_y(2016)
 #'
 as_date_y <- function(x){
-  UseMethod('as_date_y')
+  UseMethod("as_date_y")
 }
 
 
@@ -108,7 +108,7 @@ get_year.date_y <- function(x){
 
 #' @export
 get_quarter.date_y <- function(x){
-  stop('Not supported for date_y objects')
+  stop("Not supported for date_y objects")
 }
 
 
@@ -116,5 +116,5 @@ get_quarter.date_y <- function(x){
 
 #' @export
 get_month.date_y <- function(x){
-  stop('Not supported for date_y objects')
+  stop("Not supported for date_y objects")
 }

@@ -26,7 +26,7 @@ date_yq <- function(y, q) {
   s <- ifelse(sign(y) >= 0, 1L, -1L)
   res <- (as.integer(abs(y)) * 10L + as.integer(q)) * s
 
-  date_xx(res, 'date_yq')
+  date_xx(res, "date_yq")
 }
 
 
@@ -42,7 +42,7 @@ date_yq <- function(y, q) {
 #' @md
 #' @rdname date_yq
 is_date_yq <- function(x){
-  inherits(x, 'date_yq')
+  inherits(x, "date_yq")
 }
 
 
@@ -57,7 +57,7 @@ is_date_yq <- function(x){
 #' as_date_yq(20161)
 #'
 as_date_yq <- function(x){
-  UseMethod('as_date_yq')
+  UseMethod("as_date_yq")
 }
 
 
@@ -165,7 +165,7 @@ get_month.date_yq <- function(x){
 #'
 format.date_yq <- function(
   x,
-  format = 'iso',
+  format = "iso",
   ...
 ){
   switch(
@@ -173,7 +173,7 @@ format.date_yq <- function(
     "iso"     = format_date_yq_iso(x),
     "short"   = format_date_yq_short(x),
     "shorter" = format_date_yq_shorter(x),
-    stop('wrong format specified')
+    stop("wrong format specified")
   )
 }
 
@@ -199,7 +199,7 @@ format_date_yq_short <- function(x){
 format_date_yq_shorter <- function(x){
   d <- yqs_matrix_from_numeric(x)
   y <- stringi::stri_sub(as.character(d[, 1]), -2, -1)
-  y <- ifelse(d[, 3] < 0, paste0('-', y), y)
+  y <- ifelse(d[, 3] < 0, paste0("-", y), y)
   sprintf("%s.%s", y, d[, 2])
 }
 
@@ -241,7 +241,7 @@ format_date_yq_shorter <- function(x){
 #' @rdname date_yq_arithmetic
 #' @export
 `*.date_yq` <- function(x, y){
-  stop('Operation not supported')
+  stop("Operation not supported")
 }
 
 
@@ -250,7 +250,7 @@ format_date_yq_shorter <- function(x){
 #' @rdname date_yq_arithmetic
 #' @export
 `/.date_yq` <- function(x, y){
-  stop('Operation not supported')
+  stop("Operation not supported")
 }
 
 
@@ -259,7 +259,7 @@ format_date_yq_shorter <- function(x){
 #' @rdname date_yq_arithmetic
 #' @export
 `^.date_yq` <- function(x, y){
-  stop('Operation not supported')
+  stop("Operation not supported")
 }
 
 
@@ -268,7 +268,7 @@ format_date_yq_shorter <- function(x){
 #' @rdname date_yq_arithmetic
 #' @export
 `%%.date_yq` <- function(x, y){
-  stop('Operation not supported')
+  stop("Operation not supported")
 }
 
 
@@ -277,8 +277,9 @@ format_date_yq_shorter <- function(x){
 #' @rdname date_yq_arithmetic
 #' @export
 `%/%.date_yq` <- function(x, y){
-  stop('Operation not supported')
+  stop("Operation not supported")
 }
+
 
 
 
@@ -288,6 +289,8 @@ seq.date_yq <- function(x, y, ...){
   res <- seq(as.integer(x), as.integer(y))
   as_date_yq(res[(res %% 10) %in% 1:4])
 }
+
+
 
 
 # shortcuts ---------------------------------------------------------------
@@ -310,11 +313,11 @@ seq.date_yq <- function(x, y, ...){
 #' @examples
 #'
 #' format_yq(2015, 1)
-#' format_yq(20151, format = 'short')
-#' format_yq(20151, format = 'shorter')
+#' format_yq(20151, format = "short")
+#' format_yq(20151, format = "shorter")
 #'
-format_yq <- function(x, q = NULL, format = 'iso'){
-  if(is.null(q)){
+format_yq <- function(x, q = NULL, format = "iso"){
+  if (is.null(q)){
     d <- as_date_yq(x)
   } else {
     d <- date_yq(x, q)
@@ -342,7 +345,7 @@ format_yq <- function(x, q = NULL, format = 'iso'){
 #' first_day_yq(20161)
 #'
 first_day_yq <- function(x, q = NULL){
-  if(is.null(q)){
+  if (is.null(q)){
     d <- as_date_yq(x)
   } else {
     d <- date_yq(x, q)
@@ -357,7 +360,7 @@ first_day_yq <- function(x, q = NULL){
 #' @rdname first_day_yq
 #' @export
 last_day_yq <- function(x, q = NULL){
-  if(is.null(q)){
+  if (is.null(q)){
     d <- as_date_yq(x)
   } else {
     d <- date_yq(x, q)
@@ -380,11 +383,11 @@ last_day_yq <- function(x, q = NULL){
 #' @export
 #' @examples
 #'
-#' first_day_of_quarter('2016-06-04')
-#' last_day_of_quarter('2016-06-04')
+#' first_day_of_quarter("2016-06-04")
+#' last_day_of_quarter("2016-06-04")
 #'
 first_day_of_quarter <- function(x){
-  UseMethod('first_day_of_quarter')
+  UseMethod("first_day_of_quarter")
 }
 
 
@@ -393,7 +396,7 @@ first_day_of_quarter <- function(x){
 #' @rdname day_of_quarter
 #' @export
 first_day_of_quarter.default <- function(x){
-  lubridate::floor_date(as.Date(x), 'quarter')
+  lubridate::floor_date(as.Date(x), "quarter")
 }
 
 
@@ -402,7 +405,7 @@ first_day_of_quarter.default <- function(x){
 #' @rdname day_of_quarter
 #' @export
 last_day_of_quarter <- function(x){
-  UseMethod('last_day_of_quarter')
+  UseMethod("last_day_of_quarter")
 }
 
 
@@ -411,7 +414,7 @@ last_day_of_quarter <- function(x){
 #' @rdname day_of_quarter
 #' @export
 last_day_of_quarter.default <- function(x){
-  lubridate::ceiling_date(as.Date(x), 'quarter') - 1L
+  lubridate::ceiling_date(as.Date(x), "quarter") - 1L
 }
 
 

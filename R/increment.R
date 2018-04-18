@@ -35,6 +35,7 @@ increment.date_yq <- function(x, inc){
 
 
 
+
 #' @rdname increment
 increment.date_ym <- function(x, inc){
   d <- yms_matrix_from_numeric(x)
