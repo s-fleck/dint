@@ -7,6 +7,7 @@
 #'
 #' @return An object of the same type increment by inc
 #' @rdname increment
+#' @export
 increment <- function(x, inc = 1){
   UseMethod("increment", x)
 }
@@ -14,6 +15,7 @@ increment <- function(x, inc = 1){
 
 
 
+#' @export
 #' @rdname increment
 increment.date_yq <- function(x, inc){
   d <- yqs_matrix_from_numeric(x)
@@ -36,6 +38,7 @@ increment.date_yq <- function(x, inc){
 
 
 
+#' @export
 #' @rdname increment
 increment.date_ym <- function(x, inc){
   d <- yms_matrix_from_numeric(x)
