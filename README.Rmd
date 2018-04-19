@@ -1,0 +1,50 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# dint
+
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+
+Functions and classes for to work with integer years, year-quarter and 
+year-week Dates. 
+
+
+## Installation
+
+You can install dint from GitHub with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("s-fleck/dint")
+```
+
+## Example
+
+
+```{r example}
+
+library(dint)
+
+x <- as_date_yq(20154)
+
+format(x)
+format(x, "short")
+format(x, "shorter")
+
+x + 1
+
+last_day_of_quarter(x)
+first_day_of_quarter(x)
+
+```
