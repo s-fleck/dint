@@ -1,7 +1,7 @@
-#' Get years component of a date_xx
+#' Get year component of a date_xx
 #'
-#' `year()` is there for consistency with [lubridate], `get_year()` is there
-#' for consistency with other `get_` functions in \pkg{hammr}.
+#' `year()` is there for consistency with \pkg{lubridate}, `get_year()` is there
+#' for consistency with other `get_` functions in \pkg{dint}.
 #'
 #' @param x a [date_xx] object
 #' @family date_xx getters

@@ -2,14 +2,26 @@
 
 #' Simple Date Formats - Superclass
 #'
-#' Superclass for `date_xx` objects, such as [date_ym] and [date_yq].
+#' Superclass for `date_xx` for [date_ym], [date_yq] and [date_y].
+#' `make_date_xx` can be used to create such objects when it is not know if
+#' month or quarter information is available. `is_date_xx()`
+#' checks for `date_xx` objects. `date_xx()` is an internally used constructor
+#' that should only be used by developers aspiring to extend the dint package.
 #'
-#' @param x Any r object
+#'
+#' @param x Any \R object
 #' @param subclass subclass to assign
 #'
-#' @return a `date_xx` object
-#' @export
-#' @md
+#' @return `date_xx()` adds the `date_xx` subclass to any \R Object without
+#'   additional checks.
+#'
+#' @examples
+#'
+#' make_date_xx(2017)
+#' make_date_xx(2017, 4)
+#' x <- make_date_xx(2017, m = 4)
+#'
+#' is_date_xx(x)
 #'
 date_xx <- function(x, subclass){
   attr(x, "class") <- union(subclass, c("date_xx", "integer"))
@@ -19,13 +31,14 @@ date_xx <- function(x, subclass){
 
 
 
-#' @param y,q,m Year, Quarter, Month. Quarter and Month are optional and only
+#' @param y,q,m Year, quarter, month. Quarter and month are optional and only
 #'   one of both can be set at the same time.
 #'
 #' @rdname date_xx
 #' @export
-#' @return `make_date_xx()` is a helper that returns a valid `date_xx`
-#'   object for assignment as reporting period.
+#' @return `make_date_xx()` is constructs a `date_xx` Object from a year and
+#'   either a month or quarter.
+#'
 make_date_xx <- function(y, q = NULL, m = NULL){
   if (!is.null(q)){
     stopifnot(is.null(m))
@@ -42,7 +55,7 @@ make_date_xx <- function(y, q = NULL, m = NULL){
 
 # is_date_xx --------------------------------------------------------------
 
-#' @return `is_date_xx` returns `TRUE` or `FALSE` depending on whether its
+#' @return `is_date_xx()` returns `TRUE` or `FALSE` depending on whether its
 #'   argument is of type `date_xx` or not.
 #'
 #' @rdname date_xx
@@ -58,15 +71,15 @@ is_date_xx <- function(x){
 
 #' Title
 #'
-#' @param x
+#' @param x A [date_xx] object
+#' @param ... passed on to [format.date_yq()] or [format.date_ym()]
 #'
-#' @return
+#' @return `x` (invislby)
 #' @export
 #'
-#' @examples
 print.date_xx <- function(x, ...){
   cat(format(x, ...))
-  x
+  invisible(x)
 }
 
 

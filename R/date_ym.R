@@ -119,16 +119,12 @@ as.Date.date_ym <- function(x, ...){
 
 
 
-#' Title
+#' Date-time Conversion Functions
 #'
-#' @param x
-#' @param tz
-#' @param ...
-#'
-#' @return
+#' @inheritParams base::as.POSIXlt
+#' @inherit base::as.POSIXlt return
 #' @export
 #'
-#' @examples
 as.POSIXlt.date_ym <- function(x, tz = "", ...){
   as.POSIXlt(as.Date(x), tz = tz)
 }
@@ -203,7 +199,7 @@ format_date_ym_short <- function(x){
 #' @export
 format_date_ym_shorter <- function(x){
   d <- yms_matrix_from_numeric(as_date_ym(x))
-  y <- substr_right(d[, 1], 2)
+  y <- substr_right(d[, 1], 2)  # substr so we dont want to loose leading zeroes
   y <- ifelse(d[, 3] < 0, paste0("-", y), y)
   sprintf("%s.%02i", y, d[, 2])
 }

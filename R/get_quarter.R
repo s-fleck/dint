@@ -1,7 +1,7 @@
 #' Get quarter of a date_xx.
 #'
 #' `get_quarter()` returns the quarter of a [date_xx] object.
-#' [lubridate::quarter()] also works, because \pkg{hammr} exports a method for
+#' [lubridate::quarter()] also works, because \pkg{dint} exports a method for
 #' [lubridate::month()]. This will have more overhead than using
 #' `get_quarter()`, but should generally be prefered for consistency in
 #' function naming across packages.
