@@ -111,31 +111,6 @@ as.Date.date_ym <- function(x, ...){
 
 
 
-# accessors ---------------------------------------------------------------
-
-#' @export
-get_year.date_ym <- function(x){
-  as.integer(x) %/% 100
-}
-
-
-
-
-#' @export
-get_quarter.date_ym <- function(x){
-  as.integer(ceiling(get_month(x) / 3))
-}
-
-
-
-
-#' @export
-get_month.date_ym <- function(x){
-  as.integer(as.integer(x) %% 100)
-}
-
-
-
 
 # format ------------------------------------------------------------------
 

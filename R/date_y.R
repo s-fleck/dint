@@ -92,29 +92,3 @@ as_date_y.Date <- function(x){
 as.Date.date_y <- function(x, ...){
   lubridate::make_date(x, 1, 1L)
 }
-
-
-
-
-# accessors ---------------------------------------------------------------
-
-#' @export
-get_year.date_y <- function(x){
-  x
-}
-
-
-
-
-#' @export
-get_quarter.date_y <- function(x){
-  stop("Not supported for date_y objects")
-}
-
-
-
-
-#' @export
-get_month.date_y <- function(x){
-  stop("Not supported for date_y objects")
-}

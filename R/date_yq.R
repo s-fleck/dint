@@ -111,32 +111,6 @@ as.Date.date_yq <- function(x, ...){
 
 
 
-# accessors ---------------------------------------------------------------
-
-#' @export
-get_year.date_yq <- function(x){
-  as.integer(x) %/% 10
-}
-
-
-
-
-#' @export
-get_quarter.date_yq <- function(x){
-  as.integer(x) %% 10
-}
-
-
-
-
-#' @export
-get_month.date_yq <- function(x){
-  c(1L, 4L, 7L, 10L)[get_quarter(x)]
-}
-
-
-
-
 # format ------------------------------------------------------------------
 
 #' Format a date_yq object
