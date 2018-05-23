@@ -27,9 +27,6 @@ test_that("date_yq ctor works as expected", {
   )
 
   expect_error(date_yq(0, -1))
-
-
-
 })
 
 
