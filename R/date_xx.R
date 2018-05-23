@@ -54,6 +54,24 @@ is_date_xx <- function(x){
 
 
 
+# print -------------------------------------------------------------------
+
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+print.date_xx <- function(x){
+  cat(format(x))
+  x
+}
+
+
+
+
 # as.Date -----------------------------------------------------------------
 
 #' @rdname as.Date.date_ym
