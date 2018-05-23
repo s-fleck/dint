@@ -64,8 +64,8 @@ is_date_xx <- function(x){
 #' @export
 #'
 #' @examples
-print.date_xx <- function(x){
-  cat(format(x))
+print.date_xx <- function(x, ...){
+  cat(format(x, ...))
   x
 }
 

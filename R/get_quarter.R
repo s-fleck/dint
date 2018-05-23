@@ -15,9 +15,13 @@
 #' @examples
 #'
 #' x <- date_yq(2016, 2)
-#'
-#' quarter(x)
 #' get_quarter(x)
+#'
+#' \dontrun{
+#' library(lubridate)
+#' quarter(x)
+#' }
+#'
 #'
 get_quarter <- function(x){
   UseMethod("get_quarter")

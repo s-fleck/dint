@@ -16,10 +16,13 @@
 #' @examples
 #'
 #' x <- date_yq(2016, 2)
+#' get_month(x)
 #'
+#' \dontrun{
+#' library(lubridate)
 #' month(x)
 #' month(x, label = TRUE)
-#' get_month(x)
+#' }
 #'
 get_month <- function(x){
   UseMethod("get_month")
