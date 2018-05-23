@@ -83,8 +83,8 @@ as_date_ym.numeric <- function(x){
 
 #' @export
 as_date_ym.Date <- function(x){
-  y <- lubridate::year(x)
-  m <- lubridate::month(x)
+  y <- year(x)
+  m <- month(x)
   date_ym(y = y, m = m)
 }
 
@@ -105,9 +105,8 @@ as_date_ym.Date <- function(x){
 as.Date.date_ym <- function(x, ...){
   y <- year(x)
   m <- get_month(x)
-  lubridate::make_date(y, m, 1L)
+  make_date(y, m, 1L)
 }
-
 
 
 
@@ -173,7 +172,7 @@ format_date_ym_short <- function(x){
 
 format_date_ym_shorter <- function(x){
   d <- yms_matrix_from_numeric(x)
-  y <- stringi::stri_sub(as.character(d[, 1]), -2, -1)
+  y <- substr_right(d[, 1], 2)
   y <- ifelse(d[, 3] < 0, paste0("-", y), y)
   sprintf("%s.%02i", y, d[, 2])
 }

@@ -60,5 +60,6 @@ month.date_xx <- function(
   abbr = TRUE,
   locale = Sys.getlocale("LC_TIME")
 ){
+  assert_lubridate()
   lubridate::month(get_month(x), label = label, abbr = abbr, locale = locale)
 }

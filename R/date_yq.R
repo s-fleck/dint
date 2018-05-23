@@ -83,7 +83,7 @@ as_date_yq.numeric <- function(x){
 
 #' @export
 as_date_yq.Date <- function(x){
-  y <- lubridate::year(x)
+  y <- year(x)
   q <- lubridate::quarter(x)
   date_yq(y = y, q = q)
 }
@@ -105,7 +105,7 @@ as_date_yq.Date <- function(x){
 as.Date.date_yq <- function(x, ...){
   y <- year(x)
   m <- c(1, 4, 7, 10)[get_quarter(x)]
-  lubridate::make_date(y, m, 1L)
+  make_date(y, m, 1L)
 }
 
 
@@ -172,7 +172,7 @@ format_date_yq_short <- function(x){
 
 format_date_yq_shorter <- function(x){
   d <- yqs_matrix_from_numeric(x)
-  y <- stringi::stri_sub(as.character(d[, 1]), -2, -1)
+  y <- substr_right(d[, 1], 2)
   y <- ifelse(d[, 3] < 0, paste0("-", y), y)
   sprintf("%s.%s", y, d[, 2])
 }
@@ -370,6 +370,7 @@ first_day_of_quarter <- function(x){
 #' @rdname day_of_quarter
 #' @export
 first_day_of_quarter.default <- function(x){
+  assert_lubridate()
   lubridate::floor_date(as.Date(x), "quarter")
 }
 
@@ -388,6 +389,7 @@ last_day_of_quarter <- function(x){
 #' @rdname day_of_quarter
 #' @export
 last_day_of_quarter.default <- function(x){
+  assert_lubridate()
   lubridate::ceiling_date(as.Date(x), "quarter") - 1L
 }
 

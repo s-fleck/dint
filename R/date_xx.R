@@ -68,5 +68,6 @@ as_date.date_xx <- function(x, ...){
 #' @rdname as.Date.date_ym
 #' @export
 as_datetime.date_xx <- function(x, ...){
+  assert_lubridate()
   lubridate::as_datetime(as.Date(x))
 }

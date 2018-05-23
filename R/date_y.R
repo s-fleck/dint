@@ -70,7 +70,7 @@ as_date_y.numeric <- function(x){
 
 #' @export
 as_date_y.Date <- function(x){
-  date_y(lubridate::year(x))
+  date_y(year(x))
 }
 
 
@@ -90,5 +90,5 @@ as_date_y.Date <- function(x){
 #' @export
 #'
 as.Date.date_y <- function(x, ...){
-  lubridate::make_date(x, 1, 1L)
+  make_date(x, 1, 1L)
 }
