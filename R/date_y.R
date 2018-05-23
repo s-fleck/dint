@@ -14,7 +14,7 @@
 #' date_y(2013)
 #'
 date_y <- function(y){
-  assert_that(is.numeric(y) || all(is.na(y)))
+  stopifnot(is.numeric(y) || all(is.na(y)))
   date_xx(as.integer(y), "date_y")
 }
 

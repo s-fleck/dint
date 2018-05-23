@@ -28,7 +28,7 @@ date_xx <- function(x, subclass){
 #'   object for assignment as reporting period.
 make_date_xx <- function(y, q = NULL, m = NULL){
   if (!is.null(q)){
-    assert_that(is.null(m))
+    stopifnot(is.null(m))
     date_yq(y, q)
   } else if (!is.null(m)){
     date_ym(y, m)

@@ -19,9 +19,9 @@
 #' date_yq(2013, 3)
 #'
 date_yq <- function(y, q) {
-  assert_that(is.numeric(y) || all(is.na(y)))
-  assert_that(is.numeric(q) || all(is.na(q)))
-  assert_that(all(q %in% c(1:4) | is.na(q)))
+  stopifnot(is.numeric(y) || all(is.na(y)))
+  stopifnot(is.numeric(q) || all(is.na(q)))
+  stopifnot(all(q %in% c(1:4) | is.na(q)))
 
   s <- ifelse(sign(y) >= 0, 1L, -1L)
   res <- (as.integer(abs(y)) * 10L + as.integer(q)) * s
@@ -73,7 +73,7 @@ as_date_yq.default <- function(x){
 
 #' @export
 as_date_yq.numeric <- function(x){
-  assert_that(all(x > 0 | x <= -11L))
+  stopifnot(all(x > 0 | x <= -11L))
   d <- yqs_matrix_from_numeric(x)
   date_yq(y = d[, 1] * d[, 3], q = d[, 2])
 }

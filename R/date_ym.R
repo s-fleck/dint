@@ -19,9 +19,9 @@
 #' date_ym(2013, 12)
 #'
 date_ym <- function(y, m) {
-  assert_that(is.numeric(y) || all(is.na(y)))
-  assert_that(is.numeric(m) || all(is.na(m)))
-  assert_that(all(m %in% c(1:12) | is.na(m)))
+  stopifnot(is.numeric(y) || all(is.na(y)))
+  stopifnot(is.numeric(m) || all(is.na(m)))
+  stopifnot(all(m %in% c(1:12) | is.na(m)))
 
   s <- ifelse(sign(y) >= 0, 1L, -1L)
   res <- (as.integer(abs(y)) * 100L + as.integer(m)) * s
@@ -73,7 +73,7 @@ as_date_ym.default <- function(x){
 
 #' @export
 as_date_ym.numeric <- function(x){
-  assert_that(all(x > 0 | x <= -101L))
+  stopifnot(all(x > 0 | x <= -101L))
   d <- yms_matrix_from_numeric(x)
   date_ym(y = d[, 1] * d[, 3], m = d[, 2])
 }
