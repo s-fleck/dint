@@ -64,6 +64,14 @@ as_date_ym <- function(x){
 
 
 #' @export
+as_date_ym.date_ym <- function(x){
+  x
+}
+
+
+
+
+#' @export
 as_date_ym.default <- function(x){
   as_date_ym.Date(as.Date(x))
 }
@@ -106,6 +114,23 @@ as.Date.date_ym <- function(x, ...){
   y <- year(x)
   m <- get_month(x)
   make_date(y, m, 1L)
+}
+
+
+
+
+#' Title
+#'
+#' @param x
+#' @param tz
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+as.POSIXlt.date_ym <- function(x, tz = "", ...){
+  as.POSIXlt(as.Date(x), tz = tz)
 }
 
 
@@ -154,24 +179,30 @@ format.date_ym <- function(
 
 
 
+#' @rdname format.date_ym
+#' @export
 format_date_ym_iso <- function(x){
-  d <- yms_matrix_from_numeric(x)
+  d <- yms_matrix_from_numeric(as_date_ym(x))
   sprintf("%s-M%02i", d[, 1] * d[, 3], d[, 2])
 }
 
 
 
 
+#' @rdname format.date_ym
+#' @export
 format_date_ym_short <- function(x){
-  d <- yms_matrix_from_numeric(x)
+  d <- yms_matrix_from_numeric(as_date_ym(x))
   sprintf("%s.%02i", d[, 1] * d[, 3], d[, 2])
 }
 
 
 
 
+#' @rdname format.date_ym
+#' @export
 format_date_ym_shorter <- function(x){
-  d <- yms_matrix_from_numeric(x)
+  d <- yms_matrix_from_numeric(as_date_ym(x))
   y <- substr_right(d[, 1], 2)
   y <- ifelse(d[, 3] < 0, paste0("-", y), y)
   sprintf("%s.%02i", y, d[, 2])
@@ -297,7 +328,7 @@ format_ym <- function(x, m = NULL, format = "iso"){
 yms_matrix_from_numeric <- function(x){
   x <- unclass(x)
   matrix(
-    c(abs(x) %/% 100, m = abs(x) %% 100, s = sign(x)),
+    c(abs(x) %/% 100L, m = abs(x) %% 100L, s = as.integer(sign(x))),
     ncol = 3
   )
 }

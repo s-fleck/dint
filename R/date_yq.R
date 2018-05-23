@@ -64,6 +64,14 @@ as_date_yq <- function(x){
 
 
 #' @export
+as_date_yq.date_yq <- function(x){
+  x
+}
+
+
+
+
+#' @export
 as_date_yq.default <- function(x){
   as_date_yq.Date(as.Date(x))
 }
@@ -111,6 +119,22 @@ as.Date.date_yq <- function(x, ...){
 
 
 
+#' Title
+#'
+#' @param x
+#' @param tz
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+as.POSIXlt.date_yq <- function(x, tz = "", ...){
+  as.POSIXlt(as.Date(x), tz = tz)
+}
+
+
+
 # format ------------------------------------------------------------------
 
 #' Format a date_yq object
@@ -154,24 +178,33 @@ format.date_yq <- function(
 
 
 
+#' @rdname format.date_yq
+#' @export
+#'
 format_date_yq_iso <- function(x){
-  d <- yqs_matrix_from_numeric(x)
+  d <- yqs_matrix_from_numeric(as_date_yq(x))
   sprintf("%s-Q%s", d[, 1] * d[, 3], d[, 2])
 }
 
 
 
 
+#' @rdname format.date_yq
+#' @export
+#'
 format_date_yq_short <- function(x){
-  d <- yqs_matrix_from_numeric(x)
+  d <- yqs_matrix_from_numeric(as_date_yq(x))
   sprintf("%s.%s", d[, 1] * d[, 3], d[, 2])
 }
 
 
 
 
+#' @rdname format.date_yq
+#' @export
+#'
 format_date_yq_shorter <- function(x){
-  d <- yqs_matrix_from_numeric(x)
+  d <- yqs_matrix_from_numeric(as_date_yq(x))
   y <- substr_right(d[, 1], 2)
   y <- ifelse(d[, 3] < 0, paste0("-", y), y)
   sprintf("%s.%s", y, d[, 2])
@@ -401,7 +434,7 @@ last_day_of_quarter.default <- function(x){
 yqs_matrix_from_numeric <- function(x){
   x <- unclass(x)
   matrix(
-    c(abs(x) %/% 10, q = abs(x) %% 10, s = sign(x)),
+    c(abs(x) %/% 10, q = abs(x) %% 10, s = as.integer(sign(x))),
     ncol = 3
   )
 }
