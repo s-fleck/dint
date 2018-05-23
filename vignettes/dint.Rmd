@@ -1,0 +1,127 @@
+---
+title: "Dint: Special Purpose Integer Dates "
+author: "Stefan Fleck"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(dint)
+```
+
+dint helps with converting, formatting, and calculating with year-quarter 
+and year-month dates. It is implemented in base R and comes with zero 
+external dependencies. Nevertheless dint integrates with lubridate in case you 
+are already using this neat package. Even if you don't need to work with such 
+special dates directly, dint can still help you format (for example) plot axis. 
+
+
+# The date_yq and date_ym classes
+
+
+
+
+
+# Arithmetic with integer dates
+
+```{r}
+
+# Months
+m <- as_date_ym(201412)
+m
+m + 1
+
+# Quarters
+q <- as_date_yq(20144)
+q
+q + 1
+
+```
+
+
+# Accessing elements
+
+```{r}
+
+get_year(m)
+get_quarter(m)
+get_month(m)
+
+get_quarter(q) # get_month for quarters defaults to first month of quarter
+get_month(q)
+
+
+```
+
+
+If you use lubridate, you can just use the slighly less verbose lubridate 
+accessors
+
+```{r}
+library(lubridate)
+
+year(m)
+quarter(m)
+month(m)
+
+```
+
+
+
+
+
+# Formatting
+
+
+Formating `date_yq`
+
+```{r}
+format(q)  # ISO standard
+format(q, "short")
+format(q, "shorter")
+
+format(m)  # ISO standard
+format(m, "short")
+format(m, "shorter")
+```
+
+
+dint also provides direct formatting functions for dates that are useful for
+labelling ggplot axis 
+
+```{r}
+library(ggplot2)
+
+x <- data.frame(
+  time  = seq(as.Date("2016-01-01"), as.Date("2016-08-08"), by = "day")
+)
+
+x$value <- rnorm(nrow(x))
+
+p <- ggplot(
+  x,
+  aes(
+    x = time, 
+    y = value)
+  ) + geom_point()
+
+
+print(p)
+print(p + scale_x_date(labels = format_date_yq_iso))
+print(p + scale_x_date(labels = format_date_ym_short))
+
+```
+
