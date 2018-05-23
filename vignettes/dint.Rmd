@@ -22,15 +22,33 @@ knitr::opts_chunk$set(
 library(dint)
 ```
 
-dint helps with converting, formatting, and calculating with year-quarter 
+dint is for converting, formatting, and calculating with year-quarter 
 and year-month dates. It is implemented in base R and comes with zero 
-external dependencies. Nevertheless dint integrates with lubridate in case you 
+external dependencies. It also integrates well with lubridate, in case you 
 are already using this neat package. Even if you don't need to work with such 
 special dates directly, dint can still help you format (for example) plot axis. 
 
 
 # The date_yq and date_ym classes
 
+```{r}
+
+# date_* Objects can be created using explicit constructors...
+date_yq(2015, 1)
+date_ym(c(2015, 2016), c(1, 2))
+
+
+# ...or through coercion of dates or integers
+as_date_ym(Sys.Date())
+as_date_yq(20141)
+
+
+# You can also convert date_* Objects to proper Dates. In this case you get the 
+# first day of the period
+as.Date(date_yq(2015, 1))
+as.Date(date_ym(2015, 3))
+
+```
 
 
 
@@ -60,8 +78,8 @@ get_year(m)
 get_quarter(m)
 get_month(m)
 
-get_quarter(q) # get_month for quarters defaults to first month of quarter
-get_month(q)
+get_quarter(q)
+get_month(q) # defaults to first month of quarter
 
 
 ```
@@ -71,36 +89,41 @@ If you use lubridate, you can just use the slighly less verbose lubridate
 accessors
 
 ```{r}
-library(lubridate)
+stopifnot(requireNamespace("lubridate"))
 
-year(m)
-quarter(m)
-month(m)
+lubridate::year(m)
+lubridate::quarter(m)
+lubridate::month(m)
+
+# There are also some extra functions in dint that only work if you have 
+# lubridate installed:
+
+first_day_of_quarter(q)
+last_day_of_quarter(q)
 
 ```
-
-
 
 
 
 # Formatting
 
 
-Formating `date_yq`
+Formating `date_yq` Objects is easy. Currently, three different formatting 
+presets are defined for dint dates.
 
 ```{r}
-format(q)  # ISO standard
+format(q, "iso")  # default
 format(q, "short")
 format(q, "shorter")
 
-format(m)  # ISO standard
+format(m, "iso")  # default
 format(m, "short")
 format(m, "shorter")
 ```
 
 
-dint also provides direct formatting functions for dates that are useful for
-labelling ggplot axis 
+For convenience, dint provides direct formatting functions for dates that are 
+useful for labelling ggplot axis.
 
 ```{r}
 library(ggplot2)
