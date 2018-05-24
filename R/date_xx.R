@@ -102,3 +102,12 @@ as_datetime.date_xx <- function(x, ...){
   assert_lubridate()
   lubridate::as_datetime(as.Date(x))
 }
+
+
+
+
+#' @rdname as.Date.date_ym
+#' @export
+as.POSIXlt.date_xx <- function(x, tz = "", ...){
+  as.POSIXlt(as.Date(x), tz = tz)
+}

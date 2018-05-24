@@ -119,18 +119,6 @@ as.Date.date_yq <- function(x, ...){
 
 
 
-#' Date-time Conversion Functions
-#'
-#' @inheritParams base::as.POSIXlt
-#' @inherit base::as.POSIXlt return
-#' @export
-#'
-as.POSIXlt.date_yq <- function(x, tz = "", ...){
-  as.POSIXlt(as.Date(x), tz = tz)
-}
-
-
-
 # format ------------------------------------------------------------------
 
 #' Format a date_yq object
