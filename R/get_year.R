@@ -51,6 +51,14 @@ get_year.date_yq <- function(x){
 
 
 #' @export
+get_year.default <- function(x){
+  as.POSIXlt(x, tz = tz(x))$year + 1900
+}
+
+
+
+
+#' @export
 #' @rdname get_year
 year.date_xx <- function(x){
   get_year(x)

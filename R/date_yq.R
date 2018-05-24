@@ -91,8 +91,8 @@ as_date_yq.numeric <- function(x){
 
 #' @export
 as_date_yq.Date <- function(x){
-  y <- year(x)
-  q <- lubridate::quarter(x)
+  y <- get_year(x)
+  q <- get_quarter(x)
   date_yq(y = y, q = q)
 }
 
@@ -111,7 +111,7 @@ as_date_yq.Date <- function(x){
 #' @export
 #'
 as.Date.date_yq <- function(x, ...){
-  y <- year(x)
+  y <- get_year(x)
   m <- c(1, 4, 7, 10)[get_quarter(x)]
   make_date(y, m, 1L)
 }

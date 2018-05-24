@@ -91,8 +91,8 @@ as_date_ym.numeric <- function(x){
 
 #' @export
 as_date_ym.Date <- function(x){
-  y <- year(x)
-  m <- month(x)
+  y <- get_year(x)
+  m <- get_month(x)
   date_ym(y = y, m = m)
 }
 
@@ -111,7 +111,7 @@ as_date_ym.Date <- function(x){
 #' @export
 #'
 as.Date.date_ym <- function(x, ...){
-  y <- year(x)
+  y <- get_year(x)
   m <- get_month(x)
   make_date(y, m, 1L)
 }

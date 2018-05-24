@@ -16,36 +16,6 @@ require_lubridate <- function(x){
 
 
 
-year <- function(x){
-  UseMethod("year")
-}
-
-
-
-
-year.default <- function(x){
-  as.POSIXlt(x, tz = tz(x))$year + 1900
-}
-
-
-
-
-quarter <- function(x) {
-  quarters <- rep(1L:4L, each = 3L)
-  quarters[match(month(x), 1L:12L)]
-}
-
-
-
-
-month <- function(
-  x
-){
-  as.POSIXlt(x, tz = tz(x))$mon + 1L
-}
-
-
-
 
 tz <- function(x){
   tzone <- attr(x, "tzone")[[1]]

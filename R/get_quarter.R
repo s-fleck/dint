@@ -31,16 +31,16 @@ get_quarter <- function(x){
 
 
 #' @export
-get_quarter.date_y <- function(x){
-  stop("Not supported for date_y objects")
+get_quarter.default <- function(x){
+  as.integer(ceiling(get_month(x) / 3))
 }
 
 
 
 
 #' @export
-get_quarter.date_ym <- function(x){
-  as.integer(ceiling(get_month(x) / 3))
+get_quarter.date_y <- function(x){
+  stop("Not supported for date_y objects")
 }
 
 

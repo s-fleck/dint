@@ -31,6 +31,13 @@ get_month <- function(x){
 
 
 
+get_month.default <- function(x){
+  as.POSIXlt(x, tz = tz(x))$mon + 1L
+}
+
+
+
+
 #' @export
 get_month.date_y <- function(x){
   stop("Not supported for date_y objects")
