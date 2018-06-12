@@ -1,14 +1,16 @@
-#' Get year component of a date_xx
+#' Get Components of a date_xx
 #'
-#' `year()` is there for consistency with \pkg{lubridate}, `get_year()` is there
-#' for consistency with other `get_` functions in \pkg{dint}.
+#' `get_year()` returns the year of a `date_xx` object.
+#' A method for [lubridate::year()] is also exported. This will have
+#' slightly more overhead than using `get_year()`, but should generally be
+#' prefered for consistency in function naming across packages.
+#'
 #'
 #' @param x a [date_xx] object
-#' @family date_xx getters
 #'
-#' @md
+#' @seealso [dint::year]
 #' @export
-#' @aliases year
+#' @rdname getters
 #'
 #' @examples
 #'
@@ -16,7 +18,7 @@
 #' x <- date_yq(2016, 2)
 #'
 #' year(x)
-#' get_year(x)
+#'   get_year(x)
 #' }
 #'
 get_year <- function(x){
@@ -58,8 +60,15 @@ get_year.default <- function(x){
 
 
 
-#' @export
-#' @rdname get_year
+#' Get Components of a date_xx (lubridate compat)
+#'
+#' See [lubridate::year()] and [lubridate::month()]
+#'
+#' @inheritParams get_year
+#' @seealso [get_year]
+#' @rdname year
+#' @aliases month year
 year.date_xx <- function(x){
   get_year(x)
 }
+

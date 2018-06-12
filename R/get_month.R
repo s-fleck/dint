@@ -5,24 +5,14 @@
 #' slightly more overhead than using `get_month()`, but should generally be
 #' prefered for consistency in function naming across packages.
 #'
-#' @param x a [date_xx] object.
-#' @inheritParams lubridate::month
-#' @rdname get_month
-#' @aliases month
-#' @seealso [lubridate::month()]
-#' @family yq getters
 #' @export
+#' @rdname getters
 #'
 #' @examples
 #'
 #' x <- date_yq(2016, 2)
 #' get_month(x)
 #'
-#' \dontrun{
-#' library(lubridate)
-#' month(x)
-#' month(x, label = TRUE)
-#' }
 #'
 get_month <- function(x){
   UseMethod("get_month")
@@ -31,6 +21,7 @@ get_month <- function(x){
 
 
 
+#' @export
 get_month.default <- function(x){
   as.POSIXlt(x, tz = tz(x))$mon + 1L
 }
@@ -62,8 +53,17 @@ get_month.date_yq <- function(x){
 
 
 
-#' @export
-#' @rdname get_month
+#' @inheritParams lubridate::month
+#' @rdname year
+#'
+#'
+#' @examples
+#'
+#' \dontrun{
+#'   library(lubridate)
+#'   month(x)
+#'   month(x, label = TRUE)
+#' }
 month.date_xx <- function(
   x,
   label = FALSE,

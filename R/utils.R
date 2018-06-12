@@ -51,3 +51,35 @@ substr_right <- function(x, n){
   nc <- nchar(x)
   substr(x, nc - n + 1, nc)
 }
+
+
+
+
+dyn_register_s3_method <- function(
+  pkg,
+  generic,
+  class,
+  fun = NULL
+){
+  stopifnot(is_scalar_character(pkg))
+  stopifnot(is_scalar_character(generic))
+  stopifnot(is_scalar_character(class))
+
+  if (is.null(fun)) {
+    fun <- get(paste0(generic, ".", class), envir = parent.frame())
+  } else {
+    stopifnot(is.function(fun))
+  }
+
+  if (pkg %in% loadedNamespaces()) {
+    registerS3method(generic, class, fun, envir = asNamespace(pkg))
+  }
+
+  # Always register hook in case package is later unloaded & reloaded
+  setHook(
+    packageEvent(pkg, "onLoad"),
+    function(...) {
+      registerS3method(generic, class, fun, envir = asNamespace(pkg))
+    }
+  )
+}
