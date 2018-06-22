@@ -1,4 +1,4 @@
-# sfmisc utils 0.0.1.9003
+# sfmisc utils 0.0.1.9004
 
 
 
@@ -88,7 +88,6 @@ condition <- function(subclass, message, call = sys.call(-1), ...) {
 
 
 
-#' @rdname condition
 error <- function(subclass, message, call = sys.call(-1), ...) {
   structure(
     class = c(subclass, "error", "condition"),
