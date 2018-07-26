@@ -88,7 +88,9 @@ dyn_register_s3_method <- function(
 
 
 ifelse_simple <- function(x, true, false){
+  assert(is.logical(x))
   assert(is_equal_length(x, true, false))
-  false[x] <- true
+  assert(identical(class(true), class(false)))
+  false[x] <- true[x]
   false
 }
