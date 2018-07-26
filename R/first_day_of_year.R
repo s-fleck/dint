@@ -66,8 +66,7 @@ first_day_of_year <- function(x){
 #' @rdname day_of_year
 #' @export
 first_day_of_year.default <- function(x){
-  assert_lubridate()
-  lubridate::floor_date(as.Date(x), "year")
+  make_date(get_year(x), 1, 1)
 }
 
 
@@ -85,6 +84,5 @@ last_day_of_year <- function(x){
 #' @rdname day_of_year
 #' @export
 last_day_of_year.default <- function(x){
-  assert_lubridate()
-  lubridate::ceiling_date(as.Date(x), "year") - 1L
+  make_date(get_year(x), 12, 31)
 }

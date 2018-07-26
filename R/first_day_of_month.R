@@ -66,8 +66,7 @@ first_day_of_month <- function(x){
 #' @rdname day_of_month
 #' @export
 first_day_of_month.default <- function(x){
-  assert_lubridate()
-  lubridate::floor_date(as.Date(x), "month")
+  make_date(get_year(x), get_month(x), 1)
 }
 
 
@@ -85,6 +84,12 @@ last_day_of_month <- function(x){
 #' @rdname day_of_month
 #' @export
 last_day_of_month.default <- function(x){
-  assert_lubridate()
-  lubridate::ceiling_date(as.Date(x), "month") - 1L
+  month <- get_month(x)
+  assert(all(month %in% 1:12))
+
+  if (month < 12){
+    make_date(get_year(x) , month + 1, 1) - 1
+  } else {
+    make_date(get_year(x), 12, 31)
+  }
 }
