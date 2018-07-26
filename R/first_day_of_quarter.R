@@ -66,8 +66,11 @@ first_day_of_quarter <- function(x){
 #' @rdname day_of_quarter
 #' @export
 first_day_of_quarter.default <- function(x){
-  assert_lubridate()
-  lubridate::floor_date(as.Date(x), "quarter")
+  make_date(
+    get_year(x),
+    c(1, 4, 7, 10)[quarter_from_month(get_month(x))],
+    1
+  )
 }
 
 
@@ -87,4 +90,10 @@ last_day_of_quarter <- function(x){
 last_day_of_quarter.default <- function(x){
   assert_lubridate()
   lubridate::ceiling_date(as.Date(x), "quarter") - 1L
+}
+
+
+
+quarter_from_month <- function(x){
+  c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4)[x]
 }
