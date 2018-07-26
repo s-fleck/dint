@@ -87,9 +87,9 @@ last_day_of_month.default <- function(x){
   month <- get_month(x)
   assert(all(month %in% 1:12))
 
-  if (month < 12){
-    make_date(get_year(x) , month + 1, 1) - 1
-  } else {
+  ifelse_simple(
+    month < 12,
+    make_date(get_year(x) , month + 1, 1) - 1,
     make_date(get_year(x), 12, 31)
-  }
+  )
 }

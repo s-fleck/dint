@@ -83,3 +83,12 @@ dyn_register_s3_method <- function(
     }
   )
 }
+
+
+
+
+ifelse_simple <- function(x, true, false){
+  assert(is_equal_length(x, true, false))
+  false[x] <- true
+  false
+}
