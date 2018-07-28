@@ -2,7 +2,7 @@
 
 #' Conveniently get first/last day of year from numbers
 #'
-#' @inheritParams format_y
+#' @inheritParams format_ym
 #' @inherit first_day_of_year
 #'
 #' @family ym convenience functions
@@ -12,17 +12,11 @@
 #'
 #' @examples
 #'
-#' first_day_y(2016, 1)
-#' first_day_y(20161)
+#' first_day_y(2016)
+#' first_day_y(2016)
 #'
-first_day_y <- function(x, m = NULL){
-  if (is.null(m)){
-    d <- as_date_y(x)
-  } else {
-    d <- date_y(x, m)
-  }
-
-  first_day_of_year(d)
+first_day_y <- function(x){
+  first_day_of_year(date_y(x))
 }
 
 
@@ -30,14 +24,8 @@ first_day_y <- function(x, m = NULL){
 
 #' @rdname first_day_y
 #' @export
-last_day_y <- function(x, m = NULL){
-  if (is.null(m)){
-    d <- as_date_y(x)
-  } else {
-    d <- date_y(x, m)
-  }
-
-  last_day_of_year(d)
+last_day_y <- function(x){
+  last_day_of_year(date_y(x))
 }
 
 

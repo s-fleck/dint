@@ -1,19 +1,12 @@
-#' Get month of a date_xx
-#'
-#' `get_month()` returns the month of a `date_xx` object.
-#' A method for [lubridate::month()] is also exported. This will have
-#' slightly more overhead than using `get_month()`, but should generally be
-#' prefered for consistency in function naming across packages.
-#'
 #' @export
 #' @rdname getters
-#'
 #' @examples
-#'
 #' x <- date_yq(2016, 2)
 #' get_month(x)
-#'
-#'
+#' \dontrun{
+#' library(lubridate)
+#' month(x)
+#' }
 get_month <- function(x){
   UseMethod("get_month")
 }

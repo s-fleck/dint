@@ -1,27 +1,12 @@
-#' Get quarter of a date_xx.
-#'
-#' `get_quarter()` returns the quarter of a [date_xx] object.
-#' [lubridate::quarter()] also works, because \pkg{dint} exports a method for
-#' [lubridate::month()]. This will have more overhead than using
-#' `get_quarter()`, but should generally be prefered for consistency in
-#' function naming across packages.
-#'
-#' @inheritParams lubridate::year
-#' @seealso [lubridate::quarter()]
-#' @aliases quarter
-#' @family yq getters
+#' @rdname getters
 #' @export
-#'
 #' @examples
-#'
 #' x <- date_yq(2016, 2)
 #' get_quarter(x)
-#'
 #' \dontrun{
 #' library(lubridate)
 #' quarter(x)
 #' }
-#'
 #'
 get_quarter <- function(x){
   UseMethod("get_quarter")
