@@ -101,19 +101,15 @@ as_date_ym.Date <- function(x){
 
 # as.Date -----------------------------------------------------------------
 
-#' Convert date_ym to Date
-#'
-#' @param x a [date_ym] object
-#' @param ... ignored
-#'
-#' @return A [base::Date] object
-#' @md
+#' @rdname as.Date.date_xx
 #' @export
 #'
 as.Date.date_ym <- function(x, ...){
-  y <- get_year(x)
-  m <- get_month(x)
-  make_date(y, m, 1L)
+  make_date(
+    get_year(x),
+    get_month(x),
+    1L
+  )
 }
 
 

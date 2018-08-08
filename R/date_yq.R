@@ -101,19 +101,18 @@ as_date_yq.Date <- function(x){
 
 # as.Date -----------------------------------------------------------------
 
-#' Convert date_yq to Date
-#'
-#' @param x a [date_yq] object
-#' @param ... ignored
-#'
-#' @return A [base::Date] object
-#' @md
+#' @rdname as.Date.date_xx
 #' @export
 #'
-as.Date.date_yq <- function(x, ...){
-  y <- get_year(x)
-  m <- c(1, 4, 7, 10)[get_quarter(x)]
-  make_date(y, m, 1L)
+as.Date.date_yq <- function(
+  x,
+  ...
+){
+  make_date(
+    get_year(x),
+    c(1, 4, 7, 10)[get_quarter(x)],
+    1L
+  )
 }
 
 

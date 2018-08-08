@@ -13,9 +13,12 @@
 #' @examples
 #'
 #' first_day_ym(2016, 1)
-#' first_day_ym(20161)
+#' first_day_ym(201601)
 #'
-first_day_ym <- function(x, m = NULL){
+first_day_ym <- function(
+  x,
+  m = NULL
+){
   if (is.null(m)){
     d <- as_date_ym(x)
   } else {
@@ -30,7 +33,10 @@ first_day_ym <- function(x, m = NULL){
 
 #' @rdname first_day_ym
 #' @export
-last_day_ym <- function(x, m = NULL){
+last_day_ym <- function(
+  x,
+  m = NULL
+){
   if (is.null(m)){
     d <- as_date_ym(x)
   } else {

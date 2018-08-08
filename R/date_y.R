@@ -78,17 +78,12 @@ as_date_y.Date <- function(x){
 
 # as.Date -----------------------------------------------------------------
 
-#' Convert date_y to Date
-#'
-#' Returns the first day of the year
-#'
-#' @param x a [date_y] object
-#' @param ... ignored
-#'
-#' @return A [base::Date] object
-#' @md
+#' @rdname as.Date.date_xx
 #' @export
 #'
-as.Date.date_y <- function(x, ...){
+as.Date.date_y <- function(
+  x,
+  ...
+){
   make_date(x, 1, 1L)
 }

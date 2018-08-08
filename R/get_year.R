@@ -1,24 +1,29 @@
-#' Get Components of a date_xx
-#'
-#' `get_year()` returns the year of a `date_xx` object.
-#' A method for [lubridate::year()] is also exported. This will have
-#' slightly more overhead than using `get_year()`, but should generally be
-#' prefered for consistency in function naming across packages.
+#' Get Year, Quarter or Month
 #'
 #'
-#' @param x a [date_xx] object
+#' @details
+#' If you use lubridate in addition to dint,
+#' you can also use [lubridate::year()], [lubridate::month()] and
+#' [lubridate::quarter()] with dint objects.
 #'
-#' @seealso [dint::year]
+#' @param x a [date_xx] or any \R object that can be coerced to `POSIXlt`
+#'
 #' @export
 #' @rdname getters
+#' @return
+#'   an `integer` vector.
+#'
+#' @seealso
+#'   [lubridate::year()],
+#'   [lubridate::month()],
+#'   [lubridate::quarter()]
 #'
 #' @examples
-#'
-#' \dontrun{
 #' x <- date_yq(2016, 2)
-#'
+#' get_year(x)
+#' \dontrun{
+#' library(lubridate)
 #' year(x)
-#'   get_year(x)
 #' }
 #'
 get_year <- function(x){
