@@ -270,6 +270,16 @@ format_date_ym_shorter <- function(x){
 
 
 
+#' @rdname date_ym_arithmetic
+#' @export
+seq.date_ym <- function(x, y, ...){
+  res <- seq.int(as.integer(x), as.integer(y))
+  as_date_ym(res[(res %% 100) %in% 1:12])
+}
+
+
+
+
 # shortcuts ---------------------------------------------------------------
 
 #' Conveniently produce formatted Year-Month strings

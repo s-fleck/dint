@@ -1,7 +1,7 @@
 Type: Package
 Package: dint
 Title: Special Purpose Integer Dates 
-Version: 0.0.1.9008
+Version: 0.0.1.9009
 Authors@R: person("Stefan", "Fleck", email = "stefan.b.fleck@gmail.com", role = c("aut", "cre"))
 Maintainer: Stefan Fleck <stefan.b.fleck@gmail.com>
 Description: Functions and classes for to work with integer years, year-quarter and year-week Dates.
