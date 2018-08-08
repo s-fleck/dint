@@ -43,7 +43,7 @@ get_year.date_y <- function(x){
 
 #' @export
 get_year.date_ym <- function(x){
-  as.integer(x) %/% 100
+  as.integer(x) %/% 100L
 }
 
 
@@ -51,7 +51,7 @@ get_year.date_ym <- function(x){
 
 #' @export
 get_year.date_yq <- function(x){
-  as.integer(x) %/% 10
+  as.integer(x) %/% 10L
 }
 
 
@@ -59,7 +59,7 @@ get_year.date_yq <- function(x){
 
 #' @export
 get_year.default <- function(x){
-  as.POSIXlt(x, tz = tz(x))$year + 1900
+  as.POSIXlt(x, tz = tz(x))$year + 1900L
 }
 
 
