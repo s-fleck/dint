@@ -100,19 +100,32 @@ print.date_xx <- function(
 # as.Date -----------------------------------------------------------------
 
 
-#' Coerce dint Objects to Base R Types
+#' Coerce dint Objects to Base R Date Types
 #'
-#' All `dint` objects can be coerced to base R date Types. If `lubridate` is
-#' loaded, methods for lubridate generics (such as `as_date` and `as_datetime`)
-#' are also made available by dint.
+#' All `dint` objects can be coerced to base R Date or Datetime (`POSIXct`)
+#' types. The resulting date will always default to the first possible
+#' Date/Datetime in this period.
+#'
+#' If `lubridate` is loaded, methods for lubridate generics (such as `as_date`
+#' and `as_datetime`) are also made available by dint.
+#'
 #'
 #' @param x any \R object
 #' @param ... passed on to methods
 #'
-#' @return An Object of the appropriate base \R type (`Date`, `POSIXct`, or `POSIXlt`)
+#' @return An Object of the appropriate base \R type (`Date`, `POSIXct`, or
+#'   `POSIXlt`)
 #'
 #' @rdname as.Date.date_xx
 #' @name as.Date.date_xx
+#'
+#' @example
+#' as.Date(date_yq(2017, 2))
+#' as.POSIXlt(date_yq(2017, 2))
+#'
+#' # When coercing to datetime, the default timezone is UTC
+#' as.POSIXct(date_yq(2017, 2))
+#'
 
 
 #' @rdname as.Date.date_xx
@@ -140,4 +153,14 @@ as_datetime.date_xx <- function(x, ...){
 #' @export
 as.POSIXlt.date_xx <- function(x, tz = "", ...){
   as.POSIXlt(as.Date(x), tz = tz, ...)
+}
+
+
+
+
+#' @rdname as.Date.date_xx
+#' @inheritParams base::as.POSIXlt
+#' @export
+as.POSIXct.date_xx <- function(x, tz = "", ...){
+  as.POSIXct(as.Date(x), tz = tz, ...)
 }
