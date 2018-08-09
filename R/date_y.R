@@ -70,7 +70,7 @@ as_date_y.numeric <- function(x){
 
 #' @export
 as_date_y.Date <- function(x){
-  date_y(year(x))
+  date_y(get_year(x))
 }
 
 

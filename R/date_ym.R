@@ -199,11 +199,15 @@ format_date_ym_shorter <- function(x){
 #'
 #' @param x a date_ym object
 #' @param y an integer
+#' @param ... passed on to methods
 #'
-#' @md
-#' @rdname date_ym_arithmetic
-#' @aliases date_ym_arithmetic
+#' @name date_ym_arithmetic
 #' @seealso [base::Arithmetic]
+
+
+
+
+#' @rdname date_ym_arithmetic
 #' @export
 `+.date_ym` <- function(x, y){
   increment(x, as.integer(y))

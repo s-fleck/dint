@@ -1,21 +1,22 @@
 Type: Package
 Package: dint
 Title: Special Purpose Integer Dates 
-Version: 0.0.1.9009
+Version: 1.0.0
 Authors@R: person("Stefan", "Fleck", email = "stefan.b.fleck@gmail.com", role = c("aut", "cre"))
 Maintainer: Stefan Fleck <stefan.b.fleck@gmail.com>
-Description: Functions and classes for to work with integer years, year-quarter and year-week Dates.
+Description: 
+  A toolkit to work with year-quarter and year-week Dates.
 License: MIT + file LICENSE
-Suggests: 
-    testthat,
-    lubridate,
-    knitr,
-    rmarkdown,
-    ggplot2
-Encoding: UTF-8
-LazyData: true
 URL: https://github.com/s-fleck/dint
 BugReports: https://github.com/s-fleck/dint/issues
-RoxygenNote: 6.0.1.9000
-Roxygen: list(markdown = TRUE)
+Suggests: 
+    ggplot2,
+    knitr,
+    lubridate,
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.0.1.9000
