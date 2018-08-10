@@ -6,7 +6,6 @@
 #' @family yq convenience functions
 #' @seealso [first_day_of_quarter()]
 #' @export
-#' @md
 #'
 #' @examples
 #'
@@ -47,7 +46,6 @@ last_day_yq <- function(x, q = NULL){
 #' @return a [Date]
 #'
 #' @rdname day_of_quarter
-#' @md
 #' @export
 #' @examples
 #'

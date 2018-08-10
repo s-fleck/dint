@@ -8,7 +8,6 @@
 #' @return `date_y` returns an object of type `date_y`
 #' @export
 #' @family simple dates
-#' @md
 #'
 #' @examples
 #' date_y(2013)
@@ -26,7 +25,6 @@ date_y <- function(y){
 #'   argument is of type `date_y` or not.
 #'
 #' @export
-#' @md
 #' @rdname date_y
 is_date_y <- function(x){
   inherits(x, "date_y")
@@ -37,7 +35,6 @@ is_date_y <- function(x){
 
 # as_data_y ---------------------------------------------------------------
 
-#' @md
 #' @return `as_date_m` attempts to coerce its argument to `date_y` type
 #' @export
 #' @rdname date_y

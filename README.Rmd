@@ -16,7 +16,12 @@ knitr::opts_chunk$set(
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
-A toolkit for working year-quarter and year-month dates
+A Toolkit for Year-Quarter and Year-Month Dates
+
+S3 classes and methods to create and work with year-quarter and year-month 
+vectors. Basic arithmetic operations (such as adding and subtracting) are
+supported, as well as formatting and converting to and from standard R
+Date types.
 
 ## Installation
 

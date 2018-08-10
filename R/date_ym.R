@@ -13,7 +13,6 @@
 #' @export
 #' @family simple dates
 #' @seealso [format.date_ym()]
-#' @md
 #'
 #' @examples
 #' date_ym(2013, 12)
@@ -39,7 +38,6 @@ date_ym <- function(y, m) {
 #'   argument is of type `date_ym` or not.
 #'
 #' @export
-#' @md
 #' @rdname date_ym
 is_date_ym <- function(x){
   inherits(x, "date_ym")
@@ -48,7 +46,6 @@ is_date_ym <- function(x){
 
 
 
-#' @md
 #' @return `as_date_ym` attempts to coerce its argument to `date_ym` type
 #' @export
 #' @rdname date_ym
@@ -126,7 +123,6 @@ as.Date.date_ym <- function(x, ...){
 #'
 #' @return A character vector
 #'
-#' @md
 #' @export
 #' @examples
 #'
@@ -278,7 +274,6 @@ seq.date_ym <- function(x, y, ...){
 #'
 #' @inherit format.date_ym
 #'
-#' @md
 #' @family ym convenience functions
 #' @seealso [format.date_ym()]
 #' @export

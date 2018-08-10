@@ -37,7 +37,6 @@ last_day_y <- function(x){
 #' @return a [Date]
 #'
 #' @rdname day_of_year
-#' @md
 #' @export
 #' @examples
 #' first_day_of_year("2016-06-04")

@@ -6,7 +6,6 @@
 #' @family ym convenience functions
 #' @seealso [first_day_of_month()]
 #' @export
-#' @md
 #'
 #' @examples
 #'
@@ -53,7 +52,6 @@ last_day_ym <- function(
 #' @return a [Date]
 #'
 #' @rdname day_of_month
-#' @md
 #' @export
 #' @examples
 #'
