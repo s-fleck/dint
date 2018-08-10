@@ -5,7 +5,7 @@ Version: 1.0.0
 Authors@R: person("Stefan", "Fleck", email = "stefan.b.fleck@gmail.com", role = c("aut", "cre"))
 Maintainer: Stefan Fleck <stefan.b.fleck@gmail.com>
 Description: 
-  A toolkit to work with year-quarter and year-week Dates.
+  A toolkit for working year-quarter and year-month dates.
 License: MIT + file LICENSE
 URL: https://github.com/s-fleck/dint
 BugReports: https://github.com/s-fleck/dint/issues

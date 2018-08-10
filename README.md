@@ -5,7 +5,7 @@ dint
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
-A toolkit to work with year-quarter and year-week Dates.
+A toolkit for working year-quarter and year-month dates
 
 Installation
 ------------
