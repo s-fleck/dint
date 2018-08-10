@@ -1,13 +1,11 @@
-#' Increment functions for various self-defined objects
-#'
-#' Function to increment objects
+#' Increment date_xx objects
 #'
 #' @param x object to increment
 #' @param inc Value by which to increment (usually integer)
 #'
-#' @return An object of the same type increment by inc
-#' @rdname increment
-#' @export
+#' @return
+#'   An object of the same type as `x` increment by `inc`
+#' @noRd
 increment <- function(x, inc = 1){
   UseMethod("increment", x)
 }
@@ -15,8 +13,7 @@ increment <- function(x, inc = 1){
 
 
 
-#' @export
-#' @rdname increment
+#' @noRd
 increment.date_yq <- function(x, inc){
   d <- yqs_matrix_from_numeric(x)
   d[, 2] <- d[, 2] + inc
@@ -38,8 +35,7 @@ increment.date_yq <- function(x, inc){
 
 
 
-#' @export
-#' @rdname increment
+#' @noRd
 increment.date_ym <- function(x, inc){
   d <- yms_matrix_from_numeric(x)
   d[, 2] <- d[, 2] + inc

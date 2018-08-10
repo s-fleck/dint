@@ -1,5 +1,5 @@
 ---
-title: "Dint: Special Purpose Integer Dates "
+title: "Dint: A tooblox for year-quarter and year-month dates"
 author: "Stefan Fleck"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -22,14 +22,13 @@ knitr::opts_chunk$set(
 library(dint)
 ```
 
-dint is for converting, formatting, and calculating with year-quarter 
-and year-month dates. It is implemented in base R and comes with zero 
-external dependencies. It also integrates well with lubridate, in case you 
-are already using this neat package. Even if you don't need to work with such 
-special dates directly, dint can still help you format (for example) plot axis. 
+dint helps you with working with year-quarter and year-month dates. It is
+implemented in base R and comes with zero external dependencies. Even
+if you don't need to work with such special dates directly, dint can still help
+you format (for example) plot axis.
 
 
-# The date_yq and date_ym classes
+# Creating
 
 ```{r}
 
@@ -39,50 +38,81 @@ date_ym(c(2015, 2016), c(1, 2))
 
 
 # ...or through coercion of dates or integers
-as_date_ym(Sys.Date())
-as_date_yq(20141)
+as_date_yq(Sys.Date())
+as_date_yq(20141)   # the last digit is interpreted as quarter
+as_date_ym(201412)  # the last two digits are interpreted as month
 
-
-# You can also convert date_* Objects to proper Dates. In this case you get the 
-# first day of the period
-as.Date(date_yq(2015, 1))
-as.Date(date_ym(2015, 3))
 
 ```
 
 
 
 
-# Arithmetic with integer dates
+# Coercion
 
 ```{r}
 
-# Months
-m <- as_date_ym(201412)
-m
-m + 1
+# You can coerce dates to any date_xx object with as_date_**
+d <- as.Date("2018-05-12")
+as_date_yq(d)
+as_date_ym(d)
+as_date_y(d)
 
-# Quarters
-q <- as_date_yq(20144)
-q
-q + 1
+
+# Conversely, you can convert date_xx objects back to the various R Date formats
+q <- date_yq(2015, 1)
+as.Date(q)
+as.POSIXlt(q)
+
+
+# as.POSIXct creates datetimes in UTC/GMT, so the result might not always be as
+# expected, depending on your local timezone.
+as.POSIXct(q)
+as.POSIXct(q, tz = "GMT")
+print(as.POSIXct(q), tz = "GMT")
+print(as.POSIXct(q), tz = "CET")
 
 ```
+
+
+
+# Arithmetics
+
+```{r}
+# Quarters
+q <- date_yq(2014, 4)
+q
+q + 1
+seq(q -2, q + 2)
+
+
+# Months
+m <- date_ym(2014, 12)
+m
+m + 1
+seq(m -2, m + 2)
+
+```
+
+
 
 
 # Accessing elements
 
 ```{r}
-
-get_year(m)
-get_quarter(m)
-get_month(m)
-
+q <- date_yq(2014, 4)
+get_year(q)
 get_quarter(q)
 get_month(q) # defaults to first month of quarter
 
 
+m <- date_ym(2014, 12)
+get_year(m)
+get_quarter(m)
+get_month(m)
 ```
+
+
 
 
 If you use lubridate, you can just use the slighly less verbose lubridate 
@@ -91,35 +121,63 @@ accessors
 ```{r}
 stopifnot(requireNamespace("lubridate"))
 
-lubridate::year(m)
-lubridate::quarter(m)
-lubridate::month(m)
-
-# There are also some extra functions in dint that only work if you have 
-# lubridate installed:
-
-first_day_of_quarter(q)
-last_day_of_quarter(q)
+lubridate::year(q)
+lubridate::quarter(q)
+lubridate::month(q)
 
 ```
+
+
+
+
+You can also get the first and last days of calendar periods with dint
+
+```{r}
+q <- date_yq(2015, 1)
+first_day_of_quarter(q)  # the same as as.Date(q), but more explicit
+last_day_of_quarter(q)  # the same as as.Date(q), but more explicit
+
+
+# These functions work with normal dates
+d <- as.Date("2018-05-12")
+first_day_of_quarter(d)
+last_day_of_quarter(d)
+first_day_of_month(d)
+last_day_of_month(d)
+first_day_of_year(d)
+last_day_of_year(d)
+
+
+# Alternativeley you can also use these:
+first_day_yq(2012, 2)
+last_day_ym(2012, 2)
+last_day_y(2012)
+
+```
+
+
 
 
 
 # Formatting
 
-
-Formating `date_yq` Objects is easy. Currently, three different formatting 
+Formating `date_yq` objects is easy. Currently, three different formatting 
 presets are defined for dint dates.
 
 ```{r}
+q <- date_yq(2014, 4)
 format(q, "iso")  # default
 format(q, "short")
 format(q, "shorter")
 
+
+m <- date_ym(2014, 12)
 format(m, "iso")  # default
 format(m, "short")
 format(m, "shorter")
 ```
+
+
 
 
 For convenience, dint provides direct formatting functions for dates that are 

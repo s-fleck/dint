@@ -65,7 +65,7 @@ get_year.default <- function(x){
 
 
 
-#' Get Components of a date_xx (lubridate compat)
+#' Get Year, Quarter or Month (lubridate Compatibility)
 #'
 #' See [lubridate::year()] and [lubridate::month()]
 #'

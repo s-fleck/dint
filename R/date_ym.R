@@ -1,6 +1,6 @@
 # ctor --------------------------------------------------------------------
 
-#' A Simple Year-Month Date Format
+#' A Simple S3-Class for Year-Month Dates
 #'
 #' A simple data type for storing year-month dates in a human readable integer
 #' format, e.g.: December 2012 is stored as 201212. Supports simple arithmethics
@@ -117,7 +117,7 @@ as.Date.date_ym <- function(x, ...){
 
 # format ------------------------------------------------------------------
 
-#' Format a date_ym object
+#' Format a date_ym Object
 #'
 #' @param x a [date_ym] object
 #' @param format A scalar character, valid values are: `"iso"`, `"short"`, and
@@ -192,22 +192,7 @@ format_date_ym_shorter <- function(x){
 
 # algebra -----------------------------------------------------------------
 
-#' Date_ym arithmethic operations
-#'
-#' Currently only `+` and `-` are supported, all other basic arithmethic
-#' operations are disabled for date_ym objects.
-#'
-#' @param x a date_ym object
-#' @param y an integer
-#' @param ... passed on to methods
-#'
-#' @name date_ym_arithmetic
-#' @seealso [base::Arithmetic]
-
-
-
-
-#' @rdname date_ym_arithmetic
+#' @rdname date_xx_arithmetic
 #' @export
 `+.date_ym` <- function(x, y){
   increment(x, as.integer(y))
@@ -216,7 +201,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_ym_arithmetic
+#' @rdname date_xx_arithmetic
 #' @export
 `-.date_ym` <- function(x, y){
   increment(x, as.integer(-y))
@@ -225,7 +210,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_ym_arithmetic
+#' @rdname date_xx_arithmetic
 #' @export
 `*.date_ym` <- function(x, y){
   stop("Operation not supported")
@@ -234,7 +219,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_ym_arithmetic
+#' @rdname date_xx_arithmetic
 #' @export
 `/.date_ym` <- function(x, y){
   stop("Operation not supported")
@@ -243,7 +228,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_ym_arithmetic
+#' @rdname date_xx_arithmetic
 #' @export
 `^.date_ym` <- function(x, y){
   stop("Operation not supported")
@@ -252,7 +237,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_ym_arithmetic
+#' @rdname date_xx_arithmetic
 #' @export
 `%%.date_ym` <- function(x, y){
   stop("Operation not supported")
@@ -261,7 +246,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_ym_arithmetic
+#' @rdname date_xx_arithmetic
 #' @export
 `%/%.date_ym` <- function(x, y){
   stop("Operation not supported")
@@ -270,7 +255,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_ym_arithmetic
+#' @rdname date_xx_arithmetic
 #' @export
 seq.date_ym <- function(x, y, ...){
   res <- seq.int(as.integer(x), as.integer(y))
@@ -282,7 +267,7 @@ seq.date_ym <- function(x, y, ...){
 
 # shortcuts ---------------------------------------------------------------
 
-#' Conveniently produce formatted Year-Month strings
+#' Direclty Create Formatted Year-Month Strings
 #'
 #' @param x,m Two integer (vectors). `m` is optional and the interpretation of
 #'   `x` will depend on whether `m` is supplied or not:

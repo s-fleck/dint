@@ -78,7 +78,7 @@ is_date_xx <- function(x){
 
 # print -------------------------------------------------------------------
 
-#' Title
+#' Print a date_xx Object
 #'
 #' @param x A [date_xx] object
 #' @param ... passed on to [format.date_yq()] or [format.date_ym()]

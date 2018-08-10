@@ -1,6 +1,4 @@
-
-
-#' Conveniently get first/last day of quarter from numbers
+#' Get First or Last Day of Quarter From Year and Quarter
 #'
 #' @inheritParams format_yq
 #' @inherit first_day_of_quarter

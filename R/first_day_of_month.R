@@ -1,6 +1,4 @@
-
-
-#' Conveniently get first/last day of month from numbers
+#' Get First or Last Day of Month From Year and Month
 #'
 #' @inheritParams format_ym
 #' @inherit first_day_of_month
@@ -95,9 +93,7 @@ last_day_of_month.default <- function(x){
 
   ifelse_simple(
     month < 12,
-    make_date(get_year(x) , month + 1, 1) - 1,
+    make_date(get_year(x), month + 1, 1) - 1,
     make_date(get_year(x), 12, 31)
   )
 }
-
-

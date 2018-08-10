@@ -1,6 +1,8 @@
-
-
-#' Conveniently get first/last day of year from numbers
+#' Get First or Last Day of a Year
+#'
+#' `first_day_y()` is equivalent with `first_day_of_year()` and only included
+#' for summetry with [first_day_yq()] and [first_day_ym()].
+#'
 #'
 #' @inheritParams format_ym
 #' @inherit first_day_of_year
@@ -8,13 +10,11 @@
 #' @family ym convenience functions
 #' @seealso [first_day_of_year()]
 #' @export
-#' @md
+#' @rdname day_of_year
 #'
 #' @examples
-#'
 #' first_day_y(2016)
 #' first_day_y(2016)
-#'
 first_day_y <- function(x){
   first_day_of_year(date_y(x))
 }
@@ -22,7 +22,7 @@ first_day_y <- function(x){
 
 
 
-#' @rdname first_day_y
+#' @rdname day_of_year
 #' @export
 last_day_y <- function(x){
   last_day_of_year(date_y(x))
@@ -40,10 +40,8 @@ last_day_y <- function(x){
 #' @md
 #' @export
 #' @examples
-#'
 #' first_day_of_year("2016-06-04")
 #' last_day_of_year("2016-06-04")
-#'
 first_day_of_year <- function(x){
   UseMethod("first_day_of_year")
 }

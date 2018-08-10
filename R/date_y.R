@@ -1,4 +1,4 @@
-#' A Simple Year Date Format
+#' A Simple S3-Class for Years
 #'
 #' A simple data type for storing years. A `date_y` object is just an
 #' integer with an additional class atribute.

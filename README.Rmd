@@ -14,11 +14,9 @@ knitr::opts_chunk$set(
 ```
 # dint
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
-Functions and classes for to work with integer years, year-quarter and 
-year-week Dates. 
-
+A toolkit to work with year-quarter and year-week Dates.
 
 ## Installation
 
@@ -29,22 +27,42 @@ You can install dint from GitHub with:
 devtools::install_github("s-fleck/dint")
 ```
 
+
+
+
 ## Example
 
-
 ```{r example}
-
 library(dint)
 
-x <- as_date_yq(20154)
+# creation
+q <- date_yq(2014, 4)
+m <- as_date_ym(201412)
 
-format(x)
-format(x, "short")
-format(x, "shorter")
 
-x + 1
+# arithmetic operations
+# quarters
+q
+q + 1
+seq(q -2, q + 2)
 
-last_day_of_quarter(x)
-first_day_of_quarter(x)
+
+# months
+m
+m + 1
+seq(m -2, m + 2)
+
+
+# formatting
+format(q)
+format(q, "short")
+format(q, "shorter")
+format(m)
+
+
+# get start and end of period
+last_day_of_quarter(q)
+first_day_of_quarter(q)
+first_day_of_month(Sys.Date())
 
 ```
