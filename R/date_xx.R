@@ -119,31 +119,13 @@ print.date_xx <- function(
 #' @rdname as.Date.date_xx
 #' @name as.Date.date_xx
 #'
-#' @example
+#' @examples
 #' as.Date(date_yq(2017, 2))
 #' as.POSIXlt(date_yq(2017, 2))
 #'
 #' # When coercing to datetime, the default timezone is UTC
 #' as.POSIXct(date_yq(2017, 2))
 #'
-
-
-#' @rdname as.Date.date_xx
-#' @export
-as_date.date_xx <- function(x, ...){
-  assert_lubridate()
-  as.Date(x, ...)
-}
-
-
-
-
-#' @rdname as.Date.date_xx
-#' @export
-as_datetime.date_xx <- function(x, ...){
-  assert_lubridate()
-  lubridate::as_datetime(as.Date(x), ...)
-}
 
 
 
@@ -162,5 +144,6 @@ as.POSIXlt.date_xx <- function(x, tz = "", ...){
 #' @inheritParams base::as.POSIXlt
 #' @export
 as.POSIXct.date_xx <- function(x, tz = "", ...){
-  as.POSIXct(as.Date(x), tz = tz, ...)
+  as.POSIXct(as.Date(x, tz = tz), tz = tz, ...)
+
 }
