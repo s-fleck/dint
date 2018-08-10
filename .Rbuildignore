@@ -4,3 +4,5 @@
 ^README\.Rmd$
 ^_pkgdown\.yml$
 ^docs$
+^cran-comments\.md$
+^CRAN-RELEASE$

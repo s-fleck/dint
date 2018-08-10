@@ -83,7 +83,7 @@ is_date_xx <- function(x){
 #' @param x A [date_xx] object
 #' @param ... passed on to [format.date_yq()] or [format.date_ym()]
 #'
-#' @return `x` (invislby)
+#' @return `x` (invisibly)
 #' @export
 #'
 print.date_xx <- function(
@@ -102,12 +102,13 @@ print.date_xx <- function(
 
 #' Coerce dint Objects to Base R Date Types
 #'
-#' All `dint` objects can be coerced to base R Date or Datetime (`POSIXct`)
+#' All \pkg{dint} objects can be coerced to base R Date or Datetime (`POSIXct`)
 #' types. The resulting date will always default to the first possible
 #' Date/Datetime in this period.
 #'
-#' If `lubridate` is loaded, methods for lubridate generics (such as `as_date`
-#' and `as_datetime`) are also made available by dint.
+#' If \pkg{lubridate} is loaded, methods for lubridate generics (such as
+#' [lubridate::month()] and [lubridate::year()]) are also made available by
+#' dint.
 #'
 #'
 #' @param x any \R object

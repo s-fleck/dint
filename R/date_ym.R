@@ -3,7 +3,7 @@
 #' A Simple S3-Class for Year-Month Dates
 #'
 #' A simple data type for storing year-month dates in a human readable integer
-#' format, e.g.: December 2012 is stored as 201212. Supports simple arithmethics
+#' format, e.g.: December 2012 is stored as 201212. Supports simple arithmetics
 #' (`+` and `-`) as well formatting.
 #'
 #' @param y year
@@ -267,7 +267,7 @@ seq.date_ym <- function(x, y, ...){
 
 # shortcuts ---------------------------------------------------------------
 
-#' Direclty Create Formatted Year-Month Strings
+#' Directly Create Formatted Year-Month Strings
 #'
 #' @param x,m Two integer (vectors). `m` is optional and the interpretation of
 #'   `x` will depend on whether `m` is supplied or not:

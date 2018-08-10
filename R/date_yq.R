@@ -3,7 +3,7 @@
 #' A Simple S3-Class for Year-Quarter Dates
 #'
 #' A simple data type for storing year-quarter dates in a human readable integer
-#' format, e.g.: 3.Qurter of 2012 is stored as 20123. Supports simple arithmethics
+#' format, e.g.: 3.Quarter of 2012 is stored as 20123. Supports simple arithmetics
 #' (`+` and `-`) as well formatting.
 #'
 #' @param y year
@@ -200,12 +200,12 @@ format_date_yq_shorter <- function(x){
 
 #' Date Arithmetic Operations
 #'
-#' Currently only `+` and `-` are supported, all other basic arithmethic
+#' Currently only `+` and `-` are supported, all other basic arithmetic
 #' operations are disabled for date_yq objects.
 #'
 #' @param x a [`date_yq`] or [`date_ym`] object
 #' @param y an integer
-#' @param ... currently ingored.
+#' @param ... currently ignored
 #'
 #' @rdname date_xx_arithmetic
 #' @aliases date_yq_arithmetic
@@ -284,7 +284,7 @@ seq.date_yq <- function(x, y, ...){
 
 # shortcuts ---------------------------------------------------------------
 
-#' Direclty Create Formatted Year-Quarter Strings
+#' Directly Create Formatted Year-Quarter Strings
 #'
 #' @param x,q Two integer (vectors). `q` is optional and the interpretation of
 #'   `x` will depend on whether `q` is supplied or not:

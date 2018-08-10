@@ -2,7 +2,7 @@
 #'
 #'
 #' @details
-#' If you use lubridate in addition to dint,
+#' If you use \pkg{lubridate} in addition to dint,
 #' you can also use [lubridate::year()], [lubridate::month()] and
 #' [lubridate::quarter()] with dint objects.
 #'

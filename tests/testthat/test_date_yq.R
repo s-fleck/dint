@@ -64,7 +64,7 @@ test_that("format.date_yq works as expected", {
 })
 
 
-test_that("as_date_yq arithmethics works", {
+test_that("as_date_yq arithmetics works", {
   #* @testing increment.date_yq
   tdat <- (as_date_yq(c(-11, -12, -13, -14, 1, 2, 3, 4)))
 

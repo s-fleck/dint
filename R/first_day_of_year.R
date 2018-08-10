@@ -1,7 +1,7 @@
 #' Get First or Last Day of a Year
 #'
 #' `first_day_y()` is equivalent with `first_day_of_year()` and only included
-#' for summetry with [first_day_yq()] and [first_day_ym()].
+#' for symmetry with [first_day_yq()] and [first_day_ym()].
 #'
 #'
 #' @inheritParams format_ym
