@@ -3,7 +3,7 @@
 dint
 ====
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![CRAN status](https://www.r-pkg.org/badges/version/dint)](https://cran.r-project.org/package=dint) [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
 A Toolkit for Year-Quarter and Year-Month Dates
 
@@ -12,7 +12,13 @@ S3 classes and methods to create and work with year-quarter and year-month vecto
 Installation
 ------------
 
-You can install dint from GitHub with:
+Install the release version of dint from CRAN:
+
+``` r
+install.packages("dint")
+```
+
+Or install the development version from GitHub with:
 
 ``` r
 # install.packages("devtools")
