@@ -194,18 +194,9 @@ format_date_yq_shorter <- function(x){
 
 # algebra -----------------------------------------------------------------
 
-#' Date Arithmetic Operations
-#'
-#' Currently only `+` and `-` are supported, all other basic arithmetic
-#' operations are disabled for date_yq objects.
-#'
-#' @param x a [`date_yq`] or [`date_ym`] object
-#' @param y an integer
-#' @param ... currently ignored
-#'
+
+
 #' @rdname date_xx_arithmetic
-#' @aliases date_yq_arithmetic
-#' @seealso [base::Arithmetic]
 #' @export
 `+.date_yq` <- function(x, y){
   increment(x, as.integer(y))
@@ -214,7 +205,7 @@ format_date_yq_shorter <- function(x){
 
 
 
-#' @rdname date_yq_arithmetic
+#' @rdname date_xx_arithmetic
 #' @export
 `-.date_yq` <- function(x, y){
   increment(x, as.integer(-y))
@@ -223,7 +214,7 @@ format_date_yq_shorter <- function(x){
 
 
 
-#' @rdname date_yq_arithmetic
+#' @rdname date_xx_arithmetic_disabled
 #' @export
 `*.date_yq` <- function(x, y){
   stop("Operation not supported")
@@ -232,7 +223,7 @@ format_date_yq_shorter <- function(x){
 
 
 
-#' @rdname date_yq_arithmetic
+#' @rdname date_xx_arithmetic_disabled
 #' @export
 `/.date_yq` <- function(x, y){
   stop("Operation not supported")
@@ -241,7 +232,7 @@ format_date_yq_shorter <- function(x){
 
 
 
-#' @rdname date_yq_arithmetic
+#' @rdname date_xx_arithmetic_disabled
 #' @export
 `^.date_yq` <- function(x, y){
   stop("Operation not supported")
@@ -250,7 +241,7 @@ format_date_yq_shorter <- function(x){
 
 
 
-#' @rdname date_yq_arithmetic
+#' @rdname date_xx_arithmetic_disabled
 #' @export
 `%%.date_yq` <- function(x, y){
   stop("Operation not supported")
@@ -259,7 +250,7 @@ format_date_yq_shorter <- function(x){
 
 
 
-#' @rdname date_yq_arithmetic
+#' @rdname date_xx_arithmetic_disabled
 #' @export
 `%/%.date_yq` <- function(x, y){
   stop("Operation not supported")
@@ -268,7 +259,7 @@ format_date_yq_shorter <- function(x){
 
 
 
-#' @rdname date_yq_arithmetic
+#' @rdname date_xx_arithmetic
 #' @export
 seq.date_yq <- function(x, y, ...){
   res <- seq.int(as.integer(x), as.integer(y))

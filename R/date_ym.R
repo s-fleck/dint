@@ -206,7 +206,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_xx_arithmetic
+#' @rdname date_xx_arithmetic_disabled
 #' @export
 `*.date_ym` <- function(x, y){
   stop("Operation not supported")
@@ -215,7 +215,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_xx_arithmetic
+#' @rdname date_xx_arithmetic_disabled
 #' @export
 `/.date_ym` <- function(x, y){
   stop("Operation not supported")
@@ -224,7 +224,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_xx_arithmetic
+#' @rdname date_xx_arithmetic_disabled
 #' @export
 `^.date_ym` <- function(x, y){
   stop("Operation not supported")
@@ -233,7 +233,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_xx_arithmetic
+#' @rdname date_xx_arithmetic_disabled
 #' @export
 `%%.date_ym` <- function(x, y){
   stop("Operation not supported")
@@ -242,7 +242,7 @@ format_date_ym_shorter <- function(x){
 
 
 
-#' @rdname date_xx_arithmetic
+#' @rdname date_xx_arithmetic_disabled
 #' @export
 `%/%.date_ym` <- function(x, y){
   stop("Operation not supported")
