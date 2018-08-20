@@ -192,3 +192,22 @@ NULL
 #' @name date_xx_arithmetic_disabled
 #' @seealso [date_xx_arithmetic], [base::Arithmetic]
 NULL
+
+
+
+
+#' Extract Elements of a date_xx
+#'
+#' Works exactly like susbetting base vectors via `[`, but preserves the
+#' `date_xx` class and subclasses
+#'
+#' @inheritParams base::Extract
+#'
+#' @return a `date_xx` vector
+#' @export
+#'
+`[.date_xx` <- function(x, i){
+  r <- `[`(as.integer(x), i)
+  class(r) <- class(x)
+  r
+}
