@@ -304,6 +304,25 @@ format_yq <- function(x, q = NULL, format = "iso"){
 
 
 
+# special algebra ---------------------------------------------------------
+
+#' @rdname y-plus
+#' @export
+`%y+%.date_yq` <- function(x, y){
+  as_date_yq(as.integer(x) + (10 * y))
+}
+
+
+
+
+#' @rdname y-plus
+#' @export
+`%y-%.date_yq` <- function(x, y){
+  as_date_yq(as.integer(x) - (10 * y))
+}
+
+
+
 
 # utils -------------------------------------------------------------------
 

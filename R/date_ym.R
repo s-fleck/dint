@@ -261,6 +261,26 @@ seq.date_ym <- function(x, y, ...){
 
 
 
+# special algebra ---------------------------------------------------------
+
+#' @rdname y-plus
+#' @export
+`%y+%.date_ym` <- function(x, y){
+  as_date_ym(as.integer(x) + (100 * y))
+}
+
+
+
+
+#' @rdname y-plus
+#' @export
+`%y-%.date_ym` <- function(x, y){
+  as_date_ym(as.integer(x) - (100 * y))
+}
+
+
+
+
 # shortcuts ---------------------------------------------------------------
 
 #' Directly Create Formatted Year-Month Strings

@@ -88,6 +88,16 @@ test_that("as_date_yq arithmetics works", {
     as_date_yq(c(-34, -21, -22, -23, -24, -11, -12, -13))
   )
 
+
+  expect_identical(
+    date_yq(2017, 1) %y+% 1,
+    date_yq(2018, 1)
+  )
+
+  expect_identical(
+    date_yq(2017, 1) %y-% 1,
+    date_yq(2016, 1)
+  )
 })
 
 

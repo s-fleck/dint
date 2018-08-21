@@ -211,3 +211,32 @@ NULL
   class(r) <- class(x)
   r
 }
+
+
+
+
+#' Add/Subtract Year
+#'
+#'
+#'
+#' @rdname y-plus
+#' @export
+#'
+#' @examples
+#' date_yq(2017, 1) %y+% 1
+#' date_yq(2017, 1) %y-% 1
+#' date_ym(2017, 1) %y+% 1
+#' date_ym(2017, 1) %y-% 1
+#'
+`%y+%` <- function(x, y){
+  UseMethod("%y+%")
+}
+
+
+
+
+#' @rdname y-plus
+#' @export
+`%y-%` <- function(x, y){
+  UseMethod("%y-%")
+}

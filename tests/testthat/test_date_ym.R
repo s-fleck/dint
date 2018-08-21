@@ -11,3 +11,24 @@ test_that("date_ym works as expected", {
   )
 
 })
+
+
+
+
+
+test_that("date_ym arithmetic works", {
+
+  expect_identical(
+    date_ym(2017, 1) %y+% 1,
+    date_ym(2018, 1)
+  )
+
+  expect_identical(
+    date_ym(2017, 1) %y-% 1,
+    date_ym(2016, 1)
+  )
+
+})
+
+
+
