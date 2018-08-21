@@ -21,6 +21,11 @@ x \%y-\% y
 
 \method{\%y-\%}{date_yq}(x, y)
 }
+\arguments{
+\item{x}{a \link{date_xx}}
+
+\item{y}{an \code{integer} vector of years}
+}
 \description{
 Add/Subtract Year
 }

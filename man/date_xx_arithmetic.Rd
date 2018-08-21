@@ -41,7 +41,7 @@ q - 1
 seq(q, q + 5)
 
 
-m <- date_yq(2018, 12)
+m <- date_ym(2018, 12)
 m + 1
 m - 13
 seq(m - 1, m + 1)

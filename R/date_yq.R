@@ -18,9 +18,11 @@
 #' date_yq(2013, 3)
 #'
 date_yq <- function(y, q) {
-  stopifnot(is.numeric(y) || all(is.na(y)))
-  stopifnot(is.numeric(q) || all(is.na(q)))
-  stopifnot(all(q %in% c(1:4) | is.na(q)))
+  stopifnot(
+    is.numeric(y) || all(is.na(y)),
+    is.numeric(q) || all(is.na(q)),
+    all(q %in% c(1:4) | is.na(q))
+  )
 
   s <- ifelse(sign(y) >= 0, 1L, -1L)
   res <- (as.integer(abs(y)) * 10L + as.integer(q)) * s
