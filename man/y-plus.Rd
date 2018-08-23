@@ -22,7 +22,7 @@ x \%y-\% y
 \method{\%y-\%}{date_yq}(x, y)
 }
 \arguments{
-\item{x}{a \link{date_xx}}
+\item{x}{a \link{date_xx} vector}
 
 \item{y}{an \code{integer} vector of years}
 }

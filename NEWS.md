@@ -3,6 +3,11 @@
 * added `[` method for `date_xx` objects that preserves class attribute when
   subsetting
 * `%y+%` / `%y-%` can add/subtract years from date_xx objects
+* added the predicates `is_quarter_bounds()`, `is_first_day_of_quarter()`, 
+  and `is_last_day_of_quarter()`
+
+
+
 
 # dint 1.0.0
 
