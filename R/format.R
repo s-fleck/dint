@@ -42,7 +42,7 @@ format.date_yq <- function(
   preset = NULL,
   ...
 ){
-  format_with_paste(x, format = format)
+  format_date_xx(x, format = format)
 }
 
 
@@ -160,11 +160,10 @@ format_date_ym_shorter <- function(x){
 tokenize_format <- function(
   x
 ){
-  pos <- gregexpr("(%Y)|(%y)|(%q)", x)[[1]]
+  pos <- unlist(gregexpr("(%Y)|(%y)|(%q)", x))
+  if (identical(pos, -1L)) return(x)
   pos <- sort(unique(c(1L, pos, pos + 2L, nchar(x) + 1L)))
-
   res <- vector("character", length(x))
-
   begin <- 1L
   for(i in seq_len(length(pos) -1L)) {
     res[[i]] <- substr(x, pos[[i]], pos[[i + 1]] - 1L)
@@ -176,7 +175,18 @@ tokenize_format <- function(
 
 
 
-format_date_xx <- function(x, format){
+format_date_xx <- function(
+  x,
+  format
+){
+  assert(
+    is_scalar_character(format),
+    "'format' must be a character vector of length 1"
+  )
+
+  if (identical(length(x), 0L))
+    return(character())
+
   tokens <- tokenize_format(format)
   len <- length(tokens)
 
@@ -199,5 +209,13 @@ format_date_xx <- function(x, format){
       res[[i]] <- tokens[[i]]
   }
 
-  do.call(paste0, res)
+  res <- do.call(paste0, res)
+
+  if (identical(length(res), length(x)))
+    return(res)
+  else if (identical(length(res), 1L))
+    return(rep(res, length(x)))
+  else
+    stop("Something went wrong")
+
 }
