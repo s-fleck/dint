@@ -178,7 +178,7 @@ tokenize_format <- function(
 
 
 
-format_with_paste <- function(x, format){
+format_date_xx <- function(x, format){
   tokens <- tokenize_format(format)
   len <- length(tokens)
 

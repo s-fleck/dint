@@ -1,8 +1,11 @@
 library(dint)
 library(bench)
 library(ggplot2)
+library(stringi)
 
 
+format_with_paste <- dint:::format_date_xx
+tokenize_format <-  dint:::tokenize_format
 
 # alternative functions ---------------------------------------------------
 
@@ -71,15 +74,19 @@ format_with_stringi <- function(
 
 
 
-tdat <- as_date_yq(rep(date_yq(1000:2000, 1), 1000))
+# benchmark ---------------------------------------------------------------
+
+tdat <- as_date_yq(rep(date_yq(1000:2000, 1), 100))
 
 
 res <- mark(
-  format_with_matrix(tdat, format = "Y%Y-y%y-q%q"),
-  format_with_gsub(tdat, format = "Y%Y-y%y-q%q"),
-  format_with_stringi(tdat, format = "Y%Y-y%y-q%q"),
-  format_with_paste(tdat, format = "Y%Y-y%y-q%q")
+  matrix = format_with_matrix(tdat, format = "Y%Y-y%y-q%q"),
+  gsub = format_with_gsub(tdat, format = "Y%Y-y%y-q%q"),
+  stringi = format_with_stringi(tdat, format = "Y%Y-y%y-q%q"),
+  paste = format_with_paste(tdat, format = "Y%Y-y%y-q%q"),
+  min_iterations = 10
 )
 
 
 print(res)
+plot(res)
