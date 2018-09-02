@@ -163,16 +163,14 @@ tokenize_format <- function(
   pos <- gregexpr("(%Y)|(%y)|(%q)", x)[[1]]
   pos <- sort(unique(c(1L, pos, pos + 2L, nchar(x) + 1L)))
 
-
   res <- vector("character", length(x))
-  begin <- 1L
 
+  begin <- 1L
   for(i in seq_len(length(pos) -1L)) {
     res[[i]] <- substr(x, pos[[i]], pos[[i + 1]] - 1L)
   }
 
   res
-
 }
 
 
@@ -189,13 +187,13 @@ format_date_xx <- function(x, format){
   quarter <- get_quarter(x)
 
   for(i in seq_len(len)){
-    if (tokens[[i]] == "%Y")
+    if (identical(tokens[[i]], "%Y"))
       res[[i]] <- year
-    else if (tokens[[i]] == "%y")
+    else if (identical(tokens[[i]], "%y"))
       res[[i]] <- year %% 100
-    else if (tokens[[i]] == "%q")
+    else if (identical(tokens[[i]], "%q"))
       res[[i]] <- quarter
-    else if (tokens[[i]] == "%m")
+    else if (identical(tokens[[i]], "%m"))
       res[[i]] <- month
     else
       res[[i]] <- tokens[[i]]
