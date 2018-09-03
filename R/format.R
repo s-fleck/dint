@@ -55,6 +55,7 @@ format.date_xx <- function(
   year    <- get_year(x)
   month   <- get_month(x)
   quarter <- get_quarter(x)
+  week    <- get_isoweek(x)
 
   for(i in seq_len(len)){
     if (identical(tokens[[i]], "%Y"))
@@ -65,6 +66,8 @@ format.date_xx <- function(
       res[[i]] <- quarter
     else if (identical(tokens[[i]], "%m"))
       res[[i]] <- month
+    else if (identical(tokens[[i]], "%W"))
+      res[[i]] <- isoweek
     else if (identical(tokens[[i]], "%B"))
       res[[i]] <- factor(month, levels = 1:12, labels = month_names)
     else if (identical(tokens[[i]], "%b"))
@@ -85,7 +88,6 @@ format.date_xx <- function(
 }
 
 
-# date_yq ------------------------------------------------------------------
 
 #' Format a date_yq Object
 #'
@@ -115,12 +117,11 @@ format.date_yq <- function(
   format = "%Y-Q%q",
   ...
 ){
-  NextMethod("format", format = format, ...)
+  format.date_xx(x, format = format, ...)
 }
 
 
 
-# date_ym ------------------------------------------------------------------
 
 #' Format a date_ym Object
 #'
@@ -150,7 +151,41 @@ format.date_ym <- function(
   format = "%Y-M%q",
   ...
 ){
-  NextMethod("format", format = format, ...)
+  format.date_xx(x, format = format, ...)
+}
+
+
+
+
+#' Format a date_yw Object
+#'
+#' @param x a [date_yw] object
+#' @param format A scalar character, valid values are: `"iso"`, `"short"`, and
+#'   `"shorter"`
+#' @param ... ignored
+#'
+#' @return A character vector
+#'
+#' @export
+#' @examples
+#'
+#' x <- date_yw(2015, 12)
+#'
+#' format(x, format = "iso")
+#' # [1] "2015-M12"
+#'
+#' format(x, format = "short")
+#' # [1] "2015.12"
+#'
+#' format(x, format = "shorter")
+#' # [1] "15.12"
+#'
+format.date_yw <- function(
+  x,
+  format = "%Y-W%W",
+  ...
+){
+  format.date_xx(x, format = format, ...)
 }
 
 

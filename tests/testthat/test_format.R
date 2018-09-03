@@ -11,6 +11,7 @@ test_that("format date_yq works as expected", {
     "Y2019-y19-q3-%19Y"
   )
 
+
   # normal cases
   expect_identical(format(td, "Y%Y-y%y-q%q-%%yY"), eres)
   expect_identical(format(td, "%Y-y%y-q%q-%%y"), substr(eres, 2, nchar(eres) - 1))
