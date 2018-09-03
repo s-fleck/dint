@@ -259,10 +259,24 @@ isoweek.date_xx <- get_isoweek
 # isoyear -----------------------------------------------------------------
 
 get_isoyear <- function(x){
+  UseMethod("get_isoyear")
+}
+
+
+
+
+get_isoyear.default <- function(x){
   x <- as.POSIXlt(x)
   date <- make_date(get_year(x), get_month(x), x$mday)
   wday <- x$wday
   date <- date + (4L - wday)
   jan1 <- as.numeric(make_date(get_year(date), 1, 1))
   get_year(jan1)
+}
+
+
+
+
+get_isoyear.date_yw <- function(x){
+  as.integer(x) %/% 100
 }
