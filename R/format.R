@@ -88,29 +88,54 @@ format.date_xx <- function(
 
 
 
-#' Format a date_yq Object
-#'
-#' @param x a [date_yq] object
-#' @param format A scalar character, valid values are: `"iso"`, `"short"`, and
-#'   `"shorter"`
-#' @param ... ignored
-#'
-#' @return A character vector
-#'
+
+#' @rdname format.date_xx
 #' @export
-#' @examples
-#'
-#' x <- date_yq(2015, 3)
-#'
-#' format(x, format = "iso")
-#' # [1] "2015-Q3"
-#'
-#' format(x, format = "short")
-#' # [1] "2015.3"
-#'
-#' format(x, format = "shorter")
-#' # [1] "15.3"
-#'
+format.date_y <- function(
+  x,
+  format = "%Y",
+  ...
+){
+ stopifnot(
+    is_scalar_character(format)
+  )
+
+  if (identical(length(x), 0L))
+    return(character())
+
+  tokens <- tokenize_format(format)
+  len <- length(tokens)
+
+  res <- vector("list", length(tokens))
+
+  year    <- get_year(x)
+  yr      <- sign(year) * (abs(year) %% 100L)
+
+  for(i in seq_len(len)){
+    if (identical(tokens[[i]], "%Y"))
+      res[[i]] <- year
+    else if (identical(tokens[[i]], "%y"))
+      res[[i]] <- yr
+    else
+      res[[i]] <- tokens[[i]]
+  }
+
+  res <- do.call(paste0, res)
+
+  if (identical(length(res), length(x)))
+    return(res)
+  else if (identical(length(res), 1L))
+    return(rep(res, length(x)))
+  else
+    stop("Something went wrong")
+
+}
+
+
+
+
+#' @rdname format.date_xx
+#' @export
 format.date_yq <- function(
   x,
   format = "%Y-Q%q",
@@ -122,29 +147,8 @@ format.date_yq <- function(
 
 
 
-#' Format a date_ym Object
-#'
-#' @param x a [date_ym] object
-#' @param format A scalar character, valid values are: `"iso"`, `"short"`, and
-#'   `"shorter"`
-#' @param ... ignored
-#'
-#' @return A character vector
-#'
+#' @rdname format.date_xx
 #' @export
-#' @examples
-#'
-#' x <- date_ym(2015, 12)
-#'
-#' format(x, format = "iso")
-#' # [1] "2015-M12"
-#'
-#' format(x, format = "short")
-#' # [1] "2015.12"
-#'
-#' format(x, format = "shorter")
-#' # [1] "15.12"
-#'
 format.date_ym <- function(
   x,
   format = "%Y-M%q",
@@ -156,29 +160,8 @@ format.date_ym <- function(
 
 
 
-#' Format a date_yw Object
-#'
-#' @param x a [date_yw] object
-#' @param format A scalar character, valid values are: `"iso"`, `"short"`, and
-#'   `"shorter"`
-#' @param ... ignored
-#'
-#' @return A character vector
-#'
+#' @rdname format.date_xx
 #' @export
-#' @examples
-#'
-#' x <- date_yw(2015, 12)
-#'
-#' format(x, format = "iso")
-#' # [1] "2015-M12"
-#'
-#' format(x, format = "short")
-#' # [1] "2015.12"
-#'
-#' format(x, format = "shorter")
-#' # [1] "15.12"
-#'
 format.date_yw <- function(
   x,
   format = "%Y-W%W",
@@ -251,10 +234,20 @@ pad_zero_left <- function(x){
 
 # presets -----------------------------------------------------------------
 
-# switch(
-#   tolower(format),
-#   "iso"     = format_date_ym_iso(x),
-#   "short"   = format_date_ym_short(x),
-#   "shorter" = format_date_ym_shorter(x),
-#   stop("wrong format specified")
-# )
+#' @export
+format_date_yq_iso     <- function(x)  format(as_date_yq(x))
+
+#' @export
+format_date_yq_short   <- function(x)  format(as_date_yq(x), "%Y.%q")
+
+#' @export
+format_date_yq_shorter <- function(x)  format(as_date_yq(x), "%y.%q")
+
+#' @export
+format_date_ym_iso     <- function(x)  format(as_date_yq(x))
+
+#' @export
+format_date_ym_short   <- function(x)  format(as_date_yq(x), "%Y.%m")
+
+#' @export
+format_date_ym_shorter <- function(x)  format(as_date_yq(x), "%y.%m")
