@@ -1,5 +1,7 @@
 # dint 1.0.0.9000
 
+* added `date_yw` for storing isoweeks and modified existing funtions to 
+  accomodate for them.
 * added `[` method for `date_xx` objects that preserves class attribute when
   subsetting
 * `%y+%` / `%y-%` can add/subtract years from date_xx objects
