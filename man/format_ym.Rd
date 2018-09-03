@@ -36,6 +36,6 @@ format_ym(201505, format = "shorter")
 \code{\link[=format.date_ym]{format.date_ym()}}
 
 Other ym convenience functions: \code{\link{first_day_ym}},
-  \code{\link{first_day_y}}
+  \code{\link{first_day_yw}}, \code{\link{first_day_y}}
 }
 \concept{ym convenience functions}

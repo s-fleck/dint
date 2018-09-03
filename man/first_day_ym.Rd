@@ -36,7 +36,7 @@ first_day_ym(201601)
 \seealso{
 \code{\link[=first_day_of_month]{first_day_of_month()}}
 
-Other ym convenience functions: \code{\link{first_day_y}},
-  \code{\link{format_ym}}
+Other ym convenience functions: \code{\link{first_day_yw}},
+  \code{\link{first_day_y}}, \code{\link{format_ym}}
 }
 \concept{ym convenience functions}

@@ -42,6 +42,6 @@ as_date_ym(201612)
 \code{\link[=format.date_ym]{format.date_ym()}}
 
 Other simple dates: \code{\link{date_yq}},
-  \code{\link{date_y}}
+  \code{\link{date_yw}}, \code{\link{date_y}}
 }
 \concept{simple dates}

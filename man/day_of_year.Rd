@@ -41,6 +41,6 @@ last_day_of_year("2016-06-04")
 \code{\link[=first_day_of_year]{first_day_of_year()}}
 
 Other ym convenience functions: \code{\link{first_day_ym}},
-  \code{\link{format_ym}}
+  \code{\link{first_day_yw}}, \code{\link{format_ym}}
 }
 \concept{ym convenience functions}

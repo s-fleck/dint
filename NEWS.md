@@ -1,5 +1,8 @@
 # dint 1.0.0.9000
 
+* breaking: formatting `date_xx` objects now uses placeholders similar to
+  `base::strptime()` (e.g `%Y`, `%m`, `%q`, etc...) instead of presets. The
+  new implementation is also faster than the old formatting functions.
 * added `date_yw` for storing isoweeks and modified existing funtions to 
   accomodate for them.
 * added `[` method for `date_xx` objects that preserves class attribute when

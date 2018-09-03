@@ -5,12 +5,15 @@
 \alias{month}
 \alias{year}
 \alias{month.date_xx}
+\alias{isoweek.date_xx}
 \title{Get Year, Quarter or Month (lubridate Compatibility)}
 \usage{
 year.date_xx(x)
 
-month.date_xx(x, label = FALSE, abbr = TRUE,
+\method{month}{date_xx}(x, label = FALSE, abbr = TRUE,
   locale = Sys.getlocale("LC_TIME"))
+
+isoweek.date_xx(x)
 }
 \arguments{
 \item{x}{a \link{date_xx} or any \R object that can be coerced to \code{POSIXlt}}
@@ -33,6 +36,11 @@ See \code{\link[lubridate:year]{lubridate::year()}} and \code{\link[lubridate:mo
   library(lubridate)
   month(x)
   month(x, label = TRUE)
+}
+
+\dontrun{
+  library(lubridate)
+  isoweek(x)
 }
 }
 \seealso{

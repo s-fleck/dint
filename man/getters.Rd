@@ -4,6 +4,7 @@
 \alias{get_year}
 \alias{get_quarter}
 \alias{get_month}
+\alias{get_isoweek}
 \title{Get Year, Quarter or Month}
 \usage{
 get_year(x)
@@ -11,6 +12,8 @@ get_year(x)
 get_quarter(x)
 
 get_month(x)
+
+get_isoweek(x)
 }
 \arguments{
 \item{x}{a \link{date_xx} or any \R object that can be coerced to \code{POSIXlt}}
@@ -47,6 +50,9 @@ get_month(x)
 library(lubridate)
 month(x)
 }
+x <- date_yw(2016, 2)
+get_week(x)
+
 }
 \seealso{
 \code{\link[lubridate:year]{lubridate::year()}},

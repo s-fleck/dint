@@ -37,6 +37,6 @@ as_date_y(2016)
 }
 \seealso{
 Other simple dates: \code{\link{date_ym}},
-  \code{\link{date_yq}}
+  \code{\link{date_yq}}, \code{\link{date_yw}}
 }
 \concept{simple dates}

@@ -6,10 +6,10 @@
 \alias{dint-package}
 \title{dint: A Toolkit for Year-Quarter and Year-Month Dates}
 \description{
-S3 classes and methods to create and work with year-quarter and year-month
-vectors. Basic arithmetic operations (such as adding and subtracting) are
-supported, as well as formatting and converting to and from standard R
-Date types.
+S3 classes and methods to create and work with year-quarter and year-month 
+  vectors. Basic arithmetic operations (such as adding and subtracting) are
+  supported, as well as formatting and converting to and from standard R
+  Date types.
 }
 \seealso{
 Useful links:
