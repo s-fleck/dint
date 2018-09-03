@@ -226,16 +226,7 @@ get_isoweek <- function(x){
 # first Thursday in it.
 #' @export
 get_isoweek.default <- function(x){
-
-  x <- as.POSIXlt(x)
-
-  date <- make_date(get_year(x), get_month(x), x$mday)
-  wday <- x$wday
-
-  date <- date + (4 - wday)
-  jan1 <- as.numeric(make_date(get_year(date), 1, 1))
-
-  1L + (as.numeric(date) - jan1) %/% 7L
+  get_isoweek(as_date_yw(x))
 }
 
 
@@ -243,15 +234,9 @@ get_isoweek.default <- function(x){
 
 #' @export
 get_isoweek.date_yw <- function(x){
-  as.integer(as.integer(x) %% 100L)
+  as.integer(x) %% 100L
 }
 
-
-
-#' @export
-get_isoweek.date_xx <- function(x){
-  get_isoweek(as.POSIXlt(x))
-}
 
 
 
@@ -267,3 +252,17 @@ get_isoweek.date_xx <- function(x){
 #'   isoweek(x)
 #' }
 isoweek.date_xx <- get_isoweek
+
+
+
+
+# isoyear -----------------------------------------------------------------
+
+get_isoyear <- function(x){
+  x <- as.POSIXlt(x)
+  date <- make_date(get_year(x), get_month(x), x$mday)
+  wday <- x$wday
+  date <- date + (4L - wday)
+  jan1 <- as.numeric(make_date(get_year(date), 1, 1))
+  get_year(jan1)
+}

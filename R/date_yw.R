@@ -90,9 +90,17 @@ as_date_yw.numeric <- function(x){
 
 #' @export
 as_date_yw.Date <- function(x){
-  y <- get_year(x)
-  m <- get_isoweek(x)
-  date_yw(y = y, w = m)
+  x <- as.POSIXlt(x)
+
+  date <- make_date(get_year(x), get_month(x), x$mday)
+  wday <- ifelse(x$wday == 0, 7, x$wday)
+  date <- date + (4L - wday)
+  jan1 <- make_date(get_year(date), 1, 1)
+
+  date_yw(
+    y = get_year(jan1),
+    w = 1L + (as.numeric(date) - as.numeric(jan1)) %/% 7L
+  )
 }
 
 
