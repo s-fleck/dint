@@ -91,7 +91,7 @@ as_date_yw.numeric <- function(x){
 #' @export
 as_date_yw.Date <- function(x){
   y <- get_year(x)
-  m <- get_week(x)
+  m <- get_isoweek(x)
   date_yw(y = y, w = m)
 }
 
@@ -106,7 +106,7 @@ as_date_yw.Date <- function(x){
 as.Date.date_yw <- function(x, ...){
   make_date(
     get_year(x),
-    get_week(x),
+    get_isoweek(x),
     1L
   )
 }
