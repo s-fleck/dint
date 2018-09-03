@@ -24,8 +24,7 @@ test_that("as_date_yq behaves as expected", {
      2010-01-01; 	2009-W53;
      2010-01-02; 	2009-W53;
      2010-01-03; 	2009-W53;
-     2010-01-04; 	2010-W01;
-    "
+     2010-01-04; 	2010-W01;"
     ),
       stringsAsFactors = FALSE,
       header = FALSE

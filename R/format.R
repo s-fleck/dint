@@ -52,7 +52,9 @@ format.date_xx <- function(
 
   res <- vector("list", length(tokens))
 
+
   year    <- get_year(x)
+  yr      <- sign(year) * (abs(year) %% 100L)
   month   <- get_month(x)
   quarter <- get_quarter(x)
 
@@ -60,7 +62,7 @@ format.date_xx <- function(
     if (identical(tokens[[i]], "%Y"))
       res[[i]] <- year
     else if (identical(tokens[[i]], "%y"))
-      res[[i]] <- year %% 100
+      res[[i]] <- yr
     else if (identical(tokens[[i]], "%q"))
       res[[i]] <- quarter
     else if (identical(tokens[[i]], "%m"))

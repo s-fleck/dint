@@ -45,7 +45,8 @@ get_year.date_y <- function(x){
 
 #' @export
 get_year.date_yw <- function(x){
-  as.integer(x) %/% 100L
+  x <- as.integer(x)
+  as.integer(sign(x) * (abs(x) %/% 100L))
 }
 
 
@@ -53,7 +54,8 @@ get_year.date_yw <- function(x){
 
 #' @export
 get_year.date_ym <- function(x){
-  as.integer(x) %/% 100L
+  x <- as.integer(x)
+  as.integer(sign(x) * (abs(x) %/% 100L))
 }
 
 
@@ -61,7 +63,8 @@ get_year.date_ym <- function(x){
 
 #' @export
 get_year.date_yq <- function(x){
-  as.integer(x) %/% 10L
+  x <- as.integer(x)
+  as.integer(sign(x) * (abs(x) %/% 10L))
 }
 
 
@@ -127,7 +130,7 @@ get_quarter.date_y <- function(x){
 
 #' @export
 get_quarter.date_yq <- function(x){
-  as.integer(x) %% 10L
+  as.integer(abs(x)) %% 10L
 }
 
 

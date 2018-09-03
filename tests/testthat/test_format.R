@@ -2,6 +2,35 @@ context("format")
 
 
 
+test_that("all format tokens work", {
+
+  fmt <- "y:%y Y:%Y q:%q M:%M b:%b B:%B"
+
+  q <- date_yq(2005, 1)
+  expect_identical(format(q), "2005-Q1")
+  expect_identical(
+    format(q, fmt),
+    "y:5 Y:2005 q:1 M:%M b:Jan B:January"
+  )
+
+  m <- as_date_ym(q)
+  expect_identical(format(m), "2005-M1")
+  expect_identical(
+    format(q, fmt),
+    format(m, fmt)
+  )
+
+  w <- date_yw(2015, 1)
+
+  expect_identical(
+    format(w),
+    "2015-W01"
+  )
+})
+
+
+
+
 test_that("format date_yq works as expected", {
   td <- date_yq(2010:2019, 3)
   eres <- c(
@@ -24,6 +53,7 @@ test_that("format date_yq works as expected", {
   # violated preconditions
   expect_error(format(td, format = character()))
 })
+
 
 
 
@@ -50,6 +80,7 @@ test_that("tokenize_format works as expected", {
 
 
 
+
 test_that("month names are formatted correclty", {
   td <- date_ym(2018, c(1L, 10L, 3L, 6L, 4L, 5L, 7L, 12L, 2L, 9L, 8L, 11L))
   fm <- "%Y-M%m: %B,%b"
@@ -70,6 +101,3 @@ test_that("month names are formatted correclty", {
 
   expect_identical(eres, tres)
 })
-
-
-
