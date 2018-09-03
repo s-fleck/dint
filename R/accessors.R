@@ -44,6 +44,14 @@ get_year.date_y <- function(x){
 
 
 #' @export
+get_year.date_yw <- function(x){
+  as.integer(x) %/% 100L
+}
+
+
+
+
+#' @export
 get_year.date_ym <- function(x){
   as.integer(x) %/% 100L
 }
@@ -194,4 +202,35 @@ month.date_xx <- function(
 ){
   assert_lubridate()
   lubridate::month(get_month(x), label = label, abbr = abbr, locale = locale)
+}
+
+
+
+
+# week -------------------------------------------------------------------
+
+#' @export
+#' @rdname getters
+#' @examples
+#' x <- date_yw(2016, 2)
+#' get_week(x)
+#'
+get_week <- function(x){
+  UseMethod("get_week")
+}
+
+
+
+
+#' @export
+get_week.default <- function(x){
+  (as.POSIXlt(x, tz = tz(x))$yday - 1L) %/% 7L + 1L
+}
+
+
+
+
+#' @export
+get_week.date_yw <- function(x){
+  as.integer(as.integer(x) %% 100L)
 }
