@@ -166,15 +166,15 @@ presets are defined for dint dates.
 
 ```{r}
 q <- date_yq(2014, 4)
-format(q, "iso")  # default
-format(q, "short")
-format(q, "shorter")
+format(q, "%Y-Q%q")  # iso/default
+format(q, "%Y.%q")
+format(q, "%y.%q")
 
 
 m <- date_ym(2014, 12)
-format(m, "iso")  # default
-format(m, "short")
-format(m, "shorter")
+format(q, "%Y-M%m")  # iso/default
+format(q, "%Y.%m")
+format(q, "%y.%m")
 ```
 
 
@@ -183,7 +183,7 @@ format(m, "shorter")
 For convenience, dint provides direct formatting functions for dates that are 
 useful for labelling ggplot axis.
 
-```{r}
+```{r, collapse=TRUE, fig.show='hold' }
 library(ggplot2)
 
 x <- data.frame(
@@ -200,9 +200,10 @@ p <- ggplot(
   ) + geom_point()
 
 
-print(p)
-print(p + scale_x_date(labels = format_date_yq_iso))
-print(p + scale_x_date(labels = format_date_ym_short))
+p + ggtitle("iso") + ggtitle("default")
+p + scale_x_date(labels = format_date_yq_iso) + ggtitle("date_yq_iso")
+p + scale_x_date(labels = format_date_ym_short) + ggtitle("date_ym_short")
+p + scale_x_date(labels = format_date_ym_shorter) + ggtitle("date_ym_shorter")
 
 ```
 

@@ -2,11 +2,23 @@
 % Please edit documentation in R/format.R
 \name{format.date_xx}
 \alias{format.date_xx}
+\alias{format.date_y}
+\alias{format.date_yq}
+\alias{format.date_ym}
+\alias{format.date_yw}
 \title{Format a date_xx}
 \usage{
 \method{format}{date_xx}(x, format, month_names = format(ISOdate(2000,
   1:12, 1), "\%B"), month_abb = format(ISOdate(2000, 1:12, 1), "\%b"),
   ...)
+
+\method{format}{date_y}(x, format = "\%Y", ...)
+
+\method{format}{date_yq}(x, format = "\%Y-Q\%q", ...)
+
+\method{format}{date_ym}(x, format = "\%Y-M\%q", ...)
+
+\method{format}{date_yw}(x, format = "\%Y-W\%W", ...)
 }
 \arguments{
 \item{x}{any \R object.}

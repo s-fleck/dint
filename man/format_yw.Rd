@@ -16,11 +16,15 @@ format_yw(x, w = NULL, format = "iso")
 week.
 }}
 
-\item{format}{A scalar character, valid values are: \code{"iso"}, \code{"short"}, and
-\code{"shorter"}}
-}
-\value{
-A character vector
+\item{format}{A format that uses a subset of the same placeholders as
+\code{\link[base:strptime]{base::strptime()}}:
+\tabular{rl}{
+\%Y \tab Year with century (the full year)\cr
+\%y \tab Year without century (the last two digits of the year)\cr
+\%m \tab Month as a decimal numbers (1-12)\cr
+\%B \tab Full month name\cr
+\%b \tab Abbreviated month name
+}}
 }
 \description{
 Directly Create Formatted Year-Week Strings
