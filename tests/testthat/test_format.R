@@ -62,10 +62,10 @@ test_that("month names are formatted correclty", {
   )
 
   eres <- c(
-    "2018-M1: January,Jan", "2018-M10: October,Oct", "2018-M3: March,Mar",
-    "2018-M6: June,Jun", "2018-M4: April,Apr", "2018-M5: May,May",
-    "2018-M7: July,Jul", "2018-M12: December,Dec", "2018-M2: February,Feb",
-    "2018-M9: September,Sep", "2018-M8: August,Aug", "2018-M11: November,Nov"
+    "2018-M01: January,Jan", "2018-M10: October,Oct", "2018-M03: March,Mar",
+    "2018-M06: June,Jun", "2018-M04: April,Apr", "2018-M05: May,May",
+    "2018-M07: July,Jul", "2018-M12: December,Dec", "2018-M02: February,Feb",
+    "2018-M09: September,Sep", "2018-M08: August,Aug", "2018-M11: November,Nov"
   )
 
   expect_identical(eres, tres)

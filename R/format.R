@@ -55,7 +55,6 @@ format.date_xx <- function(
   year    <- get_year(x)
   month   <- get_month(x)
   quarter <- get_quarter(x)
-  week    <- get_isoweek(x)
 
   for(i in seq_len(len)){
     if (identical(tokens[[i]], "%Y"))
@@ -65,9 +64,7 @@ format.date_xx <- function(
     else if (identical(tokens[[i]], "%q"))
       res[[i]] <- quarter
     else if (identical(tokens[[i]], "%m"))
-      res[[i]] <- month
-    else if (identical(tokens[[i]], "%W"))
-      res[[i]] <- isoweek
+      res[[i]] <- pad_zero_left(month)
     else if (identical(tokens[[i]], "%B"))
       res[[i]] <- factor(month, levels = 1:12, labels = month_names)
     else if (identical(tokens[[i]], "%b"))
@@ -185,7 +182,41 @@ format.date_yw <- function(
   format = "%Y-W%W",
   ...
 ){
-  format.date_xx(x, format = format, ...)
+ stopifnot(
+    is_scalar_character(format)
+  )
+
+  if (identical(length(x), 0L))
+    return(character())
+
+  tokens <- tokenize_format(format)
+  len <- length(tokens)
+
+  res <- vector("list", length(tokens))
+
+  year    <- get_isoyear(x)
+  week    <- get_isoweek(x)
+
+  for(i in seq_len(len)){
+    if (identical(tokens[[i]], "%Y"))
+      res[[i]] <- year
+    else if (identical(tokens[[i]], "%y"))
+      res[[i]] <- year %% 100
+    else if (identical(tokens[[i]], "%W"))
+      res[[i]] <- pad_zero_left(week)
+    else
+      res[[i]] <- tokens[[i]]
+  }
+
+  res <- do.call(paste0, res)
+
+  if (identical(length(res), length(x)))
+    return(res)
+  else if (identical(length(res), 1L))
+    return(rep(res, length(x)))
+  else
+    stop("Something went wrong")
+
 }
 
 
@@ -208,6 +239,12 @@ tokenize_format <- function(
   res
 }
 
+
+
+
+pad_zero_left <- function(x){
+  ifelse(nchar(x) == 1, paste0("0", x), x)
+}
 
 
 # presets -----------------------------------------------------------------
