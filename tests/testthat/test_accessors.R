@@ -20,3 +20,27 @@ test_that("get_* returns integers", {
   expect_true(is.integer(get_year(yq)))
 
 })
+
+
+
+
+test_that("get_week behaves like lubridate::isoweek", {
+
+  x <- as.Date(c("2018-01-23", "2009-12-31", "2009-01-01", "2010-01-01", "2005-01-01"))
+
+  expect_identical(
+    lubridate::isoweek(x),
+    get_isoweek(x)
+  )
+
+  expect_identical(
+    lubridate::isoweek(as_date_yq(x)),
+    get_isoweek(as_date_yq(x))
+  )
+
+  expect_identical(
+    lubridate::isoweek(as_date_ym(x)),
+    get_isoweek(as_date_ym(x))
+  )
+
+})

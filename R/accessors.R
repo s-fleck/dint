@@ -215,22 +215,55 @@ month.date_xx <- function(
 #' x <- date_yw(2016, 2)
 #' get_week(x)
 #'
-get_week <- function(x){
-  UseMethod("get_week")
+get_isoweek <- function(x){
+  UseMethod("get_isoweek")
+}
+
+
+
+
+# The ISO 8601 definition for week 01 is the week with the Gregorian year's
+# first Thursday in it.
+#' @export
+get_isoweek.default <- function(x){
+
+  x <- as.POSIXlt(x)
+
+  date <- make_date(get_year(x), get_month(x), x$mday)
+  wday <- x$wday
+
+  date <- date + (4L - wday)
+  jan1 <- as.numeric(make_date(get_year(date), 1L, 1L))
+
+  1L + (as.numeric(date) - jan1) %/% 7L
 }
 
 
 
 
 #' @export
-get_week.default <- function(x){
-  (as.POSIXlt(x, tz = tz(x))$yday - 1L) %/% 7L + 1L
-}
-
-
-
-
-#' @export
-get_week.date_yw <- function(x){
+get_isoweek.date_yw <- function(x){
   as.integer(as.integer(x) %% 100L)
 }
+
+
+
+#' @export
+get_isoweek.date_xx <- function(x){
+  get_isoweek(as.POSIXlt(x))
+}
+
+
+
+
+#' @inheritParams lubridate::month
+#' @rdname year
+#'
+#'
+#' @examples
+#'
+#' \dontrun{
+#'   library(lubridate)
+#'   isoweek(x)
+#' }
+isoweek.date_xx <- get_isoweek

@@ -18,9 +18,11 @@
 #' date_yw(2013, 12)
 #'
 date_yw <- function(y, w) {
-  stopifnot(is.numeric(y) || all(is.na(y)))
-  stopifnot(is.numeric(w) || all(is.na(w)))
-  stopifnot(all(w %in% c(1:53) | is.na(w)))
+  stopifnot(
+    is.numeric(y) || all(is.na(y)),
+    is.numeric(w) || all(is.na(w)),
+    all(w %in% c(1:53) | is.na(w))
+  )
 
   s <- ifelse(sign(y) >= 0, 1L, -1L)
   res <- (as.integer(abs(y)) * 100L + as.integer(w)) * s
@@ -318,10 +320,4 @@ format_yw <- function(x, w = NULL, format = "iso"){
 
 # utils -------------------------------------------------------------------
 
-yws_matrix_from_numeric <- function(x){
-  x <- unclass(x)
-  matrix(
-    c(abs(x) %/% 100L, w = abs(x) %% 100L, s = as.integer(sign(x))),
-    ncol = 3
-  )
-}
+yws_matrix_from_numeric <- yms_matrix_from_numeric
