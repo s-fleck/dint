@@ -94,3 +94,18 @@ ifelse_simple <- function(x, true, false){
   false[x] <- true[x]
   false
 }
+
+
+
+
+deprecate <- function(
+  fun,
+  new = deparse(substitute(fun))
+){
+
+  function(...){
+    .Deprecated(new)
+    fun(...)
+  }
+
+}
