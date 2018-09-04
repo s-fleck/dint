@@ -1,6 +1,6 @@
 # ctor --------------------------------------------------------------------
 
-#' A Simple S3-Class for Year-Week Dates
+#' A Simple S3-Class for Year-Week (Isoweek) Dates
 #'
 #' A simple data type for storing year-week dates in a human readable integer
 #' format, e.g.: December 2012 is stored as 201212. Supports simple arithmetics
