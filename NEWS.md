@@ -5,6 +5,8 @@
   new implementation is also faster than the old formatting functions.
 * **breaking**: all `first_day_of()` have been renamed to `first_of()`. The old
   function names are deprecated but will still work until the next release.
+* You can now direclty supply a numeric year to `first_of_year()` and 
+  `last_of_year()`
 * added `date_yw` for storing isoweeks and modified existing funtions to 
   accomodate for them.
 * added `[` method for `date_xx` objects that preserves class attribute when

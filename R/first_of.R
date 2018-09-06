@@ -43,7 +43,7 @@ first_of_year.default <- function(x){
 #' @rdname day_of_year
 #' @export
 first_of_year.numeric <- function(x){
-  first_day_of_year(as.integer(x))
+  first_of_year(as.integer(x))
 }
 
 
