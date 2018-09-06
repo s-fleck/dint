@@ -40,6 +40,9 @@ the current locale for compatbilioty with \code{\link[base:strptime]{base::strpt
 
 \item{...}{ignored}
 }
+\value{
+a \code{character} vector
+}
 \description{
 Format a date_xx
 }

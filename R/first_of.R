@@ -24,8 +24,26 @@ first_of_year <- function(x){
 
 #' @rdname day_of_year
 #' @export
+first_of_year.integer <- function(x){
+  make_date(x, 1, 1)
+}
+
+
+
+
+#' @rdname day_of_year
+#' @export
 first_of_year.default <- function(x){
-  make_date(get_year(x), 1, 1)
+  first_of_year(get_year(x))
+}
+
+
+
+
+#' @rdname day_of_year
+#' @export
+first_of_year.numeric <- function(x){
+  first_day_of_year(as.integer(x))
 }
 
 
@@ -42,8 +60,26 @@ last_of_year <- function(x){
 
 #' @rdname day_of_year
 #' @export
+last_of_year.integer <- function(x){
+  make_date(x, 12, 31)
+}
+
+
+
+
+#' @rdname day_of_year
+#' @export
 last_of_year.default <- function(x){
-  make_date(get_year(x), 12, 31)
+  last_of_year(get_year(x))
+}
+
+
+
+
+#' @rdname day_of_year
+#' @export
+last_of_year.numeric <- function(x){
+  last_day_of_year(as.integer(x))
 }
 
 

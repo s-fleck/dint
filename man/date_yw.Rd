@@ -4,7 +4,7 @@
 \alias{date_yw}
 \alias{is_date_yw}
 \alias{as_date_yw}
-\title{A Simple S3-Class for Year-Week Dates}
+\title{A Simple S3-Class for Year-Week (Isoweek) Dates}
 \usage{
 date_yw(y, w)
 

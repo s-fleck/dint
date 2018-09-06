@@ -26,6 +26,9 @@ week.
 \%b \tab Abbreviated month name
 }}
 }
+\value{
+a \code{character} vector
+}
 \description{
 Directly Create Formatted Year-Week Strings
 }
