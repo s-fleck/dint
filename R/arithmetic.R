@@ -178,6 +178,23 @@ NULL
 
 
 
+#' @rdname date_xx_arithmetic_disabled
+#' @export
+`%%.date_y` <- function(x, y){
+  warning("Coercing 'date_y' to integer.")
+  as.integer(x) %/% y
+}
+
+
+
+
+#' @rdname date_xx_arithmetic_disabled
+#' @export
+`%/%.date_y` <- function(x, y){
+  warning("Coercing 'date_y' to integer.")
+  as.integer(x) %/% y
+}
+
 
 # date_yq -----------------------------------------------------------------
 
