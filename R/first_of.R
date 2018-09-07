@@ -434,16 +434,16 @@ last_day_ym <- function(
 #' Get First or Last Day of a Year
 #'
 #' `first_day_yw()` is equivalent with `first_of_isoweek()` and only included
-#' for symmetry with [first_day_ywq()] and [first_day_ywm()].
+#' for symmetry with [first_day_yq()] and [first_day_ym()].
 #'
 #'
-#' @inheritParams format_ym
+#' @inheritParams format_yw
 #' @inherit first_of_isoweek
 #'
 #' @family ym convenience functions
 #' @seealso [first_of_isoweek()]
 #' @export
-#' @rdname of_isoweek
+#' @rdname day_of_isoweek
 #'
 #' @examples
 #' first_day_yw(2016)
@@ -455,7 +455,7 @@ first_day_yw <- function(x, w){
 
 
 
-#' @rdname of_isoweek
+#' @rdname day_of_isoweek
 #' @export
 last_day_yw <- function(x, w){
   last_of_isoweek(date_yw(x, w))
