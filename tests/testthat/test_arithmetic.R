@@ -16,6 +16,11 @@ test_that("seq.date_yw works", {
     as.integer(x),
     c(200701:200752, 200801:200852, 200901:200953, 201001:201052)
   )
+
+  expect_identical(
+    as_date_yw(seq(as.Date("2004-12-20"), as.Date("2020-01-06"), by = "7 days")),
+    seq(date_yw(2004, 52), date_yw(2020, 2))
+  )
 })
 
 

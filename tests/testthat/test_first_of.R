@@ -155,6 +155,25 @@ test_that("test first_of_month against lubridate", {
 
 # isoweek -----------------------------------------------------------------
 
+
+test_that("first_of_isoweek works", {
+
+  tdat <- seq(as.Date("2004-12-20"), as.Date("2020-01-06"), by = "7 days")
+
+  expect_identical(
+    first_of_isoweek(tdat),
+    tdat
+  )
+
+  expect_identical(
+    last_of_isoweek(tdat),
+    tdat + 6L
+  )
+})
+
+
+
+
 test_that("first_of_isoyear works", {
   eres <- data.frame(
     year = c(2018, 2017, 2016, 2005, 2004),
@@ -207,6 +226,7 @@ test_that("first_of_isoweek and first_of_isoyear are consistent", {
 
 
 
+
 test_that("first_of_iso* can handle anything coerciable to date", {
   expect_identical(
     first_of_isoweek("2018-09-07"),
@@ -227,5 +247,4 @@ test_that("first_of_iso* can handle anything coerciable to date", {
     last_of_isoyear("2016-09-07"),
     as.Date("2017-01-01")
   )
-
 })
