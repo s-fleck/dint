@@ -42,7 +42,7 @@ format_ym(201505, format = "shorter")
 \seealso{
 \code{\link[=format.date_ym]{format.date_ym()}}
 
-Other ym convenience functions: \code{\link{first_day_yw}},
+Other ym convenience functions: \code{\link{first_of_isoweek}},
   \code{\link{first_of_month}}, \code{\link{first_of_year}}
 }
 \concept{ym convenience functions}
