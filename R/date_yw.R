@@ -7,7 +7,7 @@
 #' (`+` and `-`) as well formatting.
 #'
 #' @param y year
-#' @param m week (optional)
+#' @param w week (optional)
 #'
 #' @return `date_yw` returns an object of type `date_yw`
 #' @export
@@ -141,16 +141,19 @@ as.Date.date_yw <- function(x, ...){
 #' @seealso [format.date_yw()]
 #' @export
 #' @examples
-#'
 #' format_yw(2015, 5)
-#' format_yw(201505, format = "short")
-#' format_yw(201505, format = "shorter")
+#' format_yw(201505, format = "%Y.%W")
+#' format_yw(as_date_yw(201505), format = "%y.%W")
 #'
-format_yw <- function(x, w = NULL, format = "iso"){
-  if (is.null(m)){
+format_yw <- function(
+  x,
+  w = NULL,
+  format = "%Y-W%W"
+){
+  if (is.null(w)){
     d <- as_date_yw(x)
   } else {
-    d <- date_yw(x, m)
+    d <- date_yw(x, w)
   }
 
   format(d, format = format)

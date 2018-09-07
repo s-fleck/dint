@@ -3,7 +3,7 @@ context("date_yw")
 
 
 
-test_that("as_date_yq behaves as expected", {
+test_that("as_date_yw behaves as expected", {
     #* @testing get_isoweek
 
     # from https://en.wikipedia.org/wiki/ISO_week_date
@@ -42,5 +42,17 @@ test_that("as_date_yq behaves as expected", {
   expect_identical(
     get_isoweek(tdat[[1]]),
     as.integer(substr(tdat[[2]], 7, 8))
+  )
+})
+
+
+
+
+test_that("format_yw behaves as expected", {
+  expect_identical(format_yw(2015, 5), "2015-W05")
+  expect_identical(format_yw(201505, format = "%Y.%W"), "2015.05")
+  expect_identical(
+    format_yw(as_date_yw(201505), format = "%y.%W"),
+    "15.05"
   )
 })

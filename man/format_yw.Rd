@@ -4,7 +4,7 @@
 \alias{format_yw}
 \title{Directly Create Formatted Year-Week Strings}
 \usage{
-format_yw(x, w = NULL, format = "iso")
+format_yw(x, w = NULL, format = "\%Y-W\%W")
 }
 \arguments{
 \item{x, m}{Two integer (vectors). \code{m} is optional and the interpretation of
@@ -33,10 +33,9 @@ a \code{character} vector
 Directly Create Formatted Year-Week Strings
 }
 \examples{
-
 format_yw(2015, 5)
-format_yw(201505, format = "short")
-format_yw(201505, format = "shorter")
+format_yw(201505, format = "\%Y.\%W")
+format_yw(as_date_yw(201505), format = "\%y.\%W")
 
 }
 \seealso{
