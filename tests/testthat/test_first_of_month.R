@@ -1,7 +1,7 @@
-context("first_day_of_month")
+context("first_of_month")
 
 
-test_that("first_day_of_month works as expected", {
+test_that("first_of_month works as expected", {
 
   # first day
   expect_identical(
@@ -22,7 +22,7 @@ test_that("first_day_of_month works as expected", {
 
 
   expect_identical(
-    last_day_of_month(as.Date("2018-05-13")),
+    last_of_month(as.Date("2018-05-13")),
     as.Date("2018-05-31")
   )
 
@@ -35,7 +35,7 @@ test_that("first_day_of_month works as expected", {
 
 
 
-test_that("test first_day_of_month against lubridate", {
+test_that("test first_of_month against lubridate", {
 
   if (!requireNamespace("lubridate", quietly = TRUE)){
     skip("test requires lubridate")
@@ -44,12 +44,12 @@ test_that("test first_day_of_month against lubridate", {
   tdat <- c(make_date(2000, 1:12, 1), make_date(2002, 1:12, 1))
 
   expect_identical(
-    first_day_of_month(tdat),
+    first_of_month(tdat),
     lubridate::floor_date(tdat, "month")
   )
 
   expect_identical(
-    last_day_of_month(tdat),
+    last_of_month(tdat),
     lubridate::ceiling_date(tdat, "month") - 1
   )
 })

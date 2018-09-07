@@ -32,10 +32,6 @@ x \%y-\% y
 \method{\%y+\%}{date_yw}(x, y)
 
 \method{\%y-\%}{date_yw}(x, y)
-
-\method{\%y+\%}{date_yw}(x, y)
-
-\method{\%y-\%}{date_yw}(x, y)
 }
 \arguments{
 \item{x}{a \link{date_xx} vector}
