@@ -117,83 +117,6 @@ as.Date.date_yq <- function(
 
 
 
-# algebra -----------------------------------------------------------------
-
-
-
-#' @rdname date_xx_arithmetic
-#' @export
-`+.date_yq` <- function(x, y){
-  increment(x, as.integer(y))
-}
-
-
-
-
-#' @rdname date_xx_arithmetic
-#' @export
-`-.date_yq` <- function(x, y){
-  increment(x, as.integer(-y))
-}
-
-
-
-
-#' @rdname date_xx_arithmetic_disabled
-#' @export
-`*.date_yq` <- function(x, y){
-  stop("Operation not supported")
-}
-
-
-
-
-#' @rdname date_xx_arithmetic_disabled
-#' @export
-`/.date_yq` <- function(x, y){
-  stop("Operation not supported")
-}
-
-
-
-
-#' @rdname date_xx_arithmetic_disabled
-#' @export
-`^.date_yq` <- function(x, y){
-  stop("Operation not supported")
-}
-
-
-
-
-#' @rdname date_xx_arithmetic_disabled
-#' @export
-`%%.date_yq` <- function(x, y){
-  stop("Operation not supported")
-}
-
-
-
-
-#' @rdname date_xx_arithmetic_disabled
-#' @export
-`%/%.date_yq` <- function(x, y){
-  stop("Operation not supported")
-}
-
-
-
-
-#' @rdname date_xx_arithmetic
-#' @export
-seq.date_yq <- function(x, y, ...){
-  res <- seq.int(as.integer(x), as.integer(y))
-  as_date_yq(res[(res %% 10) %in% 1:4])
-}
-
-
-
-
 # shortcuts ---------------------------------------------------------------
 
 #' Directly Create Formatted Year-Quarter Strings
@@ -224,26 +147,6 @@ format_yq <- function(x, q = NULL, format = "iso"){
   }
 
   format(d, format = format)
-}
-
-
-
-
-# special algebra ---------------------------------------------------------
-
-#' @rdname y-plus
-#' @export
-`%y+%.date_yq` <- function(x, y){
-  as_date_yq(as.integer(x) + (10 * y))
-}
-
-
-
-
-#' @rdname y-plus
-#' @export
-`%y-%.date_yq` <- function(x, y){
-  as_date_yq(as.integer(x) - (10 * y))
 }
 
 

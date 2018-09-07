@@ -53,3 +53,10 @@ increment.date_ym <- function(x, inc){
 
   date_ym(d[, 1] * d[, 3], d[, 2])
 }
+
+
+
+#' @noRd
+increment.date_y <- function(x, inc){
+  y + inc
+}
