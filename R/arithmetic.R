@@ -265,23 +265,3 @@ seq.date_yw <- function(x, y, ...){
   res <- seq.int(as.integer(x), as.integer(y))
   as_date_yw(res[(res %% 100) %in% 1:53])
 }
-
-
-
-
-# Date --------------------------------------------------------------------
-
-#' @rdname y-plus
-#' @export
-`%y+%.date_yw` <- function(x, y){
-  as_date_yw(as.integer(x) + (100L * y))
-}
-
-
-
-
-#' @rdname y-plus
-#' @export
-`%y-%.date_yw` <- function(x, y){
-  as_date_yw(as.integer(x) - (100L * y))
-}
