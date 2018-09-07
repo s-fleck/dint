@@ -7,12 +7,12 @@
 format_yw(x, w = NULL, format = "\%Y-W\%W")
 }
 \arguments{
-\item{x, m}{Two integer (vectors). \code{m} is optional and the interpretation of
-\code{x} will depend on whether \code{m} is supplied or not:
+\item{x, w}{Two integer (vectors). \code{w} is optional and the interpretation of
+\code{x} will depend on whether \code{w} is supplied or not:
 \itemize{
 \item if only \code{x} is supplied, \code{x} will be passed to \code{\link[=as_date_yw]{as_date_yw()}}
-(e.g. \code{x = 201604} means April 2016)
-\item if \code{x} and \code{m} are supplied, \code{x} is interpreted as year and \code{m} as
+(e.g. \code{x = 201604} means 4th isoweek of 2016)
+\item if \code{x} and \code{w} are supplied, \code{x} is interpreted as year and \code{w} as
 week.
 }}
 

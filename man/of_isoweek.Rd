@@ -2,26 +2,24 @@
 % Please edit documentation in R/first_of.R
 \name{first_of_isoweek}
 \alias{first_of_isoweek}
-\alias{first_of_isoweek.date_yw}
+\alias{first_of_isoweek.default}
 \alias{last_of_isoweek}
-\alias{last_of_isoweek.date_yw}
+\alias{last_of_isoweek.default}
 \alias{first_of_isoyear}
 \alias{first_of_isoyear.date_yw}
 \alias{first_of_isoyear.integer}
 \alias{first_of_isoyear.numeric}
 \alias{last_of_isoyear}
 \alias{last_of_isoyear.date_y}
-\alias{first_day_yw}
-\alias{last_day_yw}
 \title{Get first / last day of a year}
 \usage{
 first_of_isoweek(x)
 
-\method{first_of_isoweek}{date_yw}(x)
+\method{first_of_isoweek}{default}(x)
 
 last_of_isoweek(x)
 
-\method{last_of_isoweek}{date_yw}(x)
+\method{last_of_isoweek}{default}(x)
 
 first_of_isoyear(x)
 
@@ -34,10 +32,6 @@ first_of_isoyear(x)
 last_of_isoyear(x)
 
 \method{last_of_isoyear}{date_y}(x)
-
-first_day_yw(x, w)
-
-last_day_yw(x, w)
 }
 \arguments{
 \item{x}{Anything that can be coerced to a date with \code{\link[base:as.Date]{base::as.Date()}}}
@@ -46,19 +40,9 @@ last_day_yw(x, w)
 a \link{Date}
 }
 \description{
-\code{first_day_yw()} is equivalent with \code{first_of_isoweek()} and only included
-for symmetry with \code{\link[=first_day_ywq]{first_day_ywq()}} and \code{\link[=first_day_ywm]{first_day_ywm()}}.
+Get first / last day of a year
 }
 \examples{
 first_of_isoweek("2016-06-04")
 last_of_isoweek("2016-06-04")
-first_day_yw(2016)
-first_day_yw(2016)
 }
-\seealso{
-\code{\link[=first_of_isoweek]{first_of_isoweek()}}
-
-Other ym convenience functions: \code{\link{first_of_month}},
-  \code{\link{first_of_year}}, \code{\link{format_ym}}
-}
-\concept{ym convenience functions}

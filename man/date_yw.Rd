@@ -15,9 +15,9 @@ as_date_yw(x)
 \arguments{
 \item{y}{year}
 
-\item{x}{any R object}
+\item{w}{week (optional)}
 
-\item{m}{week (optional)}
+\item{x}{any R object}
 }
 \value{
 \code{date_yw} returns an object of type \code{date_yw}

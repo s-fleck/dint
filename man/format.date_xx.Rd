@@ -8,9 +8,8 @@
 \alias{format.date_yw}
 \title{Format a date_xx}
 \usage{
-\method{format}{date_xx}(x, format, month_names = format(ISOdate(2000,
-  1:12, 1), "\%B"), month_abb = format(ISOdate(2000, 1:12, 1), "\%b"),
-  ...)
+\method{format}{date_xx}(x, format, month_names = format(ISOdate(2000, 1:12,
+  1), "\%B"), month_abb = format(ISOdate(2000, 1:12, 1), "\%b"), ...)
 
 \method{format}{date_y}(x, format = "\%Y", ...)
 
@@ -50,7 +49,7 @@ Format a date_xx
 x <- date_ym(2018, c(1L, 10L, 3L, 6L, 4L, 5L, 7L, 12L, 2L, 9L, 8L, 11L))
 fm <- "\%Y-M\%m: \%B,\%b"
 
-format.date_xx(
+format(
   x,
   format = fm,
   month_names = month.name,  # built-in R constant for English names

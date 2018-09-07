@@ -51,7 +51,7 @@ library(lubridate)
 month(x)
 }
 x <- date_yw(2016, 2)
-get_week(x)
+get_isoweek(x)
 
 }
 \seealso{

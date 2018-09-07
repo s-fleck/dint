@@ -7,6 +7,8 @@
 \alias{^.date_xx}
 \alias{\%\%.date_xx}
 \alias{\%/\%.date_xx}
+\alias{\%\%.date_y}
+\alias{\%/\%.date_y}
 \title{Disabled Date Arithmetic Operations}
 \usage{
 \method{*}{date_xx}(x, y)
@@ -18,6 +20,10 @@
 \method{\%\%}{date_xx}(x, y)
 
 \method{\%/\%}{date_xx}(x, y)
+
+\method{\%\%}{date_y}(x, y)
+
+\method{\%/\%}{date_y}(x, y)
 }
 \arguments{
 \item{x}{a \code{\link{date_yq}} or \code{\link{date_ym}} object}
