@@ -211,7 +211,7 @@ last_of_month.default <- function(x){
 #'
 #' @return a [Date]
 #'
-#' @rdname of_isoweek
+#' @rdname day_of_isoweek
 #' @export
 #' @examples
 #' first_of_isoweek("2016-06-04")
@@ -223,7 +223,7 @@ first_of_isoweek <- function(x){
 
 
 
-#' @rdname of_isoweek
+#' @rdname day_of_isoweek
 #' @export
 first_of_isoweek.default<- function(x){
   last_of_isoweek(x) - 6L
@@ -232,7 +232,7 @@ first_of_isoweek.default<- function(x){
 
 
 
-#' @rdname of_isoweek
+#' @rdname day_of_isoweek
 #' @export
 last_of_isoweek <- function(x){
   UseMethod("last_of_isoweek")
@@ -241,7 +241,7 @@ last_of_isoweek <- function(x){
 
 
 
-#' @rdname of_isoweek
+#' @rdname day_of_isoweek
 #' @export
 last_of_isoweek.default <- function(x){
   first_of_isoyear(get_isoyear(x)) + get_isoweek(x) * 7L - 1L
@@ -249,9 +249,10 @@ last_of_isoweek.default <- function(x){
 
 
 
+
 # isoyear -----------------------------------------------------------------
 
-#' @rdname of_isoweek
+#' @rdname day_of_isoyear
 #' @export
 first_of_isoyear <- function(x){
   UseMethod("first_of_isoyear")
@@ -261,16 +262,23 @@ first_of_isoyear <- function(x){
 
 
 # The first week is the week that contains the 4th of januarry
-#' @rdname of_isoweek
+#' @rdname day_of_isoyear
 #' @export
-first_of_isoyear.date_yw <- function(x){
+first_of_isoyear.default <- function(x){
   first_of_isoyear(get_isoyear(x))
 }
 
 
 
 
-#' @rdname of_isoweek
+#' @rdname day_of_isoyear
+#' @export
+first_of_isoyear.date_yw <- first_of_isoyear.default
+
+
+
+
+#' @rdname day_of_isoyear
 #' @export
 first_of_isoyear.integer <- function(x){
   res <- make_date(x, 1L, 4L)
@@ -280,14 +288,14 @@ first_of_isoyear.integer <- function(x){
 
 
 
-#' @rdname of_isoweek
+#' @rdname day_of_isoyear
 #' @export
 first_of_isoyear.numeric <- first_of_isoyear.integer
 
 
 
 
-#' @rdname of_isoweek
+#' @rdname day_of_isoyear
 #' @export
 last_of_isoyear <- function(x){
   UseMethod("last_of_isoyear")
@@ -296,12 +304,35 @@ last_of_isoyear <- function(x){
 
 
 
-#' @rdname of_isoweek
+#' @rdname day_of_isoyear
 #' @export
-last_of_isoyear.date_y <- function(x){
+last_of_isoyear.default <- function(x){
+  last_of_isoyear(get_isoyear(x))
+}
+
+
+
+
+#' @rdname day_of_isoyear
+#' @export
+last_of_isoyear.date_yw <- last_of_isoyear.default
+
+
+
+
+#' @rdname day_of_isoyear
+#' @export
+last_of_isoyear.integer <- function(x){
   res <- make_date(x + 1L, 1, 4)
   res - get_isowday(res)
 }
+
+
+
+
+#' @rdname day_of_isoyear
+#' @export
+last_of_isoyear.numeric <- last_of_isoyear.integer
 
 
 
