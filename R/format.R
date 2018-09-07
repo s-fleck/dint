@@ -24,7 +24,7 @@
 #' x <- date_ym(2018, c(1L, 10L, 3L, 6L, 4L, 5L, 7L, 12L, 2L, 9L, 8L, 11L))
 #' fm <- "%Y-M%m: %B,%b"
 #'
-#' format.date_xx(
+#' format(
 #'   x,
 #'   format = fm,
 #'   month_names = month.name,  # built-in R constant for English names
@@ -233,20 +233,34 @@ pad_zero_left <- function(x){
 
 # presets -----------------------------------------------------------------
 
+#' Format shortcuts
+#'
+#' @param x anything that can be coerced to Date
+#' @name format_date_xx
+#'
+NULL
+
+
+#' @rdname format_date_xx
 #' @export
 format_date_yq_iso     <- function(x)  format(as_date_yq(x))
 
+#' @rdname format_date_xx
 #' @export
 format_date_yq_short   <- function(x)  format(as_date_yq(x), "%Y.%q")
 
+#' @rdname format_date_xx
 #' @export
 format_date_yq_shorter <- function(x)  format(as_date_yq(x), "%y.%q")
 
+#' @rdname format_date_xx
 #' @export
 format_date_ym_iso     <- function(x)  format(as_date_yq(x))
 
+#' @rdname format_date_xx
 #' @export
 format_date_ym_short   <- function(x)  format(as_date_yq(x), "%Y.%m")
 
+#' @rdname format_date_xx
 #' @export
 format_date_ym_shorter <- function(x)  format(as_date_yq(x), "%y.%m")
