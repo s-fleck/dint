@@ -279,6 +279,5 @@ seq.date_ym <- function(x, y, ...){
 #' @rdname date_xx_arithmetic
 #' @export
 seq.date_yw <- function(x, y, ...){
-  res <- seq.int(as.integer(x), as.integer(y))
-  as_date_yw(res[(res %% 100) %in% 1:53])
+  as_date_yw(seq(first_of_isoweek(x), first_of_isoweek(y), by = "7 days"))
 }

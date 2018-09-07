@@ -2,14 +2,19 @@ context("arithmetic")
 
 
 
+
 # seq ---------------------------------------------------------------------
 
+# 2007 starts on jan 1st
+# 2008 is a leaop year
+# 2009 has 53 weeks
+# 2010 is a gernic year without special properties
+
 test_that("seq.date_yw works", {
-  x <- seq(date_yw(2017, 1), date_yw(2019, 1))
-
+  x <- seq(date_yw(2007, 1), date_yw(2010, 52))
   expect_identical(
     as.integer(x),
-    c(201701:201752, 201801:201853, 201901)
+    c(200701:200752, 200801:200852, 200901:200953, 201001:201052)
   )
 })
 
@@ -17,23 +22,23 @@ test_that("seq.date_yw works", {
 
 
 test_that("seq.date_ym works", {
-  x <- seq(date_ym(2017, 1), date_ym(2019, 1))
+  x <- seq(date_ym(2007, 1), date_ym(2009, 1))
 
   expect_identical(
     as.integer(x),
-    as.integer(c(201701:201712, 201801:201812, 201901))
+    as.integer(c(200701:200712, 200801:200812, 200901))
   )
 })
 
 
 
 
-test_that("seq.date_ym works", {
-  x <- seq(date_yq(2017, 1), date_yq(2019, 1))
+test_that("seq.date_yq works", {
+  x <- seq(date_yq(2007, 1), date_yq(2009, 1))
 
   expect_identical(
     as.integer(x),
-    as.integer(c(20171:20174, 20181:20184, 20191))
+    as.integer(c(20071:20074, 20081:20084, 20091))
   )
 })
 
@@ -43,7 +48,6 @@ test_that("seq.date_ym works", {
 # y+ ----------------------------------------------------------------------
 
 test_that("y+.date_ym works", {
-
   expect_identical(
     date_ym(2017, 1) %y+% 1,
     date_ym(2018, 1)
@@ -59,7 +63,6 @@ test_that("y+.date_ym works", {
 
 
 test_that("y+.date_yq arithmetic works", {
-
   expect_identical(
     date_yq(2017, 1) %y+% 1,
     date_yq(2018, 1)
