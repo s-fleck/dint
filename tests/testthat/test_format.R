@@ -31,6 +31,26 @@ test_that("all format tokens work", {
 
 
 
+test_that("format date_yy works as expected", {
+  td <- date_y(2010:2013)
+  eres <- c("Y2010-y10-%10Y", "Y2011-y11-%11Y", "Y2012-y12-%12Y", "Y2013-y13-%13Y")
+
+  # normal cases
+  expect_identical(format(td, "Y%Y-y%y-%%yY"), eres)
+  expect_identical(format(td, "%Y-y%y-%%y"), substr(eres, 2, nchar(eres) - 1))
+
+  # special_cases
+  expect_identical(format(td, ""), rep("", times = length(td)))
+  date0 <- date_y(integer())
+  expect_identical(format(date0), character())
+
+  # violated preconditions
+  expect_error(format(td, format = character()))
+})
+
+
+
+
 test_that("format date_yq works as expected", {
   td <- date_yq(2010:2019, 3)
   eres <- c(

@@ -103,12 +103,12 @@ format.date_y <- function(
   if (identical(length(x), 0L))
     return(character())
 
+  # init
   tokens <- tokenize_format(format)
   len <- length(tokens)
-
   res <- vector("list", length(tokens))
 
-  year    <- get_year(x)
+  year    <- unclass(x)
   yr      <- sign(year) * (abs(year) %% 100L)
 
   for(i in seq_len(len)){
@@ -128,7 +128,6 @@ format.date_y <- function(
     return(rep(res, length(x)))
   else
     stop("Something went wrong")
-
 }
 
 
