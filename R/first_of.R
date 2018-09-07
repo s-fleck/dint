@@ -225,8 +225,8 @@ first_of_isoweek <- function(x){
 
 #' @rdname of_isoweek
 #' @export
-first_of_isoweek.date_yw <- function(x){
-  last_of_isoweek(x) - 7L
+first_of_isoweek.default<- function(x){
+  last_of_isoweek(x) - 6L
 }
 
 
@@ -243,16 +243,13 @@ last_of_isoweek <- function(x){
 
 #' @rdname of_isoweek
 #' @export
-last_of_isoweek.date_yw <- function(x){
-  first_of_isoyear(get_isoyear(x)) + get_isoweek(x) * 7
+last_of_isoweek.default <- function(x){
+  first_of_isoyear(get_isoyear(x)) + get_isoweek(x) * 7L - 1L
 }
 
 
 
-
 # isoyear -----------------------------------------------------------------
-
-
 
 #' @rdname of_isoweek
 #' @export
@@ -461,7 +458,7 @@ first_day_yw <- function(x, w){
 #' @rdname of_isoweek
 #' @export
 last_day_yw <- function(x, w){
-  last_of_isoweek(date_y(x, w))
+  last_of_isoweek(date_yw(x, w))
 }
 
 
@@ -471,12 +468,4 @@ last_day_yw <- function(x, w){
 
 quarter_from_month <- function(x){
   c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4)[x]
-}
-
-
-
-
-get_isowday <- function(x){
-  x <- as.POSIXlt(x)
-  ifelse(x$wday == 0, 7L, x$wday)
 }
