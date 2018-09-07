@@ -216,7 +216,7 @@ month.date_xx <- function(
 #' @rdname getters
 #' @examples
 #' x <- date_yw(2016, 2)
-#' get_week(x)
+#' get_isoweek(x)
 #'
 get_isoweek <- function(x){
   UseMethod("get_isoweek")
@@ -283,3 +283,14 @@ get_isoyear.default <- function(x){
 get_isoyear.date_yw <- function(x){
   as.integer(x) %/% 100
 }
+
+
+
+
+# utils -------------------------------------------------------------------
+
+get_isowday <- function(x){
+  x <- as.POSIXlt(x)
+  ifelse(x$wday == 0, 7L, x$wday)
+}
+
