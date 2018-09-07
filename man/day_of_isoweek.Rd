@@ -17,9 +17,9 @@ last_of_isoweek(x)
 
 \method{last_of_isoweek}{default}(x)
 
-first_day_yw(x, w)
+first_day_yw(x, w = NULL)
 
-last_day_yw(x, w)
+last_day_yw(x, w = NULL)
 }
 \arguments{
 \item{x}{Anything that can be coerced to a date with \code{\link[base:as.Date]{base::as.Date()}}}

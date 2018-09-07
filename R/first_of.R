@@ -252,6 +252,9 @@ last_of_isoweek.default <- function(x){
 
 # isoyear -----------------------------------------------------------------
 
+#' #' Get First / Last Day of the First and Last Isoweek of a Year
+#'
+#' @param x anything that can be coerced to a `Date`
 #' @rdname day_of_isoyear
 #' @export
 first_of_isoyear <- function(x){
@@ -479,8 +482,17 @@ last_day_ym <- function(
 #' @examples
 #' first_day_yw(2016)
 #' first_day_yw(2016)
-first_day_yw <- function(x, w){
-  first_of_isoweek(date_yw(x, w))
+first_day_yw <- function(
+  x,
+  w = NULL
+){
+  if (is.null(w)){
+    d <- as_date_yw(x)
+  } else {
+    d <- date_yw(x, w)
+  }
+
+  first_of_isoweek(d)
 }
 
 
@@ -488,8 +500,17 @@ first_day_yw <- function(x, w){
 
 #' @rdname day_of_isoweek
 #' @export
-last_day_yw <- function(x, w){
-  last_of_isoweek(date_yw(x, w))
+last_day_yw <- function(
+  x,
+  w = NULL
+){
+  if (is.null(w)){
+    d <- as_date_yw(x)
+  } else {
+    d <- date_yw(x, w)
+  }
+
+  last_of_isoweek(d)
 }
 
 
