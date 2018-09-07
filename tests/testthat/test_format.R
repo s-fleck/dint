@@ -9,7 +9,7 @@ test_that("all format tokens work", {
   q <- date_yq(2005, 1)
   expect_identical(format(q), "2005-Q1")
   expect_identical(
-    format(q, fmt),
+    format(q, fmt, month_names = month.name, month_abb = month.abb),
     "y:5 Y:2005 q:1 M:%M b:Jan B:January"
   )
 
