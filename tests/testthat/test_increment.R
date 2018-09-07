@@ -33,3 +33,14 @@ test_that("increment.date_ym", {
   expect_identical(xm1, as_date_ym(c(201211, 201112, -112, -212, 10, 2)))
   expect_identical(xm5, as_date_ym(c(201207, 201108, -108, -208, 6, -110)))
 })
+
+
+
+test_that("increment.date_y works", {
+
+  x <- as_date_y(c(2012, 2013))
+
+  expect_identical(increment(x, 1), as_date_y(c(2013, 2014)))
+  expect_identical(increment(x, -1), as_date_y(c(2011, 2012)))
+
+})

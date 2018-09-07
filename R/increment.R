@@ -58,5 +58,5 @@ increment.date_ym <- function(x, inc){
 
 #' @noRd
 increment.date_y <- function(x, inc){
-  y + inc
+  date_y(as.integer(x) + inc)
 }
