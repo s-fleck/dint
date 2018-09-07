@@ -128,11 +128,11 @@ as.Date.date_yw <- function(x, ...){
 
 #' Directly Create Formatted Year-Week Strings
 #'
-#' @param x,m Two integer (vectors). `m` is optional and the interpretation of
-#'   `x` will depend on whether `m` is supplied or not:
+#' @param x,w Two integer (vectors). `w` is optional and the interpretation of
+#'   `x` will depend on whether `w` is supplied or not:
 #'   * if only `x` is supplied, `x` will be passed to [as_date_yw()]
-#'     (e.g. `x = 201604` means April 2016)
-#'   * if `x` and `m` are supplied, `x` is interpreted as year and `m` as
+#'     (e.g. `x = 201604` means 4th isoweek of 2016)
+#'   * if `x` and `w` are supplied, `x` is interpreted as year and `w` as
 #'     week.
 #'
 #' @inherit format.date_yw
