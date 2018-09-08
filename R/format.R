@@ -150,7 +150,7 @@ format.date_yq <- function(
 #' @export
 format.date_ym <- function(
   x,
-  format = "%Y-M%q",
+  format = "%Y-M%m",
   ...
 ){
   format.date_xx(x, format = format, ...)
@@ -231,11 +231,16 @@ pad_zero_left <- function(x){
 }
 
 
-# presets -----------------------------------------------------------------
+# Shortcuts ---------------------------------------------------------------
 
-#' Format shortcuts
+#' Format Shortcuts
 #'
-#' @param x anything that can be coerced to Date
+#' Functions that apply formatting presets to anything that can be
+#' coerced to a `date_xx`. This is notably handy as it can be used as a
+#' labelling function for **ggplot2** (see `vignette("dint")`)
+#'
+#' @param x anything that can be coerced to `Date`
+#' @return a `character` vector
 #' @name format_date_xx
 #'
 NULL

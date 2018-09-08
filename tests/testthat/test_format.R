@@ -14,7 +14,7 @@ test_that("all format tokens work", {
   )
 
   m <- as_date_ym(q)
-  expect_identical(format(m), "2005-M1")
+  expect_identical(format(m), "2005-M01")
   expect_identical(
     format(q, fmt),
     format(m, fmt)
@@ -120,4 +120,12 @@ test_that("month names are formatted correclty", {
   )
 
   expect_identical(eres, tres)
+})
+
+
+
+test_that("default formats are ISO formats", {
+  expect_identical(format(date_ym(2018, 5)), "2018-M05")
+  expect_identical(format(date_yq(2018, 1)), "2018-Q1")
+  expect_identical(format(date_yw(2018, 51)), "2018-W51")
 })
