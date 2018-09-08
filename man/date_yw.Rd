@@ -4,7 +4,7 @@
 \alias{date_yw}
 \alias{is_date_yw}
 \alias{as_date_yw}
-\title{A Simple S3-Class for Year-Week (Isoweek) Dates}
+\title{A Simple S3-Class for Year-Isoweek Dates}
 \usage{
 date_yw(y, w)
 
@@ -28,7 +28,7 @@ argument is of type \code{date_yw} or not.
 \code{as_date_yw} attempts to coerce its argument to \code{date_yw} type
 }
 \description{
-A simple data type for storing year-week dates in a human readable integer
+A simple data type for storing year-isoweek dates in a human readable integer
 format, e.g.: December 2012 is stored as 201212. Supports simple arithmetics
 (\code{+} and \code{-}) as well formatting.
 }

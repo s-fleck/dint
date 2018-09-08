@@ -1,6 +1,6 @@
 # year --------------------------------------------------------------------
 
-#' Get Year, Quarter or Month
+#' Get Year, Quarter, Month or Isoweek
 #'
 #'
 #' @details
@@ -243,7 +243,6 @@ get_isoweek.date_yw <- function(x){
 
 
 
-
 #' @inheritParams lubridate::month
 #' @rdname year
 #'
@@ -261,6 +260,11 @@ isoweek.date_xx <- get_isoweek
 
 # isoyear -----------------------------------------------------------------
 
+#' @export
+#' @rdname getters
+#' @examples
+#' get_isoyear(as.Date("2018-01-01"))
+#' get_isoyear(as.Date("2016-01-01"))
 get_isoyear <- function(x){
   UseMethod("get_isoyear")
 }
@@ -268,6 +272,7 @@ get_isoyear <- function(x){
 
 
 
+#' @export
 get_isoyear.default <- function(x){
   x <- as.POSIXlt(x)
   date <- make_date(get_year(x), get_month(x), x$mday)
@@ -280,6 +285,7 @@ get_isoyear.default <- function(x){
 
 
 
+#' @export
 get_isoyear.date_yw <- function(x){
   as.integer(x) %/% 100
 }
@@ -293,4 +299,3 @@ get_isowday <- function(x){
   x <- as.POSIXlt(x)
   ifelse(x$wday == 0, 7L, x$wday)
 }
-

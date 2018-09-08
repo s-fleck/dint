@@ -7,7 +7,7 @@
 \alias{last_of_isoweek.default}
 \alias{first_day_yw}
 \alias{last_day_yw}
-\title{Get first / last day of a year}
+\title{Get First / Last Day of an Isoweek}
 \usage{
 first_of_isoweek(x)
 
@@ -50,6 +50,6 @@ first_day_yw(2016)
 \code{\link[=first_of_isoweek]{first_of_isoweek()}}
 
 Other ym convenience functions: \code{\link{first_of_month}},
-  \code{\link{first_of_year}}, \code{\link{format_ym}}
+  \code{\link{first_of_year}}
 }
 \concept{ym convenience functions}

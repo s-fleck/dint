@@ -231,7 +231,113 @@ pad_zero_left <- function(x){
 }
 
 
-# Shortcuts ---------------------------------------------------------------
+
+
+# shortcuts ---------------------------------------------------------------
+
+#' Coerce and Format to Year-Quarter Strings
+#'
+#' @param x,q Two integer (vectors). `q` is optional and the interpretation of
+#'   `x` will depend on whether `q` is supplied or not:
+#'   * if only `x` is supplied, `x` will be passed to [as_date_yq()]
+#'     (e.g. `x = 20161` means first quarter of 2016)
+#'   * if `x` and `q` are supplied, `x` is interpreted as year and `q` as
+#'     quarter.
+#'
+#' @inherit format.date_yq
+#'
+#' @family coerce and format functions
+#' @seealso [format.date_yq()]
+#' @export
+#' @examples
+#'
+#' format_yq(2015, 1)
+#' format_yq(20151, format = "short")
+#' format_yq(20151, format = "shorter")
+#'
+format_yq <- function(x, q = NULL, format = "iso"){
+  if (is.null(q)){
+    d <- as_date_yq(x)
+  } else {
+    d <- date_yq(x, q)
+  }
+
+  format(d, format = format)
+}
+
+
+
+
+#' Coerce and Format to Year-Muarter Strings
+#'
+#' @param x,m Two integer (vectors). `m` is optional and the interpretation of
+#'   `x` will depend on whether `m` is supplied or not:
+#'   * if only `x` is supplied, `x` will be passed to [as_date_ym()]
+#'     (e.g. `x = 201604` means April 2016)
+#'   * if `x` and `m` are supplied, `x` is interpreted as year and `m` as
+#'     month.
+#'
+#' @inherit format.date_ym
+#'
+#' @family coerce and format functions
+#' @seealso [format.date_ym()]
+#' @export
+#' @examples
+#'
+#' format_ym(2015, 5)
+#' format_ym(201505, format = "short")
+#' format_ym(201505, format = "shorter")
+#'
+format_ym <- function(x, m = NULL, format = "iso"){
+  if (is.null(m)){
+    d <- as_date_ym(x)
+  } else {
+    d <- date_ym(x, m)
+  }
+
+  format(d, format = format)
+}
+
+
+
+
+#' Coerce and Format to Year-Isoweek Strings
+#'
+#' @param x,w Two integer (vectors). `w` is optional and the interpretation of
+#'   `x` will depend on whether `w` is supplied or not:
+#'   * if only `x` is supplied, `x` will be passed to [as_date_yw()]
+#'     (e.g. `x = 201604` means 4th isoweek of 2016)
+#'   * if `x` and `w` are supplied, `x` is interpreted as year and `w` as
+#'     week.
+#'
+#' @inherit format.date_yw
+#'
+#' @family coerce and format functions
+#' @seealso [format.date_yw()]
+#' @export
+#' @examples
+#' format_yw(2015, 5)
+#' format_yw(201505, format = "%Y.%W")
+#' format_yw(as_date_yw(201505), format = "%y.%W")
+#'
+format_yw <- function(
+  x,
+  w = NULL,
+  format = "%Y-W%W"
+){
+  if (is.null(w)){
+    d <- as_date_yw(x)
+  } else {
+    d <- date_yw(x, w)
+  }
+
+  format(d, format = format)
+}
+
+
+
+
+# morte shortcuts ---------------------------------------------------------
 
 #' Format Shortcuts
 #'
@@ -246,25 +352,42 @@ pad_zero_left <- function(x){
 NULL
 
 
+
+
 #' @rdname format_date_xx
 #' @export
 format_date_yq_iso     <- function(x)  format(as_date_yq(x))
+
+
+
 
 #' @rdname format_date_xx
 #' @export
 format_date_yq_short   <- function(x)  format(as_date_yq(x), "%Y.%q")
 
+
+
+
 #' @rdname format_date_xx
 #' @export
 format_date_yq_shorter <- function(x)  format(as_date_yq(x), "%y.%q")
+
+
+
 
 #' @rdname format_date_xx
 #' @export
 format_date_ym_iso     <- function(x)  format(as_date_yq(x))
 
+
+
+
 #' @rdname format_date_xx
 #' @export
 format_date_ym_short   <- function(x)  format(as_date_yq(x), "%Y.%m")
+
+
+
 
 #' @rdname format_date_xx
 #' @export

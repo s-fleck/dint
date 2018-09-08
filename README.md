@@ -34,7 +34,15 @@ library(dint)
 # creation
 q <- date_yq(2014, 4)
 m <- as_date_ym(201412)
+w <- as_date_yw(as.Date("2017-01-01"))
 
+# printing
+print(q)
+#> 2014-Q4
+print(m)
+#> 2014-M12
+print(w)  # isoweeks do not follow calender years!
+#> 2016-W52
 
 # arithmetic operations
 # quarters
@@ -58,19 +66,23 @@ seq(m -2, m + 2)
 # formatting
 format(q)
 #> [1] "2014-Q4"
-format(q, "short")
+format(q, "%Y.%q")
 #> [1] "2014.4"
-format(q, "shorter")
+format(q, "%y.%q")
 #> [1] "14.4"
 format(m)
 #> [1] "2014-M12"
 
 
 # get start and end of period
-last_day_of_quarter(q)
+last_of_quarter(q)
 #> [1] "2014-12-31"
-first_day_of_quarter(q)
+first_of_quarter(q)
 #> [1] "2014-10-01"
-first_day_of_month(Sys.Date())
-#> [1] "2018-08-01"
+first_of_month(Sys.Date())
+#> [1] "2018-09-01"
+first_of_isoweek(w)
+#> [1] "2016-12-26"
+last_of_isoweek(w)
+#> [1] "2017-01-01"
 ```

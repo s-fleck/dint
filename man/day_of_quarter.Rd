@@ -5,7 +5,7 @@
 \alias{first_of_quarter.default}
 \alias{last_of_quarter}
 \alias{last_of_quarter.default}
-\title{Get first / last day of a quarter}
+\title{Get First / Last Day of a Quarter}
 \usage{
 first_of_quarter(x)
 
@@ -22,7 +22,7 @@ last_of_quarter(x)
 a \link{Date}
 }
 \description{
-Get first / last day of a quarter
+Get First / Last Day of a Quarter
 }
 \examples{
 

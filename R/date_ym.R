@@ -112,41 +112,6 @@ as.Date.date_ym <- function(x, ...){
 
 
 
-# shortcuts ---------------------------------------------------------------
-
-#' Directly Create Formatted Year-Month Strings
-#'
-#' @param x,m Two integer (vectors). `m` is optional and the interpretation of
-#'   `x` will depend on whether `m` is supplied or not:
-#'   * if only `x` is supplied, `x` will be passed to [as_date_ym()]
-#'     (e.g. `x = 201604` means April 2016)
-#'   * if `x` and `m` are supplied, `x` is interpreted as year and `m` as
-#'     month.
-#'
-#' @inherit format.date_ym
-#'
-#' @family ym convenience functions
-#' @seealso [format.date_ym()]
-#' @export
-#' @examples
-#'
-#' format_ym(2015, 5)
-#' format_ym(201505, format = "short")
-#' format_ym(201505, format = "shorter")
-#'
-format_ym <- function(x, m = NULL, format = "iso"){
-  if (is.null(m)){
-    d <- as_date_ym(x)
-  } else {
-    d <- date_ym(x, m)
-  }
-
-  format(d, format = format)
-}
-
-
-
-
 # utils -------------------------------------------------------------------
 
 yms_matrix_from_numeric <- function(x){

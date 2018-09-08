@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Travis build status](https://travis-ci.org/s-fleck/dint.svg?branch=master)](https://travis-ci.org/s-fleck/dint)
 
-A Toolkit for Year-Quarter and Year-Month Dates
+A Toolkit for Year-Quarter, Year-Month and Year-Isoweek Dates
 
 S3 classes and methods to create and work with year-quarter and year-month 
 vectors. Basic arithmetic operations (such as adding and subtracting) are
@@ -51,7 +51,12 @@ library(dint)
 # creation
 q <- date_yq(2014, 4)
 m <- as_date_ym(201412)
+w <- as_date_yw(as.Date("2017-01-01"))
 
+# printing
+print(q)
+print(m)
+print(w)  # isoweeks do not follow calender years!
 
 # arithmetic operations
 # quarters
@@ -68,14 +73,16 @@ seq(m -2, m + 2)
 
 # formatting
 format(q)
-format(q, "short")
-format(q, "shorter")
+format(q, "%Y.%q")
+format(q, "%y.%q")
 format(m)
 
 
 # get start and end of period
-last_day_of_quarter(q)
-first_day_of_quarter(q)
-first_day_of_month(Sys.Date())
+last_of_quarter(q)
+first_of_quarter(q)
+first_of_month(Sys.Date())
+first_of_isoweek(w)
+last_of_isoweek(w)
 
 ```

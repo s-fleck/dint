@@ -7,7 +7,7 @@
 \alias{last_of_month.default}
 \alias{first_day_ym}
 \alias{last_day_ym}
-\title{Get first / last day of a month}
+\title{Get First / Last Day of a Month}
 \usage{
 first_of_month(x)
 
@@ -37,7 +37,7 @@ month.
 a \link{Date}
 }
 \description{
-Get first / last day of a month
+Get First / Last Day of a Month
 
 Get First or Last Day of Month From Year and Month
 }
@@ -55,6 +55,6 @@ first_day_ym(201601)
 \code{\link[=first_of_month]{first_of_month()}}
 
 Other ym convenience functions: \code{\link{first_of_isoweek}},
-  \code{\link{first_of_year}}, \code{\link{format_ym}}
+  \code{\link{first_of_year}}
 }
 \concept{ym convenience functions}

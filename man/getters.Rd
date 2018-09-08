@@ -5,7 +5,8 @@
 \alias{get_quarter}
 \alias{get_month}
 \alias{get_isoweek}
-\title{Get Year, Quarter or Month}
+\alias{get_isoyear}
+\title{Get Year, Quarter, Month or Isoweek}
 \usage{
 get_year(x)
 
@@ -14,6 +15,8 @@ get_quarter(x)
 get_month(x)
 
 get_isoweek(x)
+
+get_isoyear(x)
 }
 \arguments{
 \item{x}{a \link{date_xx} or any \R object that can be coerced to \code{POSIXlt}}
@@ -22,7 +25,7 @@ get_isoweek(x)
 an \code{integer} vector.
 }
 \description{
-Get Year, Quarter or Month
+Get Year, Quarter, Month or Isoweek
 }
 \details{
 If you use \pkg{lubridate} in addition to dint,
@@ -53,6 +56,8 @@ month(x)
 x <- date_yw(2016, 2)
 get_isoweek(x)
 
+get_isoyear(as.Date("2018-01-01"))
+get_isoyear(as.Date("2016-01-01"))
 }
 \seealso{
 \code{\link[lubridate:year]{lubridate::year()}},

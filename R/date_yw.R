@@ -1,8 +1,8 @@
 # ctor --------------------------------------------------------------------
 
-#' A Simple S3-Class for Year-Week (Isoweek) Dates
+#' A Simple S3-Class for Year-Isoweek Dates
 #'
-#' A simple data type for storing year-week dates in a human readable integer
+#' A simple data type for storing year-isoweek dates in a human readable integer
 #' format, e.g.: December 2012 is stored as 201212. Supports simple arithmetics
 #' (`+` and `-`) as well formatting.
 #'
@@ -119,44 +119,6 @@ as.Date.date_yw <- function(x, ...){
   jan1wday <- ifelse(jan1$wday == 0, 7L, jan1$wday)
 
   jan1 + (4L - jan1wday) + isoweek * 7L
-}
-
-
-
-
-# shortcuts ---------------------------------------------------------------
-
-#' Directly Create Formatted Year-Week Strings
-#'
-#' @param x,w Two integer (vectors). `w` is optional and the interpretation of
-#'   `x` will depend on whether `w` is supplied or not:
-#'   * if only `x` is supplied, `x` will be passed to [as_date_yw()]
-#'     (e.g. `x = 201604` means 4th isoweek of 2016)
-#'   * if `x` and `w` are supplied, `x` is interpreted as year and `w` as
-#'     week.
-#'
-#' @inherit format.date_yw
-#'
-#' @family yw convenience functions
-#' @seealso [format.date_yw()]
-#' @export
-#' @examples
-#' format_yw(2015, 5)
-#' format_yw(201505, format = "%Y.%W")
-#' format_yw(as_date_yw(201505), format = "%y.%W")
-#'
-format_yw <- function(
-  x,
-  w = NULL,
-  format = "%Y-W%W"
-){
-  if (is.null(w)){
-    d <- as_date_yw(x)
-  } else {
-    d <- date_yw(x, w)
-  }
-
-  format(d, format = format)
 }
 
 

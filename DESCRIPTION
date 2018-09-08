@@ -1,14 +1,14 @@
 Type: Package
 Package: dint
-Title: A Toolkit for Year-Quarter and Year-Month Dates
+Title: A Toolkit for Year-Quarter, Year-Month and Year-Isoweek Dates
 Version: 1.0.0.9007
 Authors@R: person("Stefan", "Fleck", email = "stefan.b.fleck@gmail.com", role = c("aut", "cre"))
 Maintainer: Stefan Fleck <stefan.b.fleck@gmail.com>
 Description: 
-  S3 classes and methods to create and work with year-quarter and year-month 
-  vectors. Basic arithmetic operations (such as adding and subtracting) are
-  supported, as well as formatting and converting to and from standard R
-  Date types.
+  S3 classes and methods to create and work with year-quarter, year-month and
+  year-isoweek vectors. Basic arithmetic operations (such as adding and 
+  subtracting) are supported, as well as formatting and converting to and from 
+  standard R date types.
 License: MIT + file LICENSE
 URL: https://github.com/s-fleck/dint
 BugReports: https://github.com/s-fleck/dint/issues
@@ -22,4 +22,4 @@ VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.0.9000

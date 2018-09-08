@@ -3,8 +3,7 @@
 
 
 
-
-#' Get first / last day of a year
+#' Get First / Last Day of a Year
 #'
 #' @param x Anything that can be coerced to a date with [base::as.Date()]
 #'
@@ -87,7 +86,7 @@ last_of_year.numeric <- function(x){
 
 # quarter -----------------------------------------------------------------
 
-#' Get first / last day of a quarter
+#' Get First / Last Day of a Quarter
 #'
 #' @param x Anything that can be coerced to a date with [base::as.Date()]
 #'
@@ -146,7 +145,7 @@ last_of_quarter.default <- function(x){
 
 
 
-#' Get first / last day of a month
+#' Get First / Last Day of a Month
 #'
 #' @param x Anything that can be coerced to a date with [base::as.Date()]
 #'
@@ -205,7 +204,7 @@ last_of_month.default <- function(x){
 
 
 
-#' Get first / last day of a year
+#' Get First / Last Day of an Isoweek
 #'
 #' @param x Anything that can be coerced to a date with [base::as.Date()]
 #'
@@ -252,7 +251,7 @@ last_of_isoweek.default <- function(x){
 
 # isoyear -----------------------------------------------------------------
 
-#' #' Get First / Last Day of the First and Last Isoweek of a Year
+#' Get First / Last Day of the First and Last Isoweek of a Year
 #'
 #' @param x anything that can be coerced to a `Date`
 #' @rdname day_of_isoyear

@@ -11,7 +11,7 @@
 \alias{last_of_isoyear.date_yw}
 \alias{last_of_isoyear.integer}
 \alias{last_of_isoyear.numeric}
-\title{#' Get First / Last Day of the First and Last Isoweek of a Year}
+\title{Get First / Last Day of the First and Last Isoweek of a Year}
 \usage{
 first_of_isoyear(x)
 
@@ -37,5 +37,5 @@ last_of_isoyear(x)
 \item{x}{anything that can be coerced to a \code{Date}}
 }
 \description{
-#' Get First / Last Day of the First and Last Isoweek of a Year
+Get First / Last Day of the First and Last Isoweek of a Year
 }

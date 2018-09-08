@@ -8,7 +8,7 @@
 \alias{format_date_ym_iso}
 \alias{format_date_ym_short}
 \alias{format_date_ym_shorter}
-\title{Format shortcuts}
+\title{Format Shortcuts}
 \usage{
 format_date_yq_iso(x)
 
@@ -23,8 +23,13 @@ format_date_ym_short(x)
 format_date_ym_shorter(x)
 }
 \arguments{
-\item{x}{anything that can be coerced to Date}
+\item{x}{anything that can be coerced to \code{Date}}
+}
+\value{
+a \code{character} vector
 }
 \description{
-Format shortcuts
+Functions that apply formatting presets to anything that can be
+coerced to a \code{date_xx}. This is notably handy as it can be used as a
+labelling function for \strong{ggplot2} (see \code{vignette("dint")})
 }

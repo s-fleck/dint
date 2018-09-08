@@ -11,7 +11,7 @@
 \alias{last_of_year.numeric}
 \alias{first_day_y}
 \alias{last_day_y}
-\title{Get first / last day of a year}
+\title{Get First / Last Day of a Year}
 \usage{
 first_of_year(x)
 
@@ -52,6 +52,6 @@ first_day_y(2016)
 \code{\link[=first_of_year]{first_of_year()}}
 
 Other ym convenience functions: \code{\link{first_of_isoweek}},
-  \code{\link{first_of_month}}, \code{\link{format_ym}}
+  \code{\link{first_of_month}}
 }
 \concept{ym convenience functions}

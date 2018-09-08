@@ -117,41 +117,6 @@ as.Date.date_yq <- function(
 
 
 
-# shortcuts ---------------------------------------------------------------
-
-#' Directly Create Formatted Year-Quarter Strings
-#'
-#' @param x,q Two integer (vectors). `q` is optional and the interpretation of
-#'   `x` will depend on whether `q` is supplied or not:
-#'   * if only `x` is supplied, `x` will be passed to [as_date_yq()]
-#'     (e.g. `x = 20161` means first quarter of 2016)
-#'   * if `x` and `q` are supplied, `x` is interpreted as year and `q` as
-#'     quarter.
-#'
-#' @inherit format.date_yq
-#'
-#' @family yq convenience functions
-#' @seealso [format.date_yq()]
-#' @export
-#' @examples
-#'
-#' format_yq(2015, 1)
-#' format_yq(20151, format = "short")
-#' format_yq(20151, format = "shorter")
-#'
-format_yq <- function(x, q = NULL, format = "iso"){
-  if (is.null(q)){
-    d <- as_date_yq(x)
-  } else {
-    d <- date_yq(x, q)
-  }
-
-  format(d, format = format)
-}
-
-
-
-
 # utils -------------------------------------------------------------------
 
 yqs_matrix_from_numeric <- function(x){
