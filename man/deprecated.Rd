@@ -8,6 +8,12 @@
 \alias{last_day_of_year}
 \alias{last_day_of_quarter}
 \alias{last_day_of_month}
+\alias{format_date_ym_iso}
+\alias{format_date_ym_short}
+\alias{format_date_ym_shorter}
+\alias{format_date_yq_iso}
+\alias{format_date_yq_short}
+\alias{format_date_yq_shorter}
 \title{Deprecated functions}
 \usage{
 first_day_of_year(...)
@@ -21,6 +27,18 @@ last_day_of_year(...)
 last_day_of_quarter(...)
 
 last_day_of_month(...)
+
+format_date_ym_iso(...)
+
+format_date_ym_short(...)
+
+format_date_ym_shorter(...)
+
+format_date_yq_iso(...)
+
+format_date_yq_short(...)
+
+format_date_yq_shorter(...)
 }
 \arguments{
 \item{...}{See documentation of new function that replaces this one}

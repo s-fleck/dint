@@ -356,39 +356,39 @@ NULL
 
 #' @rdname format_date_xx
 #' @export
-format_date_yq_iso     <- function(x)  format(as_date_yq(x))
+format_yq_iso     <- function(x)  format(as_date_yq(x))
 
 
 
 
 #' @rdname format_date_xx
 #' @export
-format_date_yq_short   <- function(x)  format(as_date_yq(x), "%Y.%q")
+format_yq_short   <- function(x)  format(as_date_yq(x), "%Y.%q")
 
 
 
 
 #' @rdname format_date_xx
 #' @export
-format_date_yq_shorter <- function(x)  format(as_date_yq(x), "%y.%q")
+format_yq_shorter <- function(x)  format(as_date_yq(x), "%y.%q")
 
 
 
 
 #' @rdname format_date_xx
 #' @export
-format_date_ym_iso     <- function(x)  format(as_date_yq(x))
+format_ym_iso     <- function(x)  format(as_date_yq(x))
 
 
 
 
 #' @rdname format_date_xx
 #' @export
-format_date_ym_short   <- function(x)  format(as_date_yq(x), "%Y.%m")
+format_ym_short   <- function(x)  format(as_date_yq(x), "%Y.%m")
 
 
 
 
 #' @rdname format_date_xx
 #' @export
-format_date_ym_shorter <- function(x)  format(as_date_yq(x), "%y.%m")
+format_ym_shorter <- function(x)  format(as_date_yq(x), "%y.%m")

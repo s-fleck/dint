@@ -1,10 +1,12 @@
 # dint 1.0.0.9000
 
+
 * **breaking**: formatting `date_xx` objects now uses placeholders similar to
   `base::strptime()` (e.g `%Y`, `%m`, `%q`, etc...) instead of presets. The
-  new implementation is also faster than the old formatting functions.
-* **breaking**: all `first_day_of_*()` have been renamed to `first_of_*()`. The 
-  old function names are deprecated but will still work until the next release.
+  new implementation is also noticably faster than the old.
+* **breaking**: all `first_day_of_*()` and `format_date_y*()` functions now
+  have shorter names: `first_of_*()` and `format_y*()`. The original names
+  will still work until the next release but give a deprecation warning.
 * You can now direclty supply a numeric year to `first_of_year()` and 
   `last_of_year()` (e.g. `first_of_year(2018)`)
 * added `date_yw` for storing isoweeks and modified existing funtions to 

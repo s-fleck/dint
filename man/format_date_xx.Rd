@@ -2,25 +2,25 @@
 % Please edit documentation in R/format.R
 \name{format_date_xx}
 \alias{format_date_xx}
-\alias{format_date_yq_iso}
-\alias{format_date_yq_short}
-\alias{format_date_yq_shorter}
-\alias{format_date_ym_iso}
-\alias{format_date_ym_short}
-\alias{format_date_ym_shorter}
+\alias{format_yq_iso}
+\alias{format_yq_short}
+\alias{format_yq_shorter}
+\alias{format_ym_iso}
+\alias{format_ym_short}
+\alias{format_ym_shorter}
 \title{Format Shortcuts}
 \usage{
-format_date_yq_iso(x)
+format_yq_iso(x)
 
-format_date_yq_short(x)
+format_yq_short(x)
 
-format_date_yq_shorter(x)
+format_yq_shorter(x)
 
-format_date_ym_iso(x)
+format_ym_iso(x)
 
-format_date_ym_short(x)
+format_ym_short(x)
 
-format_date_ym_shorter(x)
+format_ym_shorter(x)
 }
 \arguments{
 \item{x}{anything that can be coerced to \code{Date}}
