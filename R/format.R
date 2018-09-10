@@ -361,11 +361,15 @@ format_yq_iso <- function(x){
 }
 
 
+
+
 #' @rdname format_date_xx
 #' @export
 format_yq_short   <- function(x){
   format(as_date_yq(x), "%Y.%q")
 }
+
+
 
 
 #' @rdname format_date_xx
@@ -375,6 +379,8 @@ format_yq_shorter <- function(x){
 }
 
 
+
+
 #' @rdname format_date_xx
 #' @export
 format_ym_iso <- function(x){
@@ -382,11 +388,15 @@ format_ym_iso <- function(x){
 }
 
 
+
+
 #' @rdname format_date_xx
 #' @export
 format_ym_short   <- function(x){
   format(as_date_ym(x), "%Y.%m")
 }
+
+
 
 
 #' @rdname format_date_xx
@@ -397,6 +407,7 @@ format_ym_shorter <- function(x){
 
 
 
+
 #' @rdname format_date_xx
 #' @exportt
 format_yw_iso <- function(x){
@@ -404,11 +415,15 @@ format_yw_iso <- function(x){
 }
 
 
+
+
 #' @rdname format_date_xx
 #' @export
 format_yw_short <- function(x){
   format(as_date_yw(x), "%Y.%W")
 }
+
+
 
 
 #' @rdname format_date_xx
