@@ -25,23 +25,39 @@ library(dint)
 dint helps you with working with year-quarter and year-month dates. It is
 implemented in base R and comes with zero external dependencies. Even
 if you don't need to work with such special dates directly, dint can still help
-you format (for example) plot axis.
+you format (for example) plot axis. 
 
+
+# date_xx Objects
+
+dint provides 4 different S3 classes that inherit from `date_xx`.
+* `date_yq` for year-quarter dates
+* `date_yw` for year-month dates
+* `date_yw` for year-isoweek dates. Please note that the year for isoweeks does 
+  not necessarily correspond to the calender year 
+  [wikipedia](https://en.wikipedia.org/wiki/ISO_week_date)
+* `date_y` for storing years. This class exists for consistency and provides 
+  litle advantage over storing years as bare integers. The main use of this 
+  class is in package development when you want to write your own generics
+  and methods for years. 
+  
+  
+  
 
 # Creating
-
+ 
 ```{r}
 
 # date_* Objects can be created using explicit constructors...
 date_yq(2015, 1)
 date_ym(c(2015, 2016), c(1, 2))
-
+date_yw(c(2008, 2009), 1)
 
 # ...or through coercion of dates or integers
 as_date_yq(Sys.Date())
 as_date_yq(20141)   # the last digit is interpreted as quarter
 as_date_ym(201412)  # the last two digits are interpreted as month
-
+as_date_yw("2018-01-01")  # anything else that can be parsed by as.Date() works
 
 ```
 
@@ -56,6 +72,7 @@ as_date_ym(201412)  # the last two digits are interpreted as month
 d <- as.Date("2018-05-12")
 as_date_yq(d)
 as_date_ym(d)
+as_date_yw(d)
 as_date_y(d)
 
 
@@ -76,7 +93,7 @@ print(as.POSIXct(q), tz = "CET")
 
 
 
-# Arithmetics
+# Arithmetics and Sequences
 
 ```{r}
 # Quarters
@@ -140,13 +157,14 @@ last_of_quarter(q)  # the same as as.Date(q), but more explicit
 
 # These functions work with normal dates
 d <- as.Date("2018-05-12")
+first_of_year(d)
+last_of_year(d)
 first_of_quarter(d)
 last_of_quarter(d)
 first_of_month(d)
 last_of_month(d)
-first_of_year(d)
-last_of_year(d)
-
+first_of_isoweek(d)
+last_of_isoweek(d)
 
 # Alternativeley you can also use these:
 first_day_yq(2012, 2)
@@ -161,8 +179,8 @@ last_day_y(2012)
 
 # Formatting
 
-Formating `date_yq` objects is easy. Currently, three different formatting 
-presets are defined for dint dates.
+Formating `date_yq` objects is easy and uses a subset of the  placeholders of 
+`base::strptime()` (+ `%q` for quarters).
 
 ```{r}
 q <- date_yq(2014, 4)
@@ -172,9 +190,16 @@ format(q, "%y.%q")
 
 
 m <- date_ym(2014, 12)
-format(q, "%Y-M%m")  # iso/default
-format(q, "%Y.%m")
-format(q, "%y.%m")
+format(m, "%Y-M%m")  # iso/default
+
+w <- date_yw(2014, 1)
+format(w, "%Y-W%W")  # iso/default
+
+
+# You can use these for coercion and formatting in one step
+format_yq(Sys.Date())
+format_ym(Sys.Date())
+format_yw(Sys.Date())
 ```
 
 
@@ -201,9 +226,9 @@ p <- ggplot(
 
 
 p + ggtitle("iso") + ggtitle("default")
-p + scale_x_date(labels = format_date_yq_iso) + ggtitle("date_yq_iso")
-p + scale_x_date(labels = format_date_ym_short) + ggtitle("date_ym_short")
-p + scale_x_date(labels = format_date_ym_shorter) + ggtitle("date_ym_shorter")
+p + scale_x_date(labels = format_yq_iso) + ggtitle("date_yq_iso")
+p + scale_x_date(labels = format_ym_short) + ggtitle("date_ym_short")
+p + scale_x_date(labels = format_yw_shorter) + ggtitle("date_yw_shorter")
 
 ```
 
