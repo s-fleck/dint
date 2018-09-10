@@ -139,5 +139,18 @@ test_that("format_y* defaults to iso", {
   expect_identical(format_yq(d), "2018-Q4")
   expect_identical(format_ym(d), "2018-M12")
   expect_identical(format_yw(d), "2018-W50")
+
+  d <- as.Date("2018-01-1")
+  expect_identical(format_yq_iso(d), format_yq(d))
+  expect_identical(format_yq_short(d), "2018.1")
+  expect_identical(format_yq_shorter(d), "18.1")
+
+  expect_identical(format_ym_iso(d), format_ym(d))
+  expect_identical(format_ym_short(d), "2018.01")
+  expect_identical(format_ym_shorter(d), "18.01")
+
+  expect_identical(format_yw_iso(d), format_yw(d))
+  expect_identical(format_yw_short(d), "2018.01")
+  expect_identical(format_yw_shorter(d), "18.01")
 })
 

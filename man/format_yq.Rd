@@ -4,7 +4,7 @@
 \alias{format_yq}
 \title{Coerce and Format to Year-Quarter Strings}
 \usage{
-format_yq(x, q = NULL, format = "iso")
+format_yq(x, q = NULL, format = "\%Y-Q\%q")
 }
 \arguments{
 \item{x, q}{Two integer (vectors). \code{q} is optional and the interpretation of

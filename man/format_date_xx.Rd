@@ -8,6 +8,9 @@
 \alias{format_ym_iso}
 \alias{format_ym_short}
 \alias{format_ym_shorter}
+\alias{format_yw_iso}
+\alias{format_yw_short}
+\alias{format_yw_shorter}
 \title{Format Shortcuts}
 \usage{
 format_yq_iso(x)
@@ -21,6 +24,12 @@ format_ym_iso(x)
 format_ym_short(x)
 
 format_ym_shorter(x)
+
+format_yw_iso(x)
+
+format_yw_short(x)
+
+format_yw_shorter(x)
 }
 \arguments{
 \item{x}{anything that can be coerced to \code{Date}}

@@ -4,7 +4,7 @@
 \alias{format_ym}
 \title{Coerce and Format to Year-Muarter Strings}
 \usage{
-format_ym(x, m = NULL, format = "iso")
+format_ym(x, m = NULL, format = "\%Y-M\%m")
 }
 \arguments{
 \item{x, m}{Two integer (vectors). \code{m} is optional and the interpretation of
