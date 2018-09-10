@@ -124,8 +124,20 @@ test_that("month names are formatted correclty", {
 
 
 
+
 test_that("default formats are ISO formats", {
   expect_identical(format(date_ym(2018, 5)), "2018-M05")
   expect_identical(format(date_yq(2018, 1)), "2018-Q1")
   expect_identical(format(date_yw(2018, 51)), "2018-W51")
 })
+
+
+
+
+test_that("format_y* defaults to iso", {
+  d <- as.Date("2018-12-10")
+  expect_identical(format_yq(d), "2018-Q4")
+  expect_identical(format_ym(d), "2018-M12")
+  expect_identical(format_yw(d), "2018-W50")
+})
+

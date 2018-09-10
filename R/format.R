@@ -255,7 +255,7 @@ pad_zero_left <- function(x){
 #' format_yq(20151, format = "short")
 #' format_yq(20151, format = "shorter")
 #'
-format_yq <- function(x, q = NULL, format = "iso"){
+format_yq <- function(x, q = NULL, format = "%Y-Q%q"){
   if (is.null(q)){
     d <- as_date_yq(x)
   } else {
@@ -288,7 +288,7 @@ format_yq <- function(x, q = NULL, format = "iso"){
 #' format_ym(201505, format = "short")
 #' format_ym(201505, format = "shorter")
 #'
-format_ym <- function(x, m = NULL, format = "iso"){
+format_ym <- function(x, m = NULL, format = "%Y-M%m"){
   if (is.null(m)){
     d <- as_date_ym(x)
   } else {
