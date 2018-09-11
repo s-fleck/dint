@@ -21,19 +21,11 @@ test_that("seq.date_yw works", {
   )
 
   expect_identical(
-    as.integer(seq(tdat[1], tdat[2], by = "isoyear")),
-    (2002:2019) * 100L + 50L
+    seq(tdat[1], tdat[2], by = 3),
+    as_date_yw(seq(as.Date("2002-12-10"), as.Date("2020-01-07"), by = "21 days"))
   )
 
-  expect_identical(
-    as.integer(seq(tdat2[1], tdat2[2], by = "isoyear")),
-    (2002:2020) * 100L + 50L
-  )
 
-  expect_identical(
-    as.Date(seq(tdat2[1], tdat2[2], by = "2 years")),
-    seq(as.Date(tdat[1]), as.Date(tdat[2]), by = "730 days")
-  )
 
 })
 
