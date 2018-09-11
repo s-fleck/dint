@@ -22,6 +22,10 @@ seq.date_yw <- function(
   by = 1L,
   ...
 ){
+  assert(
+    is_date_yw(to),
+    msg = "'to' must be the same date_xx subclass as 'from'"
+  )
   as_date_yw(seq(first_of_isoweek(from), first_of_isoweek(to), by = by * 7L))
 }
 
@@ -36,9 +40,13 @@ seq.date_yq <- function(
   by = 1L,
   ...
 ){
-  assert(is_date_yq(to))
+  assert(
+    is_date_yq(to),
+    msg = "'to' must be the same date_xx subclass as 'from'"
+  )
   seq_date_xx(from = from, to = to, by = by, base = 4L, ctor = date_yq)
 }
+
 
 
 
@@ -50,9 +58,13 @@ seq.date_ym <- function(
   by = 1L,
   ...
 ){
-  assert(is_date_ym(to))
+  assert(
+    is_date_ym(to),
+    msg = "'to' must be the same date_xx subclass as 'from'"
+  )
   seq_date_xx(from = from, to = to, by = by, base = 12L, ctor = date_ym)
 }
+
 
 
 
