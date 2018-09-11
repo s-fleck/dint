@@ -63,7 +63,18 @@ seq_date_xx <- function(
   base,
   ctor
 ){
-  assert(is_scalar_integerish(by) && by > 0)
+  assert(
+    is_scalar_integer(from) && !is.na(from),
+    "'from' must be a non-NA integer scalar"
+  )
+  assert(
+    is_scalar_integer(to) && !is.na(to),
+    "'to' must be a non-NA integer scalar"
+  )
+  assert(
+    is_scalar_integerish(by) && by > 0,
+    "'by' must be a positive integer scalar"
+  )
   assert(is_scalar_integer(base) && base > 0)
 
   rev <- from > to

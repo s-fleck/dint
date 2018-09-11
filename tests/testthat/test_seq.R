@@ -121,3 +121,39 @@ test_that("seq.date_ym works", {
     seq(x[2], x[1], by = 1.2)
   )
 })
+
+
+
+
+test_that("seq.date_ym works", {
+  # test corner cases, normal case are tested above
+
+  expect_error(
+    seq_date_xx(
+      date_yq(integer(), integer()),
+      date_yq(integer(), integer()),
+      by = 1,
+      base = 4L,
+      ctor = date_yq
+    ),
+    "scalar"
+  )
+
+  expect_error(
+    seq_date_xx(
+      date_yq(NA_integer_, NA_integer_),
+      date_yq(2018, 1),
+      by = 1,
+      base = 4L,
+      ctor = date_yq
+    ),
+    "NA"
+  )
+
+  expect_identical(
+    seq_date_xx(date_yq(-10, 3), date_yq(-8, 2), by = 1, base = 4L, ctor = date_yq),
+    as_date_yq(c(-103:-104, -91:-94, -81:-82))
+  )
+
+
+})
