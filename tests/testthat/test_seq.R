@@ -41,3 +41,41 @@ test_that("seq.date_yq works", {
     as.integer(c(20071:20074, 20081:20084, 20091))
   )
 })
+
+
+
+
+test_that("parse_seq_by works", {
+
+  expect_identical(parse_seq_by(1L), 1L)
+  expect_identical(parse_seq_by(1), 1L)
+  expect_identical(
+    parse_seq_by("5 years"),
+    structure(5L, unit = "year")
+  )
+  expect_identical(
+    parse_seq_by("5 years"),
+    structure(5L, unit = "year")
+  )
+  expect_identical(
+    parse_seq_by("year"),
+    structure(1L, unit = "year")
+  )
+
+
+
+
+  # faulty inputs
+  expect_error(parse_seq_by(1.2), "integer")
+  expect_error(parse_seq_by(1:3), "scalar")
+  expect_error(parse_seq_by("1.5 years"), "integer")
+  expect_error(parse_seq_by("1"), "not a valid unit")
+  expect_error(parse_seq_by("5 blubbs"), "not a valid unit")
+
+
+
+
+
+})
+
+
