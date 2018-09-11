@@ -147,12 +147,12 @@ test_that("seq.date_ym works", {
       base = 4L,
       ctor = date_yq
     ),
-    "NA"
+    "positive"
   )
 
-  expect_identical(
+  expect_error(
     seq_date_xx(date_yq(-10, 3), date_yq(-8, 2), by = 1, base = 4L, ctor = date_yq),
-    as_date_yq(c(-103:-104, -91:-94, -81:-82))
+    "positive"
   )
 
 

@@ -64,12 +64,12 @@ seq_date_xx <- function(
   ctor
 ){
   assert(
-    is_scalar_integer(from) && !is.na(from),
-    "'from' must be a non-NA integer scalar"
+    is_scalar_integer(from) && !is.na(from) && from >= 0L,
+    "'from' must be a positive date_xx scalar"
   )
   assert(
-    is_scalar_integer(to) && !is.na(to),
-    "'to' must be a non-NA integer scalar"
+    is_scalar_integer(to) && !is.na(to) && to >= 0L,
+    "'to' must be a positve date_xx scalar"
   )
   assert(
     is_scalar_integerish(by) && by > 0,
