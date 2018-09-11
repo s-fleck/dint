@@ -178,6 +178,7 @@ NULL
 
 
 
+
 #' @rdname date_xx_arithmetic_disabled
 #' @export
 `%%.date_y` <- function(x, y){
@@ -196,6 +197,8 @@ NULL
 }
 
 
+
+
 # date_yq -----------------------------------------------------------------
 
 #' @rdname y-plus
@@ -211,16 +214,6 @@ NULL
 #' @export
 `%y-%.date_yq` <- function(x, y){
   as_date_yq(as.integer(x) - (10L * y))
-}
-
-
-
-
-#' @rdname date_xx_arithmetic
-#' @export
-seq.date_yq <- function(x, y, ...){
-  res <- seq.int(as.integer(x), as.integer(y))
-  as_date_yq(res[(res %% 10L) %in% 1:4])
 }
 
 
@@ -246,16 +239,6 @@ seq.date_yq <- function(x, y, ...){
 
 
 
-#' @rdname date_xx_arithmetic
-#' @export
-seq.date_ym <- function(x, y, ...){
-  res <- seq.int(as.integer(x), as.integer(y))
-  as_date_ym(res[(res %% 100) %in% 1:12])
-}
-
-
-
-
 # date_yw -----------------------------------------------------------------
 
 #' @rdname y-plus
@@ -271,13 +254,4 @@ seq.date_ym <- function(x, y, ...){
 #' @export
 `%y-%.date_yw` <- function(x, y){
   as_date_yw(as.integer(x) - (100L * y))
-}
-
-
-
-
-#' @rdname date_xx_arithmetic
-#' @export
-seq.date_yw <- function(x, y, ...){
-  as_date_yw(seq(first_of_isoweek(x), first_of_isoweek(y), by = "7 days"))
 }
