@@ -409,7 +409,7 @@ format_ym_shorter <- function(x){
 
 
 #' @rdname format_date_xx
-#' @exportt
+#' @export
 format_yw_iso <- function(x){
   format(as_date_yw(x))
 }
