@@ -16,6 +16,7 @@
 * `%y+%` / `%y-%` can add/subtract years from date_xx objects
 * added the predicates, `is_first_of_quarter()`, `is_last_of_quarter()`, and
   `is_quarter_bounds()`.
+* `seq()` methods now support a `by` argument
 
 
 

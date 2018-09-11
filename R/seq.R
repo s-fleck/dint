@@ -5,6 +5,9 @@
 #' @param by a positive `integer` scalar to increment the sequence with
 #'   (either in quarters, months or isoweeks, depending on the class of
 #'   `from`/`to`)
+#' @param ... ignored
+#'
+#' @return an `integer` vector with the same `date_xx` subclass as `from`/`to`
 #'
 #' @name date_xx_sequences
 
@@ -34,7 +37,34 @@ seq.date_yq <- function(
   ...
 ){
   assert(is_date_yq(to))
-  assert(is_integerish(by) && by > 0)
+  seq_date_xx(from = from, to = to, by = by, base = 4L, ctor = date_yq)
+}
+
+
+
+#' @rdname date_xx_sequences
+#' @export
+seq.date_ym <- function(
+  from,
+  to,
+  by = 1L,
+  ...
+){
+  assert(is_date_ym(to))
+  seq_date_xx(from = from, to = to, by = by, base = 12L, ctor = date_ym)
+}
+
+
+
+seq_date_xx <- function(
+  from,
+  to,
+  by,
+  base,
+  ctor
+){
+  assert(is_scalar_integerish(by) && by > 0)
+  assert(is_scalar_integer(base) && base > 0)
 
   rev <- from > to
 
@@ -44,25 +74,14 @@ seq.date_yq <- function(
     to <- tmp
   }
 
-  all_qs <- sort(rep.int(get_year(from):get_year(to), 4L))
-  all_qs <- date_yq(all_qs, 1:4)
-  all_qs <- all_qs[all_qs >= from]
-  all_qs <- all_qs[all_qs <= to]
-
-  res <- all_qs[seq.int(1L, length(all_qs), by = by)]
+  all_ms <- sort(rep.int(get_year(from):get_year(to), base))
+  all_ms <- ctor(all_ms, seq_len(base))
+  all_ms <- all_ms[all_ms >= from]
+  all_ms <- all_ms[all_ms <= to]
 
   if (rev)
-    rev(res)
-  else
-    res
-}
+    all_ms <- rev(all_ms)
 
 
-
-#' @rdname date_xx_sequences
-#' @export
-seq.date_ym <- function(from, to, ...){
-  assert(is_date_ym(to))
-  res <- seq.int(as.integer(from), as.integer(to))
-  as_date_ym(res[(res %% 100) %in% 1:12])
+  all_ms[seq.int(1L, length(all_ms), by = by)]
 }

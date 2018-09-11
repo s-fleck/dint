@@ -11,7 +11,7 @@
 
 \method{seq}{date_yq}(from, to, by = 1L, ...)
 
-\method{seq}{date_ym}(from, to, ...)
+\method{seq}{date_ym}(from, to, by = 1L, ...)
 }
 \arguments{
 \item{from, to}{the starting and (maximal) end value of the sequence. Must be
@@ -20,6 +20,11 @@ of the same class (i.e. both must be a \code{date_yq}, \code{date_ym}, etc..)}
 \item{by}{a positive \code{integer} scalar to increment the sequence with
 (either in quarters, months or isoweeks, depending on the class of
 \code{from}/\code{to})}
+
+\item{...}{ignored}
+}
+\value{
+an \code{integer} vector with the same \code{date_xx} subclass as \code{from}/\code{to}
 }
 \description{
 date_xx Sequence Generation

@@ -109,3 +109,7 @@ deprecate <- function(
   }
 
 }
+
+
+
+is_scalar_integer <- function(x) is.integer(x) && is_scalar(x)

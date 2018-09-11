@@ -24,21 +24,6 @@ test_that("seq.date_yw works", {
     seq(tdat[1], tdat[2], by = 3),
     as_date_yw(seq(as.Date("2002-12-10"), as.Date("2020-01-07"), by = "21 days"))
   )
-
-
-
-})
-
-
-
-
-test_that("seq.date_ym works", {
-  x <- seq(date_ym(2007, 1), date_ym(2009, 1))
-
-  expect_identical(
-    as.integer(x),
-    as.integer(c(200701:200712, 200801:200812, 200901))
-  )
 })
 
 
@@ -77,6 +62,54 @@ test_that("seq.date_yq works", {
   expect_identical(
     seq(x[2], x[1], by = 3),
     as_date_yq(rev(c(20072L, 20081L, 20084L, 20093L)))
+  )
+
+  # invalid inputs
+  expect_error(
+    seq(x[2], x[1], by = -3)
+  )
+
+  expect_error(
+    seq(x[2], x[1], by = 1.2)
+  )
+})
+
+
+
+
+test_that("seq.date_ym works", {
+  x <- as_date_ym(c(200706, 200910))
+  eres <- as_date_ym(c(200706:200712, 200801:200812, 200901:200910))
+
+  expect_identical(
+    seq(x[1], x[2]),
+    eres
+  )
+
+  expect_identical(
+    seq(x[1], x[2], by = 2),
+    eres[c(TRUE, FALSE)]
+  )
+
+  expect_identical(
+    seq(x[1], x[2], by = 3),
+    eres[c(TRUE, FALSE, FALSE)]
+  )
+
+  expect_identical(
+    seq(x[1], x[2], by = 4),
+    eres[c(TRUE, FALSE, FALSE, FALSE)]
+  )
+
+  expect_identical(
+    seq(x[1], x[2], by = 5),
+    eres[c(TRUE, FALSE, FALSE, FALSE, FALSE)]
+  )
+
+  # reverse
+  expect_identical(
+    seq(x[2], x[1], by = 3),
+    rev(eres)[c(TRUE, FALSE, FALSE)]
   )
 
   # invalid inputs
