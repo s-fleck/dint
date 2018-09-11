@@ -45,48 +45,46 @@ test_that("seq.date_ym works", {
 
 
 test_that("seq.date_yq works", {
-  x <- seq(date_yq(2007, 1), date_yq(2009, 1))
+  x <- as_date_yq(c(20072, 20093))
 
   expect_identical(
-    as.integer(x),
-    as.integer(c(20071:20074, 20081:20084, 20091))
+    seq(x[1], x[2]),
+    as_date_yq(c(20072:20074, 20081:20084, 20091:20093))
+  )
+
+  expect_identical(
+    seq(x[1], x[2], by = 2),
+    as_date_yq(c(20072L, 20074L, 20082L, 20084L, 20092L))
+  )
+
+  expect_identical(
+    seq(x[1], x[2], by = 3),
+    as_date_yq(c(20072L, 20081L, 20084L, 20093L))
+  )
+
+  expect_identical(
+    seq(x[1], x[2], by = 4),
+    as_date_yq(c(20072L, 20082L, 20092L))
+  )
+
+  expect_identical(
+    seq(x[1], x[2], by = 5),
+    as_date_yq(c(20072L, 20083L))
+  )
+
+
+  # reverse
+  expect_identical(
+    seq(x[2], x[1], by = 3),
+    as_date_yq(rev(c(20072L, 20081L, 20084L, 20093L)))
+  )
+
+  # invalid inputs
+  expect_error(
+    seq(x[2], x[1], by = -3)
+  )
+
+  expect_error(
+    seq(x[2], x[1], by = 1.2)
   )
 })
-
-
-
-
-test_that("parse_seq_by works", {
-
-  expect_identical(parse_seq_by(1L), 1L)
-  expect_identical(parse_seq_by(1), 1L)
-  expect_identical(
-    parse_seq_by("5 years"),
-    structure(5L, unit = "year")
-  )
-  expect_identical(
-    parse_seq_by("5 years"),
-    structure(5L, unit = "year")
-  )
-  expect_identical(
-    parse_seq_by("year"),
-    structure(1L, unit = "year")
-  )
-
-
-
-
-  # faulty inputs
-  expect_error(parse_seq_by(1.2), "integer")
-  expect_error(parse_seq_by(1:3), "scalar")
-  expect_error(parse_seq_by("1.5 years"), "integer")
-  expect_error(parse_seq_by("1"), "not a valid unit")
-  expect_error(parse_seq_by("5 blubbs"), "not a valid unit")
-
-
-
-
-
-})
-
-

@@ -4,20 +4,11 @@
 \alias{date_xx_arithmetic}
 \alias{+.date_xx}
 \alias{-.date_xx}
-\alias{seq.date_yq}
-\alias{seq.date_ym}
-\alias{seq.date_yw}
 \title{Date Arithmetic Operations}
 \usage{
 \method{+}{date_xx}(x, y)
 
 \method{-}{date_xx}(x, y)
-
-\method{seq}{date_yq}(x, y, ...)
-
-\method{seq}{date_ym}(x, y, ...)
-
-\method{seq}{date_yw}(x, y, ...)
 }
 \arguments{
 \item{x}{a \code{\link{date_yq}} or \code{\link{date_ym}} object}
