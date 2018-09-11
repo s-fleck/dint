@@ -1,7 +1,27 @@
 #' @rdname date_xx_arithmetic
 #' @export
-seq.date_yw <- function(from, to, ...){
-  as_date_yw(seq(first_of_isoweek(from), first_of_isoweek(to), by = "7 days"))
+seq.date_yw <- function(
+  from,
+  to,
+  by = "1 week",
+  ...
+){
+  assert(is_date_yw(to))
+
+  if (!is.null(by)){
+    by_p <- parse_seq_by(by)
+    unit <- attr(by_p, "unit")
+  }
+
+  if (identical(unit, "isoyear")){
+    w_from <- get_isoweek(from)
+    w_to   <- get_isoweek(to)
+    years  <- seq(get_isoyear(from), get_isoyear(to) - as.integer(w_from > w_to), by = by_p)
+    return(as_date_yw(years * 100 + get_isoweek(from)))
+
+  } else {
+    as_date_yw(seq(first_of_isoweek(from), first_of_isoweek(to), by = by))
+  }
 }
 
 
@@ -65,7 +85,7 @@ parse_seq_by <- function(
     }
 
     unit <- gsub("s$", "", unit)
-    valid_units <- c("year", "quarter", "month", "week")
+    valid_units <- c("year", "quarter", "month", "week", "isoyear")
     assert(
       unit %in% valid_units,
       msg = sprintf(
@@ -79,5 +99,4 @@ parse_seq_by <- function(
       unit = unit
     ))
   }
-
 }

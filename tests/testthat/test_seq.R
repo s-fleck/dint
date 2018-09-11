@@ -12,10 +12,29 @@ test_that("seq.date_yw works", {
     c(200701:200752, 200801:200852, 200901:200953, 201001:201052)
   )
 
+  tdat  <- date_yw(c(2002, 2020), c(50, 2))
+  tdat2 <- date_yw(c(2002, 2020), c(50, 50))
+
   expect_identical(
-    as_date_yw(seq(as.Date("2004-12-20"), as.Date("2020-01-06"), by = "7 days")),
-    seq(date_yw(2004, 52), date_yw(2020, 2))
+    seq(tdat[1], tdat[2]),
+    as_date_yw(seq(as.Date("2002-12-10"), as.Date("2020-01-07"), by = "7 days"))
   )
+
+  expect_identical(
+    as.integer(seq(tdat[1], tdat[2], by = "isoyear")),
+    (2002:2019) * 100L + 50L
+  )
+
+  expect_identical(
+    as.integer(seq(tdat2[1], tdat2[2], by = "isoyear")),
+    (2002:2020) * 100L + 50L
+  )
+
+  expect_identical(
+    as.Date(seq(tdat2[1], tdat2[2], by = "2 years")),
+    seq(as.Date(tdat[1]), as.Date(tdat[2]), by = "730 days")
+  )
+
 })
 
 
