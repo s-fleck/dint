@@ -112,13 +112,7 @@ as_date_yw.Date <- function(x){
 #' @export
 #'
 as.Date.date_yw <- function(x, ...){
-  isoyear <- as.integer(x) %/% 100
-  isoweek <- as.integer(x) %%  100
-
-  jan1 <- as.POSIXlt(make_date(isoyear, 1, 1))
-  jan1wday <- ifelse(jan1$wday == 0, 7L, jan1$wday)
-
-  jan1 + (4L - jan1wday) + isoweek * 7L
+  first_of_isoweek(x)
 }
 
 
