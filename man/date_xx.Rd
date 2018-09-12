@@ -30,7 +30,7 @@ a \code{date_xx} Object for \code{date_xx()}, \code{make_date_xx}
 argument is of type \code{date_xx} or not.
 }
 \description{
-Superclass for \code{date_xx} for \link{date_ym}, \link{date_yq} and \link{date_y}.
+Superclass for \link{date_yq}, \link{date_ym}, \link{date_yw}, and \link{date_y}.
 
 \code{make_date_xx} can be used to create such objects when it is not know if
 month or quarter information is available.

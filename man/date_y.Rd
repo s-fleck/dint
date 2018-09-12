@@ -35,8 +35,4 @@ date_y(2013)
 as_date_y(2016)
 
 }
-\seealso{
-Other simple dates: \code{\link{date_ym}},
-  \code{\link{date_yq}}, \code{\link{date_yw}}
-}
-\concept{simple dates}
+\concept{[date_xx] subclasses}

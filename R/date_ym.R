@@ -11,8 +11,8 @@
 #'
 #' @return `date_ym` returns an object of type `date_ym`
 #' @export
-#' @family simple dates
-#' @seealso [format.date_ym()]
+#' @family date_xx subclasses
+#' @seealso [format.date_ym()], [seq.date_ym()], [date_xx_arithmetic()]
 #'
 #' @examples
 #' date_ym(2013, 12)
@@ -46,7 +46,7 @@ is_date_ym <- function(x){
 
 
 
-#' @return `as_date_ym` attempts to coerce its argument to `date_ym` type
+#' @return `as_date_ym` attempts to coerce its argument to `date_ym`
 #' @export
 #' @rdname date_ym
 #'

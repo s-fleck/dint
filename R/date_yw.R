@@ -3,16 +3,16 @@
 #' A Simple S3-Class for Year-Isoweek Dates
 #'
 #' A simple data type for storing year-isoweek dates in a human readable integer
-#' format, e.g.: December 2012 is stored as 201212. Supports simple arithmetics
-#' (`+` and `-`) as well formatting.
+#' format, e.g.: the 52nd isoweek of 2012 is stored as 201252. Supports simple
+#' arithmetics (`+` and `-`) as well formatting.
 #'
 #' @param y year
 #' @param w week (optional)
 #'
 #' @return `date_yw` returns an object of type `date_yw`
 #' @export
-#' @family simple dates
-#' @seealso [format.date_yw()]
+#' @family date_xx subclasses
+#' @seealso [format.date_yw()], [seq.date_yw()], [date_xx_arithmetic()]
 #'
 #' @examples
 #' date_yw(2013, 12)
@@ -48,7 +48,7 @@ is_date_yw <- function(x){
 
 
 
-#' @return `as_date_yw` attempts to coerce its argument to `date_yw` type
+#' @return `as_date_yw` attempts to coerce its argument to `date_yw`
 #' @export
 #' @rdname date_yw
 #'

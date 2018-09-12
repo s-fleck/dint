@@ -7,7 +7,7 @@
 #'
 #' @return `date_y` returns an object of type `date_y`
 #' @export
-#' @family simple dates
+#' @family [date_xx] subclasses
 #'
 #' @examples
 #' date_y(2013)

@@ -3,7 +3,7 @@
 #' A Superclass For All dint Objects
 #'
 #' @description
-#' Superclass for `date_xx` for [date_ym], [date_yq] and [date_y].
+#' Superclass for [date_yq], [date_ym], [date_yw], and [date_y].
 #'
 #' `make_date_xx` can be used to create such objects when it is not know if
 #' month or quarter information is available.

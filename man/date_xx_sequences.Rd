@@ -15,7 +15,7 @@
 }
 \arguments{
 \item{from, to}{the starting and (maximal) end value of the sequence. Must be
-of the same class (i.e. both must be a \code{date_yq}, \code{date_ym}, etc..)}
+of the same class (i.e. both must be a \code{\link{date_yq}}, \code{\link{date_ym}}, etc..)}
 
 \item{by}{a positive \code{integer} scalar to increment the sequence with
 (either in quarters, months or isoweeks, depending on the class of
@@ -24,7 +24,7 @@ of the same class (i.e. both must be a \code{date_yq}, \code{date_ym}, etc..)}
 \item{...}{ignored}
 }
 \value{
-an \code{integer} vector with the same \code{date_xx} subclass as \code{from}/\code{to}
+an \code{integer} vector with the same \code{\link{date_xx}} subclass as \code{from}/\code{to}
 }
 \description{
 date_xx Sequence Generation

@@ -36,4 +36,3 @@ first_day_yq(20161)
 \seealso{
 \code{\link[=first_of_quarter]{first_of_quarter()}}
 }
-\concept{yq convenience functions}

@@ -25,12 +25,12 @@ as_date_yw(x)
 \code{is_date_yw} returns \code{TRUE} or \code{FALSE} depending on whether its
 argument is of type \code{date_yw} or not.
 
-\code{as_date_yw} attempts to coerce its argument to \code{date_yw} type
+\code{as_date_yw} attempts to coerce its argument to \code{date_yw}
 }
 \description{
 A simple data type for storing year-isoweek dates in a human readable integer
-format, e.g.: December 2012 is stored as 201212. Supports simple arithmetics
-(\code{+} and \code{-}) as well formatting.
+format, e.g.: the 52nd isoweek of 2012 is stored as 201252. Supports simple
+arithmetics (\code{+} and \code{-}) as well formatting.
 }
 \examples{
 date_yw(2013, 12)
@@ -39,9 +39,9 @@ as_date_yw(201612)
 
 }
 \seealso{
-\code{\link[=format.date_yw]{format.date_yw()}}
+\code{\link[=format.date_yw]{format.date_yw()}}, \code{\link[=seq.date_yw]{seq.date_yw()}}, \code{\link[=date_xx_arithmetic]{date_xx_arithmetic()}}
 
-Other simple dates: \code{\link{date_ym}},
-  \code{\link{date_yq}}, \code{\link{date_y}}
+Other date_xx subclasses: \code{\link{date_ym}},
+  \code{\link{date_yq}}
 }
-\concept{simple dates}
+\concept{date_xx subclasses}

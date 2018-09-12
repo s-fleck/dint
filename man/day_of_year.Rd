@@ -50,8 +50,4 @@ first_day_y(2016)
 }
 \seealso{
 \code{\link[=first_of_year]{first_of_year()}}
-
-Other ym convenience functions: \code{\link{first_of_isoweek}},
-  \code{\link{first_of_month}}
 }
-\concept{ym convenience functions}

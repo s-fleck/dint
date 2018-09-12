@@ -1,13 +1,13 @@
 #' date_xx Sequence Generation
 #'
 #' @param from,to the starting and (maximal) end value of the sequence. Must be
-#'   of the same class (i.e. both must be a `date_yq`, `date_ym`, etc..)
+#'   of the same class (i.e. both must be a [`date_yq`], [`date_ym`], etc..)
 #' @param by a positive `integer` scalar to increment the sequence with
 #'   (either in quarters, months or isoweeks, depending on the class of
 #'   `from`/`to`)
 #' @param ... ignored
 #'
-#' @return an `integer` vector with the same `date_xx` subclass as `from`/`to`
+#' @return an `integer` vector with the same [`date_xx`] subclass as `from`/`to`
 #'
 #' @name date_xx_sequences
 

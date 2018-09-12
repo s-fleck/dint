@@ -25,7 +25,7 @@ as_date_ym(x)
 \code{is_date_ym} returns \code{TRUE} or \code{FALSE} depending on whether its
 argument is of type \code{date_ym} or not.
 
-\code{as_date_ym} attempts to coerce its argument to \code{date_ym} type
+\code{as_date_ym} attempts to coerce its argument to \code{date_ym}
 }
 \description{
 A simple data type for storing year-month dates in a human readable integer
@@ -39,9 +39,9 @@ as_date_ym(201612)
 
 }
 \seealso{
-\code{\link[=format.date_ym]{format.date_ym()}}
+\code{\link[=format.date_ym]{format.date_ym()}}, \code{\link[=seq.date_ym]{seq.date_ym()}}, \code{\link[=date_xx_arithmetic]{date_xx_arithmetic()}}
 
-Other simple dates: \code{\link{date_yq}},
-  \code{\link{date_yw}}, \code{\link{date_y}}
+Other date_xx subclasses: \code{\link{date_yq}},
+  \code{\link{date_yw}}
 }
-\concept{simple dates}
+\concept{date_xx subclasses}

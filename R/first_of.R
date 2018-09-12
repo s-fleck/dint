@@ -349,7 +349,6 @@ last_of_isoyear.numeric <- last_of_isoyear.integer
 #' @inheritParams format_ym
 #' @inherit first_of_year
 #'
-#' @family ym convenience functions
 #' @seealso [first_of_year()]
 #' @export
 #' @rdname day_of_year
@@ -378,7 +377,6 @@ last_day_y <- function(x){
 #' @inheritParams format_yq
 #' @inherit first_of_quarter
 #'
-#' @family yq convenience functions
 #' @seealso [first_of_quarter()]
 #' @export
 #'
@@ -420,7 +418,6 @@ last_day_yq <- function(x, q = NULL){
 #' @inheritParams format_ym
 #' @inherit first_of_month
 #'
-#' @family ym convenience functions
 #' @seealso [first_of_month()]
 #' @export
 #' @rdname day_of_month
@@ -473,7 +470,6 @@ last_day_ym <- function(
 #' @inheritParams format_yw
 #' @inherit first_of_isoweek
 #'
-#' @family ym convenience functions
 #' @seealso [first_of_isoweek()]
 #' @export
 #' @rdname day_of_isoweek
