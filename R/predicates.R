@@ -50,7 +50,6 @@ is_last_of_quarter <- function(
 
 
 
-#' @export
 #' @rdname is_quarter_bounds
 is_Date <- function(
   x
@@ -60,6 +59,10 @@ is_Date <- function(
 
 
 
+
+is_POSIXlt <- function(x){
+  inherits(x, "POSIXlt")
+}
 
 # utils -------------------------------------------------------------------
 

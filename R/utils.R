@@ -16,7 +16,7 @@ require_lubridate <- function(x){
 
 
 
-
+#' imitatie behaviour of lubridate
 tz <- function(x){
   tzone <- attr(x, "tzone")[[1]]
   if (is.character(tzone) && nzchar(tzone)){
@@ -29,13 +29,7 @@ tz <- function(x){
 
 
 
-is_POSIXlt <- function(x){
-  inherits(x, "POSIXlt")
-}
-
-
-
-
+#' use the more efficient make_date function from lubridate if it is available
 make_date <- function(y, m, d){
   if (require_lubridate()){
     lubridate::make_date(y, m, d)
@@ -49,7 +43,7 @@ make_date <- function(y, m, d){
 
 substr_right <- function(x, n){
   nc <- nchar(x)
-  substr(x, nc - n + 1, nc)
+  substr(x, nc - n + 1L, nc)
 }
 
 
@@ -61,9 +55,11 @@ dyn_register_s3_method <- function(
   class,
   fun = NULL
 ){
-  stopifnot(is_scalar_character(pkg))
-  stopifnot(is_scalar_character(generic))
-  stopifnot(is_scalar_character(class))
+  stopifnot(
+    is_scalar_character(pkg),
+    is_scalar_character(generic),
+    is_scalar_character(class)
+  )
 
   if (is.null(fun)) {
     fun <- get(paste0(generic, ".", class), envir = parent.frame())
@@ -112,4 +108,7 @@ deprecate <- function(
 
 
 
-is_scalar_integer <- function(x) is.integer(x) && is_scalar(x)
+
+is_scalar_integer <- function(x){
+  is.integer(x) && is_scalar(x)
+}

@@ -278,7 +278,7 @@ get_isoyear.default <- function(x){
   date <- make_date(get_year(x), get_month(x), x$mday)
   wday <- x$wday
   date <- date + (4L - wday)
-  jan1 <- make_date(get_year(date), 1, 1)
+  jan1 <- make_date(get_year(date), 1L, 1L)
   get_year(jan1)
 }
 
