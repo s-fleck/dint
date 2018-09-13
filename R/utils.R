@@ -16,7 +16,7 @@ require_lubridate <- function(x){
 
 
 
-#' imitatie behaviour of lubridate
+# imitatie behaviour of lubridate
 tz <- function(x){
   tzone <- attr(x, "tzone")[[1]]
   if (is.character(tzone) && nzchar(tzone)){
@@ -29,7 +29,7 @@ tz <- function(x){
 
 
 
-#' use the more efficient make_date function from lubridate if it is available
+# use the more efficient make_date function from lubridate if it is available
 make_date <- function(y, m, d){
   if (require_lubridate()){
     lubridate::make_date(y, m, d)
@@ -117,40 +117,40 @@ is_scalar_integer <- function(x){
 
 
 is_date_yq_integerish <- function(x){
-  all(x %% 10L %in% 1:4 | is.na(x))
+  all(unclass(x) %% 10L %in% 1:4 | is.na(x))
 }
 
 
 
 
 is_date_ym_integerish <- function(x){
-  all(x %% 100L %in% 1:12 | is.na(x))
+  all(unclass(x) %% 100L %in% 1:12 | is.na(x))
 }
 
 
 
 
 is_date_yw_integerish <- function(x){
-  all(x %% 100L %in% 1:53 | is.na(x))
+  all(unclass(x) %% 100L %in% 1:53 | is.na(x))
 }
 
 
 
 is_scalar_date_yq_integerish <- function(x){
-  identical(length(x), 1L) && x %% 10L %in% 1:4 | is.na(x)
+  identical(length(x), 1L) && unclass(x) %% 10L %in% 1:4 | is.na(x)
 }
 
 
 
 
 is_scalar_date_ym_integerish <- function(x){
-  identical(length(x), 1L) && x %% 100L %in% 1:12 | is.na(x)
+  identical(length(x), 1L) && unclass(x) %% 100L %in% 1:12 | is.na(x)
 }
 
 
 
 
 is_scalar_date_yw_integerish <- function(x){
-  identical(length(x), 1L) && x %% 100L %in% 1:53 | is.na(x)
+  identical(length(x), 1L) && unclass(x) %% 100L %in% 1:53 | is.na(x)
 }
 
