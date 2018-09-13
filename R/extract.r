@@ -32,12 +32,9 @@
 #' x <- date_yw(2016, 50:52)
 #' x[1] <- 201649  # 2016, week 52
 #'
-
 #'
 `[.date_xx` <- function(x, i){
-  r <- `[`(as.integer(x), i)
-  class(r) <- class(x)
-  r
+  structure(`[`(as.integer(x), i), class = class(x))
 }
 
 
@@ -54,9 +51,10 @@
     is_date_yq_integerish(value),
     "'value' is not a valid date_yq  (yyyyq)"
   )
-  r <- `[<-`(as.integer(x), i, as.integer(value))
-  class(r) <- class(x)
-  r
+  structure(
+    `[<-`(as.integer(x), i, as.integer(value)),
+    class = class(x)
+  )
 }
 
 
@@ -73,9 +71,10 @@
     is_date_ym_integerish(value),
     "'value' is not a valid date_ym (yyyymm)"
   )
-  r <- `[<-`(as.integer(x), i, as.integer(value))
-  class(r) <- class(x)
-  r
+  structure(
+    `[<-`(as.integer(x), i, as.integer(value)),
+    class = class(x)
+  )
 }
 
 
@@ -92,9 +91,10 @@
     is_date_yw_integerish(value),
     "'value' is not a valid date_yw integer (yyyyww)"
   )
-  r <- `[<-`(as.integer(x), i, as.integer(value))
-  class(r) <- class(x)
-  r
+  structure(
+    `[<-`(as.integer(x), i, as.integer(value)),
+    class = class(x)
+  )
 }
 
 
@@ -102,7 +102,9 @@
 
 #' @rdname extract_date_xx
 #' @export
-`[[.date_xx` <- `[.date_xx`
+`[[.date_xx` <- function(x, i){
+  structure(`[[`(as.integer(x), i), class = class(x))
+}
 
 
 
@@ -118,9 +120,10 @@
     is_scalar_date_yq_integerish(value),
     "'value' is not a valid date_yq  (yyyyq)"
   )
-  r <- `[[<-`(as.integer(x), i, as.integer(value))
-  class(r) <- class(x)
-  r
+  structure(
+    `[[<-`(as.integer(x), i, as.integer(value)),
+    class = class(x)
+  )
 }
 
 
@@ -137,9 +140,10 @@
     is_scalar_date_ym_integerish(value),
     "'value' is not a valid date_ym (yyyymm)"
   )
-  r <- `[[<-`(as.integer(x), i, as.integer(value))
-  class(r) <- class(x)
-  r
+  structure(
+    `[[<-`(as.integer(x), i, as.integer(value)),
+    class = class(x)
+  )
 }
 
 
@@ -156,7 +160,8 @@
     is_scalar_date_yw_integerish(value),
     "'value' is not a valid date_yw integer (yyyyww)"
   )
-  r <- `[[<-`(as.integer(x), i, as.integer(value))
-  class(r) <- class(x)
-  r
+  structure(
+    `[[<-`(as.integer(x), i, as.integer(value)),
+    class = class(x)
+  )
 }
