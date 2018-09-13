@@ -112,3 +112,45 @@ deprecate <- function(
 is_scalar_integer <- function(x){
   is.integer(x) && is_scalar(x)
 }
+
+
+
+
+is_date_yq_integerish <- function(x){
+  all(x %% 10L %in% 1:4 | is.na(x))
+}
+
+
+
+
+is_date_ym_integerish <- function(x){
+  all(x %% 100L %in% 1:12 | is.na(x))
+}
+
+
+
+
+is_date_yw_integerish <- function(x){
+  all(x %% 100L %in% 1:53 | is.na(x))
+}
+
+
+
+is_scalar_date_yq_integerish <- function(x){
+  identical(length(x), 1L) && x %% 10L %in% 1:4 | is.na(x)
+}
+
+
+
+
+is_scalar_date_ym_integerish <- function(x){
+  identical(length(x), 1L) && x %% 100L %in% 1:12 | is.na(x)
+}
+
+
+
+
+is_scalar_date_yw_integerish <- function(x){
+  identical(length(x), 1L) && x %% 100L %in% 1:53 | is.na(x)
+}
+
