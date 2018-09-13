@@ -4,7 +4,7 @@
 \alias{date_xx_arithmetic}
 \alias{+.date_xx}
 \alias{-.date_xx}
-\title{Date Arithmetic Operations}
+\title{date_xx Arithmetic Operations}
 \usage{
 \method{+}{date_xx}(x, y)
 
@@ -24,6 +24,8 @@ arithmetic operators are disabled (see \link{date_xx_arithmetic_disabled}).
 }
 \examples{
 q <- date_yq(2018, 1)
+
+
 q + 5
 q - 1
 seq(q, q + 5)

@@ -1,3 +1,47 @@
+#' date_xx Arithmetic Operations
+#'
+#' The arithmetic operations `+`, `-` as well as sequence generation with
+#' `seq()` are all supported for `date_yq` and `date_ym` objects. Other binary
+#' arithmetic operators are disabled (see [date_xx_arithmetic_disabled]).
+#'
+#' @param x a [`date_yq`] or [`date_ym`] object
+#' @param y an integer
+#' @param ... currently ignored
+#'
+#' @name date_xx_arithmetic
+#' @seealso  [base::Arithmetic]
+#'
+#' @examples
+#' q <- date_yq(2018, 1)
+#'
+#'
+#' q + 5
+#' q - 1
+#' seq(q, q + 5)
+#'
+#'
+#' m <- date_ym(2018, 12)
+#' m + 1
+#' m - 13
+#' seq(m - 1, m + 1)
+NULL
+
+
+
+
+#' Disabled Date Arithmetic Operations
+#'
+#' This page lists operators that are disabled for `date_yq` and `date_ym`
+#' objects.
+#'
+#' @inheritParams date_xx_arithmetic
+#' @name date_xx_arithmetic_disabled
+#' @seealso [date_xx_arithmetic], [base::Arithmetic]
+NULL
+
+
+
+
 # generics ----------------------------------------------------------------
 
 #' Add/Subtract Year

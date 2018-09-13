@@ -7,6 +7,8 @@ test_that("test [[<-.date_xx functions", {
   x <- date_yq(2016, 1:2)
   x[[2]] <- c(20161)
   expect_identical(x, date_yq(2016, c(1, 1)))
+  x[[2]] <- date_yq(2016, 4)
+  expect_identical(x[2], date_yq(2016, 4))
   expect_error(x[[2]] <- c(20165), "valid")
 
   x <- date_ym(2016, 10:11)

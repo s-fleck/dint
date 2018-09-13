@@ -1,56 +1,38 @@
-# generics
-
-#' Date Arithmetic Operations
-#'
-#' The arithmetic operations `+`, `-` as well as sequence generation with
-#' `seq()` are all supported for `date_yq` and `date_ym` objects. Other binary
-#' arithmetic operators are disabled (see [date_xx_arithmetic_disabled]).
-#'
-#' @param x a [`date_yq`] or [`date_ym`] object
-#' @param y an integer
-#' @param ... currently ignored
-#'
-#' @name date_xx_arithmetic
-#' @seealso  [base::Arithmetic]
-#'
-#' @examples
-#' q <- date_yq(2018, 1)
-#' q + 5
-#' q - 1
-#' seq(q, q + 5)
-#'
-#'
-#' m <- date_ym(2018, 12)
-#' m + 1
-#' m - 13
-#' seq(m - 1, m + 1)
-NULL
-
-
-
-
-#' Disabled Date Arithmetic Operations
-#'
-#' This page lists operators that are disabled for `date_yq` and `date_ym`
-#' objects.
-#'
-#' @inheritParams date_xx_arithmetic
-#' @name date_xx_arithmetic_disabled
-#' @seealso [date_xx_arithmetic], [base::Arithmetic]
-NULL
-
-
-
-
-#' Extract Elements of a date_xx
+#' Extract or Replace Elements of a date_xx
 #'
 #' Works exactly like susbetting base vectors via `[`, but preserves the
-#' `date_xx` class and subclasses
+#' `date_xx` class and subclasses. The replacement functions `[<-` and `[[<-`
+#' conduct additional checks before assignment to prevent the generation of
+#' degenerate date_xx vectors (see examples).
 #'
 #' @inheritParams base::Extract
+#' @param value A vector of the same class as `x` or a vector of integers that
+#'   correspond to the internal representation `date_yq/date_ym/date_yw` objects
+#'   (see examples)
 #'
+#' @rdname extract_date_xx
 #' @return a `date_xx` vector
+#' @seealso [base::Extract]
 #' @export
+#'
+#' @examples
+#' x <- date_yq(2016, 1:4)
+#'
+#' x[[2]]
+#' x[1] <- date_yq(2016, 3)
+#' x[2] <- 20164  # 2016, 4th quarter
+#' x[1:2]
+#'
+#' # Trying to assign illegal values for the respective date_xx type raises an error
+#' try(x[2] <- 20165)
+#'
+#' x <- date_ym(2016, 1:3)
+#' x[1] <- 201610  # October 2016
+#'
+#' x <- date_yw(2016, 50:52)
+#' x[1] <- 201649  # 2016, week 52
+#'
+
 #'
 `[.date_xx` <- function(x, i){
   r <- `[`(as.integer(x), i)
@@ -61,6 +43,7 @@ NULL
 
 
 
+#' @rdname extract_date_xx
 #' @export
 `[<-.date_yq` <- function(
   x,
@@ -79,6 +62,7 @@ NULL
 
 
 
+#' @rdname extract_date_xx
 #' @export
 `[<-.date_ym` <- function(
   x,
@@ -97,6 +81,7 @@ NULL
 
 
 
+#' @rdname extract_date_xx
 #' @export
 `[<-.date_yw` <- function(
   x,
@@ -115,12 +100,14 @@ NULL
 
 
 
+#' @rdname extract_date_xx
 #' @export
 `[[.date_xx` <- `[.date_xx`
 
 
 
 
+#' @rdname extract_date_xx
 #' @export
 `[[<-.date_yq` <- function(
   x,
@@ -139,6 +126,7 @@ NULL
 
 
 
+#' @rdname extract_date_xx
 #' @export
 `[[<-.date_ym` <- function(
   x,
@@ -157,6 +145,7 @@ NULL
 
 
 
+#' @rdname extract_date_xx
 #' @export
 `[[<-.date_yw` <- function(
   x,
