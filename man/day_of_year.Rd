@@ -9,8 +9,6 @@
 \alias{last_of_year.integer}
 \alias{last_of_year.default}
 \alias{last_of_year.numeric}
-\alias{first_day_y}
-\alias{last_day_y}
 \title{Get First / Last Day of a Year}
 \usage{
 first_of_year(x)
@@ -28,10 +26,6 @@ last_of_year(x)
 \method{last_of_year}{default}(x)
 
 \method{last_of_year}{numeric}(x)
-
-first_day_y(x)
-
-last_day_y(x)
 }
 \arguments{
 \item{x}{Anything that can be coerced to a date with \code{\link[base:as.Date]{base::as.Date()}}}
@@ -40,14 +34,9 @@ last_day_y(x)
 a \link{Date}
 }
 \description{
-\code{first_day_y()} is equivalent with \code{first_of_year()} and only included
+Get First / Last Day of a Year
 }
 \examples{
 first_of_year("2016-06-04")
 last_of_year("2016-06-04")
-first_day_y(2016)
-first_day_y(2016)
-}
-\seealso{
-\code{\link[=first_of_year]{first_of_year()}}
 }

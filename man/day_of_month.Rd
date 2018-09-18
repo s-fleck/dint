@@ -5,8 +5,8 @@
 \alias{first_of_month.default}
 \alias{last_of_month}
 \alias{last_of_month.default}
-\alias{first_day_ym}
-\alias{last_day_ym}
+\alias{first_of_ym}
+\alias{last_of_ym}
 \title{Get First / Last Day of a Month}
 \usage{
 first_of_month(x)
@@ -17,9 +17,9 @@ last_of_month(x)
 
 \method{last_of_month}{default}(x)
 
-first_day_ym(x, m = NULL)
+first_of_ym(x, m = NULL)
 
-last_day_ym(x, m = NULL)
+last_of_ym(x, m = NULL)
 }
 \arguments{
 \item{x}{Anything that can be coerced to a date with \code{\link[base:as.Date]{base::as.Date()}}}
@@ -47,8 +47,8 @@ first_of_month("2016-06-04")
 last_of_month("2016-06-04")
 
 
-first_day_ym(2016, 1)
-first_day_ym(201601)
+first_of_ym(2016, 1)
+first_of_ym(201601)
 
 }
 \seealso{

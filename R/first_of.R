@@ -78,7 +78,7 @@ last_of_year.default <- function(x){
 #' @rdname day_of_year
 #' @export
 last_of_year.numeric <- function(x){
-  last_day_of_year(as.integer(x))
+  last_of_year(as.integer(x))
 }
 
 
@@ -341,37 +341,6 @@ last_of_isoyear.numeric <- last_of_isoyear.integer
 
 # shorthands --------------------------------------------------------------
 
-#' Get First or Last Day of a Year
-#'
-#' `first_day_y()` is equivalent with `first_of_year()` and only included
-#'
-#'
-#' @inheritParams format_ym
-#' @inherit first_of_year
-#'
-#' @seealso [first_of_year()]
-#' @export
-#' @rdname day_of_year
-#'
-#' @examples
-#' first_day_y(2016)
-#' first_day_y(2016)
-first_day_y <- function(x){
-  first_of_year(date_y(x))
-}
-
-
-
-
-#' @rdname day_of_year
-#' @export
-last_day_y <- function(x){
-  last_of_year(date_y(x))
-}
-
-
-
-
 #' Get First or Last Day of Quarter From Year and Quarter
 #'
 #' @inheritParams format_yq
@@ -382,10 +351,10 @@ last_day_y <- function(x){
 #'
 #' @examples
 #'
-#' first_day_yq(2016, 1)
-#' first_day_yq(20161)
+#' first_of_yq(2016, 1)
+#' first_of_yq(20161)
 #'
-first_day_yq <- function(x, q = NULL){
+first_of_yq <- function(x, q = NULL){
   if (is.null(q)){
     d <- as_date_yq(x)
   } else {
@@ -398,9 +367,9 @@ first_day_yq <- function(x, q = NULL){
 
 
 
-#' @rdname first_day_yq
+#' @rdname first_of_yq
 #' @export
-last_day_yq <- function(x, q = NULL){
+last_of_yq <- function(x, q = NULL){
   if (is.null(q)){
     d <- as_date_yq(x)
   } else {
@@ -424,10 +393,10 @@ last_day_yq <- function(x, q = NULL){
 #'
 #' @examples
 #'
-#' first_day_ym(2016, 1)
-#' first_day_ym(201601)
+#' first_of_ym(2016, 1)
+#' first_of_ym(201601)
 #'
-first_day_ym <- function(
+first_of_ym <- function(
   x,
   m = NULL
 ){
@@ -445,7 +414,7 @@ first_day_ym <- function(
 
 #' @rdname day_of_month
 #' @export
-last_day_ym <- function(
+last_of_ym <- function(
   x,
   m = NULL
 ){
@@ -463,8 +432,8 @@ last_day_ym <- function(
 
 #' Get First or Last Day of a Year
 #'
-#' `first_day_yw()` is equivalent with `first_of_isoweek()` and only included
-#' for symmetry with [first_day_yq()] and [first_day_ym()].
+#' `first_of_yw()` is equivalent with `first_of_isoweek()` and only included
+#' for symmetry with [first_of_yq()] and [first_of_ym()].
 #'
 #'
 #' @inheritParams format_yw
@@ -475,9 +444,9 @@ last_day_ym <- function(
 #' @rdname day_of_isoweek
 #'
 #' @examples
-#' first_day_yw(2016)
-#' first_day_yw(2016)
-first_day_yw <- function(
+#' first_of_yw(2016)
+#' first_of_yw(2016)
+first_of_yw <- function(
   x,
   w = NULL
 ){
@@ -495,7 +464,7 @@ first_day_yw <- function(
 
 #' @rdname day_of_isoweek
 #' @export
-last_day_yw <- function(
+last_of_yw <- function(
   x,
   w = NULL
 ){

@@ -5,8 +5,8 @@
 \alias{first_of_isoweek.default}
 \alias{last_of_isoweek}
 \alias{last_of_isoweek.default}
-\alias{first_day_yw}
-\alias{last_day_yw}
+\alias{first_of_yw}
+\alias{last_of_yw}
 \title{Get First / Last Day of an Isoweek}
 \usage{
 first_of_isoweek(x)
@@ -17,9 +17,9 @@ last_of_isoweek(x)
 
 \method{last_of_isoweek}{default}(x)
 
-first_day_yw(x, w = NULL)
+first_of_yw(x, w = NULL)
 
-last_day_yw(x, w = NULL)
+last_of_yw(x, w = NULL)
 }
 \arguments{
 \item{x}{Anything that can be coerced to a date with \code{\link[base:as.Date]{base::as.Date()}}}
@@ -37,14 +37,14 @@ week.
 a \link{Date}
 }
 \description{
-\code{first_day_yw()} is equivalent with \code{first_of_isoweek()} and only included
-for symmetry with \code{\link[=first_day_yq]{first_day_yq()}} and \code{\link[=first_day_ym]{first_day_ym()}}.
+\code{first_of_yw()} is equivalent with \code{first_of_isoweek()} and only included
+for symmetry with \code{\link[=first_of_yq]{first_of_yq()}} and \code{\link[=first_of_ym]{first_of_ym()}}.
 }
 \examples{
 first_of_isoweek("2016-06-04")
 last_of_isoweek("2016-06-04")
-first_day_yw(2016)
-first_day_yw(2016)
+first_of_yw(2016)
+first_of_yw(2016)
 }
 \seealso{
 \code{\link[=first_of_isoweek]{first_of_isoweek()}}
