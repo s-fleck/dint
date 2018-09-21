@@ -29,3 +29,23 @@ test_that("y+.date_yq arithmetic works", {
     date_yq(2016, 1)
   )
 })
+
+
+
+
+test_that("+ works for date_xx", {
+  expect_identical(
+    date_yq(2017, 4) + 1,
+    date_yq(2018, 1)
+  )
+
+  expect_identical(
+    date_ym(2017, 12) + 1,
+    date_ym(2018, 1)
+  )
+
+  expect_identical(
+    date_yw(2017, 52) + 1:52,
+    date_yw(2018, 1:52)
+  )
+})
