@@ -60,7 +60,9 @@ increment.date_yw <- function(x, inc){
   as_date_yw(x + 7L * inc)
 }
 
-#' @noRd
+
+
+
 increment.date_y <- function(x, inc){
   date_y(as.integer(x) + inc)
 }
