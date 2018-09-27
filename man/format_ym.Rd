@@ -19,23 +19,30 @@ month.
 \item{format}{A format that uses a subset of the same placeholders as
 \code{\link[base:strptime]{base::strptime()}}:
 \tabular{rl}{
-\%Y \tab Year with century (the full year)\cr
-\%y \tab Year without century (the last two digits of the year)\cr
-\%m \tab Month as a decimal numbers (1-12)\cr
-\%B \tab Full month name\cr
-\%b \tab Abbreviated month name
-}}
+\code{\%Y} \tab Year with century (the full year)\cr
+\code{\%y} \tab Year without century (the last two digits of the year)\cr
+\code{\%m} \tab Month as a decimal numbers (01-12)\cr
+\code{\%B} \tab Full month name\cr
+\code{\%b} \tab Abbreviated month name
+}
+Not all placeholders are supported for all \code{date_xx} subclasses.
+Literal \% can be escaped with \code{"\%\%"} (as in \code{\link[base:sprintf]{base::sprintf()}}).}
 }
 \value{
 a \code{character} vector
-
-a \code{character} vector
 }
 \description{
-Functions that apply formatting presets to anything that can be
-coerced to a \code{date_xx}. This is notably handy as it can be used as a
-labelling function for \strong{ggplot2} (see \code{vignette("dint")})
+Coerce and Format to Year-Muarter Strings
 }
+\section{Formatting shorthands}{
+
+
+Format shorthand functions in the form of \code{format_y*_[preset]()} directly
+apply formatting presets to anything  that can be coerced to a \code{date_xx}.
+This is notably handy as they can be used as a labelling function for
+\strong{ggplot2}  axes (see \code{vignette("dint")})
+}
+
 \examples{
 
 format_ym(2015, 5)

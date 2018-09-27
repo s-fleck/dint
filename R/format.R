@@ -4,18 +4,28 @@
 #' @param format A format that uses a subset of the same placeholders as
 #' [base::strptime()]:
 #' \tabular{rl}{
-#'    \%Y \tab Year with century (the full year)\cr
-#'    \%y \tab Year without century (the last two digits of the year)\cr
-#'    \%m \tab Month as a decimal numbers (1-12)\cr
-#'    \%B \tab Full month name\cr
-#'    \%b \tab Abbreviated month name
+#'    `%Y` \tab Year with century (the full year)\cr
+#'    `%y` \tab Year without century (the last two digits of the year)\cr
+#'    `%m` \tab Month as a decimal numbers (01-12)\cr
+#'    `%B` \tab Full month name\cr
+#'    `%b` \tab Abbreviated month name
 #'  }
+#'  Not all placeholders are supported for all `date_xx` subclasses.
+#'  Literal \% can be escaped with `"%%"` (as in [base::sprintf()]).
 #'
 #' @param month_names,month_abb a `character` vector of length 12: Names and
 #'   abbreviations for months that will be used for the
 #'   placeholders `"%b"` and `"%B"`. Defaults to the values for
 #'   the current locale for compatbilioty with [base::strptime()].
 #' @param ... ignored
+#'
+#'
+#' @section Formatting shorthands:
+#'
+#' Format shorthand functions in the form of `format_y*_[preset]()` directly
+#' apply formatting presets to anything  that can be coerced to a `date_xx`.
+#' This is notably handy as they can be used as a labelling function for
+#' **ggplot2**  axes (see `vignette("dint")`)
 #'
 #' @return a `character` vector
 #' @export
@@ -320,22 +330,7 @@ format_yw <- function(
 
 
 
-# morte shortcuts ---------------------------------------------------------
-
-#' Format Shortcuts
-#'
-#' Functions that apply formatting presets to anything that can be
-#' coerced to a `date_xx`. This is notably handy as it can be used as a
-#' labelling function for **ggplot2** (see `vignette("dint")`)
-#'
-#' @param x anything that can be coerced to `Date`
-#' @return a `character` vector
-#' @name format_date_xx
-#'
-NULL
-
-
-
+# more shortcuts ---------------------------------------------------------
 
 #' @rdname format_date_xx
 #' @export
