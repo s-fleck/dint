@@ -2,6 +2,10 @@
 % Please edit documentation in R/format.R
 \name{format_date_xx}
 \alias{format_date_xx}
+\alias{format.date_y}
+\alias{format.date_yq}
+\alias{format.date_ym}
+\alias{format.date_yw}
 \alias{format_yq_iso}
 \alias{format_yq_short}
 \alias{format_yq_shorter}
@@ -11,8 +15,20 @@
 \alias{format_yw_iso}
 \alias{format_yw_short}
 \alias{format_yw_shorter}
-\title{Format Shortcuts}
+\title{Format a date_xx}
 \usage{
+\method{format}{date_y}(x, format = "\%Y", ...)
+
+\method{format}{date_yq}(x, format = "\%Y-Q\%q",
+  month_names = format(ISOdate(2000, 1:12, 1), "\%B"),
+  month_abb = format(ISOdate(2000, 1:12, 1), "\%b"), ...)
+
+\method{format}{date_ym}(x, format = "\%Y-M\%m",
+  month_names = format(ISOdate(2000, 1:12, 1), "\%B"),
+  month_abb = format(ISOdate(2000, 1:12, 1), "\%b"), ...)
+
+\method{format}{date_yw}(x, format = "\%Y-W\%W", ...)
+
 format_yq_iso(x)
 
 format_yq_short(x)
@@ -32,13 +48,45 @@ format_yw_short(x)
 format_yw_shorter(x)
 }
 \arguments{
+\item{x}{any \R object.}
+
+\item{format}{A format that uses a subset of the same placeholders as
+\code{\link[base:strptime]{base::strptime()}}:
+\tabular{rl}{
+\%Y \tab Year with century (the full year)\cr
+\%y \tab Year without century (the last two digits of the year)\cr
+\%m \tab Month as a decimal numbers (1-12)\cr
+\%B \tab Full month name\cr
+\%b \tab Abbreviated month name
+}}
+
+\item{...}{ignored}
+
+\item{month_names, month_abb}{a \code{character} vector of length 12: Names and
+abbreviations for months that will be used for the
+placeholders \code{"\%b"} and \code{"\%B"}. Defaults to the values for
+the current locale for compatbilioty with \code{\link[base:strptime]{base::strptime()}}.}
+
 \item{x}{anything that can be coerced to \code{Date}}
 }
 \value{
+a \code{character} vector
+
 a \code{character} vector
 }
 \description{
 Functions that apply formatting presets to anything that can be
 coerced to a \code{date_xx}. This is notably handy as it can be used as a
 labelling function for \strong{ggplot2} (see \code{vignette("dint")})
+}
+\examples{
+x <- date_ym(2018, c(1L, 10L, 3L, 6L, 4L, 5L, 7L, 12L, 2L, 9L, 8L, 11L))
+fm <- "\%Y-M\%m: \%B,\%b"
+
+format(
+  x,
+  format = fm,
+  month_names = month.name,  # built-in R constant for English names
+  month_abb = month.abb
+)
 }

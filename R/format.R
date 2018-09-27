@@ -30,14 +30,94 @@
 #'   month_names = month.name,  # built-in R constant for English names
 #'   month_abb = month.abb
 #' )
-#'
-format.date_xx <- function(
+#' @name format_date_xx
+NULL
+
+
+
+
+#' @rdname format_date_xx
+#' @export
+format.date_y <- function(
   x,
-  format,
+  format = "%Y",
+  ...
+){
+  format_date_xx(
+    x,
+    format = format,
+    valid_tokens = paste0("%", c("Y", "y", "%"))
+  )
+}
+
+
+
+
+#' @rdname format_date_xx
+#' @export
+format.date_yq <- function(
+  x,
+  format = "%Y-Q%q",
   month_names = format(ISOdate(2000, 1:12, 1), "%B"),
   month_abb = format(ISOdate(2000, 1:12, 1), "%b"),
-  valid_tokens,
   ...
+){
+  format_date_xx(
+    x,
+    format = format,
+    valid_tokens = paste0("%", c("Y", "y", "b", "B", "m", "q", "%")),
+    month_names = month_names,
+    month_abb = month_abb
+  )
+}
+
+
+
+
+#' @rdname format_date_xx
+#' @export
+format.date_ym <- function(
+  x,
+  format = "%Y-M%m",
+  month_names = format(ISOdate(2000, 1:12, 1), "%B"),
+  month_abb = format(ISOdate(2000, 1:12, 1), "%b"),
+  ...
+){
+  format_date_xx(
+    x,
+    format = format,
+    valid_tokens = paste0("%", c("Y", "y", "b", "B", "m", "q", "%")),
+    month_names = month_names,
+    month_abb = month_abb
+  )
+}
+
+
+
+
+#' @rdname format_date_xx
+#' @export
+format.date_yw <- function(
+  x,
+  format = "%Y-W%W",
+  ...
+){
+  format_date_xx(
+    x,
+    format = format,
+    valid_tokens = paste0("%", c("Y", "y", "W", "%"))
+  )
+}
+
+
+
+
+format_date_xx <- function(
+  x,
+  format,
+  valid_tokens,
+  month_names = format(ISOdate(2000, 1:12, 1), "%B"),
+  month_abb = format(ISOdate(2000, 1:12, 1), "%b")
 ){
   # preconditions
   stopifnot(
@@ -96,78 +176,6 @@ format.date_xx <- function(
 
 
 
-#' @rdname format.date_xx
-#' @export
-format.date_y <- function(
-  x,
-  format = "%Y",
-  ...
-){
-  format.date_xx(
-    x,
-    format = format,
-    valid_tokens = paste0("%", c("Y", "y", "%")),
-    ...
-  )
-}
-
-
-
-
-#' @rdname format.date_xx
-#' @export
-format.date_yq <- function(
-  x,
-  format = "%Y-Q%q",
-  ...
-){
-  format.date_xx(
-    x,
-    format = format,
-    valid_tokens = paste0("%", c("Y", "y", "b", "B", "m", "q", "%")),
-    ...
-  )
-}
-
-
-
-
-#' @rdname format.date_xx
-#' @export
-format.date_ym <- function(
-  x,
-  format = "%Y-M%m",
-  ...
-){
-  format.date_xx(
-    x,
-    format = format,
-    valid_tokens = paste0("%", c("Y", "y", "b", "B", "m", "q", "%")),
-    ...
-  )
-}
-
-
-
-
-#' @rdname format.date_xx
-#' @export
-format.date_yw <- function(
-  x,
-  format = "%Y-W%W",
-  ...
-){
-  format.date_xx(
-    x,
-    format = format,
-    valid_tokens = paste0("%", c("Y", "y", "W", "%")),
-    ...
-  )
-}
-
-
-
-
 # utils -------------------------------------------------------------------
 
 tokenize_format <- function(
@@ -201,11 +209,9 @@ tokenize_format <- function(
 
 
 pad_zero_left <- function(x){
-  ifelse(nchar(x) == 1, paste0("0", x), x)
+  sign <- ifelse(x < 0, "-", "")
+  ifelse(nchar(abs(x)) == 1, paste0(sign, "0", abs(x)), x)
 }
-
-
-
 
 
 

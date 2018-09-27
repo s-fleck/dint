@@ -28,9 +28,13 @@ week.
 }
 \value{
 a \code{character} vector
+
+a \code{character} vector
 }
 \description{
-Coerce and Format to Year-Isoweek Strings
+Functions that apply formatting presets to anything that can be
+coerced to a \code{date_xx}. This is notably handy as it can be used as a
+labelling function for \strong{ggplot2} (see \code{vignette("dint")})
 }
 \examples{
 format_yw(2015, 5)

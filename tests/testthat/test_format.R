@@ -96,6 +96,28 @@ test_that("format.date_yq: works for vectors", {
 
 
 
+test_that("format.date_yq works for weird dates", {
+  tdat <- as_date_yq(c(-104, -11, 1, 12, 103, 1004, 20001, 212342))
+
+  expect_identical(
+    format(tdat),
+    c("-10-Q4", "-1-Q1", "0-Q1", "1-Q2", "10-Q3", "100-Q4", "2000-Q1",
+      "21234-Q2")
+  )
+
+  expect_identical(
+    format(tdat, "%Y.%q"),
+    c("-10.4", "-1.1", "0.1", "1.2", "10.3", "100.4", "2000.1", "21234.2")
+  )
+
+  expect_identical(
+    format(tdat, "%y.%q"),
+    c("-10.4", "-01.1", "00.1", "01.2", "10.3", "00.4", "00.1", "34.2")
+  )
+})
+
+
+
 
 test_that("format.date_ym: All Tokens Work", {
   fmt <- "y:%y Y:%Y q:%q m:%m b:%b B:%B %%:%%"
