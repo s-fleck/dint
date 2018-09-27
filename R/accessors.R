@@ -37,7 +37,7 @@ get_year <- function(x){
 
 #' @export
 get_year.date_y <- function(x){
-  x
+  as.integer(x)
 }
 
 
