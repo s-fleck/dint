@@ -93,3 +93,33 @@ plot(res)
 
 
 
+
+# Compare with zoo --------------------------------------------------------
+
+
+library(dint)
+library(zoo)
+library(bench)
+library(ggplot2)
+
+dint <- as_date_yq(rep(date_yq(1000:1999, 1), 100))
+zoo  <- yearqtr(rep(1000:1999, 100) +0.1)
+
+length(dint)
+length(zoo)
+
+res <- mark(
+  dint.1e2 = format(dint[1:1e2], "%Y-Q%q"),
+  dint.1e3 = format(dint[1:1e3], "%Y-Q%q"),
+  dint.1e4 = format(dint[1:1e4], "%Y-Q%q"),
+  dint.1e5 = format(dint[1:1e5], "%Y-Q%q"),
+  zoo.1e2 = format(zoo[1:1e2], "%Y-Q%q"),
+  zoo.1e3 = format(zoo[1:1e3], "%Y-Q%q"),
+  zoo.1e4 = format(zoo[1:1e4], "%Y-Q%q"),
+  zoo.1e5 = format(zoo[1:1e5], "%Y-Q%q"),
+  iterations = 100,
+  check = FALSE
+)
+
+autoplot(res)
+
