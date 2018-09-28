@@ -90,10 +90,9 @@ print.date_xx <- function(
   x,
   ...
 ){
-  cat(format(x, ...))
+  print(format(x, ...))
   invisible(x)
 }
-
 
 
 
@@ -146,5 +145,135 @@ as.POSIXlt.date_xx <- function(x, tz = "", ...){
 #' @export
 as.POSIXct.date_xx <- function(x, tz = "", ...){
   as.POSIXct(as.Date(x, tz = tz), tz = tz, ...)
-
 }
+
+
+
+
+Sys.date_yq <- function() as_date_yq(Sys.Date())
+Sys.date_ym <- function() as_date_ym(Sys.Date())
+Sys.date_yw <- function() as_date_yw(Sys.Date())
+
+
+
+
+# common generics ---------------------------------------------------------
+
+#' Concatenate date_xx Objects
+#'
+#' @param ... `date_yq`, `date_ym`, `date_yw` or `date_y` vectors. All inputs
+#'   must be of the same type (or its unclassed integer equivalent) or faulty
+#'   output is to be expected
+#'
+#' @return a vector of the same `date_xx` subclass as the first element of `...`
+#' @export
+#'
+#' @examples
+#'
+#' c(date_yq(2000, 1:2), date_yq(2000, 3:3))
+#' c(date_yq(2000, 1:2), 20003)
+#'
+#' # raises an error
+#' try(c(date_yq(2000, 1:2), date_ym(2000, 1:12)))
+#'
+#' # silently produces faulty output
+#' c(date_yq(2000, 1:2), date_ym(2000, 1:4))
+#'
+c.date_xx <- function(...){
+  dots <- list(...)
+  assert(
+    all(vapply(dots, is.atomic, logical(1))),
+    "All inputs to c.date_xx() must be atomic vectors (i.e. no lists)"
+  )
+
+  res  <- unlist(dots)
+
+  if (is_date_yq(..1))
+    as_date_yq(res)
+  else if (is_date_ym(..1))
+    as_date_ym(res)
+  else if (is_date_yw(..1))
+    as_date_yw(res)
+  else if (is_date_y(..1))
+    as_date_y(res)
+}
+
+
+
+
+unique.date_yw <- function(x, incomparables = FALSE, ...) {
+  as_date_yw(unique.default(x, incomparables = incomparables, ...))
+}
+
+
+
+unique.date_ym <- function(x, incomparables = FALSE, ...) {
+  as_date_ym(unique.default(x, incomparables = incomparables, ...))
+}
+
+
+
+
+unique.date_yq <- function(x, incomparables = FALSE, ...) {
+  as_date_yq(unique.default(x, incomparables = incomparables, ...))
+}
+
+
+
+
+unique.date_y <- function(x, incomparables = FALSE, ...) {
+  as_date_y(unique.default(x, incomparables = incomparables, ...))
+}
+
+
+
+
+summary.date_xx <- function(object, ...){
+  summary(as.numeric(object), ...)
+}
+
+
+
+
+range.date_yq <- function(..., na.rm = FALSE) {
+  as_date_yq(range(as.integer(c(...), na.rm = na.rm)))
+}
+
+
+
+
+range.date_ym <- function(..., na.rm = FALSE) {
+  as_date_ym(range(as.integer(c(...), na.rm = na.rm)))
+}
+
+
+
+
+range.date_yw <- function(..., na.rm = FALSE) {
+  as_date_yw(range(as.integer(c(...), na.rm = na.rm)))
+}
+
+
+
+
+range.date_y <- function(..., na.rm = FALSE) {
+  as_date_y(range(as.integer(c(...), na.rm = na.rm)))
+}
+
+
+
+Summary.date_xx <- function (..., na.rm)
+{
+  assert(
+    .Generic %in% c("min", "max", "range"),
+    .Generic, "not defined for 'date_xx' Objects"
+  )
+  res <- NextMethod(.Generic)
+  class(res) <- class(..1)
+  res
+}
+
+
+
+
+xtfrm.date_xx <- function(x) as.numeric(x)
