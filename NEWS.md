@@ -7,6 +7,7 @@
 * **breaking**: all `first_day_of_*()` and `format_date_y*()` functions now
   have shorter names: `first_of_*()` and `format_y*()`. The original names
   will still work until the next release but give a deprecation warning.
+* Added support for `c()`, `min()`, `max()`, `range()`
 * You can now direclty supply a numeric year to `first_of_year()` and 
   `last_of_year()` (e.g. `first_of_year(2018)`)
 * added `date_yw` for storing isoweeks and modified existing funtions to 

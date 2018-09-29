@@ -2,8 +2,7 @@
 
 #' Maxima and Minima for date_xx
 #'
-#' @param ... `date_xx` vectors. It is up to the user to ensure that they are
-#'   of the same subclass.
+#' @param ... `date_xx` vectors with the same subclass
 #' @inheritParams base::Summary
 #'
 #' @return
@@ -11,6 +10,12 @@
 #'   input, for range a vector of length 2
 #'
 #' @export
+#'
+#' @examples
+#' min(date_yq(2014, 1), date_yq(2014, 2))
+#'
+#' # raises an error
+#' try(min(date_yq(2014, 1), date_ym(2014, 2)))
 Summary.date_xx <- function (
   ...,
   na.rm

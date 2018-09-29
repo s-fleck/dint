@@ -1,7 +1,7 @@
 Type: Package
 Package: dint
 Title: A Toolkit for Year-Quarter, Year-Month and Year-Isoweek Dates
-Version: 1.0.0.9009
+Version: 2.0.0
 Authors@R: person("Stefan", "Fleck", email = "stefan.b.fleck@gmail.com", role = c("aut", "cre"))
 Maintainer: Stefan Fleck <stefan.b.fleck@gmail.com>
 Description: 
