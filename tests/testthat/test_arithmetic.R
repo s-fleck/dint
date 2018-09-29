@@ -20,14 +20,15 @@ test_that("range.date_xx and min/max work", {
 
 
 test_that("comparison ops work", {
-
-  expect_true(date_yq(2014, 1) < date_yq(2015, 1))
-  expect_false(date_yq(2014, 1) > date_yq(2015, 1))
-  expect_error(date_yq(2014, 1) > date_ym(2015, 1))
-
-
-  date_yq(2014, 1) > date_ym(2015, 1)
-
+  for (ctor in list(date_yq, date_ym, date_yw)){
+    for (op in list(`<`, `>`, `==`, `!=`, `<=`, `>=`)){
+      q1 <- ctor(2014, 1)
+      q2 <- ctor(2015, 1)
+      expect_identical(op(q1, q2), op(as.integer(q1), as.integer(q2)))
+      expect_identical(op(q1, q1), op(as.integer(q1), as.integer(q1)))
+      expect_error(op(q1, as.integer(q1)))
+    }
+  }
 })
 
 
