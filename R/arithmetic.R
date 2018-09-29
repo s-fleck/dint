@@ -2,14 +2,15 @@
 
 #' Maxima and Minima for date_xx
 #'
-#' @param ... date_xx vectors. It is up to the user to ensure that they are
+#' @param ... `date_xx` vectors. It is up to the user to ensure that they are
 #'   of the same subclass.
 #' @param na.rm
 #'
 #' @return
-#' @export
+#'   for `min()` and `max()` a scalar of the same `date_xx` subclass as it's
+#'   input, for range a vector of length 2
 #'
-#' @examples
+#' @export
 Summary.date_xx <- function (
   ...,
   na.rm
