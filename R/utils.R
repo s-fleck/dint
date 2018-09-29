@@ -154,3 +154,17 @@ is_scalar_date_yw_integerish <- function(x){
   identical(length(x), 1L) && unclass(x) %% 100L %in% 1:53 | is.na(x)
 }
 
+
+
+which_date_xx <- function(
+  x
+){
+  dates <- c("date_yq", "date_ym", "date_yw", "date_y")
+  sel <- dates %in% class(x)
+  assert(
+    sum(sel) == 1L,
+    "'x' is not a valid <date_xx> vector: check it's class attribute."
+  )
+  dates[sel]
+}
+
