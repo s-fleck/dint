@@ -14,6 +14,11 @@ test_that("range.date_xx and min/max work", {
 
   expect_identical(min(q), date_yq(2014, 1))
   expect_identical(max(q), date_yq(2014, 4))
+
+  expect_error(
+    max(date_yq(2014, 1), date_ym(2014, 5)),
+    "subclass"
+  )
 })
 
 

@@ -1,5 +1,15 @@
 # Group generics ----------------------------------------------------------
 
+#' Maxima and Minima for date_xx
+#'
+#' @param ... date_xx vectors. It is up to the user to ensure that they are
+#'   of the same subclass.
+#' @param na.rm
+#'
+#' @return
+#' @export
+#'
+#' @examples
 Summary.date_xx <- function (
   ...,
   na.rm
@@ -8,14 +18,44 @@ Summary.date_xx <- function (
     .Generic %in% c("min", "max", "range"),
     .Generic, "not defined for 'date_xx' Objects"
   )
+  dots  <- list(...)
+  class <- vapply(dots, which_date_xx, character(1))
+  assert(
+    all_are_identical(class),
+    "All inputs must have the same <date_xx> subclass"
+  )
+
   res <- NextMethod(.Generic)
-  class(res) <- class(..1)
-  res
+
+  switch(
+    class[[1]],
+    date_yq = as_date_yq(res),
+    date_ym = as_date_ym(res),
+    date_yw = as_date_yw(res),
+    date_y = as_date_y(res)
+  )
 }
 
 
 
 
+#' Comparison Operators for date_xx
+#'
+#' @param e1,e2 Objects with the same `date_xx` subclass (one of them can also
+#'   be integer)
+#'
+#' @return a `logical` scalar
+#' @export
+#'
+#' @examples
+#' date_yq(2015, 1) < date_yq(2015, 2)
+#'
+#' # comparison with integers is ok
+#' date_yq(2015, 1) < 20152
+#'
+#' # but two different date_xx cannot be compared#'
+#' try(date_yq(2015, 1) < date_ym(2015, 2))
+#'
 Ops.date_xx <- function (
   e1,
   e2
