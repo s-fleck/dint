@@ -5,6 +5,6 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 note
 
-* This is a new release.
+* Rewrote formatting functions and added a support for common group generics
