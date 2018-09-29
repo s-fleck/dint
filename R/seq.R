@@ -24,7 +24,7 @@ seq.date_yw <- function(
 ){
   assert(
     is_date_yw(to),
-    msg = "'to' must be the same date_xx subclass as 'from'"
+    msg = "'to' must be the same <date_xx> subclass as 'from'"
   )
   as_date_yw(seq(first_of_isoweek(from), first_of_isoweek(to), by = by * 7L))
 }
@@ -42,7 +42,7 @@ seq.date_yq <- function(
 ){
   assert(
     is_date_yq(to),
-    msg = "'to' must be the same date_xx subclass as 'from'"
+    msg = "'to' must be the same <date_xx> subclass as 'from'"
   )
   seq_date_xx(from = from, to = to, by = by, base = 4L, ctor = date_yq)
 }
@@ -60,7 +60,7 @@ seq.date_ym <- function(
 ){
   assert(
     is_date_ym(to),
-    msg = "'to' must be the same date_xx subclass as 'from'"
+    msg = "'to' must be the same <date_xx> subclass as 'from'"
   )
   seq_date_xx(from = from, to = to, by = by, base = 12L, ctor = date_ym)
 }
@@ -77,15 +77,15 @@ seq_date_xx <- function(
 ){
   assert(
     is_scalar_integer(from) && !is.na(from) && from >= 0L,
-    "'from' must be a positive date_xx scalar"
+    "'from' must be a positive <date_xx> scalar"
   )
   assert(
     is_scalar_integer(to) && !is.na(to) && to >= 0L,
-    "'to' must be a positve date_xx scalar"
+    "'to' must be a positve <date_xx> scalar"
   )
   assert(
     is_scalar_integerish(by) && by > 0,
-    "'by' must be a positive integer scalar"
+    "'by' must be a positive <integer> scalar"
   )
   assert(is_scalar_integer(base) && base > 0)
 

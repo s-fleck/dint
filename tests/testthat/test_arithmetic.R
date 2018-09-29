@@ -26,7 +26,9 @@ test_that("comparison ops work", {
       q2 <- ctor(2015, 1)
       expect_identical(op(q1, q2), op(as.integer(q1), as.integer(q2)))
       expect_identical(op(q1, q1), op(as.integer(q1), as.integer(q1)))
-      expect_error(op(q1, as.integer(q1)))
+      expect_identical(op(q1, as.integer(q2)), op(as.integer(q1), as.integer(q2)))
+      expect_identical(op(q1, as.integer(q1)), op(as.integer(q1), as.integer(q1)))
+      expect_error(op(q1, as_date_y(q1)))
     }
   }
 })

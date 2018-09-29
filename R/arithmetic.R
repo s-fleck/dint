@@ -30,10 +30,12 @@ Ops.date_xx <- function (
   )
 
   assert(
-    (is_date_yq(e1) && is_date_yq(e2)) ||
-      (is_date_ym(e1) && is_date_ym(e2)) ||
-      (is_date_yw(e1) && is_date_yw(e2)) ||
-      (is_date_y(e1)  && is_date_y(e2)),
+    (is_date_yq(e1) && is_date_yq(e2))  ||
+    (is_date_ym(e1) && is_date_ym(e2))  ||
+    (is_date_yw(e1) && is_date_yw(e2))  ||
+    (is_date_y(e1)  && is_date_y(e2))   ||
+    (!is_date_xx(e1) && is_date_xx(e2)) ||
+    (!is_date_xx(e2) && is_date_xx(e1)),
     sprintf(paste(
       "Comparison of <date_xx> is only defined if both objects have the same",
       "subclass, but 'e1' is <%s> and 'e2' is <%s>"),
