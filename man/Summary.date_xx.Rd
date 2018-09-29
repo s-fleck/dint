@@ -10,7 +10,7 @@
 \item{...}{\code{date_xx} vectors. It is up to the user to ensure that they are
 of the same subclass.}
 
-\item{na.rm}{}
+\item{na.rm}{logical: should missing values be removed?}
 }
 \value{
 for \code{min()} and \code{max()} a scalar of the same \code{date_xx} subclass as it's

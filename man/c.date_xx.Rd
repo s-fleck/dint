@@ -20,12 +20,8 @@ Concatenate date_xx Objects
 \examples{
 
 c(date_yq(2000, 1:2), date_yq(2000, 3:3))
-c(date_yq(2000, 1:2), 20003)
 
 # raises an error
 try(c(date_yq(2000, 1:2), date_ym(2000, 1:12)))
-
-# silently produces faulty output
-c(date_yq(2000, 1:2), date_ym(2000, 1:4))
 
 }

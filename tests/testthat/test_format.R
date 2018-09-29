@@ -48,7 +48,7 @@ test_that("format date_y works as expected", {
   expect_error(format(td, format = character()))
   expect_error(
     format(td, format = paste(all_tokens, collapse = " ")),
-    "%b, %B, %m, %q, %W"
+    paste(sort(c("%b", "%B", "%m", "%q", "%W")), collapse = ", ")
   )
 })
 
@@ -144,7 +144,10 @@ test_that("format.date_yw: All Tokens Work", {
   )
 
   # abort on illegal tokens
-  expect_error(format(m, format = paste(all_tokens, collapse = " ")), "%b, %B, %m, %q")
+  expect_error(
+    format(m, format = paste(all_tokens, collapse = " ")),
+    paste(sort(c("%b", "%B", "%m", "%q")), collapse = ", ")
+  )
 })
 
 
