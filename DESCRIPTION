@@ -17,7 +17,8 @@ Suggests:
     knitr,
     lubridate,
     rmarkdown,
-    testthat
+    testthat,
+    covr
 VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true

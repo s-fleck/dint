@@ -3,9 +3,9 @@
 dint
 ====
 
-[![CRAN status](https://www.r-pkg.org/badges/version/dint)](https://cran.r-project.org/package=dint) [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable) [![Travis build status](https://travis-ci.org/s-fleck/dint.svg?branch=master)](https://travis-ci.org/s-fleck/dint)
+[![CRAN status](https://www.r-pkg.org/badges/version/dint)](https://cran.r-project.org/package=dint) [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable) [![Travis build status](https://travis-ci.org/s-fleck/dint.svg?branch=master)](https://travis-ci.org/s-fleck/dint) [![Coverage status](https://codecov.io/gh/s-fleck/dint/branch/master/graph/badge.svg)](https://codecov.io/github/s-fleck/dint?branch=master)
 
-A Toolkit for Year-Quarter and Year-Month Dates
+A Toolkit for Year-Quarter, Year-Month and Year-Isoweek Dates
 
 S3 classes and methods to create and work with year-quarter and year-month vectors. Basic arithmetic operations (such as adding and subtracting) are supported, as well as formatting and converting to and from standard R Date types.
 
@@ -38,29 +38,29 @@ w <- as_date_yw(as.Date("2017-01-01"))
 
 # printing
 print(q)
-#> 2014-Q4
+#> [1] "2014-Q4"
 print(m)
-#> 2014-M12
+#> [1] "2014-M12"
 print(w)  # isoweeks do not follow calender years!
-#> 2016-W52
+#> [1] "2016-W52"
 
 # arithmetic operations
 # quarters
 q
-#> 2014-Q4
+#> [1] "2014-Q4"
 q + 1
-#> 2015-Q1
+#> [1] "2015-Q1"
 seq(q -2, q + 2)
-#> 2014-Q2 2014-Q3 2014-Q4 2015-Q1 2015-Q2
+#> [1] "2014-Q2" "2014-Q3" "2014-Q4" "2015-Q1" "2015-Q2"
 
 
 # months
 m
-#> 2014-M12
+#> [1] "2014-M12"
 m + 1
-#> 2015-M01
+#> [1] "2015-M01"
 seq(m -2, m + 2)
-#> 2014-M10 2014-M11 2014-M12 2015-M01 2015-M02
+#> [1] "2014-M10" "2014-M11" "2014-M12" "2015-M01" "2015-M02"
 
 
 # formatting
