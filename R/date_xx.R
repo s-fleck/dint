@@ -234,46 +234,4 @@ summary.date_xx <- function(object, ...){
 
 
 
-
-range.date_yq <- function(..., na.rm = FALSE) {
-  as_date_yq(range(as.integer(c(...), na.rm = na.rm)))
-}
-
-
-
-
-range.date_ym <- function(..., na.rm = FALSE) {
-  as_date_ym(range(as.integer(c(...), na.rm = na.rm)))
-}
-
-
-
-
-range.date_yw <- function(..., na.rm = FALSE) {
-  as_date_yw(range(as.integer(c(...), na.rm = na.rm)))
-}
-
-
-
-
-range.date_y <- function(..., na.rm = FALSE) {
-  as_date_y(range(as.integer(c(...), na.rm = na.rm)))
-}
-
-
-
-Summary.date_xx <- function (..., na.rm)
-{
-  assert(
-    .Generic %in% c("min", "max", "range"),
-    .Generic, "not defined for 'date_xx' Objects"
-  )
-  res <- NextMethod(.Generic)
-  class(res) <- class(..1)
-  res
-}
-
-
-
-
 xtfrm.date_xx <- function(x) as.numeric(x)

@@ -1,3 +1,58 @@
+# Group generics ----------------------------------------------------------
+
+Summary.date_xx <- function (
+  ...,
+  na.rm
+){
+  assert(
+    .Generic %in% c("min", "max", "range"),
+    .Generic, "not defined for 'date_xx' Objects"
+  )
+  res <- NextMethod(.Generic)
+  class(res) <- class(..1)
+  res
+}
+
+
+
+
+Ops.date_xx <- function (
+  e1,
+  e2
+){
+  assert(
+    nargs() > 1L,
+    sprintf("unary %s not defined for <date_xx> objects", .Generic)
+  )
+  assert(
+    .Generic %in% c("<", ">", "==", "!=", "<=", ">="),
+    sprintf("%s is not defined for <date_xx> objects", .Generic)
+  )
+
+  assert(
+    (is_date_yq(e1) && is_date_yq(e2)) ||
+      (is_date_ym(e1) && is_date_ym(e2)) ||
+      (is_date_yw(e1) && is_date_yw(e2)) ||
+      (is_date_y(e1)  && is_date_y(e2)),
+    sprintf(paste(
+      "Comparison of <date_xx> is only defined if both objects have the same",
+      "subclass, but 'e1' is <%s> and 'e2' is <%s>"),
+      which_date_xx(e1),
+      which_date_xx(e2)
+    )
+  )
+
+  if (is.character(e1))
+    e1 <- as.Date(e1)
+  if (is.character(e2))
+    e2 <- as.Date(e2)
+
+  NextMethod(.Generic)
+}
+
+
+
+
 #' date_xx Arithmetic Operations
 #'
 #' The arithmetic operations `+`, `-` as well as sequence generation with
@@ -39,6 +94,36 @@ NULL
 #' @seealso [date_xx_arithmetic], [base::Arithmetic]
 NULL
 
+
+
+# range -------------------------------------------------------------------
+
+
+
+range.date_yq <- function(..., na.rm = FALSE) {
+  as_date_yq(range(as.integer(c(...), na.rm = na.rm)))
+}
+
+
+
+
+range.date_ym <- function(..., na.rm = FALSE) {
+  as_date_ym(range(as.integer(c(...), na.rm = na.rm)))
+}
+
+
+
+
+range.date_yw <- function(..., na.rm = FALSE) {
+  as_date_yw(range(as.integer(c(...), na.rm = na.rm)))
+}
+
+
+
+
+range.date_y <- function(..., na.rm = FALSE) {
+  as_date_y(range(as.integer(c(...), na.rm = na.rm)))
+}
 
 
 

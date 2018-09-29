@@ -1,6 +1,36 @@
 context("arithmetic")
 
 
+test_that("range.date_xx and min/max work", {
+  q <- date_yq(2014, c(1, 1, 1, 1:4))
+  m <- date_ym(2014, c(1, 1, 1, 1:12))
+  w <- date_yw(2014, c(1, 1, 1, 1:52))
+  y <- date_y(c(2014, 2014, 2015, 2015, 2015))
+
+  expect_identical(range(q), date_yq(2014, c(1, 4)))
+  expect_identical(range(m), date_ym(2014, c(1, 12)))
+  expect_identical(range(w), date_yw(2014, c(1, 52)))
+  expect_identical(range(y), date_y(2014:2015))
+
+  expect_identical(min(q), date_yq(2014, 1))
+  expect_identical(max(q), date_yq(2014, 4))
+})
+
+
+
+
+test_that("comparison ops work", {
+
+  expect_true(date_yq(2014, 1) < date_yq(2015, 1))
+  expect_false(date_yq(2014, 1) > date_yq(2015, 1))
+  expect_error(date_yq(2014, 1) > date_ym(2015, 1))
+
+
+  date_yq(2014, 1) > date_ym(2015, 1)
+
+})
+
+
 
 
 test_that("y+.date_ym works", {
