@@ -1,6 +1,6 @@
 #' Extract or Replace Elements of a date_xx
 #'
-#' Works exactly like susbetting base vectors via `[`, but preserves the
+#' Works exactly like subsetting base vectors via `[`, but preserves the
 #' `date_xx` class and subclasses. The replacement functions `[<-` and `[[<-`
 #' conduct additional checks before assignment to prevent the generation of
 #' degenerate date_xx vectors (see examples).

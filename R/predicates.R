@@ -1,8 +1,8 @@
 #' Test for Quarter Bounds
 #'
-#' `is_first_of_quarter()` and `is_last_of_quarter()` check wheter a
+#' `is_first_of_quarter()` and `is_last_of_quarter()` check whether a
 #' `Date` is the first or respectively the last day of an (arbitrary) quarter.
-#' `is_quarter_bounds()` checks wheter two `Date` vectors mark the bounds of
+#' `is_quarter_bounds()` checks whether two `Date` vectors mark the bounds of
 #' single quarters
 #'
 #' @param x,first,last `Date` vectors

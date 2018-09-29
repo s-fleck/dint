@@ -63,7 +63,7 @@ correspond to the internal representation \code{date_yq/date_ym/date_yw} objects
 a \code{date_xx} vector
 }
 \description{
-Works exactly like susbetting base vectors via \code{[}, but preserves the
+Works exactly like subsetting base vectors via \code{[}, but preserves the
 \code{date_xx} class and subclasses. The replacement functions \code{[<-} and \code{[[<-}
 conduct additional checks before assignment to prevent the generation of
 degenerate date_xx vectors (see examples).

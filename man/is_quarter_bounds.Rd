@@ -22,9 +22,9 @@ is_Date(x)
 a \code{logical} vector
 }
 \description{
-\code{is_first_of_quarter()} and \code{is_last_of_quarter()} check wheter a
+\code{is_first_of_quarter()} and \code{is_last_of_quarter()} check whether a
 \code{Date} is the first or respectively the last day of an (arbitrary) quarter.
-\code{is_quarter_bounds()} checks wheter two \code{Date} vectors mark the bounds of
+\code{is_quarter_bounds()} checks whether two \code{Date} vectors mark the bounds of
 single quarters
 }
 \examples{

@@ -29,8 +29,8 @@ argument is of type \code{date_yq} or not.
 }
 \description{
 A simple data type for storing year-quarter dates in a human readable integer
-format, e.g.: 3.Quarter of 2012 is stored as 20123. Supports simple arithmetics
-(\code{+} and \code{-}) as well formatting.
+format, e.g.: 3.Quarter of 2012 is stored as 20123. Supports simple
+arithmetic operations such as \code{+} and \code{-} as well formatting.
 }
 \examples{
 date_yq(2013, 3)

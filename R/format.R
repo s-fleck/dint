@@ -16,7 +16,7 @@
 #' @param month_names,month_abb a `character` vector of length 12: Names and
 #'   abbreviations for months that will be used for the
 #'   placeholders `"%b"` and `"%B"`. Defaults to the values for
-#'   the current locale for compatbilioty with [base::strptime()].
+#'   the current locale for compatibility with [base::strptime()].
 #' @param ... ignored
 #'
 #'
@@ -261,7 +261,7 @@ format_yq <- function(x, q = NULL, format = "%Y-Q%q"){
 
 
 
-#' Coerce and Format to Year-Muarter Strings
+#' Coerce and Format to Year-Month Strings
 #'
 #' @param x,m Two integer (vectors). `m` is optional and the interpretation of
 #'   `x` will depend on whether `m` is supplied or not:

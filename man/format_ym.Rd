@@ -2,7 +2,7 @@
 % Please edit documentation in R/format.R
 \name{format_ym}
 \alias{format_ym}
-\title{Coerce and Format to Year-Muarter Strings}
+\title{Coerce and Format to Year-Month Strings}
 \usage{
 format_ym(x, m = NULL, format = "\%Y-M\%m")
 }
@@ -32,7 +32,7 @@ Literal \% can be escaped with \code{"\%\%"} (as in \code{\link[base:sprintf]{ba
 a \code{character} vector
 }
 \description{
-Coerce and Format to Year-Muarter Strings
+Coerce and Format to Year-Month Strings
 }
 \section{Formatting shorthands}{
 

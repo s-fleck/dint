@@ -30,7 +30,7 @@ argument is of type \code{date_yw} or not.
 \description{
 A simple data type for storing year-isoweek dates in a human readable integer
 format, e.g.: the 52nd isoweek of 2012 is stored as 201252. Supports simple
-arithmetics (\code{+} and \code{-}) as well formatting.
+arithmetic operations such as \code{+} and \code{-} as well formatting.
 }
 \examples{
 date_yw(2013, 12)

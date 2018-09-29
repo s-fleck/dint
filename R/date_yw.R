@@ -4,7 +4,7 @@
 #'
 #' A simple data type for storing year-isoweek dates in a human readable integer
 #' format, e.g.: the 52nd isoweek of 2012 is stored as 201252. Supports simple
-#' arithmetics (`+` and `-`) as well formatting.
+#' arithmetic operations such as `+` and `-` as well formatting.
 #'
 #' @param y year
 #' @param w week (optional)

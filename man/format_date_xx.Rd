@@ -67,7 +67,7 @@ Literal \% can be escaped with \code{"\%\%"} (as in \code{\link[base:sprintf]{ba
 \item{month_names, month_abb}{a \code{character} vector of length 12: Names and
 abbreviations for months that will be used for the
 placeholders \code{"\%b"} and \code{"\%B"}. Defaults to the values for
-the current locale for compatbilioty with \code{\link[base:strptime]{base::strptime()}}.}
+the current locale for compatibility with \code{\link[base:strptime]{base::strptime()}}.}
 }
 \value{
 a \code{character} vector
