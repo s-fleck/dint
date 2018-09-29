@@ -171,19 +171,19 @@ Sys.date_yw <- function() as_date_yw(Sys.Date())
 #' @examples
 #'
 #' c(date_yq(2000, 1:2), date_yq(2000, 3:3))
-#' c(date_yq(2000, 1:2), 20003)
 #'
 #' # raises an error
 #' try(c(date_yq(2000, 1:2), date_ym(2000, 1:12)))
-#'
-#' # silently produces faulty output
-#' c(date_yq(2000, 1:2), date_ym(2000, 1:4))
 #'
 c.date_xx <- function(...){
   dots <- list(...)
   assert(
     all(vapply(dots, is.atomic, logical(1))),
     "All inputs to c.date_xx() must be atomic vectors (i.e. no lists)"
+  )
+  assert(
+    all_are_identical(vapply(dots, which_date_xx, character(1))),
+    "All inputs to c.date_xx() must be of the same <date_xx> subclass"
   )
 
   res  <- unlist(dots)

@@ -7,7 +7,7 @@
 \method{Summary}{date_xx}(..., na.rm)
 }
 \arguments{
-\item{...}{date_xx vectors. It is up to the user to ensure that they are
+\item{...}{\code{date_xx} vectors. It is up to the user to ensure that they are
 of the same subclass.}
 
 \item{na.rm}{}
