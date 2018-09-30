@@ -1,3 +1,5 @@
+# dint 2.0.0.9000
+
 # dint 2.0.0
 
 * **breaking**: formatting `date_xx` objects now uses placeholders similar to
