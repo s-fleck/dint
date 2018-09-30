@@ -29,8 +29,8 @@ argument is of type \code{date_ym} or not.
 }
 \description{
 A simple data type for storing year-month dates in a human readable integer
-format, e.g.: December 2012 is stored as 201212. Supports simple arithmetics
-(\code{+} and \code{-}) as well formatting.
+format, e.g.: December 2012 is stored as 201212. Supports simple
+arithmetic operations such as \code{+} and \code{-} as well formatting.
 }
 \examples{
 date_ym(2013, 12)

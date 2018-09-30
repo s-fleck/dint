@@ -1,5 +1,9 @@
 # dint 2.0.0.9000
 
+* Removed functions that were deprecated with dint 2.0.0
+
+
+
 # dint 2.0.0
 
 * **breaking**: formatting `date_xx` objects now uses placeholders similar to

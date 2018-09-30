@@ -94,21 +94,6 @@ ifelse_simple <- function(x, true, false){
 
 
 
-deprecate <- function(
-  fun,
-  new = deparse(substitute(fun))
-){
-
-  function(...){
-    .Deprecated(new)
-    fun(...)
-  }
-
-}
-
-
-
-
 is_scalar_integer <- function(x){
   is.integer(x) && is_scalar(x)
 }
