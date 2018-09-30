@@ -3,8 +3,8 @@
 #' A Simple S3-Class for Year-Month Dates
 #'
 #' A simple data type for storing year-month dates in a human readable integer
-#' format, e.g.: December 2012 is stored as 201212. Supports simple arithmetics
-#' (`+` and `-`) as well formatting.
+#' format, e.g.: December 2012 is stored as 201212. Supports simple
+#' arithmetic operations such as `+` and `-` as well formatting.
 #'
 #' @param y year
 #' @param m month (optional)
