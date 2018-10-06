@@ -1,7 +1,8 @@
 # dint 2.0.0.9000
 
 * Removed functions that were deprecated with dint 2.0.0
-
+* export methods for `unique` and `summary` that were introduced in the last 
+  version but mistakenly not exported
 
 
 # dint 2.0.0
