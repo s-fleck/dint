@@ -28,16 +28,22 @@ scale_y_date_xx <- function(
 }
 
 
+#' Title
+#'
+#' @param n
+#'
+#' @return
+#' @export
+#'
+#' @examples
 date_yq_breaks <- function(
   n = 5
 ){
+
+
   assert_namespace("labeling")
   force(n)
   function(x) {
-    if (length(x) <= n){
-      return(x)
-    }
-
     rng_y  <- range(get_year(x))
     diff_y <- diff(rng_y)
 
@@ -46,7 +52,6 @@ date_yq_breaks <- function(
     } else {
       rng <- as_yeartqtr.date_yq(range(x))
     }
-
 
     breaks <- labeling::extended(
       rng_y[1],
