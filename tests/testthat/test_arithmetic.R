@@ -23,6 +23,19 @@ test_that("range.date_xx and min/max work", {
 
 
 
+test_that("round.date_xx works", {
+
+  x <- date_yq(2018, 1:4)
+
+  expect_identical(floor(x), date_yq(2018, c(1, 1, 1, 1)))
+  expect_identical(ceiling(x), date_yq(2019, c(1, 1, 1, 1)))
+  expect_identical(round(x), date_yq(c(2018, 2018, 2019, 2019), 1))
+
+
+
+})
+
+
 
 test_that("comparison ops work", {
   for (ctor in list(date_yq, date_ym, date_yw)){

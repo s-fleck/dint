@@ -175,6 +175,52 @@ range.date_y <- function(..., na.rm = FALSE) {
 
 
 
+# round -------------------------------------------------------------------
+
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+ceiling.date_yq <- function(x){
+  date_yq(get_year(x) + 1L, 1L)
+}
+
+
+
+
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+floor.date_yq <- function(x){
+  date_yq(get_year(x), 1L)
+}
+
+
+
+
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+round.date_yq <- function(x){
+  q <- get_quarter(x)
+  ifelse_simple(q %in% 1:2, floor(x), ceiling(x))
+}
+
+
 # generics ----------------------------------------------------------------
 
 #' Add/Subtract Year

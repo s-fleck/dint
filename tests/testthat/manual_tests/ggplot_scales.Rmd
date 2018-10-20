@@ -1,6 +1,8 @@
 ---
 title: "Untitled"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -12,43 +14,184 @@ library(dint)
 
 ```{r}
 
-td <- list(
-  seq(date_yq(2010, 1), date_yq(2020, 2)),
-  seq(date_yq(1900, 1), date_yq(2020, 2)),
-  seq(date_yq(2002, 3), date_yq(2003, 3)),
-  seq(date_yq(2002, 3), date_yq(2002, 4))
+dd <- data.frame(
+  date = seq(date_yq(2012, 4), date_yq(2018, 4)),
+  V1 = 1:25
 )
 
-
-plotf <- function(.x){
-  ggplot(
-    data.frame(
-      xval = .x,
-      yval = 2L
-    ),
-    aes(
-      x = xval,
-      y = yval
-    )
-  ) + scale_x_discrete(breaks = date_yq_breaks(), labels = format_yq_short, limits = c(min(.x), max(.x)))
-}
+ggplot(
+  dd,
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
 
 
 
-p <- plotf(td[[1]])
-class(p)
-print(p)
-p
 
-lapply(td, plot)
+ggplot(
+  dd[get_year(dd$date) %in% 2014, ],
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
 
 
 ```
 
 
 
+## print each quarter
+
+```{r}
+
+ggplot(
+  dd[get_year(dd$date) %in% 2013, ],
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
+
+ggplot(
+  dd[get_year(dd$date) %in% 2013:2014, ],
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
+
+
+```
+
+
+## Print every second quarter
+
+```{r}
+
+ggplot(
+  data.frame(
+    date = seq(date_yq(2016, 1), date_yq(2018, 1)),
+    V1 = 1:9
+  ),
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
+
+ggplot(
+  data.frame(
+    date = seq(date_yq(2016, 2), date_yq(2019, 2)),
+    V1 = 1:13
+  ),
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
+
+ggplot(
+  data.frame(
+    date = seq(date_yq(2016, 3), date_yq(2019, 3)),
+    V1 = 1:13
+  ),
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
+
+ggplot(
+  data.frame(
+    date = seq(date_yq(2016, 4), date_yq(2018, 4)),
+    V1 = 1:9
+  ),
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
+
+```
 
 
 
+## Print long time series
 
+```{r}
+
+ggplot(
+  data.frame(
+    date = seq(date_yq(2013, 2), date_yq(2018, 3)),
+    V1 = 1
+  ),
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
+
+ggplot(
+  data.frame(
+    date = seq(date_yq(2013, 4), date_yq(2018, 1)),
+    V1 = 1
+  ),
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
+
+ggplot(
+  data.frame(
+    date = seq(date_yq(1990, 4), date_yq(2018, 1)),
+    V1 = 1
+  ),
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
+
+
+ggplot(
+  data.frame(
+    date = seq(date_yq(1950, 4), date_yq(2018, 1)),
+    V1 = 1
+  ),
+  aes(
+    x = date,
+    y = V1
+  )
+) + 
+  geom_point() +
+  scale_x_date_yq()
+
+
+```
 
