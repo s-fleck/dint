@@ -55,97 +55,41 @@ scale_date_yq <- function(
 #'
 #' @examples
 date_yq_breaks <- function(
-  x
+  x,
+  each = NULL
 ){
-    x <- as_date_yq(x)
+  force(each)
 
-    xmin <- min(x)
-    xmax <- max(x)
+  function(x){
+    if (is.null(each)){
+      x <- as_date_yq(x)
 
-    nyears <- get_year(xmax) - get_year(xmin)
+      xmin <- min(x)
+      xmax <- max(x)
 
-    if (nyears <= 2L){
-      return(seq(xmin + 1L, xmax- 1L))
-    }
-    else if (nyears == 3){
-      xmin <- xmin + 1L
-      xmax <- xmax - 1L
-      if (get_quarter(xmin) %in%  c(2, 4))  xmin <- xmin + 1L
+      nyears <- get_year(xmax) - get_year(xmin)
 
-      return(seq(xmin, xmax, by = 2))
+      if (nyears <= 2L){
+        return(seq(xmin + 1L, xmax- 1L))
+      }
+      else if (nyears == 3){
+        xmin <- xmin + 1L
+        xmax <- xmax - 1L
+        if (get_quarter(xmin) %in%  c(2, 4))  xmin <- xmin + 1L
 
+        return(seq(xmin, xmax, by = 2))
+
+      } else {
+
+        if (get_quarter(xmax) == 1L) xmax <- xmax - 1L
+
+        each <- round((get_year(xmax) - get_year(xmin)) / 6)
+        seq(ceiling(xmin), floor(xmax), by = 4 * each)
+      }
     } else {
-
-      if (get_quarter(xmax) == 1L) xmax <- xmax - 1L
-
-      each <- round((get_year(xmax) - get_year(xmin)) / 6)
-      seq(ceiling(xmin), floor(xmax), by = 4 * each)
+      stop("not yet supported")
     }
+  }
 }
 
 
-
-as_date_yq.yearqtr <- function(
-  x
-){
-  x <- as.numeric(x)
-  assert(all(x > 0 | is.na(x)))
-
-  tx  <- trunc(x)
-  rem <- x - tx
-
-  assert(all(rem %in% c(0, 0.25, 0.5, 0.75)))
-
-  date_yq(tx,  (x - tx) * 4 + 1L )
-}
-
-
-#' Title
-#'
-#' @param x
-#'
-#' @return
-#' @export
-#'
-#' @examples
-as_yeartqtr <- function(x){
-  UseMethod("as_yeartqtr")
-}
-
-#' Title
-#'
-#' @param x
-#'
-#' @return
-#' @export
-#'
-#' @examples
-yearqtr <- function(x){
-  structure(x, class = c("yearqtr", "numeric"))
-}
-
-
-
-#' Title
-#'
-#' @param x
-#'
-#' @return
-#' @export
-#'
-#' @examples
-as_yeartqtr.date_yq <- function(x){
-  yearqtr(get_year(x) + (get_quarter(x) - 1L) / 4)
-}
-
-#' Title
-#'
-#' @param x
-#'
-#' @return
-#' @export
-#'
-#' @examples
-as_yeartqtr.yearqtr <- function(x){
-  x
-}

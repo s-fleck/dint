@@ -2,13 +2,29 @@
 % Please edit documentation in R/arithmetic.R
 \name{round.date_yq}
 \alias{round.date_yq}
-\title{Title}
+\title{Rounding of date_xx}
 \usage{
-\method{round}{date_yq}(x)
+\method{round}{date_yq}(x, digits = NULL)
 }
 \arguments{
-\item{x}{}
+\item{x}{any \code{date_xx} object}
+
+\item{digits}{ignored, only there for compat with \code{\link[base:round]{base::round()}}}
+}
+\value{
+a \code{date_xx} of the same subclass as \code{x}
 }
 \description{
-Title
+Rounds a \code{date_xx} to the first unit of the current year, or the first
+unit of the next year.
+}
+\examples{
+
+round(date_yq(2018, 2))
+round(date_yq(2018, 3))
+round(date_ym(2018, 6))
+round(date_ym(2018, 7))
+round(date_yw(2018, 26))
+round(date_yw(2018, 27))
+
 }

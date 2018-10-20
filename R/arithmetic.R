@@ -177,48 +177,68 @@ range.date_y <- function(..., na.rm = FALSE) {
 
 # round -------------------------------------------------------------------
 
-#' Title
+#' Rounding of date_xx
 #'
-#' @param x
+#' Rounds a `date_xx` to the first unit of the current year, or the first
+#' unit of the next year.
 #'
-#' @return
+#' @param x any `date_xx` object
+#' @param digits ignored, only there for compat with [base::round()]
+#'
+#' @return a `date_xx` of the same subclass as `x`
 #' @export
 #'
 #' @examples
-ceiling.date_yq <- function(x){
-  date_yq(get_year(x) + 1L, 1L)
-}
-
-
-
-
-#' Title
 #'
-#' @param x
+#' round(date_yq(2018, 2))
+#' round(date_yq(2018, 3))
+#' round(date_ym(2018, 6))
+#' round(date_ym(2018, 7))
+#' round(date_yw(2018, 26))
+#' round(date_yw(2018, 27))
 #'
-#' @return
-#' @export
-#'
-#' @examples
-floor.date_yq <- function(x){
-  date_yq(get_year(x), 1L)
-}
-
-
-
-
-#' Title
-#'
-#' @param x
-#'
-#' @return
-#' @export
-#'
-#' @examples
-round.date_yq <- function(x){
+round.date_yq <- function(x, digits = NULL){
   q <- get_quarter(x)
   ifelse_simple(q %in% 1:2, floor(x), ceiling(x))
 }
+
+
+
+#' @rdname round
+#' @export
+round.date_ym <- function(x, digits = NULL){
+  q <- get_month(x)
+  ifelse_simple(q %in% 1:6, floor(x), ceiling(x))
+}
+
+
+#' @rdname round
+#' @export
+round.date_yw <- function(x, digits = NULL){
+  q <- get_isoweek(x)
+  ifelse_simple(q %in% 1:26, floor(x), ceiling(x))
+}
+
+
+
+#' @rdname round
+#' @export
+ceiling.date_xx <- function(x){
+  do.call(which_date_xx(x), list(get_year(x) + 1L, 1L))
+}
+
+
+
+
+#' @rdname round
+#' @export
+floor.date_xx <- function(x){
+  do.call(which_date_xx(x), list(get_year(x), 1L))
+}
+
+
+
+
 
 
 # generics ----------------------------------------------------------------

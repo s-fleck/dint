@@ -1,0 +1,59 @@
+#' For compat with zoo
+#'
+#' Internaly used constructor. If you use zoo, please use [zoo::yearqtr()]
+#' instead
+#'
+#' @param x a vector with dates in the form 2000.0 for Q1, 2000.25 for Q2, usw
+#' @noRd
+#'
+yearqtr <- function(x){
+  assert(all((x %% 1) %in% c(0, 0.25, 0.5, 0.75)))
+  structure(x, class = c("yearqtr", "numeric"))
+}
+
+
+
+
+#' Coerce to zoo yeartqr objects
+#'
+#' `as_yearqtr()` is included for interoperatility with [zoo::yearqtr()],
+#' an alternative year-quarter format that is based on a decimal representation
+#' as opposed to dint's integer representation of year-quarters.
+#'
+#' @param x any \R object
+#'
+#' @return a [zoo::yearqtr] vector
+#' @export
+#'
+#' @examples
+#'
+#' x <- date_yq(2016, 2)
+#' as_yearqtr(x)
+#'
+as_yearqtr <- function(x){
+  UseMethod("as_yearqtr")
+}
+
+
+
+
+#' @rdname as_yearqtr
+#' @export
+as_yearqtr.date_yq <- function(x){
+  yearqtr(get_year(x) + (get_quarter(x) - 1L) / 4)
+}
+
+
+
+#' @rdname as_yearqtr
+as_yearqtr.yearqtr <- function(x){
+  x
+}
+
+
+
+
+# zoo dynamic s3 mehtods --------------------------------------------------
+
+# dynamically registered if zoo is installed
+as.yearqtr.date_yq <- as_yearqtr.date_yq

@@ -77,6 +77,20 @@ as_date_yq.default <- function(x){
 
 
 
+#' @export
+as_date_yq.yearqtr <- function(
+  x
+){
+  x <- as.numeric(x)
+  assert(all(x > 0 | is.na(x)))
+  tx  <- trunc(x)
+  rem <- x - tx
+  assert(all(rem %in% c(0, 0.25, 0.5, 0.75)))
+  date_yq(tx,  (x - tx) * 4 + 1L )
+}
+
+
+
 
 #' @export
 as_date_yq.numeric <- function(x){

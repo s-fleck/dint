@@ -4,7 +4,7 @@
 \alias{date_yq_breaks}
 \title{Title}
 \usage{
-date_yq_breaks(each = NULL)
+date_yq_breaks(x)
 }
 \arguments{
 \item{n}{}

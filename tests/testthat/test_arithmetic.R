@@ -31,8 +31,17 @@ test_that("round.date_xx works", {
   expect_identical(ceiling(x), date_yq(2019, c(1, 1, 1, 1)))
   expect_identical(round(x), date_yq(c(2018, 2018, 2019, 2019), 1))
 
+  x <- date_ym(2018, 1:12)
 
+  expect_identical(floor(x), date_ym(2018, rep(1, 12)))
+  expect_identical(ceiling(x), date_ym(2019, rep(1, 12)))
+  expect_identical(round(x), date_ym(c(rep(2018, 6), rep(2019, 6)), 1))
 
+  x <- date_yw(2018, 1:53)
+
+  expect_identical(floor(x), date_yw(2018, rep(1, 53)))
+  expect_identical(ceiling(x), date_yw(2019, rep(1, 53)))
+  expect_identical(round(x), date_yw(c(rep(2018, 26), rep(2019, 27)), 1))
 })
 
 
