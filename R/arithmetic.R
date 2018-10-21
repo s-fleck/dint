@@ -286,7 +286,26 @@ floor.date_xx <- function(x){
 #' @rdname date_xx_arithmetic
 #' @export
 `-.date_xx` <- function(x, y){
-  increment(x, as.integer(-y))
+
+  if (is_date_yq(y)){
+    assert(is_date_yq(x))
+    divisions <- 4L
+    (get_year(x) - get_year(y)) * divisions + get_quarter(x) - get_quarter(y)
+  } else  if (is_date_ym(y)){
+    assert(is_date_ym(x))
+    divisions <- 12L
+    (get_year(x) - get_year(y)) * divisions + get_month(x) - get_month(y)
+  } else if (is_date_yw(y)){
+    assert(is_date_yw(x))
+    if (x > y) {
+      length(seq(x, y)) - 1L
+    }  else {
+      -(length(seq(y, x)) - 1L)
+    }
+
+  } else {
+    increment(x, as.integer(-y))
+  }
 }
 
 

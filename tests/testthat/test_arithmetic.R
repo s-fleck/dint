@@ -110,3 +110,35 @@ test_that("+ works for date_xx", {
     date_yw(2018, 1:52)
   )
 })
+
+
+
+test_that("- works for two date_xx", {
+
+  for(i in 1:100){
+    x <- random_date_xx(2, "date_yq")
+    diff <- x[[1]] - x[[2]]
+    sequence <- seq(x[[1]], x[[2]])
+    expect_identical(abs(diff), length(sequence) - 1L)
+    expect_identical(x[[2]] + diff, x[[1]])
+  }
+
+
+  for(i in 1:100){
+    x <- random_date_xx(2, "date_ym")
+    diff <- x[[1]] - x[[2]]
+    sequence <- seq(x[[1]], x[[2]])
+    expect_identical(abs(diff), length(sequence) - 1L)
+    expect_identical(x[[2]] + diff, x[[1]])
+  }
+
+  for(i in 1:100){
+    x <- random_date_xx(2, "date_yw")
+    diff <- x[[1]] - x[[2]]
+    sequence <- seq(x[[1]], x[[2]])
+    expect_identical(abs(diff), length(sequence) - 1L)
+    expect_identical(x[[2]] + diff, x[[1]])
+  }
+
+
+})
