@@ -27,7 +27,7 @@ ggplot(
   )
 ) + 
   geom_point() +
-  scale_x_date_yq()
+  scale_x_date_yq(breaks = date_yq_breaks(3)) 
 
 
 

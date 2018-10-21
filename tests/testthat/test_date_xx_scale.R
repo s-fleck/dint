@@ -1,21 +1,49 @@
 context("date_xx_scale")
 
 
-test_that("date_xx_scale works as expected", {
+test_that("date_yq_breaks doesnt fail for a variety of inputs", {
 
-  x <- seq(date_yq(2010, 1), date_yq(2020, 2))
-  date_yq_breaks()(x)
+  x <- rep(date_yq(2018, 1), 5)
+  expect_silent(date_yq_breaks()(x))
 
-  x <- seq(date_yq(1900, 1), date_yq(2020, 2))
-  date_yq_breaks()(x)
+  qs <- 1:4
+  ys <- 1800:2200
+  nas <- c(0, 2, 5)
+  pad <- 0:4
 
-  x <- seq(date_yq(2002, 3), date_yq(2003, 3))
-  date_yq_breaks()(x)
+  for(i in 1:100){
+    y <- sample(ys, 2, replace = TRUE)
+    q <- sample(qs, 2, replace = TRUE)
+    p <- sample(pad, 2, replace = TRUE)
+    na <- sample(nas, 1)
+    x <- seq(date_yq(y[[1]], q[[1]]), date_yq(y[[2]], q[[2]]))
+    x[sample(1:length(x), na, replace = TRUE)] <- NA
+    expect_silent(date_yq_breaks(padded = p)(x))
+  }
 
+  ys <- 2000:2010
 
-  x <- seq(date_yq(2002, 3), date_yq(2002, 4))
-  date_yq_breaks()(x)
+  for(i in 1:100){
+    y <- sample(ys, 2, replace = TRUE)
+    q <- sample(qs, 2, replace = TRUE)
+    p <- sample(pad, 2, replace = TRUE)
+    na <- sample(nas, 1)
+    x <- seq(date_yq(y[[1]], q[[1]]), date_yq(y[[2]], q[[2]]))
+    x[sample(1:length(x), na, replace = TRUE)] <- NA
+    expect_silent(date_yq_breaks(padded = p)(x))
+  }
 
+  ys <- 2000:2005
+
+  for(i in 1:100){
+    y <- sample(ys, 2, replace = TRUE)
+    q <- sample(qs, 2, replace = TRUE)
+    p <- sample(pad, 2, replace = TRUE)
+    na <- sample(nas, 1)
+    x <- seq(date_yq(y[[1]], q[[1]]), date_yq(y[[2]], q[[2]]))
+    x[sample(1:length(x), na, replace = TRUE)] <- NA
+    expect_silent(date_yq_breaks(padded = p)(x))
+  }
 
 
 })

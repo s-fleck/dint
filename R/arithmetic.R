@@ -239,8 +239,6 @@ floor.date_xx <- function(x){
 
 
 
-
-
 # generics ----------------------------------------------------------------
 
 #' Add/Subtract Year

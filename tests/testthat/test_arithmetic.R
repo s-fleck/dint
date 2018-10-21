@@ -23,6 +23,7 @@ test_that("range.date_xx and min/max work", {
 
 
 
+
 test_that("round.date_xx works", {
 
   x <- date_yq(2018, 1:4)
