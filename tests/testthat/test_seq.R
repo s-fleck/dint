@@ -1,9 +1,12 @@
-context("seq")
+context("seq and rep")
 
 # 2007 starts on jan 1st
 # 2008 is a leaop year
 # 2009 has 53 weeks
 # 2010 is a gernic year without special properties
+
+
+# seq ---------------------------------------------------------------------
 
 test_that("seq.date_yw works", {
   x <- seq(date_yw(2007, 1), date_yw(2010, 52))
@@ -154,6 +157,33 @@ test_that("seq.date_ym works", {
     seq_date_xx(date_yq(-10, 3), date_yq(-8, 2), by = 1, base = 4L, ctor = date_yq),
     "positive"
   )
+})
 
+
+
+
+# rep ---------------------------------------------------------------------
+
+test_that("rep.date_xx and min/max work", {
+
+  expect_identical(
+    rep(date_yq(2016, 1), 5),
+    as_date_yq(rep(20161, 5))
+  )
+
+  expect_identical(
+    rep(date_ym(2016, 1), times = 5),
+    as_date_ym(rep(201601, times = 5))
+  )
+
+  expect_identical(
+    rep(date_yw(2016, 1:2), each = 5),
+    as_date_yw(rep(201601:201602, each = 5))
+  )
+
+  expect_true(
+    length(rep(date_yq(2016, 1:2), length.out = 6)) == 6
+  )
 
 })
+

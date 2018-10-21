@@ -108,3 +108,23 @@ seq_date_xx <- function(
 
   all_ms[seq.int(1L, length(all_ms), by = by)]
 }
+
+
+
+
+# rep ---------------------------------------------------------------------
+
+#' Title
+#'
+#' @param x
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+rep.date_xx <- function(x, ...){
+  asfun <- paste0("as_", which_date_xx(x))
+  do.call(asfun, list(rep(as.integer(x), ...)))
+}
+
