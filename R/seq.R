@@ -115,17 +115,15 @@ seq_date_xx <- function(
 
 # rep ---------------------------------------------------------------------
 
-#' Title
+#' Replicate Elements of date_xx Vectors
 #'
-#' @param x
-#' @param ...
+#' @param x a [date_xx]
+#' @param ... passed on to [base::rep()]
 #'
-#' @return
+#' @return a vector of the same `date_xx` subclass as `x`
 #' @export
 #'
-#' @examples
 rep.date_xx <- function(x, ...){
   asfun <- paste0("as_", which_date_xx(x))
   do.call(asfun, list(rep(as.integer(x), ...)))
 }
-

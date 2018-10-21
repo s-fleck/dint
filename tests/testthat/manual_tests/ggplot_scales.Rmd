@@ -195,3 +195,25 @@ ggplot(
 
 ```
 
+
+# date_ym
+
+```{r}
+# dd <- data.frame(
+#   date = seq(date_ym(2012, 1), date_ym(2018, 11)),
+#   V1 = 1
+# )
+# 
+# ggplot(
+#   dd,
+#   aes(
+#     x = date,
+#     y = V1
+#   )
+# ) + 
+#   geom_point() +
+#   scale_x_date_ym(breaks = date_ym_breaks(3)) 
+
+
+```
+

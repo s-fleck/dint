@@ -10,6 +10,9 @@ scale_x_date_yq <- function(...) {
   scale_date_yq(aesthetics = c("x", "xmin", "xmax", "xend"), ...)
 }
 
+
+
+
 #' Title
 #'
 #' @param ...
@@ -23,6 +26,8 @@ scale_y_date_yq <- function(...) {
 }
 
 
+
+
 #' @rdname scale_date
 #' @export
 scale_date_yq <- function(
@@ -31,7 +36,7 @@ scale_date_yq <- function(
   limits = NULL,
   ...
 ){
-  ggplot2:::continuous_scale(
+  ggplot2::continuous_scale(
     aesthetics,
     "Quarter",
     identity,
@@ -46,6 +51,9 @@ scale_date_yq <- function(
 }
 
 
+
+# breaks ------------------------------------------------------------------
+
 #' Pretty breaks for date_yq vectors
 #'
 #' @param n `NULL` or `integer` scalar
@@ -56,60 +64,96 @@ scale_date_yq <- function(
 #'
 #' @examples
 date_yq_breaks <- function(
-  n = NULL,
+  n = 6,
   padded = c(0L, 0L)
 ){
-  if (!is.null(n)){
-    warning("'n' argument not yet supported")
-    n <- NULL
-  }
+  date_xx_breaks_impl(
+    n = n,
+    padded = padded,
+    period = 4L,
+    as_dint = as_date_yq,
+    get_subunit = get_quarter
+  )
 
+}
+
+
+
+
+#' Pretty breaks for date_yq vectors
+#'
+#' @param n `NULL` or `integer` scalar
+#' @param padded
+#' @param period `scalar` integer. number of units in a year (i.e 4 for
+#'   quarters, 12 for months, ...)
+#' @param as_dint
+#' @param get_subunit
+#'
+#' @return a `function` that calculates a maximum of `n` breaks for a  `date_yq`
+#'   vector
+#' @export
+#'
+#' @examples
+date_xx_breaks_impl <- function(
+  n = 6,
+  padded = c(0L, 0L),
+  period = 12L,
+  as_dint = as_date_ym,
+  get_subunit = get_month
+){
   assert(is_integerish(padded) && length(padded) %in% 1:2)
+  assert(is_scalar_integerish(n))
 
   if (length(padded == 1)){
     padded <- c(padded, padded)
   }
 
-
-  force(n)
-  force(padded)
-
   function(x){
+    if (all(is.na(x)))  return(x)
 
-    if (all(is.na(x))){
-      return(x)
-    }
-
-    xmin <- min(x, na.rm = TRUE)
-    xmax <- max(x, na.rm = TRUE)
+    x <- as_dint(x)
+    xmin <- min(x, na.rm = TRUE) + padded[[1]]
+    xmax <- max(x, na.rm = TRUE) - padded[[2]]
+    diff <- (xmax - xmin)
 
 
-    if (is.null(n)){
-      x <- as_date_yq(x)
+    if (diff < n){
+      breaks <- seq(xmin, xmax)
 
-      nyears <- get_year(xmax) - get_year(xmin)
 
-      if (nyears <= 2L){
-        return(seq(xmin + padded[[1]], xmax - padded[[2]]))
-      }
-      else if (nyears == 3){
-        xmin <- xmin + padded[[1]]
-        xmax <- xmax - padded[[2]]
-        if (get_quarter(xmin) %in%  c(2, 4))  xmin <- xmin + 1L
+    } else if (diff < 3 * n){
 
-        return(seq(xmin, xmax, by = 2))
+      contbreaks <-
+        labeling::extended(as_yearqtr(xmin), as_yearqtr(xmax), m = n, Q = c(0, 0.5))
+        breaks <- as_date_yq(yearqtr(contbreaks))
 
       } else {
+        ymin <- get_year(ceiling(xmin))
+        ymax <- get_year(ceiling(xmax))
 
-        if (get_quarter(xmax) == 1L) xmax <- xmax - 1L
+        yrbreaks <- labeling::extended(ymin, ymax, m = n)
 
-        each <- ceiling((get_year(xmax) - get_year(xmin)) / 6)
-        seq(ceiling(xmin), floor(xmax), by = 4 * each)
+        # attempt to produce nicer breaks in case corner breaks fall outside
+        # the printable range
+        if (yrbreaks[[1]] < ymin || yrbreaks[length(yrbreaks)] > ymax ){
+          yrbreaks <- labeling::extended(ymin, ymax, m = n + 2L)
+        }
+
+        yrbreaks <- as.integer(yrbreaks)
+        breaks <- date_yq(yrbreaks, 1L)
       }
-    } else {
-      stop("something went wrong")
+
+    # fix breaks at the corner of the plot (outside the data range)
+    # this works well if the plot area is padded by 1 unit
+    # (see scale_date_** expand argument)
+    if (breaks[[1]] < xmin) breaks <- breaks[-1L]
+    if (breaks[[length(breaks)]] > xmax) breaks <- breaks[-length(breaks)]
+    if (length(breaks) == 1){
+      d <- min(breaks - xmin, xmax - breaks)
+      breaks <- unique(c(breaks - d, breaks, breaks + d))
     }
 
+    breaks
   }
 }
 

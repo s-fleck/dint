@@ -47,3 +47,16 @@ test_that("date_yq_breaks doesnt fail for a variety of inputs", {
 
 
 })
+
+
+
+test_that("date_ym_breaks doesnt fail for a variety of inputs", {
+
+  skip("not yet")
+
+  x <- date_ym(2018, 1:12)
+
+  date_ym_breaks()(x)
+
+
+})
