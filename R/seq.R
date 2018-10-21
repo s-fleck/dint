@@ -26,7 +26,8 @@ seq.date_yw <- function(
     is_date_yw(to),
     msg = "'to' must be the same <date_xx> subclass as 'from'"
   )
-  as_date_yw(seq(first_of_isoweek(from), first_of_isoweek(to), by = by * 7L))
+
+  as_date_yw(seq(first_of_isoweek(from), first_of_isoweek(to), by = by * 7L * sign(as.integer(to) - as.integer(from))))
 }
 
 
