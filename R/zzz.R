@@ -13,7 +13,7 @@ if (requireNamespace("scales", quietly = TRUE)){
 
       date_yq(y, q)
     },
-    breaks = date_yq_breaks(),
+    breaks = date_yq_breaks(padded = 1L),
     format = function(x){
       if (all(get_quarter(x) == 1L)){
         as.character(get_year(x))

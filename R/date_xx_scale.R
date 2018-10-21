@@ -46,35 +46,55 @@ scale_date_yq <- function(
 }
 
 
-#' Title
+#' Pretty breaks for date_yq vectors
 #'
-#' @param n
+#' @param n `NULL` or `integer` scalar
 #'
-#' @return
+#' @return a `function` that calculates a maximum of `n` breaks for a  `date_yq`
+#'   vector
 #' @export
 #'
 #' @examples
 date_yq_breaks <- function(
-  x,
-  each = NULL
+  n = NULL,
+  padded = c(0L, 0L)
 ){
-  force(each)
+  if (!is.null(n)){
+    warning("'n' argument not yet supported")
+    n <- NULL
+  }
+
+  assert(is_integerish(padded) && length(padded) %in% 1:2)
+
+  if (length(padded == 1)){
+    padded <- c(padded, padded)
+  }
+
+
+  force(n)
+  force(padded)
 
   function(x){
-    if (is.null(each)){
-      x <- as_date_yq(x)
 
-      xmin <- min(x)
-      xmax <- max(x)
+    if (all(is.na(x))){
+      return(x)
+    }
+
+    xmin <- min(x, na.rm = TRUE)
+    xmax <- max(x, na.rm = TRUE)
+
+
+    if (is.null(n)){
+      x <- as_date_yq(x)
 
       nyears <- get_year(xmax) - get_year(xmin)
 
       if (nyears <= 2L){
-        return(seq(xmin + 1L, xmax- 1L))
+        return(seq(xmin + padded[[1]], xmax - padded[[2]]))
       }
       else if (nyears == 3){
-        xmin <- xmin + 1L
-        xmax <- xmax - 1L
+        xmin <- xmin + padded[[1]]
+        xmax <- xmax - padded[[2]]
         if (get_quarter(xmin) %in%  c(2, 4))  xmin <- xmin + 1L
 
         return(seq(xmin, xmax, by = 2))
@@ -83,12 +103,13 @@ date_yq_breaks <- function(
 
         if (get_quarter(xmax) == 1L) xmax <- xmax - 1L
 
-        each <- round((get_year(xmax) - get_year(xmin)) / 6)
+        each <- ceiling((get_year(xmax) - get_year(xmin)) / 6)
         seq(ceiling(xmin), floor(xmax), by = 4 * each)
       }
     } else {
-      stop("not yet supported")
+      stop("something went wrong")
     }
+
   }
 }
 
