@@ -52,6 +52,66 @@ scale_date_yq <- function(
 
 
 
+
+# date_ym -----------------------------------------------------------------
+
+#' Title
+#'
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+scale_x_date_ym <- function(...) {
+  scale_date_ym(aesthetics = c("x", "xmin", "xmax", "xend"), ...)
+}
+
+
+
+
+#' Title
+#'
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+scale_y_date_ym <- function(...) {
+  scale_date_ym(aesthetics = c("y", "ymin", "ymax", "yend"), ...)
+}
+
+
+
+
+#' @rdname scale_date
+#' @export
+scale_date_ym <- function(
+  aesthetics,
+  position = "bottom",
+  limits = NULL,
+  ...
+){
+  assert_namespace("scales")
+  assert_namespace("labeling")
+  assert_namespace("ggplot2")
+
+  ggplot2::continuous_scale(
+    aesthetics,
+    "Quarter",
+    identity,
+    guide = "none",
+    trans = date_ym_trans,
+    super = ggplot2::ScaleContinuousDate,
+    position = position,
+    limits = limits,
+    expand = c(0, 1/12, 0, 1/12), # add on quarter on each side
+    ...
+  )
+}
+
+
 # breaks ------------------------------------------------------------------
 
 #' Pretty breaks for date_yq vectors
@@ -72,20 +132,50 @@ date_yq_breaks <- function(
     padded = padded,
     period = 4L,
     as_dint = as_date_yq,
+    date_ctor = date_yq,
+    as_zoo = as_yearqtr,
+    zoo_ctor = yearqtr,
     get_subunit = get_quarter
   )
-
 }
 
 
 
 
+date_ym_breaks <- function(
+  n = 6,
+  padded = c(0L, 0L)
+){
+  date_xx_breaks_impl(
+    n = n,
+    padded = padded,
+    period = 12L,
+    as_dint = as_date_ym,
+    date_ctor = date_ym,
+    as_zoo = as_yearmon,
+    zoo_ctor = yearmon,
+    get_subunit = get_month
+  )
+}
+
+
+
 #' Pretty breaks for date_yq vectors
 #'
+#' `date_xx_breaks_impl` does not return breaks, but a function that calculates
+#' breaks. This is for compatbility with the breaks functions from scales such
+#' as [scales::pretty_breaks()], and for ease of use in ggplot.
+#'
+#'
 #' @param n `NULL` or `integer` scalar
-#' @param padded
+#' @param padded `integer` vector of length 1 or two. Padding to remove
+#'   from each side of the input vector. This is useful for generating
+#'   breaks for ggplot objects where the limits are usually padded by
+#'   one month/quarter/isoweek for plotting.
+#'
 #' @param period `scalar` integer. number of units in a year (i.e 4 for
 #'   quarters, 12 for months, ...)
+#'
 #' @param as_dint
 #' @param get_subunit
 #'
@@ -96,10 +186,13 @@ date_yq_breaks <- function(
 #' @examples
 date_xx_breaks_impl <- function(
   n = 6,
-  padded = c(0L, 0L),
-  period = 12L,
-  as_dint = as_date_ym,
-  get_subunit = get_month
+  padded,
+  period,
+  as_dint,
+  date_ctor,
+  as_zoo,
+  zoo_ctor,
+  get_subunit
 ){
   assert(is_integerish(padded) && length(padded) %in% 1:2)
   assert(is_scalar_integerish(n))
@@ -124,8 +217,14 @@ date_xx_breaks_impl <- function(
     } else if (diff < 3 * n){
 
       contbreaks <-
-        labeling::extended(as_yearqtr(xmin), as_yearqtr(xmax), m = n, Q = c(0, 0.5))
-        breaks <- as_date_yq(yearqtr(contbreaks))
+        labeling::extended(
+          as.numeric(as_zoo(xmin)),
+          as.numeric(as_zoo(xmax)),
+          m = n,
+          Q = c(seq(0, 0.999, by = 1 / (period/2) ))  # 1 should not be a "pretty number"
+      )
+
+      breaks <- as_dint(zoo_ctor(contbreaks))
 
       } else {
         ymin <- get_year(ceiling(xmin))
@@ -140,7 +239,7 @@ date_xx_breaks_impl <- function(
         }
 
         yrbreaks <- as.integer(yrbreaks)
-        breaks <- date_yq(yrbreaks, 1L)
+        breaks <- date_ctor(yrbreaks, 1L)
       }
 
     # fix breaks at the corner of the plot (outside the data range)

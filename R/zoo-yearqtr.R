@@ -1,3 +1,5 @@
+# yearqtr -----------------------------------------------------------------
+
 #' For compat with zoo
 #'
 #' Internaly used constructor. If you use zoo, please use [zoo::yearqtr()]
@@ -49,6 +51,56 @@ as_yearqtr.date_yq <- function(x){
 as_yearqtr.yearqtr <- function(x){
   x
 }
+
+
+
+
+
+# yearmon -----------------------------------------------------------------
+
+
+#' For compat with zoo
+#'
+#' Internaly used constructor. If you use zoo, please use [zoo::yearmon()]
+#' instead
+#'
+#' @param x a vector with dates in the form 2000.0 for Q1, 2000.25 for Q2, usw
+#' @noRd
+#'
+yearmon <- function(x){
+  x <- as.numeric(x)
+  assert(
+    all(round(x %% 1, 5) %in% round(seq(0, 1, by = 1/12), 5))
+  )
+  structure(x, class = c("yearmon", "numeric"))
+}
+
+
+
+
+#' @rdname as_yearqtr
+#' @export
+#'
+as_yearmon <- function(x){
+  UseMethod("as_yearmon")
+}
+
+
+
+
+#' @rdname as_yearqtr
+#' @export
+as_yearmon.date_ym <- function(x){
+  yearmon(get_year(x) + (get_month(x) - 1L) / 12)
+}
+
+
+
+#' @rdname as_yearqtr
+as_yearmon.yearmon <- function(x){
+  x
+}
+
 
 
 

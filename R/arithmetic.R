@@ -286,7 +286,6 @@ floor.date_xx <- function(x){
 #' @rdname date_xx_arithmetic
 #' @export
 `-.date_xx` <- function(x, y){
-
   if (is_date_yq(y)){
     assert(is_date_yq(x))
     divisions <- 4L
