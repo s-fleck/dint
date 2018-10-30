@@ -4,6 +4,9 @@
 \alias{as_yearqtr}
 \alias{as_yearqtr.date_yq}
 \alias{as_yearqtr.yearqtr}
+\alias{as_yearmon}
+\alias{as_yearmon.date_ym}
+\alias{as_yearmon.yearmon}
 \title{Coerce to zoo yeartqr objects}
 \usage{
 as_yearqtr(x)
@@ -11,6 +14,12 @@ as_yearqtr(x)
 \method{as_yearqtr}{date_yq}(x)
 
 \method{as_yearqtr}{yearqtr}(x)
+
+as_yearmon(x)
+
+\method{as_yearmon}{date_ym}(x)
+
+\method{as_yearmon}{yearmon}(x)
 }
 \arguments{
 \item{x}{any \R object}

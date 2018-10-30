@@ -1,3 +1,6 @@
+#' @include zoo-yearqtr.R
+#' @include utils-sfmisc.R
+
 #' Title
 #'
 #' @param ...
@@ -97,9 +100,10 @@ scale_date_ym <- function(
   assert_namespace("labeling")
   assert_namespace("ggplot2")
 
+
   ggplot2::continuous_scale(
     aesthetics,
-    "Quarter",
+    "Month",
     identity,
     guide = "none",
     trans = date_ym_trans,
@@ -202,6 +206,7 @@ date_xx_breaks_impl <- function(
   }
 
   function(x){
+
     if (all(is.na(x)))  return(x)
 
     x <- as_dint(x)
@@ -215,14 +220,20 @@ date_xx_breaks_impl <- function(
 
 
     } else if (diff < 3 * n){
+      browser()
+      pretty_numbers <- c(0, 0.5, 1L, 5L)
+      pretty_numbers <- pretty_numbers[pretty_numbers != 1]
 
-      contbreaks <-
-        labeling::extended(
+      contbreaks <- labeling::extended(
           as.numeric(as_zoo(xmin)),
           as.numeric(as_zoo(xmax)),
           m = n,
-          Q = c(seq(0, 0.999, by = 1 / (period/2) ))  # 1 should not be a "pretty number"
+          Q = pretty_numbers,
+          only.loose = TRUE,
+          w = c(0.6, 0.2, 0.1, 0.1)
       )
+
+      contbreaks <- unique(round_frac(contbreaks, 2))
 
       breaks <- as_dint(zoo_ctor(contbreaks))
 
@@ -256,4 +267,59 @@ date_xx_breaks_impl <- function(
   }
 }
 
+
+
+
+
+# transformations ---------------------------------------------------------
+
+if (requireNamespace("scales", quietly = TRUE)){
+  date_yq_trans <- scales::trans_new(
+    name = "date_yq",
+    transform = as_yearqtr.date_yq,
+    inverse   = function(x){
+      x <- round_frac(as.numeric(x), 4)
+      as_date_yq.yearqtr(x)
+    },
+    breaks = date_yq_breaks(padded = 1L),
+    format = function(x){
+      if (all(get_quarter(x) == 1L | is.na(x))){
+        as.character(get_year(x))
+      } else {
+        format_yq_short(x)
+      }
+    }
+  )
+
+
+
+  date_ym_trans <- scales::trans_new(
+    name = "date_ym",
+    transform = as_yearmon.date_ym,
+    inverse   = function(x){
+      x <- round_frac(as.numeric(x), 12)
+      as_date_ym.yearmon(x)
+    },
+    breaks = date_ym_breaks(padded = 1L),
+    format = function(x){
+      if (all(get_month(x) == 1L | is.na(x))){
+        as.character(get_year(x))
+      } else {
+        format_ym_short(x)
+      }
+    }
+  )
+
+}
+
+
+
+round_frac <- function(
+  x,
+  denom
+){
+  whole <- x %/% 1
+  frac  <- x %% 1
+  whole + round(frac * denom) / denom
+}
 

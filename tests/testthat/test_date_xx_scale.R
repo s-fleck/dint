@@ -51,12 +51,26 @@ test_that("date_yq_breaks doesnt fail for a variety of inputs", {
 
 
 test_that("date_ym_breaks doesnt fail for a variety of inputs", {
-
   skip("not yet")
-
   x <- date_ym(2018, 1:12)
-
   date_ym_breaks()(x)
+})
 
 
+
+
+test_that("date_ym_trans is reversable", {
+  x <- seq(date_ym(1950, 1), date_ym(2050, 1))
+  trn <- date_ym_trans$transform(x)
+  inv <- date_ym_trans$inverse(trn)
+  expect_identical(x, inv)
+})
+
+
+
+test_that("date_yq_trans is reversable", {
+  x <- seq(date_yq(1950, 1), date_yq(2050, 1))
+  trn <- date_yq_trans$transform(x)
+  inv <- date_yq_trans$inverse(trn)
+  expect_identical(x, inv)
 })

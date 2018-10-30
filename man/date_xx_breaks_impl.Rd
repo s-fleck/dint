@@ -4,11 +4,16 @@
 \alias{date_xx_breaks_impl}
 \title{Pretty breaks for date_yq vectors}
 \usage{
-date_xx_breaks_impl(n = 6, padded = c(0L, 0L), period = 12L,
-  as_dint = as_date_ym, get_subunit = get_month)
+date_xx_breaks_impl(n = 6, padded, period, as_dint, date_ctor, as_zoo,
+  zoo_ctor, get_subunit)
 }
 \arguments{
 \item{n}{\code{NULL} or \code{integer} scalar}
+
+\item{padded}{\code{integer} vector of length 1 or two. Padding to remove
+from each side of the input vector. This is useful for generating
+breaks for ggplot objects where the limits are usually padded by
+one month/quarter/isoweek for plotting.}
 
 \item{period}{\code{scalar} integer. number of units in a year (i.e 4 for
 quarters, 12 for months, ...)}
@@ -20,5 +25,7 @@ a \code{function} that calculates a maximum of \code{n} breaks for a  \code{date
 vector
 }
 \description{
-Pretty breaks for date_yq vectors
+\code{date_xx_breaks_impl} does not return breaks, but a function that calculates
+breaks. This is for compatbility with the breaks functions from scales such
+as \code{\link[scales:pretty_breaks]{scales::pretty_breaks()}}, and for ease of use in ggplot.
 }

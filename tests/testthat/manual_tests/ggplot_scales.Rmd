@@ -200,15 +200,24 @@ ggplot(
 
 ```{r, eval = FALSE}
 dd <- data.frame(
-  date = seq(date_ym(2012, 1), date_ym(2018, 11)),
+  date = seq(date_ym(1950, 1), date_ym(2018, 11)),
   V1 = 1
 )
 
-
-date_ym_breaks()(dd$date)
-
 ggplot(
   dd,
+  aes(
+    x = date,
+    y = V1
+  )
+) +
+  geom_point() +
+  scale_x_date_ym()
+
+
+
+ggplot(
+  dd[600:700, ],
   aes(
     x = date,
     y = V1
