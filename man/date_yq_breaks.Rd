@@ -4,7 +4,7 @@
 \alias{date_yq_breaks}
 \title{Pretty breaks for date_yq vectors}
 \usage{
-date_yq_breaks(n = 6, padded = c(0L, 0L))
+date_yq_breaks(n = 6, padded = c(0, 0))
 }
 \arguments{
 \item{n}{\code{NULL} or \code{integer} scalar}
