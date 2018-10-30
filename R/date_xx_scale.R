@@ -97,7 +97,6 @@ scale_date_ym <- function(
   ...
 ){
   assert_namespace("scales")
-  assert_namespace("labeling")
   assert_namespace("ggplot2")
 
 
@@ -129,37 +128,56 @@ scale_date_ym <- function(
 #' @examples
 date_yq_breaks <- function(
   n = 6,
-  padded = c(0L, 0L)
+  padded = c(0, 0)
 ){
-  date_xx_breaks_impl(
-    n = n,
-    padded = padded,
-    period = 4L,
-    as_dint = as_date_yq,
-    date_ctor = date_yq,
-    as_zoo = as_yearqtr,
-    zoo_ctor = yearqtr,
-    get_subunit = get_quarter
-  )
-}
+  assert(is_integerish(padded) && length(padded) %in% 1:2)
+  assert(is_scalar_integerish(n))
+
+  if (length(padded == 1)){
+    padded <- c(padded, padded)
+  }
+
+  function(x){
+
+    if (all(is.na(x)))  return(x)
+    x <- as_date_yq(x)
+    xmin <- min(x, na.rm = TRUE)
+    xmax <- max(x, na.rm = TRUE)
+    diff <- (xmax - xmin)
+
+    if (diff <= n){
+      breaks <- seq(xmin, xmax)
 
 
+    } else if (diff < 12){
+      by <- as.integer((ceiling(diff/n/2) * 2))
 
+      breaks <- seq(
+        date_yq(get_year(xmin), 1L),
+        date_yq(get_year(xmax), 4L),
+        by = by
+      )
 
-date_ym_breaks <- function(
-  n = 6,
-  padded = c(0L, 0L)
-){
-  date_xx_breaks_impl(
-    n = n,
-    padded = padded,
-    period = 12L,
-    as_dint = as_date_ym,
-    date_ctor = date_ym,
-    as_zoo = as_yearmon,
-    zoo_ctor = yearmon,
-    get_subunit = get_month
-  )
+    } else {
+      ymin <- get_year(xmin)
+      ymax <- get_year(xmax + 1L)
+      diff <- ymax - ymin
+      by <- as.integer(ceiling(diff/n))
+      breaks <- date_yq(seq(ymin, ymax, by = by), 1)
+    }
+
+    # fix breaks at the corner of the plot (outside the data range)
+    # this works well if the plot area is padded by 1 unit
+    # (see scale_date_** expand argument)
+    breaks <- breaks[breaks > xmin & breaks < xmax]
+
+    if (length(breaks) == 1){
+      d <- min(breaks - xmin, xmax - breaks)
+      breaks <- unique(c(breaks - d, breaks, breaks + d))
+    }
+
+    breaks
+  }
 }
 
 
@@ -188,15 +206,9 @@ date_ym_breaks <- function(
 #' @export
 #'
 #' @examples
-date_xx_breaks_impl <- function(
+date_ym_breaks <- function(
   n = 6,
-  padded,
-  period,
-  as_dint,
-  date_ctor,
-  as_zoo,
-  zoo_ctor,
-  get_subunit
+  padded = c(0, 0)
 ){
   assert(is_integerish(padded) && length(padded) %in% 1:2)
   assert(is_scalar_integerish(n))
@@ -208,56 +220,38 @@ date_xx_breaks_impl <- function(
   function(x){
 
     if (all(is.na(x)))  return(x)
-
-    x <- as_dint(x)
-    xmin <- min(x, na.rm = TRUE) + padded[[1]]
-    xmax <- max(x, na.rm = TRUE) - padded[[2]]
+    x <- as_date_ym(x)
+    xmin <- min(x, na.rm = TRUE)
+    xmax <- max(x, na.rm = TRUE)
     diff <- (xmax - xmin)
 
-
-    if (diff < n){
+    if (diff <= n){
       breaks <- seq(xmin, xmax)
 
 
-    } else if (diff < 3 * n){
-      browser()
-      pretty_numbers <- c(0, 0.5, 1L, 5L)
-      pretty_numbers <- pretty_numbers[pretty_numbers != 1]
+    } else if (diff < 24){
+      by <- as.integer((ceiling(diff/n/3) * 3))
 
-      contbreaks <- labeling::extended(
-          as.numeric(as_zoo(xmin)),
-          as.numeric(as_zoo(xmax)),
-          m = n,
-          Q = pretty_numbers,
-          only.loose = TRUE,
-          w = c(0.6, 0.2, 0.1, 0.1)
+      breaks <- seq(
+        date_ym(get_year(xmin), 1L),
+        date_ym(get_year(xmax), 12L),
+        by = by
       )
 
-      contbreaks <- unique(round_frac(contbreaks, 2))
+    } else {
+      ymin <- get_year(xmin)
+      ymax <- get_year(xmax + 1L)
+      diff <- ymax - ymin
+      by <- as.integer(ceiling(diff/n))
 
-      breaks <- as_dint(zoo_ctor(contbreaks))
-
-      } else {
-        ymin <- get_year(ceiling(xmin))
-        ymax <- get_year(ceiling(xmax))
-
-        yrbreaks <- labeling::extended(ymin, ymax, m = n)
-
-        # attempt to produce nicer breaks in case corner breaks fall outside
-        # the printable range
-        if (yrbreaks[[1]] < ymin || yrbreaks[length(yrbreaks)] > ymax ){
-          yrbreaks <- labeling::extended(ymin, ymax, m = n + 2L)
-        }
-
-        yrbreaks <- as.integer(yrbreaks)
-        breaks <- date_ctor(yrbreaks, 1L)
-      }
+      breaks <- date_ym(seq(ymin, ymax, by = by), 1)
+    }
 
     # fix breaks at the corner of the plot (outside the data range)
     # this works well if the plot area is padded by 1 unit
     # (see scale_date_** expand argument)
-    if (breaks[[1]] < xmin) breaks <- breaks[-1L]
-    if (breaks[[length(breaks)]] > xmax) breaks <- breaks[-length(breaks)]
+    breaks <- breaks[breaks > xmin & breaks < xmax]
+
     if (length(breaks) == 1){
       d <- min(breaks - xmin, xmax - breaks)
       breaks <- unique(c(breaks - d, breaks, breaks + d))

@@ -198,7 +198,7 @@ ggplot(
 
 # date_ym
 
-```{r, eval = FALSE}
+```{r}
 dd <- data.frame(
   date = seq(date_ym(1950, 1), date_ym(2018, 11)),
   V1 = 1
@@ -244,7 +244,17 @@ ggplot(dd[1:12, ],
   )
 ) +
   geom_point() +
-  scale_x_date_ym()
+  scale_x_date_ym(breaks = date_ym_breaks(12))
+
+ggplot(dd[1:22, ],
+  aes(
+    x = date,
+    y = V1
+  )
+) +
+  geom_point() +
+  scale_x_date_ym(breaks = date_ym_breaks())
+
 
 date_ym_breaks()(dd[1:3, ]$date)
 
