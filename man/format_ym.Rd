@@ -39,7 +39,7 @@ Coerce and Format to Year-Month Strings
 
 Format shorthand functions in the form of \code{format_y*_[preset]()} directly
 apply formatting presets to anything  that can be coerced to a \code{date_xx}.
-This is notably handy as they can be used as a labelling function for
+This is notably handy as they can be used as a labeling function for
 \strong{ggplot2}  axes (see \code{vignette("dint")})
 }
 

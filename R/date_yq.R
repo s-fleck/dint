@@ -85,7 +85,7 @@ as_date_yq.yearqtr <- function(
   assert(all(x > 0 | is.na(x)))
   tx  <- trunc(x)
   rem <- x - tx
-  assert(all(rem %in% c(0, 0.25, 0.5, 0.75)))
+  assert(all(rem %in% c(0, 0.25, 0.5, 0.75) | is.na(rem)) )
   date_yq(tx,  (x - tx) * 4 + 1L )
 }
 

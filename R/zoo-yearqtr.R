@@ -47,11 +47,11 @@ as_yearqtr.date_yq <- function(x){
 
 
 
+
 #' @rdname as_yearqtr
 as_yearqtr.yearqtr <- function(x){
   x
 }
-
 
 
 
@@ -96,6 +96,7 @@ as_yearmon.date_ym <- function(x){
 
 
 
+
 #' @rdname as_yearqtr
 as_yearmon.yearmon <- function(x){
   x
@@ -103,9 +104,63 @@ as_yearmon.yearmon <- function(x){
 
 
 
+# yearweek -----------------------------------------------------------------
+
+
+#' For compat with zoo
+#'
+#' Internaly used constructor. If you use zoo, please use [zoo::yearweek()]
+#' instead
+#'
+#' @param x a vector with dates in the form 2000.0 for Q1, 2000.25 for Q2, usw
+#' @noRd
+#'
+yearweek <- function(x){
+  x <- as.numeric(x)
+  assert(
+    all(round(x %% 1, 5) %in% round(seq(0, 1, by = 1/53), 5))
+  )
+  structure(x, class = c("yearweek", "numeric"))
+}
+
+
+
+
+#' @rdname as_yearqtr
+#' @export
+#'
+as_yearweek <- function(x){
+  UseMethod("as_yearweek")
+}
+
+
+
+
+#' @rdname as_yearqtr
+#' @export
+as_yearweek.date_yw <- function(x){
+  year <- get_year(x)
+  last_da
+
+  yearweek(get_year(x) + (get_month(x) - 1L) / 53)
+}
+
+
+
+
+#' @rdname as_yearqtr
+as_yearweek.yearweek <- function(x){
+  x
+}
+
 
 
 # zoo dynamic s3 mehtods --------------------------------------------------
 
 # dynamically registered if zoo is installed
 as.yearqtr.date_yq <- as_yearqtr.date_yq
+
+
+
+
+as.yearmon.date_ym <- as_yearmon.date_ym

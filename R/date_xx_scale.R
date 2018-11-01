@@ -1,5 +1,20 @@
 #' @include zoo-yearqtr.R
 #' @include utils-sfmisc.R
+#' @include first_of.R
+#' @include format.R
+
+# This tells ggplot2 what scale to look for, for yearmon
+scale_type.date_yq <- function(x) "date_yq"
+scale_type.date_ym <- function(x) "date_ym"
+scale_type.date_yw <- function(x) "date_yw"
+scale_type.date_y  <- function(x) "date_yw"
+scale_type.date_xx <- function(x) "date_xx"
+
+
+
+# scale_date_yq -----------------------------------------------------------
+
+
 
 #' Title
 #'
@@ -41,14 +56,15 @@ scale_date_yq <- function(
 ){
   ggplot2::continuous_scale(
     aesthetics,
-    "Quarter",
+    scale_name = "date_yq",
+    name = "Quarter",
     identity,
     guide = "none",
     trans = date_yq_trans,
     super = ggplot2::ScaleContinuousDate,
     position = position,
     limits = limits,
-    expand = c(0, 0.25, 0, 0.25), # add on quarter on each side
+    expand = c(0.04, 0),
     ...
   )
 }
@@ -96,20 +112,73 @@ scale_date_ym <- function(
   limits = NULL,
   ...
 ){
-  assert_namespace("scales")
-  assert_namespace("ggplot2")
-
-
   ggplot2::continuous_scale(
     aesthetics,
-    "Month",
+    scale_name = "date_ym",
+    name = "Month",
     identity,
     guide = "none",
     trans = date_ym_trans,
     super = ggplot2::ScaleContinuousDate,
     position = position,
     limits = limits,
-    expand = c(0, 1/12, 0, 1/12), # add on quarter on each side
+    expand = c(0.04, 0),
+    ...
+  )
+}
+
+
+# date_yw -----------------------------------------------------------------
+
+#' Title
+#'
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+scale_x_date_yw <- function(...) {
+  scale_date_yw(aesthetics = c("x", "xmin", "xmax", "xend"), ...)
+}
+
+
+
+
+#' Title
+#'
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+scale_y_date_yw <- function(...) {
+  scale_date_yw(aesthetics = c("y", "ywin", "ywax", "yend"), ...)
+}
+
+
+
+
+#' @rdname scale_date
+#' @export
+scale_date_yw <- function(
+  aesthetics,
+  position = "bottom",
+  limits = NULL,
+  ...
+){
+  ggplot2::continuous_scale(
+    aesthetics,
+    scale_name = "date_yw",
+    name = "Week",
+    identity,
+    guide = "none",
+    trans = date_yw_trans,
+    super = ggplot2::ScaleContinuousDate,
+    position = position,
+    limits = limits,
+    expand = waiver(), # add one week on each side
     ...
   )
 }
@@ -127,18 +196,11 @@ scale_date_ym <- function(
 #'
 #' @examples
 date_yq_breaks <- function(
-  n = 6,
-  padded = c(0, 0)
+  n = 6
 ){
-  assert(is_integerish(padded) && length(padded) %in% 1:2)
-  assert(is_scalar_integerish(n))
 
-  if (length(padded == 1)){
-    padded <- c(padded, padded)
-  }
 
   function(x){
-
     if (all(is.na(x)))  return(x)
     x <- as_date_yq(x)
     xmin <- min(x, na.rm = TRUE)
@@ -164,12 +226,13 @@ date_yq_breaks <- function(
       diff <- ymax - ymin
       by <- as.integer(ceiling(diff/n))
       breaks <- date_yq(seq(ymin, ymax, by = by), 1)
+      breaks <- breaks[breaks > xmin & breaks < xmax]
     }
 
     # fix breaks at the corner of the plot (outside the data range)
     # this works well if the plot area is padded by 1 unit
     # (see scale_date_** expand argument)
-    breaks <- breaks[breaks > xmin & breaks < xmax]
+
 
     if (length(breaks) == 1){
       d <- min(breaks - xmin, xmax - breaks)
@@ -207,20 +270,15 @@ date_yq_breaks <- function(
 #'
 #' @examples
 date_ym_breaks <- function(
-  n = 6,
-  padded = c(0, 0)
+  n = 6
 ){
-  assert(is_integerish(padded) && length(padded) %in% 1:2)
   assert(is_scalar_integerish(n))
 
-  if (length(padded == 1)){
-    padded <- c(padded, padded)
-  }
 
   function(x){
-
     if (all(is.na(x)))  return(x)
     x <- as_date_ym(x)
+
     xmin <- min(x, na.rm = TRUE)
     xmax <- max(x, na.rm = TRUE)
     diff <- (xmax - xmin)
@@ -247,10 +305,7 @@ date_ym_breaks <- function(
       breaks <- date_ym(seq(ymin, ymax, by = by), 1)
     }
 
-    # fix breaks at the corner of the plot (outside the data range)
-    # this works well if the plot area is padded by 1 unit
-    # (see scale_date_** expand argument)
-    breaks <- breaks[breaks > xmin & breaks < xmax]
+    breaks <- breaks[breaks >= xmin & breaks <= xmax]
 
     if (length(breaks) == 1){
       d <- min(breaks - xmin, xmax - breaks)
@@ -264,10 +319,77 @@ date_ym_breaks <- function(
 
 
 
+#' Title
+#'
+#' @param n
+#'
+#' @return
+#' @export
+#'
+#' @examples
+date_yw_breaks <- function(
+  n = 6
+){
+  function(x){
+
+    if (all(is.na(x)))  return(x)
+    x <- as_date_yw(x)
+    xmin <- min(x, na.rm = TRUE)
+    xmax <- max(x, na.rm = TRUE)
+    diff <- (xmax - xmin)
+
+    if (diff <= n){
+      breaks <- seq(xmin, xmax)
+
+
+    } else if (diff < 53){
+      by <- as.integer((ceiling(diff/n/4) * 4))
+
+      breaks <- seq(
+        as_date_yw(first_of_isoyear(xmin)),
+        as_date_yw(last_of_isoyear(xmax)),
+        by = by
+      )
+
+    } else if (diff < 106){
+      by <- as.integer((ceiling(diff/n/13) * 13))
+
+      breaks <- seq(
+        as_date_yw(first_of_isoyear(xmin)),
+        as_date_yw(last_of_isoyear(xmax)),
+        by = by
+      )
+
+    } else {
+      ywin <- get_year(xmin)
+      ywax <- get_year(xmax + 1L)
+      diff <- ywax - ywin
+      by <- as.integer(ceiling(diff/n))
+
+      breaks <- date_yw(seq(ywin, ywax, by = by), 1)
+    }
+
+    # fix breaks at the corner of the plot (outside the data range)
+    # this works well if the plot area is padded by 1 unit
+    # (see scale_date_** expand argument)
+    breaks <- breaks[breaks >= xmin & breaks <= xmax]
+
+    if (length(breaks) == 1){
+      d <- min(breaks - xmin, xmax - breaks)
+      breaks <- unique(c(breaks - d, breaks, breaks + d))
+    }
+
+    breaks
+  }
+}
+
+
+
 
 # transformations ---------------------------------------------------------
-
 if (requireNamespace("scales", quietly = TRUE)){
+
+  # yq --------------------------------------------------------------------
   date_yq_trans <- scales::trans_new(
     name = "date_yq",
     transform = as_yearqtr.date_yq,
@@ -275,7 +397,7 @@ if (requireNamespace("scales", quietly = TRUE)){
       x <- round_frac(as.numeric(x), 4)
       as_date_yq.yearqtr(x)
     },
-    breaks = date_yq_breaks(padded = 1L),
+    breaks = date_yq_breaks(),
     format = function(x){
       if (all(get_quarter(x) == 1L | is.na(x))){
         as.character(get_year(x))
@@ -286,7 +408,7 @@ if (requireNamespace("scales", quietly = TRUE)){
   )
 
 
-
+  # ym --------------------------------------------------------------------
   date_ym_trans <- scales::trans_new(
     name = "date_ym",
     transform = as_yearmon.date_ym,
@@ -294,7 +416,7 @@ if (requireNamespace("scales", quietly = TRUE)){
       x <- round_frac(as.numeric(x), 12)
       as_date_ym.yearmon(x)
     },
-    breaks = date_ym_breaks(padded = 1L),
+    breaks = date_ym_breaks(),
     format = function(x){
       if (all(get_month(x) == 1L | is.na(x))){
         as.character(get_year(x))
@@ -304,16 +426,54 @@ if (requireNamespace("scales", quietly = TRUE)){
     }
   )
 
+  # yw --------------------------------------------------------------------
+
+  date_yw_trans <- scales::trans_new(
+    name = "date_yw",
+    transform = function(x) {
+      as.numeric(as.Date(x))
+    },
+    inverse = function(x) {
+      origin <- structure(0, class = c("POSIXct", "POSIXt"), tzone = "UTC")
+      as_date_yw(as.Date.numeric(x, origin = origin))
+    } ,
+    breaks  = date_yw_breaks(),
+    format = function(x){
+      if (all(get_isoweek(x) == 1L | is.na(x))){
+        as.character(get_year(x))
+      } else {
+        format_yw_short(x)
+      }
+    }
+  )
+
+
+
+  # y  --------------------------------------------------------------------
+
 }
 
 
 
+# utils -------------------------------------------------------------------
+
+
+
+
+#' Round to Fraction
+#'
+#' eg `1/4` for `0`, `0.25`, `0.5`, `0.75`
+#'
+#' @param x a `numeric` vector
+#' @param denom a `numeric` scalar (e.g 4 for 1/4)
+#'
+#' @return a `numeric` vector
+#' @noRd
+#'
 round_frac <- function(
   x,
   denom
 ){
-  whole <- x %/% 1
-  frac  <- x %% 1
-  whole + round(frac * denom) / denom
+  (x %/% 1) + round((x %% 1) * denom) / denom
 }
 

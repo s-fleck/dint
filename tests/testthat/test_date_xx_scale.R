@@ -18,7 +18,7 @@ test_that("date_yq_breaks doesnt fail for a variety of inputs", {
     na <- sample(nas, 1)
     x <- seq(date_yq(y[[1]], q[[1]]), date_yq(y[[2]], q[[2]]))
     x[sample(1:length(x), na, replace = TRUE)] <- NA
-    expect_silent(date_yq_breaks(padded = p)(x))
+    expect_silent(date_yq_breaks()(x))
   }
 
   ys <- 2000:2010
@@ -30,7 +30,7 @@ test_that("date_yq_breaks doesnt fail for a variety of inputs", {
     na <- sample(nas, 1)
     x <- seq(date_yq(y[[1]], q[[1]]), date_yq(y[[2]], q[[2]]))
     x[sample(1:length(x), na, replace = TRUE)] <- NA
-    expect_silent(date_yq_breaks(padded = p)(x))
+    expect_silent(date_yq_breaks()(x))
   }
 
   ys <- 2000:2005
@@ -42,7 +42,7 @@ test_that("date_yq_breaks doesnt fail for a variety of inputs", {
     na <- sample(nas, 1)
     x <- seq(date_yq(y[[1]], q[[1]]), date_yq(y[[2]], q[[2]]))
     x[sample(1:length(x), na, replace = TRUE)] <- NA
-    expect_silent(date_yq_breaks(padded = p)(x))
+    expect_silent(date_yq_breaks()(x))
   }
 
 

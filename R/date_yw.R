@@ -117,6 +117,11 @@ as.Date.date_yw <- function(x, ...){
 
 
 
+is_isoyear53 <- function(x){
+  get_isoweek(last_of_isoyear(x)) == 53
+}
+
+
 
 # utils -------------------------------------------------------------------
 
