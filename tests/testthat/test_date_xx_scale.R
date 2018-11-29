@@ -15,7 +15,4 @@ test_that("date_xx_scale works as expected", {
 
   x <- seq(date_yq(2002, 3), date_yq(2002, 4))
   date_yq_breaks()(x)
-
-
-
 })
