@@ -9,6 +9,7 @@
 #'
 #' @return a `logical` vector
 #' @export
+#' @rdname period_bounds
 #'
 #' @examples
 #' x <- as.Date(c("2018-01-01", "2018-03-31", "2018-02-14"))
@@ -29,7 +30,7 @@ is_quarter_bounds <- function(
 
 
 #' @export
-#' @rdname is_quarter_bounds
+#' @rdname period_bounds
 is_first_of_quarter <- function(
   x
 ){
@@ -40,7 +41,7 @@ is_first_of_quarter <- function(
 
 
 #' @export
-#' @rdname is_quarter_bounds
+#' @rdname period_bounds
 is_last_of_quarter <- function(
   x
 ){
@@ -49,8 +50,37 @@ is_last_of_quarter <- function(
 
 
 
+#' @export
+#' @rdname period_bounds
+is_year_bounds <- function(
+  first,
+  last
+){
+  is_first_of_year(first) & last_of_year(first) == last
+}
 
-#' @rdname is_quarter_bounds
+
+
+#' @export
+#' @rdname period_bounds
+
+is_first_of_year <- function(x){
+   r <- as.POSIXlt(x, tz = tz(x))
+   r$mon == 0L & r$mday == 1L
+}
+
+
+#' @export
+#' @rdname period_bounds
+is_last_of_year <- function(x){
+   r <- as.POSIXlt(x, tz = tz(x))
+   r$mon == 11L & r$mday == 31L
+}
+
+
+
+#' @export
+#' @rdname period_bounds
 is_Date <- function(
   x
 ){
