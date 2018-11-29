@@ -24,6 +24,29 @@ test_that("range.date_xx and min/max work", {
 
 
 
+test_that("round.date_xx works", {
+
+  x <- date_yq(2018, 1:4)
+
+  expect_identical(floor(x), date_yq(2018, c(1, 1, 1, 1)))
+  expect_identical(ceiling(x), date_yq(2019, c(1, 1, 1, 1)))
+  expect_identical(round(x), date_yq(c(2018, 2018, 2019, 2019), 1))
+
+  x <- date_ym(2018, 1:12)
+
+  expect_identical(floor(x), date_ym(2018, rep(1, 12)))
+  expect_identical(ceiling(x), date_ym(2019, rep(1, 12)))
+  expect_identical(round(x), date_ym(c(rep(2018, 6), rep(2019, 6)), 1))
+
+  x <- date_yw(2018, 1:53)
+
+  expect_identical(floor(x), date_yw(2018, rep(1, 53)))
+  expect_identical(ceiling(x), date_yw(2019, rep(1, 53)))
+  expect_identical(round(x), date_yw(c(rep(2018, 26), rep(2019, 27)), 1))
+})
+
+
+
 test_that("comparison ops work", {
   for (ctor in list(date_yq, date_ym, date_yw)){
     for (op in list(`<`, `>`, `==`, `!=`, `<=`, `>=`)){
@@ -86,4 +109,36 @@ test_that("+ works for date_xx", {
     date_yw(2017, 52) + 1:52,
     date_yw(2018, 1:52)
   )
+})
+
+
+
+test_that("- works for two date_xx", {
+
+  for(i in 1:100){
+    x <- random_date_xx(2, "date_yq")
+    diff <- x[[1]] - x[[2]]
+    sequence <- seq(x[[1]], x[[2]])
+    expect_identical(abs(diff), length(sequence) - 1L)
+    expect_identical(x[[2]] + diff, x[[1]])
+  }
+
+
+  for(i in 1:100){
+    x <- random_date_xx(2, "date_ym")
+    diff <- x[[1]] - x[[2]]
+    sequence <- seq(x[[1]], x[[2]])
+    expect_identical(abs(diff), length(sequence) - 1L)
+    expect_identical(x[[2]] + diff, x[[1]])
+  }
+
+  for(i in 1:100){
+    x <- random_date_xx(2, "date_yw")
+    diff <- x[[1]] - x[[2]]
+    sequence <- seq(x[[1]], x[[2]])
+    expect_identical(abs(diff), length(sequence) - 1L)
+    expect_identical(x[[2]] + diff, x[[1]])
+  }
+
+
 })

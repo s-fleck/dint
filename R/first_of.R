@@ -20,6 +20,14 @@ first_of_year <- function(x){
 
 
 
+#' @rdname day_of_year
+#' @export
+first_of_year.date_xx <- function(x){
+  first_of_year(get_year(x))
+}
+
+
+
 
 #' @rdname day_of_year
 #' @export
@@ -54,6 +62,13 @@ last_of_year <- function(x){
   UseMethod("last_of_year")
 }
 
+
+
+#' @rdname day_of_year
+#' @export
+last_of_year.date_xx <- function(x){
+  last_of_year(get_year(x))
+}
 
 
 

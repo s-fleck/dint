@@ -26,7 +26,8 @@ seq.date_yw <- function(
     is_date_yw(to),
     msg = "'to' must be the same <date_xx> subclass as 'from'"
   )
-  as_date_yw(seq(first_of_isoweek(from), first_of_isoweek(to), by = by * 7L))
+
+  as_date_yw(seq(first_of_isoweek(from), first_of_isoweek(to), by = by * 7L * sign(as.integer(to) - as.integer(from))))
 }
 
 
@@ -107,4 +108,22 @@ seq_date_xx <- function(
 
 
   all_ms[seq.int(1L, length(all_ms), by = by)]
+}
+
+
+
+
+# rep ---------------------------------------------------------------------
+
+#' Replicate Elements of date_xx Vectors
+#'
+#' @param x a [date_xx]
+#' @param ... passed on to [base::rep()]
+#'
+#' @return a vector of the same `date_xx` subclass as `x`
+#' @export
+#'
+rep.date_xx <- function(x, ...){
+  asfun <- paste0("as_", which_date_xx(x))
+  do.call(asfun, list(rep(as.integer(x), ...)))
 }

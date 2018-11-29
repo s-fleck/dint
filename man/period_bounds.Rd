@@ -4,6 +4,9 @@
 \alias{is_quarter_bounds}
 \alias{is_first_of_quarter}
 \alias{is_last_of_quarter}
+\alias{is_year_bounds}
+\alias{is_first_of_year}
+\alias{is_last_of_year}
 \alias{is_Date}
 \title{Test for Quarter Bounds}
 \usage{
@@ -12,6 +15,12 @@ is_quarter_bounds(first, last)
 is_first_of_quarter(x)
 
 is_last_of_quarter(x)
+
+is_year_bounds(first, last)
+
+is_first_of_year(x)
+
+is_last_of_year(x)
 
 is_Date(x)
 }

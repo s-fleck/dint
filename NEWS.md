@@ -3,6 +3,8 @@
 * Removed functions that were deprecated with dint 2.0.0
 * export methods for `unique` and `summary` that were introduced in the last 
   version but mistakenly not exported
+* One can now subtract two date_xx of the same subclass from each other 
+  (the result is an integer)
 
 
 # dint 2.0.0
