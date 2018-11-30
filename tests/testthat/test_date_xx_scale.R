@@ -58,7 +58,7 @@ test_that("date_ym_breaks doesnt fail for a variety of inputs", {
 
 
 
-test_that("date_ym_trans is reversable", {
+test_that("date_ym_trans is reversible", {
   x <- seq(date_ym(1950, 1), date_ym(2050, 1))
   trn <- date_ym_trans$transform(x)
   inv <- date_ym_trans$inverse(trn)

@@ -14,58 +14,93 @@ scale_type.date_xx <- function(x) "date_xx"
 
 # scale_date_yq -----------------------------------------------------------
 
-
-
-#' Title
+#' ggplot2 scales for dint Objects
 #'
-#' @param ...
+#' The `scale_*_date_**` functions should provide nice defaults for plotting
+#' the appropriate [date_xx] subclass, but come with a limited number of
+#' configuration options. If you require more finetuning, you can convert
+#' the appropriate vector with `as.Date()` and use `ggplot2::scale_x_date()`
 #'
-#' @return
-#' @export
+#' @inheritParams ggplot2::scale_x_date
+#'
+#' @seealso [date_xx_breaks]
+#' @name scale_date_xx
 #'
 #' @examples
-scale_x_date_yq <- function(...) {
-  scale_date_yq(aesthetics = c("x", "xmin", "xmax", "xend"), ...)
+#' if (require("ggplot2", quietly = TRUE)){
+#'   dd <- data.frame(date = seq(date_yq(2016, 1), date_yq(2018, 1)), V1 = 1:9)
+#'   p <- ggplot(dd, aes(x = date, y = V1)) +
+#'     geom_point()
+#'
+#'   p  # automatically uses the proper scale
+#'   p + scale_x_date_yq("quarters with default spacing")
+#'   p + scale_x_date_yq(breaks = date_yq_breaks(3))
+#' }
+#'
+NULL
+
+#' @rdname scale_date_xx
+#' @export
+scale_x_date_yq <- function(
+  name = "Quarter",
+  breaks = date_yq_breaks(),
+  limits = NULL,
+  position = "bottom"
+){
+  scale_date_yq(
+    aesthetics = c("x", "xmin", "xmax", "xend"),
+    name = name,
+    limits = limits,
+    breaks = breaks,
+    position = position
+  )
 }
 
 
 
 
-#' Title
-#'
-#' @param ...
-#'
-#' @return
+
+
+
+#' @rdname scale_date_xx
 #' @export
-#'
-#' @examples
-scale_y_date_yq <- function(...) {
-  scale_date_yq(aesthetics = c("y", "ymin", "ymax", "yend"), ...)
+scale_y_date_yq <- function(
+  name = "Quarter",
+  breaks = date_yq_breaks(),
+  limits = NULL,
+  position = "left"
+){
+  scale_date_yq(
+    aesthetics = c("y", "ymin", "ymax", "yend"),
+    name = name,
+    limits = limits,
+    breaks = breaks,
+    position = position
+  )
 }
 
 
 
 
-#' @rdname scale_date
-#' @export
 scale_date_yq <- function(
   aesthetics,
-  position = "bottom",
+  name = "Quarter",
+  breaks = date_yq_breaks(),
   limits = NULL,
-  ...
+  position = "bottom"
 ){
   ggplot2::continuous_scale(
     aesthetics,
     scale_name = "date_yq",
-    name = "Quarter",
-    identity,
+    name = name,
+    palette = identity,
     guide = "none",
     trans = date_yq_trans,
     super = ggplot2::ScaleContinuousDate,
     position = position,
     limits = limits,
-    expand = c(0.04, 0),
-    ...
+    breaks = breaks,
+    expand = c(0.04, 0)
   )
 }
 
@@ -74,127 +109,157 @@ scale_date_yq <- function(
 
 # date_ym -----------------------------------------------------------------
 
-#' Title
-#'
-#' @param ...
-#'
-#' @return
+#' @rdname scale_date_xx
 #' @export
-#'
-#' @examples
-scale_x_date_ym <- function(...) {
-  scale_date_ym(aesthetics = c("x", "xmin", "xmax", "xend"), ...)
+scale_x_date_ym <- function(
+  name = "Month",
+  breaks = date_ym_breaks(),
+  limits = NULL,
+  position = "bottom"
+){
+  scale_date_ym(
+    aesthetics = c("x", "xmin", "xmax", "xend"),
+    name = name,
+    breaks = breaks,
+    limits = limits,
+    position = position
+  )
 }
 
 
 
 
-#' Title
-#'
-#' @param ...
-#'
-#' @return
+#' @rdname scale_date_xx
 #' @export
-#'
-#' @examples
-scale_y_date_ym <- function(...) {
-  scale_date_ym(aesthetics = c("y", "ymin", "ymax", "yend"), ...)
+scale_y_date_ym <- function(
+  name = "Month",
+  breaks = date_ym_breaks(),
+  limits = NULL,
+  position = "left"
+) {
+  scale_date_ym(aesthetics = c(
+    "y", "ymin", "ymax", "yend"),
+    name = name,
+    breaks = breaks,
+    limits = limits,
+    position = position
+  )
 }
 
 
 
 
-#' @rdname scale_date
-#' @export
 scale_date_ym <- function(
   aesthetics,
-  position = "bottom",
+  name = "Month",
+  breaks = date_ym_breaks(),
   limits = NULL,
-  ...
+  position = "left"
 ){
   ggplot2::continuous_scale(
     aesthetics,
     scale_name = "date_ym",
-    name = "Month",
-    identity,
+    name = name,
+    breaks = breaks,
+    palette = identity,
     guide = "none",
     trans = date_ym_trans,
     super = ggplot2::ScaleContinuousDate,
     position = position,
     limits = limits,
-    expand = c(0.04, 0),
-    ...
+    expand = c(0.04, 0)
   )
 }
 
 
 # date_yw -----------------------------------------------------------------
 
-#' Title
-#'
-#' @param ...
-#'
-#' @return
+#' @rdname scale_date_xx
 #' @export
-#'
-#' @examples
-scale_x_date_yw <- function(...) {
-  scale_date_yw(aesthetics = c("x", "xmin", "xmax", "xend"), ...)
+scale_x_date_yw <- function(
+  name = "Month",
+  breaks = date_yw_breaks(),
+  limits = NULL,
+  position = "bottom"
+){
+  scale_date_yw(
+    aesthetics = c("x", "xmin", "xmax", "xend"),
+    name = name,
+    breaks = breaks,
+    limits = limits,
+    position = position
+  )
 }
 
 
 
 
-#' Title
-#'
-#' @param ...
-#'
-#' @return
+#' @rdname scale_date_xx
 #' @export
-#'
-#' @examples
-scale_y_date_yw <- function(...) {
-  scale_date_yw(aesthetics = c("y", "ywin", "ywax", "yend"), ...)
+scale_y_date_yw <- function(
+  name = "Month",
+  breaks = date_yw_breaks(),
+  limits = NULL,
+  position = "left"
+){
+  scale_date_yw(
+    aesthetics = c("y", "ywin", "ywax", "yend"),
+    name = name,
+    breaks = breaks,
+    limits = limits,
+    position = position
+  )
 }
 
 
 
 
-#' @rdname scale_date
-#' @export
 scale_date_yw <- function(
   aesthetics,
-  position = "bottom",
+  name = "Week",
+  breaks = date_yw_breaks(),
   limits = NULL,
-  ...
+  position = "bottom"
 ){
   ggplot2::continuous_scale(
     aesthetics,
     scale_name = "date_yw",
-    name = "Week",
-    identity,
+    name = name,
+    breaks = breaks,
+    palette = identity,
     guide = "none",
     trans = date_yw_trans,
     super = ggplot2::ScaleContinuousDate,
     position = position,
     limits = limits,
-    expand = waiver(), # add one week on each side
-    ...
+    expand = waiver()
   )
 }
 
 
 # breaks ------------------------------------------------------------------
 
-#' Pretty breaks for date_yq vectors
+#' Pretty breaks for date_xx vectors
 #'
-#' @param n `NULL` or `integer` scalar
+#' `date_*_breaks` does not return breaks, but a function that calculates
+#' breaks. This is for compatbility with the breaks functions from scales such
+#' as [scales::pretty_breaks()], and for ease of use in ggplot.
 #'
-#' @return a `function` that calculates a maximum of `n` breaks for a  `date_yq`
+#' @param n `NULL` or `integer` scalar. The desired maximum number of breaks.
+#' The breaks algorithm may choose less breaks if it sees fit.
+#'
+#' @return a `function` that calculates a maximum of `n` breaks for a  `date_xx`
 #'   vector
-#' @export
 #'
+#' @name date_xx_breaks
 #' @examples
+#' x <- date_ym(2016, 1:12)
+#' date_ym_breaks()(x)
+#' date_ym_breaks(12)(x)
+NULL
+
+#' @name date_xx_breaks
+#' @export
 date_yq_breaks <- function(
   n = 6
 ){
@@ -243,30 +308,9 @@ date_yq_breaks <- function(
 
 
 
-#' Pretty breaks for date_yq vectors
-#'
-#' `date_xx_breaks_impl` does not return breaks, but a function that calculates
-#' breaks. This is for compatbility with the breaks functions from scales such
-#' as [scales::pretty_breaks()], and for ease of use in ggplot.
-#'
-#'
-#' @param n `NULL` or `integer` scalar
-#' @param padded `integer` vector of length 1 or two. Padding to remove
-#'   from each side of the input vector. This is useful for generating
-#'   breaks for ggplot objects where the limits are usually padded by
-#'   one month/quarter/isoweek for plotting.
-#'
-#' @param period `scalar` integer. number of units in a year (i.e 4 for
-#'   quarters, 12 for months, ...)
-#'
-#' @param as_dint
-#' @param get_subunit
-#'
-#' @return a `function` that calculates a maximum of `n` breaks for a  `date_yq`
-#'   vector
+
+#' @rdname date_xx_breaks
 #' @export
-#'
-#' @examples
 date_ym_breaks <- function(
   n = 6
 ){
@@ -317,14 +361,8 @@ date_ym_breaks <- function(
 
 
 
-#' Title
-#'
-#' @param n
-#'
-#' @return
+#' @rdname date_xx_breaks
 #' @export
-#'
-#' @examples
 date_yw_breaks <- function(
   n = 6
 ){
@@ -383,80 +421,7 @@ date_yw_breaks <- function(
 
 
 
-
-# transformations ---------------------------------------------------------
-if (requireNamespace("scales", quietly = TRUE)){
-
-  # yq --------------------------------------------------------------------
-  date_yq_trans <- scales::trans_new(
-    name = "date_yq",
-    transform = as_yearqtr.date_yq,
-    inverse   = function(x){
-      x <- round_frac(as.numeric(x), 4)
-      as_date_yq.yearqtr(x)
-    },
-    breaks = date_yq_breaks(),
-    format = function(x){
-      if (all(get_quarter(x) == 1L | is.na(x))){
-        as.character(get_year(x))
-      } else {
-        format_yq_short(x)
-      }
-    }
-  )
-
-
-  # ym --------------------------------------------------------------------
-  date_ym_trans <- scales::trans_new(
-    name = "date_ym",
-    transform = as_yearmon.date_ym,
-    inverse   = function(x){
-      x <- round_frac(as.numeric(x), 12)
-      as_date_ym.yearmon(x)
-    },
-    breaks = date_ym_breaks(),
-    format = function(x){
-      if (all(get_month(x) == 1L | is.na(x))){
-        as.character(get_year(x))
-      } else {
-        format_ym_short(x)
-      }
-    }
-  )
-
-  # yw --------------------------------------------------------------------
-
-  date_yw_trans <- scales::trans_new(
-    name = "date_yw",
-    transform = function(x) {
-      as.numeric(as.Date(x))
-    },
-    inverse = function(x) {
-      origin <- structure(0, class = c("POSIXct", "POSIXt"), tzone = "UTC")
-      as_date_yw(as.Date.numeric(x, origin = origin))
-    } ,
-    breaks  = date_yw_breaks(),
-    format = function(x){
-      if (all(get_isoweek(x) == 1L | is.na(x))){
-        as.character(get_year(x))
-      } else {
-        format_yw_short(x)
-      }
-    }
-  )
-
-
-
-  # y  --------------------------------------------------------------------
-
-}
-
-
-
 # utils -------------------------------------------------------------------
-
-
-
 
 #' Round to Fraction
 #'
@@ -474,4 +439,3 @@ round_frac <- function(
 ){
   (x %/% 1) + round((x %% 1) * denom) / denom
 }
-

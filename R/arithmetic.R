@@ -187,9 +187,9 @@ range.date_y <- function(..., na.rm = FALSE) {
 #'
 #' @return a `date_xx` of the same subclass as `x`
 #' @export
+#' @rdname round_date_xx
 #'
 #' @examples
-#'
 #' round(date_yq(2018, 2))
 #' round(date_yq(2018, 3))
 #' round(date_ym(2018, 6))
@@ -204,7 +204,7 @@ round.date_yq <- function(x, digits = NULL){
 
 
 
-#' @rdname round
+#' @rdname round_date_xx
 #' @export
 round.date_ym <- function(x, digits = NULL){
   q <- get_month(x)
@@ -212,7 +212,7 @@ round.date_ym <- function(x, digits = NULL){
 }
 
 
-#' @rdname round
+#' @rdname round_date_xx
 #' @export
 round.date_yw <- function(x, digits = NULL){
   q <- get_isoweek(x)
@@ -221,7 +221,7 @@ round.date_yw <- function(x, digits = NULL){
 
 
 
-#' @rdname round
+#' @rdname round_date_xx
 #' @export
 ceiling.date_xx <- function(x){
   do.call(which_date_xx(x), list(get_year(x) + 1L, 1L))
@@ -230,7 +230,7 @@ ceiling.date_xx <- function(x){
 
 
 
-#' @rdname round
+#' @rdname round_date_xx
 #' @export
 floor.date_xx <- function(x){
   do.call(which_date_xx(x), list(get_year(x), 1L))

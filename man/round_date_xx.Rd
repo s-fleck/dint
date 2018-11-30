@@ -2,9 +2,21 @@
 % Please edit documentation in R/arithmetic.R
 \name{round.date_yq}
 \alias{round.date_yq}
+\alias{round.date_ym}
+\alias{round.date_yw}
+\alias{ceiling.date_xx}
+\alias{floor.date_xx}
 \title{Rounding of date_xx}
 \usage{
 \method{round}{date_yq}(x, digits = NULL)
+
+\method{round}{date_ym}(x, digits = NULL)
+
+\method{round}{date_yw}(x, digits = NULL)
+
+\method{ceiling}{date_xx}(x)
+
+\method{floor}{date_xx}(x)
 }
 \arguments{
 \item{x}{any \code{date_xx} object}
@@ -19,7 +31,6 @@ Rounds a \code{date_xx} to the first unit of the current year, or the first
 unit of the next year.
 }
 \examples{
-
 round(date_yq(2018, 2))
 round(date_yq(2018, 3))
 round(date_ym(2018, 6))

@@ -1,9 +1,9 @@
-#' Test for Quarter Bounds
+#' Test for Period Bounds
 #'
-#' `is_first_of_quarter()` and `is_last_of_quarter()` check whether a
-#' `Date` is the first or respectively the last day of an (arbitrary) quarter.
-#' `is_quarter_bounds()` checks whether two `Date` vectors mark the bounds of
-#' single quarters
+#' `is_first_of_quarter()`, `is_last_of_quarter()`, `is_first_of_year()` and
+#' `is_last_of_year()` check whether a `Date` is the first or respectively the
+#' last day of a quarter/year. `is_quarter_bounds()` and `is_year_bounds` checks
+#' whether two `Date` vectors mark the bounds of (the same) quarters
 #'
 #' @param x,first,last `Date` vectors
 #'
@@ -13,6 +13,7 @@
 #'
 #' @examples
 #' x <- as.Date(c("2018-01-01", "2018-03-31", "2018-02-14"))
+#' is_first_of_year(x)
 #' is_first_of_quarter(x)
 #' is_last_of_quarter(x)
 #' is_quarter_bounds(x[[1]], x[[2]])
