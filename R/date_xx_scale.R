@@ -198,8 +198,6 @@ scale_date_yw <- function(
 date_yq_breaks <- function(
   n = 6
 ){
-
-
   function(x){
     if (all(is.na(x)))  return(x)
     x <- as_date_yq(x)

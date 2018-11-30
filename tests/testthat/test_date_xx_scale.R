@@ -23,6 +23,7 @@ test_that("date_yq_breaks doesnt fail for a variety of inputs", {
 
   ys <- 2000:2010
 
+
   for(i in 1:100){
     y <- sample(ys, 2, replace = TRUE)
     q <- sample(qs, 2, replace = TRUE)
@@ -44,8 +45,6 @@ test_that("date_yq_breaks doesnt fail for a variety of inputs", {
     x[sample(1:length(x), na, replace = TRUE)] <- NA
     expect_silent(date_yq_breaks()(x))
   }
-
-
 })
 
 
@@ -63,14 +62,5 @@ test_that("date_ym_trans is reversable", {
   x <- seq(date_ym(1950, 1), date_ym(2050, 1))
   trn <- date_ym_trans$transform(x)
   inv <- date_ym_trans$inverse(trn)
-  expect_identical(x, inv)
-})
-
-
-
-test_that("date_yq_trans is reversable", {
-  x <- seq(date_yq(1950, 1), date_yq(2050, 1))
-  trn <- date_yq_trans$transform(x)
-  inv <- date_yq_trans$inverse(trn)
   expect_identical(x, inv)
 })
