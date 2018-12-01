@@ -7,6 +7,7 @@
   dyn_register_s3_method("lubridate", "year", "date_xx")
   dyn_register_s3_method("lubridate", "month", "date_xx")
   dyn_register_s3_method("zoo", "as.yearqtr", "date_yq")
+  dyn_register_s3_method("zoo", "as.yearmon", "date_ym")
 
   # +- yq --------------------------------------------------------------------
   if (requireNamespace("scales", quietly = TRUE)){

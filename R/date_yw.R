@@ -69,6 +69,20 @@ as_date_yw.date_yw <- function(x){
 
 
 
+#' @export
+as_date_yw.yearweek <- function(
+  x
+){
+  x <- yearweek(x)  # for the validity check
+  x <- as.numeric(x)
+  assert(all(x > 0 | is.na(x)))
+  tx  <- trunc(x)
+  rem <- x - tx
+  assert(all(round(rem, 5) %in% round(seq(0, 0.99, by = 1/53), 5) | is.na(rem) ))
+  date_yw(tx,  round((x - tx) * 53) + 1L )
+}
+
+
 
 #' @export
 as_date_yw.default <- function(x){

@@ -1,30 +1,21 @@
-#' @include zoo-yearqtr.R
+# scale_date_yq -----------------------------------------------------------
+
+#' ggplot2 Scales For date_xx Objects
+#'
+#' The `scale_*_date_**` functions provide nice defaults for plotting
+#' the appropriate [date_xx] subclass, but come with a limited number of
+#' configuration options. If you require more finetuning, you can convert
+#' [date_xx] vectors with [as.Date()] and use [ggplot2::scale_x_date()].
+#'
+#'
+#' @inheritParams ggplot2::scale_x_date
+#' @seealso [date_xx_breaks]
+#'
+#' @name scale_date_xx
+#' @include zoo-compat.R
 #' @include utils-sfmisc.R
 #' @include first_of.R
 #' @include format.R
-
-# This tells ggplot2 what scale to look for, for yearmon
-scale_type.date_yq <- function(x) "date_yq"
-scale_type.date_ym <- function(x) "date_ym"
-scale_type.date_yw <- function(x) "date_yw"
-scale_type.date_y  <- function(x) "date_yw"
-scale_type.date_xx <- function(x) "date_xx"
-
-
-
-# scale_date_yq -----------------------------------------------------------
-
-#' ggplot2 scales for dint Objects
-#'
-#' The `scale_*_date_**` functions should provide nice defaults for plotting
-#' the appropriate [date_xx] subclass, but come with a limited number of
-#' configuration options. If you require more finetuning, you can convert
-#' the appropriate vector with `as.Date()` and use `ggplot2::scale_x_date()`
-#'
-#' @inheritParams ggplot2::scale_x_date
-#'
-#' @seealso [date_xx_breaks]
-#' @name scale_date_xx
 #'
 #' @examples
 #' if (require("ggplot2", quietly = TRUE)){
@@ -38,6 +29,17 @@ scale_type.date_xx <- function(x) "date_xx"
 #' }
 #'
 NULL
+
+
+
+
+# This tells ggplot2 what scale to look for
+scale_type.date_yq <- function(x) "date_yq"
+scale_type.date_ym <- function(x) "date_ym"
+scale_type.date_yw <- function(x) "date_yw"
+
+
+
 
 #' @rdname scale_date_xx
 #' @export
@@ -55,9 +57,6 @@ scale_x_date_yq <- function(
     position = position
   )
 }
-
-
-
 
 
 
@@ -237,18 +236,20 @@ scale_date_yw <- function(
 }
 
 
+
+
 # breaks ------------------------------------------------------------------
 
-#' Pretty breaks for date_xx vectors
+#' Pretty Breaks For date_xx Vectors
 #'
 #' `date_*_breaks` does not return breaks, but a function that calculates
-#' breaks. This is for compatbility with the breaks functions from scales such
-#' as [scales::pretty_breaks()], and for ease of use in ggplot.
+#' breaks. This is for compatbility with the breaks functions from \pkg{scales}
+#' such as [scales::pretty_breaks()], and for ease of use with \pkg{ggplot2}.
 #'
 #' @param n `NULL` or `integer` scalar. The desired maximum number of breaks.
 #' The breaks algorithm may choose less breaks if it sees fit.
 #'
-#' @return a `function` that calculates a maximum of `n` breaks for a  `date_xx`
+#' @return a `function` that calculates a maximum of `n` breaks for a `date_xx`
 #'   vector
 #'
 #' @name date_xx_breaks
@@ -258,11 +259,15 @@ scale_date_yw <- function(
 #' date_ym_breaks(12)(x)
 NULL
 
+
+
+
 #' @name date_xx_breaks
 #' @export
 date_yq_breaks <- function(
   n = 6
 ){
+  assert(is_scalar_integerish(n))
   function(x){
     if (all(is.na(x)))  return(x)
     x <- as_date_yq(x)
@@ -272,7 +277,6 @@ date_yq_breaks <- function(
 
     if (diff <= n){
       breaks <- seq(xmin, xmax)
-
 
     } else if (diff < 12){
       by <- as.integer((ceiling(diff/n/2) * 2))
@@ -295,8 +299,6 @@ date_yq_breaks <- function(
     # fix breaks at the corner of the plot (outside the data range)
     # this works well if the plot area is padded by 1 unit
     # (see scale_date_** expand argument)
-
-
     if (length(breaks) == 1){
       d <- min(breaks - xmin, xmax - breaks)
       breaks <- unique(c(breaks - d, breaks, breaks + d))
@@ -315,8 +317,6 @@ date_ym_breaks <- function(
   n = 6
 ){
   assert(is_scalar_integerish(n))
-
-
   function(x){
     if (all(is.na(x)))  return(x)
     x <- as_date_ym(x)
@@ -366,6 +366,8 @@ date_ym_breaks <- function(
 date_yw_breaks <- function(
   n = 6
 ){
+  assert(is_scalar_integerish(n))
+
   function(x){
 
     if (all(is.na(x)))  return(x)
@@ -418,6 +420,7 @@ date_yw_breaks <- function(
     breaks
   }
 }
+
 
 
 
