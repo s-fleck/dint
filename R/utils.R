@@ -153,3 +153,18 @@ which_date_xx <- function(
   dates[sel]
 }
 
+
+
+random_date_xx <- function(n, mode, replace = TRUE, years = 2010:2020){
+
+  if (identical(mode, "date_yq")){
+    x <-  seq(date_yq(min(years), 1), date_yq(max(years), 4))
+  } else if (identical(mode, "date_ym")){
+    x <-  seq(date_ym(min(years), 1), date_ym(max(years), 12))
+  } else if (identical(mode, "date_yw")){
+    x <- seq(date_yw(min(years), 1), as_date_yw(last_of_isoyear(max(years))))
+  }
+
+  sample(x, n, replace = replace)
+}
+

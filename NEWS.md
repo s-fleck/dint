@@ -1,7 +1,16 @@
 # dint 2.0.0.9000
 
+* added *ggplot2* scales for dint data types
+* added predicates to check wether dates correspond to the boundaries of 
+  years or quarters (`is_quarter_bounds()`, `is_year_bounds()`, 
+  `is_first_of_quarter()`, etc...)
+* export methods for `unique` and `summary` that were introduced in the last 
+  version but mistakenly not exported
+* One can now subtract two `date_xx` of the same subclass from each other 
+  (the result is an `integer`)
+* added `as_yearmon()` and `as_yearqtr()` for converting to *zoo* S3 classes
 * Removed functions that were deprecated with dint 2.0.0
-
+* lots of small fixes
 
 
 # dint 2.0.0

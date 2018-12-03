@@ -20,7 +20,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Stefan Fleck \email{stefan.b.fleck@gmail.com}
+\strong{Maintainer}: Stefan Fleck \email{stefan.b.fleck@gmail.com} (0000-0003-3344-9851)
 
 }
 \keyword{internal}

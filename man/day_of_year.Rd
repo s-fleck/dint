@@ -2,16 +2,20 @@
 % Please edit documentation in R/first_of.R
 \name{first_of_year}
 \alias{first_of_year}
+\alias{first_of_year.date_xx}
 \alias{first_of_year.integer}
 \alias{first_of_year.default}
 \alias{first_of_year.numeric}
 \alias{last_of_year}
+\alias{last_of_year.date_xx}
 \alias{last_of_year.integer}
 \alias{last_of_year.default}
 \alias{last_of_year.numeric}
 \title{Get First / Last Day of a Year}
 \usage{
 first_of_year(x)
+
+\method{first_of_year}{date_xx}(x)
 
 \method{first_of_year}{integer}(x)
 
@@ -20,6 +24,8 @@ first_of_year(x)
 \method{first_of_year}{numeric}(x)
 
 last_of_year(x)
+
+\method{last_of_year}{date_xx}(x)
 
 \method{last_of_year}{integer}(x)
 

@@ -175,6 +175,70 @@ range.date_y <- function(..., na.rm = FALSE) {
 
 
 
+# round -------------------------------------------------------------------
+
+#' Rounding of date_xx
+#'
+#' Rounds a `date_xx` to the first unit of the current year, or the first
+#' unit of the next year.
+#'
+#' @param x any `date_xx` object
+#' @param digits ignored, only there for compat with [base::round()]
+#'
+#' @return a `date_xx` of the same subclass as `x`
+#' @export
+#' @rdname round_date_xx
+#'
+#' @examples
+#' round(date_yq(2018, 2))
+#' round(date_yq(2018, 3))
+#' round(date_ym(2018, 6))
+#' round(date_ym(2018, 7))
+#' round(date_yw(2018, 26))
+#' round(date_yw(2018, 27))
+#'
+round.date_yq <- function(x, digits = NULL){
+  q <- get_quarter(x)
+  ifelse_simple(q %in% 1:2, floor(x), ceiling(x))
+}
+
+
+
+#' @rdname round_date_xx
+#' @export
+round.date_ym <- function(x, digits = NULL){
+  q <- get_month(x)
+  ifelse_simple(q %in% 1:6, floor(x), ceiling(x))
+}
+
+
+#' @rdname round_date_xx
+#' @export
+round.date_yw <- function(x, digits = NULL){
+  q <- get_isoweek(x)
+  ifelse_simple(q %in% 1:26, floor(x), ceiling(x))
+}
+
+
+
+#' @rdname round_date_xx
+#' @export
+ceiling.date_xx <- function(x){
+  do.call(which_date_xx(x), list(get_year(x) + 1L, 1L))
+}
+
+
+
+
+#' @rdname round_date_xx
+#' @export
+floor.date_xx <- function(x){
+  do.call(which_date_xx(x), list(get_year(x), 1L))
+}
+
+
+
+
 # generics ----------------------------------------------------------------
 
 #' Add/Subtract Year
@@ -222,7 +286,25 @@ range.date_y <- function(..., na.rm = FALSE) {
 #' @rdname date_xx_arithmetic
 #' @export
 `-.date_xx` <- function(x, y){
-  increment(x, as.integer(-y))
+  if (is_date_yq(y)){
+    assert(is_date_yq(x))
+    divisions <- 4L
+    (get_year(x) - get_year(y)) * divisions + get_quarter(x) - get_quarter(y)
+  } else  if (is_date_ym(y)){
+    assert(is_date_ym(x))
+    divisions <- 12L
+    (get_year(x) - get_year(y)) * divisions + get_month(x) - get_month(y)
+  } else if (is_date_yw(y)){
+    assert(is_date_yw(x))
+    if (x > y) {
+      length(seq(x, y)) - 1L
+    }  else {
+      -(length(seq(y, x)) - 1L)
+    }
+
+  } else {
+    increment(x, as.integer(-y))
+  }
 }
 
 

@@ -75,6 +75,21 @@ as_date_ym.default <- function(x){
 
 
 
+#' @export
+as_date_ym.yearmon <- function(
+  x
+){
+  x <- yearmon(x)  # for the validity check
+  x <- as.numeric(x)
+  assert(all(x > 0 | is.na(x)))
+  tx  <- trunc(x)
+  rem <- x - tx
+  assert(all(round(rem, 5) %in% round(seq(0, 0.99, by = 1/12), 5) | is.na(rem) ))
+  date_ym(tx,  round((x - tx) * 12) + 1L )
+}
+
+
+
 
 #' @export
 as_date_ym.numeric <- function(x){
