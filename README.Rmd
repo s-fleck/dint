@@ -24,7 +24,16 @@ A Toolkit for Year-Quarter, Year-Month and Year-Isoweek Dates
 S3 classes and methods to create and work with year-quarter and year-month 
 vectors. Basic arithmetic operations (such as adding and subtracting) are
 supported, as well as formatting and converting to and from standard R
-Date types.
+Date types. For more info please refer to the
+[package vignette](https://cran.r-project.org/web/packages/dint/vignettes/dint.html)
+
+
+## Dependencies
+
+dint is implemented strictly in base R and will **always stay dependency-free**.
+The optional dependencies in Suggests are to enusre interoperability with
+these packages if you are already using them.
+
 
 ## Installation
 
@@ -40,6 +49,8 @@ Or install the development version from GitHub with:
 # install.packages("devtools")
 devtools::install_github("s-fleck/dint")
 ```
+
+
 
 
 
