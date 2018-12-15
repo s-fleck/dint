@@ -146,7 +146,7 @@ last_of_quarter <- function(x){
 #' @rdname day_of_quarter
 #' @export
 last_of_quarter.default <- function(x){
-  assert_lubridate()
+  assert_namespace("lubridate")
   lubridate::ceiling_date(as.Date(x), "quarter") - 1L
 }
 
