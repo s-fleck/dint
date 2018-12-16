@@ -2,7 +2,7 @@ Type: Package
 Package: dint
 Title: A Toolkit for Year-Quarter, Year-Month and Year-Isoweek
     Dates
-Version: 2.0.0.9005
+Version: 2.0.0.9006
 Authors@R: 
     person(given = "Stefan",
            family = "Fleck",

@@ -9,7 +9,18 @@
 #'
 #'
 #' @inheritParams ggplot2::scale_x_date
-#' @seealso [date_xx_breaks]
+#' @param labels One of:
+#'   * `NULL` for no labels
+#'   * `ggplot2::waiver()` for the default labels computed by the
+#'     transformation object
+#'   * A `character` vector giving labels (must be same length as `breaks`, so
+#'     it's a good idea to specify manual breaks if you use manual labels)
+#'   * A function that takes the breaks as input and returns labels as output
+#' @param breaks One of:
+#'   * `NULL` for no breaks
+#'   * `ggplot2::waiver()` for automatic breaks (see [date_xx_breaks()])
+#'   * A `date_xx` vector of breaks
+#'   * A function that takes the limits as input and returns breaks as output
 #'
 #' @name scale_date_xx
 #' @include zoo-compat.R
@@ -19,15 +30,33 @@
 #'
 #' @examples
 #' if (require("ggplot2", quietly = TRUE)){
-#'   dd <- data.frame(date = seq(date_yq(2016, 1), date_yq(2018, 1)), V1 = 1:9)
-#'   p <- ggplot(dd, aes(x = date, y = V1)) +
-#'     geom_point()
 #'
-#'   p  # automatically uses the proper scale
-#'   p + scale_x_date_yq("quarters with default spacing")
-#'   p + scale_x_date_yq(breaks = date_yq_breaks(3))
+#' dd <- data.frame(date = seq(date_yq(2016, 1), date_yq(2018, 1)), V1 = 1:9)
+#' p <- ggplot(dd, aes(x = date, y = V1)) +
+#'   geom_point()
+#'
+#' p  # automatically uses the proper scale
+#' p + scale_x_date_yq("quarters with default spacing")
+#' p + scale_x_date_yq(breaks = date_yq_breaks(3))
+#'
+#'
+#' # Different ways to specify breaks and labels
+#' p <- ggplot(
+#'   data.frame(date = seq(date_yq(2012, 4), date_yq(2018, 4)), V1 = 1:25),
+#'   aes(x = date, y = V1)
+#' ) +
+#'   geom_point()
+#'
+#' p + scale_x_date_yq(labels = waiver()) + ggtitle("auto Labels")
+#' p + scale_x_date_yq(labels = NULL) + ggtitle("no Labels")
+#' p + scale_x_date_yq(labels = LETTERS[1:4]) + ggtitle("manual Labels")
+#' p + scale_x_date_yq(labels = format_yq_iso) + ggtitle("function Labels")
+#'
+#' p + scale_x_date_yq(breaks = waiver()) + ggtitle("auto breaks")
+#' p + scale_x_date_yq(breaks = NULL) + ggtitle("no breaks")
+#' p + scale_x_date_yq(breaks = date_yq(2013, 2:3) ) + ggtitle("manual breaks")
+#' p + scale_x_date_yq(breaks = date_yq_breaks(1) ) + ggtitle("function breaks")
 #' }
-#'
 NULL
 
 

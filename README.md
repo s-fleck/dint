@@ -7,7 +7,7 @@ dint
 
 A Toolkit for Year-Quarter, Year-Month and Year-Isoweek Dates
 
-S3 classes and methods to create and work with year-quarter and year-month vectors. Basic arithmetic operations (such as adding and subtracting) are supported, as well as formatting and converting to and from standard R Date types. For more info please refer to the [package vignette](https://cran.r-project.org/web/packages/dint/vignettes/dint.html)
+S3 classes and methods to create and work with year-quarter and year-month vectors. Basic arithmetic operations (such as adding and subtracting) are supported, as well as formatting and converting to and from standard R Date types. For more info please refer to the [package vignette](https://CRAN.R-project.org/package=dint/vignettes/dint.html)
 
 Dependencies
 ------------

@@ -37,19 +37,19 @@ omitted.}
 \item{breaks}{One of:
 \itemize{
 \item \code{NULL} for no breaks
-\item \code{waiver()} for the breaks specified by \code{date_breaks}
-\item A \code{Date}/\code{POSIXct} vector giving positions of breaks
+\item \code{ggplot2::waiver()} for automatic breaks (see \code{\link[=date_xx_breaks]{date_xx_breaks()}})
+\item A \code{date_xx} vector of breaks
 \item A function that takes the limits as input and returns breaks as output
 }}
 
 \item{labels}{One of:
 \itemize{
 \item \code{NULL} for no labels
-\item \code{waiver()} for the default labels computed by the
+\item \code{ggplot2::waiver()} for the default labels computed by the
 transformation object
-\item A character vector giving labels (must be same length as \code{breaks})
-\item A function that takes the breaks as input and returns labels
-as output
+\item A \code{character} vector giving labels (must be same length as \code{breaks}, so
+it's a good idea to specify manual breaks if you use manual labels)
+\item A function that takes the breaks as input and returns labels as output
 }}
 
 \item{limits}{A numeric vector of length two providing limits of the scale.
@@ -66,16 +66,31 @@ configuration options. If you require more finetuning, you can convert
 }
 \examples{
 if (require("ggplot2", quietly = TRUE)){
-  dd <- data.frame(date = seq(date_yq(2016, 1), date_yq(2018, 1)), V1 = 1:9)
-  p <- ggplot(dd, aes(x = date, y = V1)) +
-    geom_point()
 
-  p  # automatically uses the proper scale
-  p + scale_x_date_yq("quarters with default spacing")
-  p + scale_x_date_yq(breaks = date_yq_breaks(3))
-}
+dd <- data.frame(date = seq(date_yq(2016, 1), date_yq(2018, 1)), V1 = 1:9)
+p <- ggplot(dd, aes(x = date, y = V1)) +
+  geom_point()
 
+p  # automatically uses the proper scale
+p + scale_x_date_yq("quarters with default spacing")
+p + scale_x_date_yq(breaks = date_yq_breaks(3))
+
+
+# Different ways to specify breaks and labels
+p <- ggplot(
+  data.frame(date = seq(date_yq(2012, 4), date_yq(2018, 4)), V1 = 1:25),
+  aes(x = date, y = V1)
+) +
+  geom_point()
+
+p + scale_x_date_yq(labels = waiver()) + ggtitle("auto Labels")
+p + scale_x_date_yq(labels = NULL) + ggtitle("no Labels")
+p + scale_x_date_yq(labels = LETTERS[1:4]) + ggtitle("manual Labels")
+p + scale_x_date_yq(labels = format_yq_iso) + ggtitle("function Labels")
+
+p + scale_x_date_yq(breaks = waiver()) + ggtitle("auto breaks")
+p + scale_x_date_yq(breaks = NULL) + ggtitle("no breaks")
+p + scale_x_date_yq(breaks = date_yq(2013, 2:3) ) + ggtitle("manual breaks")
+p + scale_x_date_yq(breaks = date_yq_breaks(1) ) + ggtitle("function breaks")
 }
-\seealso{
-\link{date_xx_breaks}
 }

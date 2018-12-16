@@ -30,8 +30,6 @@ ggplot(
   scale_x_date_yq(breaks = date_yq_breaks(3)) 
 
 
-
-
 ggplot(
   dd[get_year(dd$date) %in% 2014, ],
   aes(
@@ -41,7 +39,6 @@ ggplot(
 ) + 
   geom_point() +
   scale_x_date_yq()
-
 
 ```
 
@@ -75,6 +72,32 @@ ggplot(
 ```
 
 
+## scale arguments
+
+```{r}
+
+  p <- ggplot(
+    dd,
+    aes(
+      x = date,
+      y = V1
+    )
+  ) + 
+    geom_point() 
+  
+  p + scale_x_date_yq(labels = waiver()) + ggtitle("auto Labels")
+  p + scale_x_date_yq(labels = NULL) + ggtitle("no Labels")
+  p + scale_x_date_yq(breaks = date_yq(2016, 2:3), labels = LETTERS[1:2] ) + ggtitle("manual Labels")
+  p + scale_x_date_yq(labels = format_yq_iso) + ggtitle("function Labels")
+  
+  p + scale_x_date_yq(breaks = waiver()) + ggtitle("auto breaks")
+  p + scale_x_date_yq(breaks = NULL) + ggtitle("no breaks")
+  p + scale_x_date_yq(breaks = date_yq(2016, 2:3) ) + ggtitle("manual breaks")
+  p + scale_x_date_yq(breaks = date_yq_breaks(1) ) + ggtitle("function breaks")
+
+
+
+```
 ## Print every second quarter
 
 ```{r}
