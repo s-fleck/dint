@@ -4,12 +4,14 @@
 \name{dint-package}
 \alias{dint}
 \alias{dint-package}
-\title{dint: A Toolkit for Year-Quarter, Year-Month and Year-Isoweek Dates}
+\title{dint: A Toolkit for Year-Quarter, Year-Month and Year-Isoweek
+    Dates}
 \description{
-S3 classes and methods to create and work with year-quarter, year-month and
-  year-isoweek vectors. Basic arithmetic operations (such as adding and 
-  subtracting) are supported, as well as formatting and converting to and from 
-  standard R date types.
+S3 classes and methods to create and work
+    with year-quarter, year-month and year-isoweek vectors. Basic
+    arithmetic operations (such as adding and subtracting) are supported,
+    as well as formatting and converting to and from standard R date
+    types.
 }
 \seealso{
 Useful links:

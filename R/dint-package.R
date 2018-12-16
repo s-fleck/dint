@@ -8,6 +8,10 @@
   dyn_register_s3_method("lubridate", "month", "date_xx")
   dyn_register_s3_method("zoo", "as.yearqtr", "date_yq")
   dyn_register_s3_method("zoo", "as.yearmon", "date_ym")
+  dyn_register_s3_method("ggplot2", "scale_type", "date_yq")
+  dyn_register_s3_method("ggplot2", "scale_type", "date_ym")
+  dyn_register_s3_method("ggplot2", "scale_type", "date_yw")
+
 
   # +- yq --------------------------------------------------------------------
   if (requireNamespace("scales", quietly = TRUE)){
@@ -62,7 +66,7 @@
       scales::trans_new(
         name = "date_yw",
         transform = function(x) {
-          as.numeric(as.Date(x))
+          as.numeric(first_of_isoweek(x)) + 3.5
         },
         inverse = function(x) {
           origin <- structure(0, class = c("POSIXct", "POSIXt"), tzone = "UTC")

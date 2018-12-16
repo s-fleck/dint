@@ -34,6 +34,7 @@ NULL
 
 
 # This tells ggplot2 what scale to look for
+
 scale_type.date_yq <- function(x) "date_yq"
 scale_type.date_ym <- function(x) "date_ym"
 scale_type.date_yw <- function(x) "date_yw"
@@ -46,6 +47,7 @@ scale_type.date_yw <- function(x) "date_yw"
 scale_x_date_yq <- function(
   name = "Quarter",
   breaks = date_yq_breaks(),
+  labels = ggplot2::waiver(),
   limits = NULL,
   position = "bottom"
 ){
@@ -53,6 +55,7 @@ scale_x_date_yq <- function(
     aesthetics = c("x", "xmin", "xmax", "xend"),
     name = name,
     limits = limits,
+    labels = labels,
     breaks = breaks,
     position = position
   )
@@ -66,6 +69,7 @@ scale_x_date_yq <- function(
 scale_y_date_yq <- function(
   name = "Quarter",
   breaks = date_yq_breaks(),
+  labels = ggplot2::waiver(),
   limits = NULL,
   position = "left"
 ){
@@ -73,6 +77,7 @@ scale_y_date_yq <- function(
     aesthetics = c("y", "ymin", "ymax", "yend"),
     name = name,
     limits = limits,
+    labels = labels,
     breaks = breaks,
     position = position
   )
@@ -85,6 +90,7 @@ scale_date_yq <- function(
   aesthetics,
   name = "Quarter",
   breaks = date_yq_breaks(),
+  labels = ggplot2::waiver(),
   limits = NULL,
   position = "bottom"
 ){
@@ -93,6 +99,7 @@ scale_date_yq <- function(
     scale_name = "date_yq",
     name = name,
     palette = identity,
+    labels = labels,
     guide = "none",
     trans = date_yq_trans,
     super = ggplot2::ScaleContinuousDate,
@@ -113,6 +120,7 @@ scale_date_yq <- function(
 scale_x_date_ym <- function(
   name = "Month",
   breaks = date_ym_breaks(),
+  labels = ggplot2::waiver(),
   limits = NULL,
   position = "bottom"
 ){
@@ -120,6 +128,7 @@ scale_x_date_ym <- function(
     aesthetics = c("x", "xmin", "xmax", "xend"),
     name = name,
     breaks = breaks,
+    labels = labels,
     limits = limits,
     position = position
   )
@@ -133,6 +142,7 @@ scale_x_date_ym <- function(
 scale_y_date_ym <- function(
   name = "Month",
   breaks = date_ym_breaks(),
+  labels = ggplot2::waiver(),
   limits = NULL,
   position = "left"
 ) {
@@ -140,6 +150,7 @@ scale_y_date_ym <- function(
     "y", "ymin", "ymax", "yend"),
     name = name,
     breaks = breaks,
+    labels = labels,
     limits = limits,
     position = position
   )
@@ -152,6 +163,7 @@ scale_date_ym <- function(
   aesthetics,
   name = "Month",
   breaks = date_ym_breaks(),
+  labels = ggplot2::waiver(),
   limits = NULL,
   position = "left"
 ){
@@ -161,6 +173,7 @@ scale_date_ym <- function(
     name = name,
     breaks = breaks,
     palette = identity,
+    labels = labels,
     guide = "none",
     trans = date_ym_trans,
     super = ggplot2::ScaleContinuousDate,
@@ -176,8 +189,9 @@ scale_date_ym <- function(
 #' @rdname scale_date_xx
 #' @export
 scale_x_date_yw <- function(
-  name = "Month",
+  name = "Week",
   breaks = date_yw_breaks(),
+  labels = ggplot2::waiver(),
   limits = NULL,
   position = "bottom"
 ){
@@ -185,6 +199,7 @@ scale_x_date_yw <- function(
     aesthetics = c("x", "xmin", "xmax", "xend"),
     name = name,
     breaks = breaks,
+    labels = labels,
     limits = limits,
     position = position
   )
@@ -196,8 +211,9 @@ scale_x_date_yw <- function(
 #' @rdname scale_date_xx
 #' @export
 scale_y_date_yw <- function(
-  name = "Month",
+  name = "Week",
   breaks = date_yw_breaks(),
+  labels = ggplot2::waiver(),
   limits = NULL,
   position = "left"
 ){
@@ -217,6 +233,7 @@ scale_date_yw <- function(
   aesthetics,
   name = "Week",
   breaks = date_yw_breaks(),
+  labels = ggplot2::waiver(),
   limits = NULL,
   position = "bottom"
 ){
@@ -227,6 +244,7 @@ scale_date_yw <- function(
     breaks = breaks,
     palette = identity,
     guide = "none",
+    labels = labels,
     trans = date_yw_trans,
     super = ggplot2::ScaleContinuousDate,
     position = position,
@@ -407,9 +425,6 @@ date_yw_breaks <- function(
       breaks <- date_yw(seq(ywin, ywax, by = by), 1)
     }
 
-    # fix breaks at the corner of the plot (outside the data range)
-    # this works well if the plot area is padded by 1 unit
-    # (see scale_date_** expand argument)
     breaks <- breaks[breaks >= xmin & breaks <= xmax]
 
     if (length(breaks) == 1){

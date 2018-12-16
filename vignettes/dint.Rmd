@@ -1,8 +1,10 @@
 ---
-title: "Dint: A tooblox for year-quarter and year-month dates"
+title: "Dint: Integer Representations of Calendar Periods"
 author: "Stefan Fleck"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{dint}
   %\VignetteEncoding{UTF-8}
@@ -14,6 +16,7 @@ editor_options:
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  fig.width = 3.4,
   comment = "#>"
 )
 ```
@@ -28,9 +31,10 @@ if you don't need to work with such special dates directly, dint can still help
 you format (for example) plot axis. 
 
 
-# date_xx Objects
+# date_xx Vectors
 
 dint provides 4 different S3 classes that inherit from `date_xx`.
+
 * `date_yq` for year-quarter dates
 * `date_yw` for year-month dates
 * `date_yw` for year-isoweek dates. Please note that the year for isoweeks does 
@@ -44,21 +48,21 @@ dint provides 4 different S3 classes that inherit from `date_xx`.
   
   
 
-# Creating
- 
-```{r}
+# Creation
 
-# date_* Objects can be created using explicit constructors...
+`date_xx` vectors can be created using explicit constructors... 
+```{r}
 date_yq(2015, 1)
 date_ym(c(2015, 2016), c(1, 2))
 date_yw(c(2008, 2009), 1)
+```
 
-# ...or through coercion of dates or integers
+..or through coercion of `Dates` or `integers`
+```{r}
 as_date_yq(Sys.Date())
 as_date_yq(20141)   # the last digit is interpreted as quarter
 as_date_ym(201412)  # the last two digits are interpreted as month
 as_date_yw("2018-01-01")  # anything else that can be parsed by as.Date() works
-
 ```
 
 
@@ -66,24 +70,25 @@ as_date_yw("2018-01-01")  # anything else that can be parsed by as.Date() works
 
 # Coercion
 
+You can coerce `Dates` to any `date_xx` subclass with `as_date_**()`
 ```{r}
-
-# You can coerce dates to any date_xx object with as_date_**
 d <- as.Date("2018-05-12")
 as_date_yq(d)
 as_date_ym(d)
 as_date_yw(d)
 as_date_y(d)
+```
 
-
-# Conversely, you can convert date_xx objects back to the various R Date formats
+Conversely, you can convert `date_xx` back to R `Dates`
+```{r}
 q <- date_yq(2015, 1)
 as.Date(q)
 as.POSIXlt(q)
+```
 
-
-# as.POSIXct creates datetimes in UTC/GMT, so the result might not always be as
-# expected, depending on your local timezone.
+`as.POSIXct()` creates datetimes in UTC/GMT, so the result might not always be 
+as expected, depending on your local timezone.
+```{r}
 as.POSIXct(q)
 as.POSIXct(q, tz = "GMT")
 print(as.POSIXct(q), tz = "GMT")
@@ -95,67 +100,81 @@ print(as.POSIXct(q), tz = "CET")
 
 # Arithmetics and Sequences
 
+All `date_xx` support addition, subtraction and sequence generation.
+
 ```{r}
-# Quarters
 q <- date_yq(2014, 4)
-q
 q + 1
-seq(q -2, q + 2)
+q - 1
+seq(q - 2, q + 2)
 
-
-# Months
 m <- date_ym(2014, 12)
-m
 m + 1
-seq(m -2, m + 2)
+m - 1
+seq(m - 2, m + 2)
+
+w <- date_yw(2017, 33)
+w + 1
+w - 1
+seq(w - 2, w + 2)
 
 ```
 
 
 
 
-# Accessing elements
+# Accessors
+
+## date_xx Components
+
+You can access components of `date_xx` (e.g the quarter of a `date_yq`) with 
+accessor functions. You can also use these functions to convert between
+`date_xx` vectors.
 
 ```{r}
 q <- date_yq(2014, 4)
 get_year(q)
 get_quarter(q)
 get_month(q) # defaults to first month of quarter
-
+get_isoweek(q)
 
 m <- date_ym(2014, 12)
 get_year(m)
 get_quarter(m)
 get_month(m)
+get_isoweek(m)
+
+w <- date_yw(2014, 33)
+get_year(w)
+get_quarter(w)
+get_month(w)
+get_isoweek(w)
 ```
 
 
-
+## lubridate Compat Accessors
 
 If you use lubridate, you can just use the slighly less verbose lubridate 
 accessors
 
 ```{r}
-stopifnot(requireNamespace("lubridate"))
+suppressPackageStartupMessages(library(lubridate))
 
-lubridate::year(q)
-lubridate::quarter(q)
-lubridate::month(q)
-
+year(q)
+quarter(q)
+month(q)
 ```
 
 
-
-
-You can also get the first and last days of calendar periods with dint
-
+You can get the first and last days of calendar periods with dint
 ```{r}
 q <- date_yq(2015, 1)
 first_of_quarter(q)  # the same as as.Date(q), but more explicit
 last_of_quarter(q)  # the same as as.Date(q), but more explicit
+```
 
-
-# These functions work with normal dates
+These functions work with normal dates
+```{r}
 d <- as.Date("2018-05-12")
 first_of_year(d)
 last_of_year(d)
@@ -166,19 +185,20 @@ last_of_month(d)
 first_of_isoweek(d)
 last_of_isoweek(d)
 
-# Alternativeley you can also use these:
+# Alternativeley you can use these:
 first_of_yq(2012, 2)
 last_of_ym(2012, 2)
-
+last_of_yw(2011, 52)
 ```
-
 
 
 
 
 # Formatting
 
-Formating `date_yq` objects is easy and uses a subset of the  placeholders of 
+## format() Methods
+
+Formating `date_xx` vectors is easy and uses a subset of the placeholders of 
 `base::strptime()` (+ `%q` for quarters).
 
 ```{r}
@@ -187,34 +207,86 @@ format(q, "%Y-Q%q")  # iso/default
 format(q, "%Y.%q")
 format(q, "%y.%q")
 
-
 m <- date_ym(2014, 12)
 format(m, "%Y-M%m")  # iso/default
 
 w <- date_yw(2014, 1)
 format(w, "%Y-W%W")  # iso/default
+```
 
 
-# You can use these for coercion and formatting in one step
+## Shorthands
+
+dint also provides all-in-one functions for common tasks
+```{r}
 format_yq(Sys.Date())
+format_yq_short(Sys.Date())
+format_yq_shorter(Sys.Date())
+
 format_ym(Sys.Date())
 format_yw(Sys.Date())
 ```
 
 
+# ggplot2: Axis Labels
 
-
-For convenience, dint provides direct formatting functions for dates that are 
-useful for labelling ggplot axis.
-
-```{r, collapse=TRUE, fig.show='hold' }
+```{r} 
 library(ggplot2)
+```
 
-x <- data.frame(
-  time  = seq(as.Date("2016-01-01"), as.Date("2016-08-08"), by = "day")
+
+## Labelling date_xx Vectors
+
+dint implements `scale_date_**()` and `date_**_breaks()` that provide nicely 
+labelled axes for ggplots by default
+
+```{r, collapse=TRUE, fig.show='hold' } 
+q <- data.frame(
+  time  = seq(date_yq(2016, 1), date_yq(2016, 4)),
+  value = rnorm(4)
 )
 
-x$value <- rnorm(nrow(x))
+m <- data.frame(
+  time  = seq(date_ym(2016, 8), date_ym(2016, 11)),
+  value = rnorm(4)
+)
+
+w <- data.frame(
+  time  = seq(date_yw(2016, 48), date_yw(2017, 1)),
+  value = abs(rnorm(6))
+)
+
+w2 <- data.frame(
+  time  = seq(date_yw(2016, 1), date_yw(2019, 1)),
+  value = abs(rnorm(157))
+)
+
+ggplot(q, aes(x = time, y = value))  + 
+  geom_point()
+
+ggplot(m, aes(x = time, y = value))  + 
+  geom_line() +
+  scale_x_date_ym(labels = format_ym_shorter)
+
+ggplot(w, aes(x = time, y = value))  + 
+  geom_col()  + 
+  scale_x_date_yw(labels = format_yw_iso)
+
+ggplot(w2, aes(x = time, y = value)) + 
+  geom_smooth() 
+```
+
+
+## Labelling Date Vectors
+
+If you use R `Date` vectors, you can still use the formatting functions supplied
+by dint to generate nice axis labels.
+
+```{r, collapse=TRUE, fig.show='hold' } 
+x <- data.frame(
+  time  = seq(as.Date("2016-01-01"), as.Date("2016-08-08"), by = "day"),
+  value = rnorm(221)
+)
 
 p <- ggplot(
   x,
@@ -223,11 +295,9 @@ p <- ggplot(
     y = value)
   ) + geom_point()
 
-
 p + ggtitle("iso") + ggtitle("default")
 p + scale_x_date(labels = format_yq_iso) + ggtitle("date_yq_iso")
 p + scale_x_date(labels = format_ym_short) + ggtitle("date_ym_short")
 p + scale_x_date(labels = format_yw_shorter) + ggtitle("date_yw_shorter")
-
 ```
 
