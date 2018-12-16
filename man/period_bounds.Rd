@@ -8,6 +8,7 @@
 \alias{is_first_of_year}
 \alias{is_last_of_year}
 \alias{is_Date}
+\alias{is_POSIXlt}
 \title{Test for Period Bounds}
 \usage{
 is_quarter_bounds(first, last)
@@ -23,6 +24,8 @@ is_first_of_year(x)
 is_last_of_year(x)
 
 is_Date(x)
+
+is_POSIXlt(x)
 }
 \arguments{
 \item{x, first, last}{\code{Date} vectors}

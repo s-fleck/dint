@@ -2,7 +2,6 @@ context("utils")
 
 
 test_that("utils works as expected", {
-
   q <- date_yq(2018, 1)
   m <- date_ym(2018, 1)
   w <- date_yw(2018, 1)
@@ -17,4 +16,20 @@ test_that("utils works as expected", {
 
   expect_identical(which_date_xx(a), "date_yq")
   expect_error(which_date_xx(b))
+
+  # substr_right
+  expect_identical(substr_right("blubb", 3), "ubb")
+})
+
+
+
+
+test_that("tz works", {
+  if (!requireNamespace("lubridate", quietly = TRUE)){
+    skip("test requires lubridate")
+  }
+
+  expect_identical(tz(Sys.Date()), lubridate::tz(Sys.Date()))
+  t <- as.Date(Sys.Date(), tz = "CET")
+  expect_identical(tz(t), lubridate::tz(t))
 })

@@ -150,17 +150,20 @@ as.POSIXct.date_xx <- function(x, tz = "", ...){
 
 
 
-
+#' @rdname as.Date.date_xx
+#' @export
 Sys.date_yq <- function() as_date_yq(Sys.Date())
 
 
 
-
+#' @rdname as.Date.date_xx
+#' @export
 Sys.date_ym <- function() as_date_ym(Sys.Date())
 
 
 
-
+#' @rdname as.Date.date_xx
+#' @export
 Sys.date_yw <- function() as_date_yw(Sys.Date())
 
 

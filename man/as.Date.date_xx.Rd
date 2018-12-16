@@ -5,6 +5,9 @@
 \alias{as.Date.date_xx}
 \alias{as.POSIXlt.date_xx}
 \alias{as.POSIXct.date_xx}
+\alias{Sys.date_yq}
+\alias{Sys.date_ym}
+\alias{Sys.date_yw}
 \alias{as.Date.date_y}
 \alias{as.Date.date_ym}
 \alias{as.Date.date_yq}
@@ -14,6 +17,12 @@
 \method{as.POSIXlt}{date_xx}(x, tz = "", ...)
 
 \method{as.POSIXct}{date_xx}(x, tz = "", ...)
+
+Sys.date_yq()
+
+Sys.date_ym()
+
+Sys.date_yw()
 
 \method{as.Date}{date_y}(x, ...)
 

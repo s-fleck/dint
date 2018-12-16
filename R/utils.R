@@ -16,7 +16,7 @@ make_date <- function(y, m, d){
   if (requireNamespace("lubridate", quietly = TRUE)){
     lubridate::make_date(y, m, d)
   } else {
-    as.Date(ISOdate(y, m, d))
+    as.Date(ISOdate(y, m, d))  # nocov
   }
 }
 
@@ -29,8 +29,7 @@ substr_right <- function(x, n){
 }
 
 
-
-
+# nocov start
 dyn_register_s3_method <- function(
   pkg,
   generic,
@@ -61,7 +60,7 @@ dyn_register_s3_method <- function(
     }
   )
 }
-
+# nocov end
 
 
 

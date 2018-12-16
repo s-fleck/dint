@@ -11,22 +11,22 @@
 \title{ggplot2 Scales For date_xx Objects}
 \usage{
 scale_x_date_yq(name = "Quarter", breaks = date_yq_breaks(),
-  limits = NULL, position = "bottom")
+  labels = ggplot2::waiver(), limits = NULL, position = "bottom")
 
 scale_y_date_yq(name = "Quarter", breaks = date_yq_breaks(),
-  limits = NULL, position = "left")
+  labels = ggplot2::waiver(), limits = NULL, position = "left")
 
 scale_x_date_ym(name = "Month", breaks = date_ym_breaks(),
-  limits = NULL, position = "bottom")
+  labels = ggplot2::waiver(), limits = NULL, position = "bottom")
 
 scale_y_date_ym(name = "Month", breaks = date_ym_breaks(),
-  limits = NULL, position = "left")
+  labels = ggplot2::waiver(), limits = NULL, position = "left")
 
-scale_x_date_yw(name = "Month", breaks = date_yw_breaks(),
-  limits = NULL, position = "bottom")
+scale_x_date_yw(name = "Week", breaks = date_yw_breaks(),
+  labels = ggplot2::waiver(), limits = NULL, position = "bottom")
 
-scale_y_date_yw(name = "Month", breaks = date_yw_breaks(),
-  limits = NULL, position = "left")
+scale_y_date_yw(name = "Week", breaks = date_yw_breaks(),
+  labels = ggplot2::waiver(), limits = NULL, position = "left")
 }
 \arguments{
 \item{name}{The name of the scale. Used as the axis or legend title. If
@@ -40,6 +40,16 @@ omitted.}
 \item \code{waiver()} for the breaks specified by \code{date_breaks}
 \item A \code{Date}/\code{POSIXct} vector giving positions of breaks
 \item A function that takes the limits as input and returns breaks as output
+}}
+
+\item{labels}{One of:
+\itemize{
+\item \code{NULL} for no labels
+\item \code{waiver()} for the default labels computed by the
+transformation object
+\item A character vector giving labels (must be same length as \code{breaks})
+\item A function that takes the breaks as input and returns labels
+as output
 }}
 
 \item{limits}{A numeric vector of length two providing limits of the scale.

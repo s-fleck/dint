@@ -1,6 +1,6 @@
 # dint 2.0.0.9000
 
-* added *ggplot2* scales for dint data types
+* added **ggplot2** scales for dint data types
 * added predicates to check wether dates correspond to the boundaries of 
   years or quarters (`is_quarter_bounds()`, `is_year_bounds()`, 
   `is_first_of_quarter()`, etc...)
@@ -10,6 +10,8 @@
   (the result is an `integer`)
 * added `as_yearmon()` and `as_yearqtr()` for converting to *zoo* S3 classes
 * Removed functions that were deprecated with dint 2.0.0
+* added `Sys.date_yq()`, `Sys.date_ym()` and `Sys.date_yw()` to get the current
+  quarter, month or isoweek.
 * lots of small fixes
 
 

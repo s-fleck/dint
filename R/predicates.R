@@ -51,6 +51,7 @@ is_last_of_quarter <- function(
 
 
 
+
 #' @export
 #' @rdname period_bounds
 is_year_bounds <- function(
@@ -62,13 +63,15 @@ is_year_bounds <- function(
 
 
 
+
 #' @export
 #' @rdname period_bounds
-
 is_first_of_year <- function(x){
    r <- as.POSIXlt(x, tz = tz(x))
    r$mon == 0L & r$mday == 1L
 }
+
+
 
 
 #' @export
@@ -77,6 +80,7 @@ is_last_of_year <- function(x){
    r <- as.POSIXlt(x, tz = tz(x))
    r$mon == 11L & r$mday == 31L
 }
+
 
 
 
@@ -91,9 +95,14 @@ is_Date <- function(
 
 
 
+#' @export
+#' @rdname period_bounds
 is_POSIXlt <- function(x){
   inherits(x, "POSIXlt")
 }
+
+
+
 
 # utils -------------------------------------------------------------------
 

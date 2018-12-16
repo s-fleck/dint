@@ -52,3 +52,8 @@ test_that("year_bounds", {
     c(FALSE, TRUE, FALSE, FALSE)
   )
 })
+
+
+test_that("is_POSIXlt", {
+expect_true(is_POSIXlt(as.POSIXlt(Sys.Date())))
+})
