@@ -37,7 +37,7 @@ as_yearweek(x)
 a \link[zoo:yearqtr]{zoo::yearqtr}, \link[zoo:yearmon]{zoo::yearmon} or \code{dint::yearweek} vector.
 }
 \description{
-\code{as_yearqtr()} and \code{as_yearmon()} are included for interoperatility with
+\code{as_yearqtr()} and \code{as_yearmon()} are included for interoperability with
 \code{\link[zoo:yearqtr]{zoo::yearqtr()}}, an alternative year-quarter format that is based on a
 decimal representation as opposed to dint's integer representation of
 year-quarters. \code{as_yearweek()} follows a similar idea, but there is no

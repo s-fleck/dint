@@ -1,0 +1,49 @@
+reference:
+- title: Coercion and Constructors
+  desc: ~
+  contents:
+  - '`date_xx`'
+  - '`date_y`'
+  - '`date_ym`'
+  - '`date_yq`'
+  - '`date_yw`'
+  - '`as.Date.date_xx`'
+  - '`first_of_isoweek`'
+  - '`first_of_isoyear`'
+  - '`first_of_month`'
+  - '`first_of_quarter`'
+  - '`first_of_year`'
+  - '`first_of_yq`'
+  - '`get_year`'
+  - '`year.date_xx`'
+  - '`as_yearqtr`'
+- title: Formatting & Scales
+  desc: ~
+  contents:
+  - '`format_date_xx`'
+  - '`format_ym`'
+  - '`format_yq`'
+  - '`format_yw`'
+  - '`scale_date_xx`'
+  - '`date_xx_breaks`'
+- title: Arithmethics and Sequences
+  desc: ~
+  contents:
+  - '`date_xx_arithmetic`'
+  - '`date_xx_sequences`'
+  - '`round.date_yq`'
+  - '`%y+%`'
+- title: Methods for Base R Generics
+  desc: ~
+  contents:
+  - '`Ops.date_xx`'
+  - '`Summary.date_xx`'
+  - '`[.date_xx`'
+  - '`c.date_xx`'
+  - '`print.date_xx`'
+  - '`rep.date_xx`'
+- title: Misc
+  desc: ~
+  contents:
+  - '`is_quarter_bounds`'
+  - '`date_xx_arithmetic_disabled`'

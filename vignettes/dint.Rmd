@@ -26,23 +26,32 @@ knitr::opts_chunk$set(
 library(dint)
 ```
 
-dint helps you with working with year-quarter and year-month dates. It is
-implemented in base R and comes with zero external dependencies. Even
-if you don't need to work with such special dates directly, dint can still help
-you format (for example) plot axis. 
+dint helps you with working with year-quarter, year-month and year-isoweek 
+dates. It stores them in an easily human readable integer format, e.q `20141` 
+for the first quarter of 2014 and so forth. If you are already using such 
+integers to represent dates, dint can make many common operations easier for 
+you.
+
+dint is implemented in base R and comes with zero external dependencies. 
+Even if you don't work with such special dates directly, dint can still 
+help you at formatting dates, labelling plot axes, or getting first / last days 
+of calendar periods (quarters, months, isoweeks).
+
+
 
 
 # date_xx Vectors
 
-dint provides 4 different S3 classes that inherit from `date_xx`.
+dint provides 4 different S3 classes that inherit from `date_xx`^[`date_xx` is 
+just a superclass for all dint date classes, you do not need to use it directly]. 
 
 * `date_yq` for year-quarter dates
 * `date_yw` for year-month dates
 * `date_yw` for year-isoweek dates. Please note that the year for isoweeks does 
-  not necessarily correspond to the calender year 
+  not necessarily correspond to the calendar year 
   [wikipedia](https://en.wikipedia.org/wiki/ISO_week_date)
 * `date_y` for storing years. This class exists for consistency and provides 
-  litle advantage over storing years as bare integers. The main use of this 
+  little advantage over storing years as bare integers. The main use of this 
   class is in package development when you want to write your own generics
   and methods for years. 
   
@@ -155,7 +164,7 @@ get_isoweek(w)
 
 ## lubridate Compat Accessors
 
-If you use lubridate, you can just use the slighly less verbose lubridate 
+If you use lubridate, you can just use the slightly less verbose lubridate 
 accessors
 
 ```{r}
@@ -301,4 +310,3 @@ p + scale_x_date(labels = format_yq_iso) + ggtitle("date_yq_iso")
 p + scale_x_date(labels = format_ym_short) + ggtitle("date_ym_short")
 p + scale_x_date(labels = format_yw_shorter) + ggtitle("date_yw_shorter")
 ```
-

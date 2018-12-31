@@ -1,0 +1,233 @@
+---
+title: "Dint: A tooblox for year-quarter and year-month dates"
+author: "Stefan Fleck"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{dint}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(dint)
+```
+
+dint helps you with working with year-quarter and year-month dates. It is
+implemented in base R and comes with zero external dependencies. Even
+if you don't need to work with such special dates directly, dint can still help
+you format (for example) plot axis. 
+
+
+# date_xx Objects
+
+dint provides 4 different S3 classes that inherit from `date_xx`.
+* `date_yq` for year-quarter dates
+* `date_yw` for year-month dates
+* `date_yw` for year-isoweek dates. Please note that the year for isoweeks does 
+  not necessarily correspond to the calender year 
+  [wikipedia](https://en.wikipedia.org/wiki/ISO_week_date)
+* `date_y` for storing years. This class exists for consistency and provides 
+  litle advantage over storing years as bare integers. The main use of this 
+  class is in package development when you want to write your own generics
+  and methods for years. 
+  
+  
+  
+
+# Creating
+ 
+```{r}
+
+# date_* Objects can be created using explicit constructors...
+date_yq(2015, 1)
+date_ym(c(2015, 2016), c(1, 2))
+date_yw(c(2008, 2009), 1)
+
+# ...or through coercion of dates or integers
+as_date_yq(Sys.Date())
+as_date_yq(20141)   # the last digit is interpreted as quarter
+as_date_ym(201412)  # the last two digits are interpreted as month
+as_date_yw("2018-01-01")  # anything else that can be parsed by as.Date() works
+
+```
+
+
+
+
+# Coercion
+
+```{r}
+
+# You can coerce dates to any date_xx object with as_date_**
+d <- as.Date("2018-05-12")
+as_date_yq(d)
+as_date_ym(d)
+as_date_yw(d)
+as_date_y(d)
+
+
+# Conversely, you can convert date_xx objects back to the various R Date formats
+q <- date_yq(2015, 1)
+as.Date(q)
+as.POSIXlt(q)
+
+
+# as.POSIXct creates datetimes in UTC/GMT, so the result might not always be as
+# expected, depending on your local timezone.
+as.POSIXct(q)
+as.POSIXct(q, tz = "GMT")
+print(as.POSIXct(q), tz = "GMT")
+print(as.POSIXct(q), tz = "CET")
+
+```
+
+
+
+# Arithmetics and Sequences
+
+```{r}
+# Quarters
+q <- date_yq(2014, 4)
+q
+q + 1
+seq(q -2, q + 2)
+
+
+# Months
+m <- date_ym(2014, 12)
+m
+m + 1
+seq(m -2, m + 2)
+
+```
+
+
+
+
+# Accessing elements
+
+```{r}
+q <- date_yq(2014, 4)
+get_year(q)
+get_quarter(q)
+get_month(q) # defaults to first month of quarter
+
+
+m <- date_ym(2014, 12)
+get_year(m)
+get_quarter(m)
+get_month(m)
+```
+
+
+
+
+If you use lubridate, you can just use the slighly less verbose lubridate 
+accessors
+
+```{r}
+stopifnot(requireNamespace("lubridate"))
+
+lubridate::year(q)
+lubridate::quarter(q)
+lubridate::month(q)
+
+```
+
+
+
+
+You can also get the first and last days of calendar periods with dint
+
+```{r}
+q <- date_yq(2015, 1)
+first_of_quarter(q)  # the same as as.Date(q), but more explicit
+last_of_quarter(q)  # the same as as.Date(q), but more explicit
+
+
+# These functions work with normal dates
+d <- as.Date("2018-05-12")
+first_of_year(d)
+last_of_year(d)
+first_of_quarter(d)
+last_of_quarter(d)
+first_of_month(d)
+last_of_month(d)
+first_of_isoweek(d)
+last_of_isoweek(d)
+
+# Alternativeley you can also use these:
+first_of_yq(2012, 2)
+last_of_ym(2012, 2)
+
+```
+
+
+
+
+
+# Formatting
+
+Formating `date_yq` objects is easy and uses a subset of the  placeholders of 
+`base::strptime()` (+ `%q` for quarters).
+
+```{r}
+q <- date_yq(2014, 4)
+format(q, "%Y-Q%q")  # iso/default
+format(q, "%Y.%q")
+format(q, "%y.%q")
+
+
+m <- date_ym(2014, 12)
+format(m, "%Y-M%m")  # iso/default
+
+w <- date_yw(2014, 1)
+format(w, "%Y-W%W")  # iso/default
+
+
+# You can use these for coercion and formatting in one step
+format_yq(Sys.Date())
+format_ym(Sys.Date())
+format_yw(Sys.Date())
+```
+
+
+
+
+For convenience, dint provides direct formatting functions for dates that are 
+useful for labelling ggplot axis.
+
+```{r, collapse=TRUE, fig.show='hold' }
+library(ggplot2)
+
+x <- data.frame(
+  time  = seq(as.Date("2016-01-01"), as.Date("2016-08-08"), by = "day")
+)
+
+x$value <- rnorm(nrow(x))
+
+p <- ggplot(
+  x,
+  aes(
+    x = time, 
+    y = value)
+  ) + geom_point()
+
+
+p + ggtitle("iso") + ggtitle("default")
+p + scale_x_date(labels = format_yq_iso) + ggtitle("date_yq_iso")
+p + scale_x_date(labels = format_ym_short) + ggtitle("date_ym_short")
+p + scale_x_date(labels = format_yw_shorter) + ggtitle("date_yw_shorter")
+
+```
+

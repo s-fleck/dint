@@ -2,7 +2,7 @@
 
 #' Coerce to zoo yeartqr objects
 #'
-#' `as_yearqtr()` and `as_yearmon()` are included for interoperatility with
+#' `as_yearqtr()` and `as_yearmon()` are included for interoperability with
 #' [zoo::yearqtr()], an alternative year-quarter format that is based on a
 #' decimal representation as opposed to dint's integer representation of
 #' year-quarters. `as_yearweek()` follows a similar idea, but there is no
