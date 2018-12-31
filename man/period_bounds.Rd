@@ -9,7 +9,7 @@
 \alias{is_last_of_year}
 \alias{is_Date}
 \alias{is_POSIXlt}
-\title{Test for Period Bounds}
+\title{Useful Predicates for Dates}
 \usage{
 is_quarter_bounds(first, last)
 

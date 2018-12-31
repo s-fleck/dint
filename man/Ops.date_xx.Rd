@@ -22,7 +22,7 @@ date_yq(2015, 1) < date_yq(2015, 2)
 # comparison with integers is ok
 date_yq(2015, 1) < 20152
 
-# but two different date_xx cannot be compared#'
+# but two different date_xx cannot be compared
 try(date_yq(2015, 1) < date_ym(2015, 2))
 
 }

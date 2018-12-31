@@ -1,4 +1,4 @@
-#' Test for Period Bounds
+#' Useful Predicates for Dates
 #'
 #' `is_first_of_quarter()`, `is_last_of_quarter()`, `is_first_of_year()` and
 #' `is_last_of_year()` check whether a `Date` is the first or respectively the

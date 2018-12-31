@@ -59,7 +59,7 @@ Summary.date_xx <- function (
 #' # comparison with integers is ok
 #' date_yq(2015, 1) < 20152
 #'
-#' # but two different date_xx cannot be compared#'
+#' # but two different date_xx cannot be compared
 #' try(date_yq(2015, 1) < date_ym(2015, 2))
 #'
 Ops.date_xx <- function (
@@ -132,7 +132,7 @@ NULL
 
 
 
-#' Disabled Date Arithmetic Operations
+#' Arithmetic Operations Disabled for date_xx
 #'
 #' This page lists operators that are disabled for `date_yq` and `date_ym`
 #' objects.

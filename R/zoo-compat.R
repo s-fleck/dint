@@ -12,7 +12,7 @@
 #'
 #' @param x any \R object
 #'
-#' @return a [zoo::yearqtr] vector
+#' @return a [zoo::yearqtr], [zoo::yearmon] or `dint::yearweek` vector.
 #' @export
 #'
 #' @examples

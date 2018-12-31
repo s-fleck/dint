@@ -9,7 +9,7 @@
 \alias{\%/\%.date_xx}
 \alias{\%\%.date_y}
 \alias{\%/\%.date_y}
-\title{Disabled Date Arithmetic Operations}
+\title{Arithmetic Operations Disabled for date_xx}
 \usage{
 \method{*}{date_xx}(x, y)
 

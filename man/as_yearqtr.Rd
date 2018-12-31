@@ -34,7 +34,7 @@ as_yearweek(x)
 \item{x}{any \R object}
 }
 \value{
-a \link[zoo:yearqtr]{zoo::yearqtr} vector
+a \link[zoo:yearqtr]{zoo::yearqtr}, \link[zoo:yearmon]{zoo::yearmon} or \code{dint::yearweek} vector.
 }
 \description{
 \code{as_yearqtr()} and \code{as_yearmon()} are included for interoperatility with
