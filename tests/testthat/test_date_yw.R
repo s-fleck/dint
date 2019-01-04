@@ -50,9 +50,9 @@ test_that("as_date_yw behaves as expected", {
 
 test_that("format_yw behaves as expected", {
   expect_identical(format_yw(2015, 5), "2015-W05")
-  expect_identical(format_yw(201505, format = "%Y.%W"), "2015.05")
+  expect_identical(format_yw(201505, format = "%Y.%V"), "2015.05")
   expect_identical(
-    format_yw(as_date_yw(201505), format = "%y.%W"),
+    format_yw(as_date_yw(201505), format = "%y.%V"),
     "15.05"
   )
 })

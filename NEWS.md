@@ -1,6 +1,9 @@
 # dint 2.1.0.9000
 
-# dint 2.0.0.9000
+* format.date_xx now used `%V` for isoweeks instead of `%W` 
+  (like `strftime()`).
+
+# dint 2.1.0
 
 * added **ggplot2** scales for dint data types
 * added predicates to check whether dates correspond to the boundaries of 

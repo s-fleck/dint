@@ -27,7 +27,7 @@
   month_names = format(ISOdate(2000, 1:12, 1), "\%B"),
   month_abb = format(ISOdate(2000, 1:12, 1), "\%b"), ...)
 
-\method{format}{date_yw}(x, format = "\%Y-W\%W", ...)
+\method{format}{date_yw}(x, format = "\%Y-W\%V", ...)
 
 format_yq_iso(x)
 
@@ -57,7 +57,9 @@ format_yw_shorter(x)
 \code{\%y} \tab Year without century (the last two digits of the year)\cr
 \code{\%m} \tab Month as a decimal numbers (01-12)\cr
 \code{\%B} \tab Full month name\cr
-\code{\%b} \tab Abbreviated month name
+\code{\%b} \tab Abbreviated month name\cr
+\code{\%V} \tab Week of the year as decimal number (01-53) as defined in
+\href{https://en.wikipedia.org/wiki/ISO_week_date}{ISO8601}
 }
 Not all placeholders are supported for all \code{date_xx} subclasses.
 Literal \% can be escaped with \code{"\%\%"} (as in \code{\link[base:sprintf]{base::sprintf()}}).}
