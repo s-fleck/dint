@@ -1,6 +1,10 @@
 # dint 2.1.0.9000
 
-# dint 2.0.0.9000
+* added `yq()`, `qy()` parsers similar to `lubridate::dmy()` & co
+
+
+
+# dint 2.0.1
 
 * added **ggplot2** scales for dint data types
 * added predicates to check whether dates correspond to the boundaries of 
