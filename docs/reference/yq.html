@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Coerce and Format to Year-Isoweek Strings — format_yw • dint</title>
+<title>Parse Dates With Year and Quarter Components — yq • dint</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,12 @@
 
 
 
-<meta property="og:title" content="Coerce and Format to Year-Isoweek Strings — format_yw" />
+<meta property="og:title" content="Parse Dates With Year and Quarter Components — yq" />
 
-<meta property="og:description" content="Coerce and Format to Year-Isoweek Strings" />
+<meta property="og:description" content="These are very generic parsers for year/quarter formats that work with
+nearly all possible year/quarter formats. As long as x contains a
+4-digit-year and a 1-digit-quarter and no additional numbers,
+you should be fine." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,74 +108,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Coerce and Format to Year-Isoweek Strings</h1>
-    <small class="dont-index">Source: <a href='https://github.com/s-fleck/dint/blob/master/R/format.R'><code>R/format.R</code></a></small>
-    <div class="hidden name"><code>format_yw.Rd</code></div>
+    <h1>Parse Dates With Year and Quarter Components</h1>
+    <small class="dont-index">Source: <a href='https://github.com/s-fleck/dint/blob/master/R/parser.R'><code>R/parser.R</code></a></small>
+    <div class="hidden name"><code>yq.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Coerce and Format to Year-Isoweek Strings</p>
+    <p>These are very generic parsers for year/quarter formats that work with
+nearly all possible year/quarter formats. As long as <code>x</code> contains a
+4-digit-year and a 1-digit-quarter and no additional numbers,
+you should be fine.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>format_yw</span>(<span class='no'>x</span>, <span class='kw'>w</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y-W%W"</span>)</pre>
+    <pre class="usage"><span class='fu'>yq</span>(<span class='no'>x</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>qy</span>(<span class='no'>x</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x, w</th>
-      <td><p>Two integer (vectors). <code>w</code> is optional and the interpretation of
-<code>x</code> will depend on whether <code>w</code> is supplied or not:</p><ul>
-<li><p>if only <code>x</code> is supplied, <code>x</code> will be passed to <code><a href='date_yw.html'>as_date_yw()</a></code>
-(e.g. <code>x = 201604</code> means 4th isoweek of 2016)</p></li>
-<li><p>if <code>x</code> and <code>w</code> are supplied, <code>x</code> is interpreted as year and <code>w</code> as
-week.</p></li>
-</ul></td>
+      <th>x</th>
+      <td><p>a <code>character</code> vector</p></td>
     </tr>
     <tr>
-      <th>format</th>
-      <td><p>A format that uses a subset of the same placeholders as
-<code><a href='https://www.rdocumentation.org/packages/base/topics/strptime'>base::strptime()</a></code>:</p><table class='table'>
-<tr><td></td><td><code>%Y</code></td></tr>
-<tr><td></td><td>Year with century (the full year)</td></tr>
-<tr><td></td><td><code>%y</code></td></tr>
-<tr><td></td><td>Year without century (the last two digits of the year)</td></tr>
-<tr><td></td><td><code>%m</code></td></tr>
-<tr><td></td><td>Month as a decimal numbers (01-12)</td></tr>
-<tr><td></td><td><code>%B</code></td></tr>
-<tr><td></td><td>Full month name</td></tr>
-<tr><td></td><td><code>%b</code></td></tr>
-<tr><td></td><td>Abbreviated month name</td></tr>
-</table>
-<p>Not all placeholders are supported for all <code>date_xx</code> subclasses.
-Literal % can be escaped with <code>"%%"</code> (as in <code><a href='https://www.rdocumentation.org/packages/base/topics/sprintf'>base::sprintf()</a></code>).</p></td>
+      <th>quiet</th>
+      <td><p>a <code>logical</code> scalar. If <code>TRUE</code> warnings on parsing failures are
+suppressed.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a <code>character</code> vector</p>
-    
-    <h2 class="hasAnchor" id="formatting-shorthands"><a class="anchor" href="#formatting-shorthands"></a>Formatting shorthands</h2>
-
-    
-    <p>Format shorthand functions in the form of <code>format_y*_[preset]()</code> directly
-apply formatting presets to anything  that can be coerced to a <code>date_xx</code>.
-This is notably handy as they can be used as a labeling function for
-<strong>ggplot2</strong>  axes (see <code><a href='../articles/dint.html'>vignette("dint")</a></code>)</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='format_date_xx.html'>format.date_yw()</a></code></p>
-<p>Other coerce and format functions: <code><a href='format_ym.html'>format_ym</a></code>,
-  <code><a href='format_yq.html'>format_yq</a></code></p></div>
+    <p>a <code>date_yq</code> vector</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>format_yw</span>(<span class='fl'>2015</span>, <span class='fl'>5</span>)</div><div class='output co'>#&gt; [1] "2015-W05"</div><div class='input'><span class='fu'>format_yw</span>(<span class='fl'>201505</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y.%W"</span>)</div><div class='output co'>#&gt; [1] "2015.05"</div><div class='input'><span class='fu'>format_yw</span>(<span class='fu'><a href='date_yw.html'>as_date_yw</a></span>(<span class='fl'>201505</span>), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%y.%W"</span>)</div><div class='output co'>#&gt; [1] "15.05"</div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>yq</span>(<span class='st'>"2018 1"</span>)</div><div class='output co'>#&gt; [1] "2018-Q1"</div><div class='input'><span class='fu'>qy</span>(<span class='st'>"1st Quarter 2019"</span>)</div><div class='output co'>#&gt; [1] "2019-Q1"</div><div class='input'>
+<span class='co'>#' # Works even for filenames, as long as they contain no additional numbers</span>
+<span class='fu'>yq</span>(<span class='st'>"business_report-2018_1.pdf"</span>)</div><div class='output co'>#&gt; [1] "2018-Q1"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -180,10 +156,6 @@ This is notably handy as they can be used as a labeling function for
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#formatting-shorthands">Formatting shorthands</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

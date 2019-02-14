@@ -3,23 +3,31 @@
 \name{yq}
 \alias{yq}
 \alias{qy}
-\title{Parse dates with year and quarter components}
+\title{Parse Dates With Year and Quarter Components}
 \usage{
-yq(x)
+yq(x, quiet = FALSE)
 
-qy(x)
+qy(x, quiet = FALSE)
 }
 \arguments{
 \item{x}{a \code{character} vector}
+
+\item{quiet}{a \code{logical} scalar. If \code{TRUE} warnings on parsing failures are
+suppressed.}
 }
 \value{
 a \code{date_yq} vector
 }
 \description{
-Parse dates with year and quarter components
+These are very generic parsers for year/quarter formats that work with
+nearly all possible year/quarter formats. As long as \code{x} contains a
+4-digit-year and a 1-digit-quarter and no additional numbers,
+you should be fine.
 }
 \examples{
 yq("2018 1")
 qy("1st Quarter 2019")
 
+#' # Works even for filenames, as long as they contain no additional numbers
+yq("business_report-2018_1.pdf")
 }

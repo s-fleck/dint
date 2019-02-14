@@ -4,7 +4,7 @@
 
 
 
-# dint 2.0.1
+# dint 2.1.0
 
 * added **ggplot2** scales for dint data types
 * added predicates to check whether dates correspond to the boundaries of 

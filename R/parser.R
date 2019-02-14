@@ -6,6 +6,8 @@
 #' you should be fine.
 #'
 #' @param x a `character` vector
+#' @param quiet a `logical` scalar. If `TRUE` warnings on parsing failures are
+#'   suppressed.
 #'
 #' @return a `date_yq` vector
 #' @export
@@ -18,6 +20,8 @@
 #' yq("business_report-2018_1.pdf")
 yq <- function(x, quiet = FALSE){
   assert(is.character(x), "'x' must be a character vector")
+  assert(is_scalar_bool(quiet))
+
   r <- vapply(x, parse_yq, integer(1), pattern = "^[^0-9]*\\d{4}[^0-9]*\\d[^0-9]*$", USE.NAMES = FALSE)
 
   if (!quiet){
