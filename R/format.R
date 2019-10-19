@@ -117,7 +117,7 @@ format.date_yw <- function(
   format_date_xx(
     x,
     format = format,
-    valid_tokens = paste0("%", c("Y", "y", "V", "%"))
+    valid_tokens = paste0("%", c("Y", "y", "V", "W", "%"))
   )
 }
 
@@ -145,6 +145,15 @@ format_date_xx <- function(
 
   # tokenize
   tokens <- tokenize_format(format, valid_tokens = valid_tokens)
+
+  if ("%W" %in% tokens){
+    tokens[tokens == "%W"] <- "%V"
+    .Deprecated(msg = paste(
+      "Please use '%V' instead of '%W'. Using '%W'",
+      "for isoweeks will be disabled in future version of dint",
+      "to prevent confusion with strftime() where it denotes differently defined UK-weeks")
+    )
+  }
 
 
   len  <- length(tokens)

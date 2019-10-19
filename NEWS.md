@@ -1,13 +1,9 @@
-# dint 2.1.0.9000
+# dint 2.1.0.9001
 
-<<<<<<< HEAD
-* format.date_xx now used `%V` for isoweeks instead of `%W` 
-  (like `strftime()`).
-=======
+* `format.date_xx()` now used `%V` for isoweeks instead of `%W` (to prvent confusion with `strftime()`, where `%W` denotes UK-weeks). Using     `%W` has been deprecated.
 * added `yq()`, `qy()` parsers similar to `lubridate::dmy()` & co
+* `last_of_quarter()` no longer requires lubridate
 
-
->>>>>>> 1de44b2bdbdfd573eadb87054eac7e0c24bbc133
 
 # dint 2.1.0
 
