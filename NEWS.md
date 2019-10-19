@@ -1,7 +1,13 @@
 # dint 2.1.0.9000
 
+<<<<<<< HEAD
 * format.date_xx now used `%V` for isoweeks instead of `%W` 
   (like `strftime()`).
+=======
+* added `yq()`, `qy()` parsers similar to `lubridate::dmy()` & co
+
+
+>>>>>>> 1de44b2bdbdfd573eadb87054eac7e0c24bbc133
 
 # dint 2.1.0
 

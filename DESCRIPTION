@@ -46,6 +46,7 @@ Collate:
     'first_of.R'
     'format.R'
     'increment.R'
+    'parser.R'
     'predicates.R'
     'utils-sfmisc.R'
     'zoo-compat.R'

@@ -94,7 +94,7 @@ as_date_yq.yearqtr <- function(
 
 #' @export
 as_date_yq.numeric <- function(x){
-  stopifnot(all(x > 0 | x <= -11L))
+  stopifnot(all(x > 0 | x <= -11L | is.na(x)))
   d <- yqs_matrix_from_numeric(x)
   date_yq(y = d[, 1] * d[, 3], q = d[, 2])
 }
