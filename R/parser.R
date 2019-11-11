@@ -32,7 +32,6 @@ yq <- function(x, quiet = FALSE){
   }
 
   as_date_yq(r)
-
 }
 
 
