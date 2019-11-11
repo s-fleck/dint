@@ -221,7 +221,7 @@ m <- date_ym(2014, 12)
 format(m, "%Y-M%m")  # iso/default
 
 w <- date_yw(2014, 1)
-format(w, "%Y-W%W")  # iso/default
+format(w, "%Y-W%V")  # iso/default
 ```
 
 

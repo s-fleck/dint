@@ -1,7 +1,7 @@
 context("format")
 
 
-all_tokens <- c("Y:%Y", "y:%y", "b:%b", "B:%B", "m:%m", "q:%q", "%%:%%", "W:%W")
+all_tokens <- c("Y:%Y", "y:%y", "b:%b", "B:%B", "m:%m", "q:%q", "%%:%%", "V:%V")
 
 
 
@@ -48,7 +48,7 @@ test_that("format date_y works as expected", {
   expect_error(format(td, format = character()))
   expect_error(
     format(td, format = paste(all_tokens, collapse = " ")),
-    paste(sort(c("%b", "%B", "%m", "%q", "%W")), collapse = ", ")
+    paste(sort(c("%b", "%B", "%m", "%q", "%V")), collapse = ", ")
   )
 })
 
@@ -67,7 +67,7 @@ test_that("format.date_yq: All Tokens Work", {
   # abort on illegal tokens
   fmt <- "%s %F %b"
   q <- date_yq(2005, 1)
-  expect_error(format(q, format = paste(all_tokens, collapse = " ")), "%W")
+  expect_error(format(q, format = paste(all_tokens, collapse = " ")), "%V")
 })
 
 
@@ -129,13 +129,13 @@ test_that("format.date_ym: All Tokens Work", {
   )
 
   # abort on illegal tokens
-  expect_error(format(m, format = paste(all_tokens, collapse = " ")), "%W")
+  expect_error(format(m, format = paste(all_tokens, collapse = " ")), "%V")
 })
 
 
 
 test_that("format.date_yw: All Tokens Work", {
-  fmt <- "y:%y Y:%Y W:%W %%:%%"
+  fmt <- "y:%y Y:%Y W:%V %%:%%"
   m <- date_yw(2005, 11)
   expect_identical(format(m), "2005-W11")
   expect_identical(

@@ -116,7 +116,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>format_yw</span>(<span class='no'>x</span>, <span class='kw'>w</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y-W%W"</span>)</pre>
+    <pre class="usage"><span class='fu'>format_yw</span>(<span class='no'>x</span>, <span class='kw'>w</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y-W%V"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,6 +145,9 @@ week.</p></li>
 <tr><td></td><td>Full month name</td></tr>
 <tr><td></td><td><code>%b</code></td></tr>
 <tr><td></td><td>Abbreviated month name</td></tr>
+<tr><td></td><td><code>%V</code></td></tr>
+<tr><td></td><td>Week of the year as decimal number (01-53) as defined in</td></tr>
+<tr><td><a href='https://en.wikipedia.org/wiki/ISO_week_date'>ISO8601</a></td><td></td></tr>
 </table>
 <p>Not all placeholders are supported for all <code>date_xx</code> subclasses.
 Literal % can be escaped with <code>"%%"</code> (as in <code><a href='https://www.rdocumentation.org/packages/base/topics/sprintf'>base::sprintf()</a></code>).</p></td>
@@ -171,7 +174,7 @@ This is notably handy as they can be used as a labeling function for
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>format_yw</span>(<span class='fl'>2015</span>, <span class='fl'>5</span>)</div><div class='output co'>#&gt; [1] "2015-W05"</div><div class='input'><span class='fu'>format_yw</span>(<span class='fl'>201505</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y.%W"</span>)</div><div class='output co'>#&gt; [1] "2015.05"</div><div class='input'><span class='fu'>format_yw</span>(<span class='fu'><a href='date_yw.html'>as_date_yw</a></span>(<span class='fl'>201505</span>), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%y.%W"</span>)</div><div class='output co'>#&gt; [1] "15.05"</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>format_yw</span>(<span class='fl'>2015</span>, <span class='fl'>5</span>)</div><div class='output co'>#&gt; [1] "2015-W05"</div><div class='input'><span class='fu'>format_yw</span>(<span class='fl'>201505</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%Y.%V"</span>)</div><div class='output co'>#&gt; [1] "2015.05"</div><div class='input'><span class='fu'>format_yw</span>(<span class='fu'><a href='date_yw.html'>as_date_yw</a></span>(<span class='fl'>201505</span>), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"%y.%V"</span>)</div><div class='output co'>#&gt; [1] "15.05"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

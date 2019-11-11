@@ -1,3 +1,5 @@
+^Meta$
+^doc$
 ^\.covrignore$
 ^codecov\.yml$
 ^.*\.Rproj$

@@ -8,7 +8,9 @@
 #'    `%y` \tab Year without century (the last two digits of the year)\cr
 #'    `%m` \tab Month as a decimal numbers (01-12)\cr
 #'    `%B` \tab Full month name\cr
-#'    `%b` \tab Abbreviated month name
+#'    `%b` \tab Abbreviated month name\cr
+#'    `%V` \tab Week of the year as decimal number (01-53) as defined in
+#'      [ISO8601](https://en.wikipedia.org/wiki/ISO_week_date)
 #'  }
 #'  Not all placeholders are supported for all `date_xx` subclasses.
 #'  Literal \% can be escaped with `"%%"` (as in [base::sprintf()]).
@@ -109,13 +111,13 @@ format.date_ym <- function(
 #' @export
 format.date_yw <- function(
   x,
-  format = "%Y-W%W",
+  format = "%Y-W%V",
   ...
 ){
   format_date_xx(
     x,
     format = format,
-    valid_tokens = paste0("%", c("Y", "y", "W", "%"))
+    valid_tokens = paste0("%", c("Y", "y", "V", "W", "%"))
   )
 }
 
@@ -144,6 +146,15 @@ format_date_xx <- function(
   # tokenize
   tokens <- tokenize_format(format, valid_tokens = valid_tokens)
 
+  if ("%W" %in% tokens){
+    tokens[tokens == "%W"] <- "%V"
+    .Deprecated(msg = paste(
+      "Please use '%V' instead of '%W'. Using '%W'",
+      "for isoweeks will be disabled in future version of dint",
+      "to prevent confusion with strftime() where it denotes differently defined UK-weeks")
+    )
+  }
+
 
   len  <- length(tokens)
   res  <- vector("list", length(tokens))
@@ -166,7 +177,7 @@ format_date_xx <- function(
       res[[i]] <- factor(get_month(x), levels = 1:12, labels = month_names)
     else if (identical(tokens[[i]], "%b"))
       res[[i]] <- factor(get_month(x), levels = 1:12, labels = month_abb)
-    else if (identical(tokens[[i]], "%W"))
+    else if (identical(tokens[[i]], "%V"))
       res[[i]] <- pad_zero_left(get_isoweek(x))
     else
       res[[i]] <- tokens[[i]]
@@ -310,13 +321,13 @@ format_ym <- function(x, m = NULL, format = "%Y-M%m"){
 #' @export
 #' @examples
 #' format_yw(2015, 5)
-#' format_yw(201505, format = "%Y.%W")
-#' format_yw(as_date_yw(201505), format = "%y.%W")
+#' format_yw(201505, format = "%Y.%V")
+#' format_yw(as_date_yw(201505), format = "%y.%V")
 #'
 format_yw <- function(
   x,
   w = NULL,
-  format = "%Y-W%W"
+  format = "%Y-W%V"
 ){
   if (is.null(w)){
     d <- as_date_yw(x)
@@ -398,7 +409,7 @@ format_yw_iso <- function(x){
 #' @rdname format_date_xx
 #' @export
 format_yw_short <- function(x){
-  format(as_date_yw(x), "%Y.%W")
+  format(as_date_yw(x), "%Y.%V")
 }
 
 
@@ -407,5 +418,5 @@ format_yw_short <- function(x){
 #' @rdname format_date_xx
 #' @export
 format_yw_shorter <- function(x){
-  format(as_date_yw(x), "%y.%W")
+  format(as_date_yw(x), "%y.%V")
 }
