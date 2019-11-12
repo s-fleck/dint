@@ -94,7 +94,7 @@ as_date_yw.default <- function(x){
 
 #' @export
 as_date_yw.numeric <- function(x){
-  stopifnot(all(x > 0 | x <= -101L))
+  stopifnot(all(x > 0 | x <= -101L | is.na(x)))
   d <- yws_matrix_from_numeric(x)
   date_yw(y = d[, 1] * d[, 3], w = d[, 2])
 }

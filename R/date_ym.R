@@ -93,7 +93,7 @@ as_date_ym.yearmon <- function(
 
 #' @export
 as_date_ym.numeric <- function(x){
-  stopifnot(all(x > 0 | x <= -101L))
+  stopifnot(all(x > 0 | x <= -101L | is.na(x)))
   d <- yms_matrix_from_numeric(x)
   date_ym(y = d[, 1] * d[, 3], m = d[, 2])
 }
