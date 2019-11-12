@@ -63,7 +63,7 @@ ym <- function(x, quiet = FALSE){
   assert(is.character(x), "'x' must be a character vector")
   assert(is_scalar_bool(quiet))
 
-  r <- vapply(x, parse_ym, integer(1), pattern = "^[^0-9]*\\d{4}[^0-9]*((0[1-9])|11|12)[^0-9]*$", USE.NAMES = FALSE)
+  r <- vapply(x, parse_ym, integer(1), pattern = "^[^0-9]*\\d{4}[^0-9]*((0[1-9])|10|11|12)[^0-9]*$", USE.NAMES = FALSE)
 
   if (!quiet){
     failed <- sum(is.na(r)) - sum(is.na(x))
@@ -83,7 +83,7 @@ ym <- function(x, quiet = FALSE){
 #' @export
 my <- function(x, quiet = FALSE){
   assert(is.character(x), "'x' must be a character vector")
-  r <- vapply(x, parse_my, integer(1), pattern = "^[^0-9]*((0[1-9])|11|12)[^0-9]*\\d{4}[^0-9]*$", USE.NAMES = FALSE)
+  r <- vapply(x, parse_my, integer(1), pattern = "^[^0-9]*((0[1-9])|10|11|12)[^0-9]*\\d{4}[^0-9]*$", USE.NAMES = FALSE)
 
   if (!quiet){
     failed <- sum(is.na(r)) - sum(is.na(x))
@@ -144,7 +144,7 @@ parse_ym <- function(x, pattern){
       as.integer(substr(string, pos, pos + length))
   }
 
-  pos_m <- regexpr("((0[1-9])|11|12)[^0-9]*$", x)
+  pos_m <- regexpr("((0[1-9])|10|11|12)[^0-9]*$", x)
   month <- extr(x, pos_m, 1)
   x <- strtrim(x, pos_m - 1L)
 

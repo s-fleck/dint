@@ -36,7 +36,7 @@ test_that("yq/qy work as expected", {
 
 test_that("ym/my work as expected", {
 
-  x <- c("dfw2018m02", "bl2017qasdg12sadgfas", "2017Q4", "blubb", "2017-2016", NA)
+  x <- c("dfw2018m02", "bl2017qasdg12sadgfas", "2017Q4", "blubb", "2017-2016", NA, "gvship_ais_2019-M10.fst")
 
   expect_warning(
     r <- as.integer(ym(x)),
@@ -45,7 +45,7 @@ test_that("ym/my work as expected", {
 
   expect_identical(
     r,
-    c(201802L, 201712L, NA_integer_, NA_integer_, NA_integer_, NA_integer_)
+    c(201802L, 201712L, NA_integer_, NA_integer_, NA_integer_, NA_integer_, 201910L)
   )
 
 
