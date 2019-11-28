@@ -1,8 +1,8 @@
 ## Test environments
-* local ubuntu install, R 3.5.1
-* ubuntu 14.04 (via RStudio Server), R 3.4.3
-* ubuntu 14.04 (via travis), R 3.5.1
-* win-builder (devel and release)
+* ubuntu 14.04 (via RStudio Server), R 3.6.1
+* ubuntu 16.04 (via travis), R 3.6.1
+* win-builder (devel)
+* rhub (rhub::check_for_cran())
 
 ## R CMD check results
 

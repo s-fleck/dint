@@ -117,7 +117,6 @@ print.date_xx <- function(
 #' @return An Object of the appropriate base \R type (`Date`, `POSIXct`, or
 #'   `POSIXlt`)
 #'
-#' @rdname as.Date.date_xx
 #' @name as.Date.date_xx
 #'
 #' @examples
@@ -126,7 +125,7 @@ print.date_xx <- function(
 #'
 #' # When coercing to datetime, the default timezone is UTC
 #' as.POSIXct(date_yq(2017, 2))
-#'
+NULL
 
 
 

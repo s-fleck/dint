@@ -41,7 +41,8 @@ as_date_yq(20161)
 \seealso{
 \code{\link[=format.date_yq]{format.date_yq()}}, \code{\link[=seq.date_yq]{seq.date_yq()}}, \code{\link[=date_xx_arithmetic]{date_xx_arithmetic()}}
 
-Other date_xx subclasses: \code{\link{date_ym}},
-  \code{\link{date_yw}}
+Other date_xx subclasses: 
+\code{\link{date_ym}()},
+\code{\link{date_yw}()}
 }
 \concept{date_xx subclasses}

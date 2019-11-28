@@ -290,7 +290,7 @@ scale_date_yw <- function(
 #' Pretty Breaks For date_xx Vectors
 #'
 #' `date_*_breaks` does not return breaks, but a function that calculates
-#' breaks. This is for compatbility with the breaks functions from \pkg{scales}
+#' breaks. This is for compatibility with the breaks functions from \pkg{scales}
 #' such as [scales::pretty_breaks()], and for ease of use with \pkg{ggplot2}.
 #'
 #' @param n `NULL` or `integer` scalar. The desired maximum number of breaks.

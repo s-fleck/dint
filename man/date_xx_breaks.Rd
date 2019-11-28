@@ -22,8 +22,8 @@ a \code{function} that calculates a maximum of \code{n} breaks for a \code{date_
 vector
 }
 \description{
-\code{date_*_breaks} does not return breaks, but a function that calculates
-breaks. This is for compatbility with the breaks functions from \pkg{scales}
+\verb{date_*_breaks} does not return breaks, but a function that calculates
+breaks. This is for compatibility with the breaks functions from \pkg{scales}
 such as \code{\link[scales:pretty_breaks]{scales::pretty_breaks()}}, and for ease of use with \pkg{ggplot2}.
 }
 \examples{

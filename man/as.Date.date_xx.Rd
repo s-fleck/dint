@@ -36,7 +36,7 @@ Sys.date_yw()
 \item{x}{any \R object}
 
 \item{tz}{time zone specification to be used for the conversion,
-    \emph{if one is required}.  System-specific (see \link{time zones}),
+    \emph{if one is required}.  System-specific (see \link[base]{time zones}),
     but \code{""} is the current time zone, and \code{"GMT"} is UTC
     (Universal Time, Coordinated).  Invalid values are most commonly
     treated as UTC, on some platforms with a warning.}
@@ -63,5 +63,4 @@ as.POSIXlt(date_yq(2017, 2))
 
 # When coercing to datetime, the default timezone is UTC
 as.POSIXct(date_yq(2017, 2))
-
 }

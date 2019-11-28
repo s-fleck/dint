@@ -10,23 +10,53 @@
 \alias{scale_y_date_yw}
 \title{ggplot2 Scales For date_xx Objects}
 \usage{
-scale_x_date_yq(name = "Quarter", breaks = date_yq_breaks(),
-  labels = ggplot2::waiver(), limits = NULL, position = "bottom")
+scale_x_date_yq(
+  name = "Quarter",
+  breaks = date_yq_breaks(),
+  labels = ggplot2::waiver(),
+  limits = NULL,
+  position = "bottom"
+)
 
-scale_y_date_yq(name = "Quarter", breaks = date_yq_breaks(),
-  labels = ggplot2::waiver(), limits = NULL, position = "left")
+scale_y_date_yq(
+  name = "Quarter",
+  breaks = date_yq_breaks(),
+  labels = ggplot2::waiver(),
+  limits = NULL,
+  position = "left"
+)
 
-scale_x_date_ym(name = "Month", breaks = date_ym_breaks(),
-  labels = ggplot2::waiver(), limits = NULL, position = "bottom")
+scale_x_date_ym(
+  name = "Month",
+  breaks = date_ym_breaks(),
+  labels = ggplot2::waiver(),
+  limits = NULL,
+  position = "bottom"
+)
 
-scale_y_date_ym(name = "Month", breaks = date_ym_breaks(),
-  labels = ggplot2::waiver(), limits = NULL, position = "left")
+scale_y_date_ym(
+  name = "Month",
+  breaks = date_ym_breaks(),
+  labels = ggplot2::waiver(),
+  limits = NULL,
+  position = "left"
+)
 
-scale_x_date_yw(name = "Week", breaks = date_yw_breaks(),
-  labels = ggplot2::waiver(), limits = NULL, position = "bottom")
+scale_x_date_yw(
+  name = "Week",
+  breaks = date_yw_breaks(),
+  labels = ggplot2::waiver(),
+  limits = NULL,
+  position = "bottom"
+)
 
-scale_y_date_yw(name = "Week", breaks = date_yw_breaks(),
-  labels = ggplot2::waiver(), limits = NULL, position = "left")
+scale_y_date_yw(
+  name = "Week",
+  breaks = date_yw_breaks(),
+  labels = ggplot2::waiver(),
+  limits = NULL,
+  position = "left"
+)
 }
 \arguments{
 \item{name}{The name of the scale. Used as the axis or legend title. If
@@ -65,7 +95,7 @@ new limits
 scales, "top" or "bottom" for horizontal scales}
 }
 \description{
-The \code{scale_*_date_**} functions provide nice defaults for plotting
+The \verb{scale_*_date_**} functions provide nice defaults for plotting
 the appropriate \link{date_xx} subclass, but come with a limited number of
 configuration options. If you require more finetuning, you can convert
 \link{date_xx} vectors with \code{\link[=as.Date]{as.Date()}} and use \code{\link[ggplot2:scale_x_date]{ggplot2::scale_x_date()}}.

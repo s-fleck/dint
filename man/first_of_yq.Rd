@@ -10,7 +10,14 @@ first_of_yq(x, q = NULL)
 last_of_yq(x, q = NULL)
 }
 \arguments{
-\item{x}{Anything that can be coerced to a date with \code{\link[base:as.Date]{base::as.Date()}}}
+\item{x}{Two integer (vectors). \code{q} is optional and the interpretation of
+\code{x} will depend on whether \code{q} is supplied or not:
+\itemize{
+\item if only \code{x} is supplied, \code{x} will be passed to \code{\link[=as_date_yq]{as_date_yq()}}
+(e.g. \code{x = 20161} means first quarter of 2016)
+\item if \code{x} and \code{q} are supplied, \code{x} is interpreted as year and \code{q} as
+quarter.
+}}
 
 \item{q}{Two integer (vectors). \code{q} is optional and the interpretation of
 \code{x} will depend on whether \code{q} is supplied or not:

@@ -183,7 +183,7 @@ range.date_y <- function(..., na.rm = FALSE) {
 #' unit of the next year.
 #'
 #' @param x any `date_xx` object
-#' @param digits ignored, only there for compat with [base::round()]
+#' @param digits ignored, only there for compatibility with [base::round()]
 #'
 #' @return a `date_xx` of the same subclass as `x`
 #' @export

@@ -108,7 +108,7 @@ print(as.POSIXct(q), tz = "CET")
 
 
 
-# Arithmetics and Sequences
+# Arithmetic and Sequences
 
 All `date_xx` support addition, subtraction and sequence generation.
 
@@ -162,7 +162,7 @@ get_isoweek(w)
 ```
 
 
-## lubridate Compat Accessors
+## lubridate Compatibility Accessors
 
 If you use lubridate, you can just use the slightly less verbose lubridate 
 accessors
@@ -208,7 +208,7 @@ last_of_yw(2011, 52)
 
 ## format() Methods
 
-Formating `date_xx` vectors is easy and uses a subset of the placeholders of 
+Formatting `date_xx` vectors is easy and uses a subset of the placeholders of 
 `base::strptime()` (+ `%q` for quarters).
 
 ```{r}
@@ -248,7 +248,7 @@ library(ggplot2)
 ## Labelling date_xx Vectors
 
 dint implements `scale_date_**()` and `date_**_breaks()` that provide nicely 
-labelled axes for ggplots by default
+labeled axes for ggplots by default
 
 ```{r, collapse=TRUE, fig.show='hold' } 
 q <- data.frame(

@@ -13,7 +13,7 @@
 #'      [ISO8601](https://en.wikipedia.org/wiki/ISO_week_date)
 #'  }
 #'  Not all placeholders are supported for all `date_xx` subclasses.
-#'  Literal \% can be escaped with `"%%"` (as in [base::sprintf()]).
+#'  Literal `"%"` can be escaped with `"%%"` (as in [base::sprintf()]).
 #'
 #' @param month_names,month_abb a `character` vector of length 12: Names and
 #'   abbreviations for months that will be used for the

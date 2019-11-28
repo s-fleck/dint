@@ -1,6 +1,6 @@
 # yearqtr -----------------------------------------------------------------
 
-#' Coerce to zoo yeartqr objects
+#' Coerce to zoo yearqtr objects
 #'
 #' `as_yearqtr()` and `as_yearmon()` are included for interoperability with
 #' [zoo::yearqtr()], an alternative year-quarter format that is based on a
@@ -55,7 +55,7 @@ as_yearqtr.yearqtr <- function(x){
 
 
 
-#' For compat with zoo
+#' For Compatibility With zoo
 #'
 #' Internaly used constructor. If you use zoo, please use [zoo::yearqtr()]
 #' instead
@@ -100,7 +100,7 @@ as_yearmon.yearmon <- function(x){
 
 
 
-#' For compat with zoo
+#' For Compatibility With zoo
 #'
 #' Internaly used constructor. If you use zoo, please use [zoo::yearmon()]
 #' instead
@@ -150,7 +150,7 @@ as_yearweek.yearweek <- function(x){
 
 
 
-#' For compat with zoo
+#' For Compatibility With zoo
 #'
 #' Internaly used constructor. If you use zoo, please use [zoo::yearweek()]
 #' instead

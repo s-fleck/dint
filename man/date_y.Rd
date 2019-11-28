@@ -35,4 +35,4 @@ date_y(2013)
 as_date_y(2016)
 
 }
-\concept{[date_xx] subclasses}
+\concept{\link{date_xx} subclasses}

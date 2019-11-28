@@ -26,7 +26,7 @@ a \code{date_yq} or \code{date_ym} vector
 }
 \description{
 These are generic parsers for year/quarter/month formats that work with
-nearly all possible year/quarter formats. The only prerequisits are that
+nearly all possible year/quarter formats. The only prerequisite is that
 \code{x} contains a 4-digit-year and a 1-digit-quarter or 2-digit-month and no
 additional numbers.
 }

@@ -19,13 +19,21 @@
 \usage{
 \method{format}{date_y}(x, format = "\%Y", ...)
 
-\method{format}{date_yq}(x, format = "\%Y-Q\%q",
+\method{format}{date_yq}(
+  x,
+  format = "\%Y-Q\%q",
   month_names = format(ISOdate(2000, 1:12, 1), "\%B"),
-  month_abb = format(ISOdate(2000, 1:12, 1), "\%b"), ...)
+  month_abb = format(ISOdate(2000, 1:12, 1), "\%b"),
+  ...
+)
 
-\method{format}{date_ym}(x, format = "\%Y-M\%m",
+\method{format}{date_ym}(
+  x,
+  format = "\%Y-M\%m",
   month_names = format(ISOdate(2000, 1:12, 1), "\%B"),
-  month_abb = format(ISOdate(2000, 1:12, 1), "\%b"), ...)
+  month_abb = format(ISOdate(2000, 1:12, 1), "\%b"),
+  ...
+)
 
 \method{format}{date_yw}(x, format = "\%Y-W\%V", ...)
 
@@ -53,16 +61,16 @@ format_yw_shorter(x)
 \item{format}{A format that uses a subset of the same placeholders as
 \code{\link[base:strptime]{base::strptime()}}:
 \tabular{rl}{
-\code{\%Y} \tab Year with century (the full year)\cr
-\code{\%y} \tab Year without century (the last two digits of the year)\cr
-\code{\%m} \tab Month as a decimal numbers (01-12)\cr
-\code{\%B} \tab Full month name\cr
-\code{\%b} \tab Abbreviated month name\cr
-\code{\%V} \tab Week of the year as decimal number (01-53) as defined in
+\verb{\%Y} \tab Year with century (the full year)\cr
+\verb{\%y} \tab Year without century (the last two digits of the year)\cr
+\verb{\%m} \tab Month as a decimal numbers (01-12)\cr
+\verb{\%B} \tab Full month name\cr
+\verb{\%b} \tab Abbreviated month name\cr
+\verb{\%V} \tab Week of the year as decimal number (01-53) as defined in
 \href{https://en.wikipedia.org/wiki/ISO_week_date}{ISO8601}
 }
 Not all placeholders are supported for all \code{date_xx} subclasses.
-Literal \% can be escaped with \code{"\%\%"} (as in \code{\link[base:sprintf]{base::sprintf()}}).}
+Literal \code{"\%"} can be escaped with \code{"\%\%"} (as in \code{\link[base:sprintf]{base::sprintf()}}).}
 
 \item{...}{ignored}
 
@@ -80,7 +88,7 @@ Format a date_xx
 \section{Formatting shorthands}{
 
 
-Format shorthand functions in the form of \code{format_y*_[preset]()} directly
+Format shorthand functions in the form of \verb{format_y*_[preset]()} directly
 apply formatting presets to anything  that can be coerced to a \code{date_xx}.
 This is notably handy as they can be used as a labeling function for
 \strong{ggplot2}  axes (see \code{vignette("dint")})

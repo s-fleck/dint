@@ -10,8 +10,7 @@
 \usage{
 year.date_xx(x)
 
-month.date_xx(x, label = FALSE, abbr = TRUE,
-  locale = Sys.getlocale("LC_TIME"))
+month.date_xx(x, label = FALSE, abbr = TRUE, locale = Sys.getlocale("LC_TIME"))
 
 isoweek.date_xx(x)
 }

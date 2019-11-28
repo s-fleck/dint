@@ -21,7 +21,7 @@
 \arguments{
 \item{x}{any \code{date_xx} object}
 
-\item{digits}{ignored, only there for compat with \code{\link[base:round]{base::round()}}}
+\item{digits}{ignored, only there for compatibility with \code{\link[base:round]{base::round()}}}
 }
 \value{
 a \code{date_xx} of the same subclass as \code{x}

@@ -19,16 +19,16 @@ week.
 \item{format}{A format that uses a subset of the same placeholders as
 \code{\link[base:strptime]{base::strptime()}}:
 \tabular{rl}{
-\code{\%Y} \tab Year with century (the full year)\cr
-\code{\%y} \tab Year without century (the last two digits of the year)\cr
-\code{\%m} \tab Month as a decimal numbers (01-12)\cr
-\code{\%B} \tab Full month name\cr
-\code{\%b} \tab Abbreviated month name\cr
-\code{\%V} \tab Week of the year as decimal number (01-53) as defined in
+\verb{\%Y} \tab Year with century (the full year)\cr
+\verb{\%y} \tab Year without century (the last two digits of the year)\cr
+\verb{\%m} \tab Month as a decimal numbers (01-12)\cr
+\verb{\%B} \tab Full month name\cr
+\verb{\%b} \tab Abbreviated month name\cr
+\verb{\%V} \tab Week of the year as decimal number (01-53) as defined in
 \href{https://en.wikipedia.org/wiki/ISO_week_date}{ISO8601}
 }
 Not all placeholders are supported for all \code{date_xx} subclasses.
-Literal \% can be escaped with \code{"\%\%"} (as in \code{\link[base:sprintf]{base::sprintf()}}).}
+Literal \code{"\%"} can be escaped with \code{"\%\%"} (as in \code{\link[base:sprintf]{base::sprintf()}}).}
 }
 \value{
 a \code{character} vector
@@ -39,7 +39,7 @@ Coerce and Format to Year-Isoweek Strings
 \section{Formatting shorthands}{
 
 
-Format shorthand functions in the form of \code{format_y*_[preset]()} directly
+Format shorthand functions in the form of \verb{format_y*_[preset]()} directly
 apply formatting presets to anything  that can be coerced to a \code{date_xx}.
 This is notably handy as they can be used as a labeling function for
 \strong{ggplot2}  axes (see \code{vignette("dint")})
@@ -54,7 +54,8 @@ format_yw(as_date_yw(201505), format = "\%y.\%V")
 \seealso{
 \code{\link[=format.date_yw]{format.date_yw()}}
 
-Other coerce and format functions: \code{\link{format_ym}},
-  \code{\link{format_yq}}
+Other coerce and format functions: 
+\code{\link{format_ym}()},
+\code{\link{format_yq}()}
 }
 \concept{coerce and format functions}

@@ -10,7 +10,7 @@
 \alias{as_yearweek}
 \alias{as_yearweek.date_yw}
 \alias{as_yearweek.yearweek}
-\title{Coerce to zoo yeartqr objects}
+\title{Coerce to zoo yearqtr objects}
 \usage{
 as_yearqtr(x)
 
