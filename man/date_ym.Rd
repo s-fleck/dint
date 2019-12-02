@@ -43,6 +43,7 @@ as_date_ym(201612)
 
 Other date_xx subclasses: 
 \code{\link{date_yq}()},
-\code{\link{date_yw}()}
+\code{\link{date_yw}()},
+\code{\link{date_y}()}
 }
 \concept{date_xx subclasses}

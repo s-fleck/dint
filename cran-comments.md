@@ -8,5 +8,6 @@
 
 0 errors | 0 warnings | 0 note
 
-* Rewrote formatting functions and added a support for common group generics
-* Added ggplot scales
+## resubmission 
+
+* fixes `\concept{\link{date_xx} subclasses}` in `date_y.Rd`
