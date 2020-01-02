@@ -129,7 +129,7 @@ scale_date_yq <- function(
     name = name,
     palette = identity,
     labels = labels,
-    guide = "none",
+    guide = default_guide(),
     trans = date_yq_trans,
     super = ggplot2::ScaleContinuousDate,
     position = position,
@@ -203,7 +203,7 @@ scale_date_ym <- function(
     breaks = breaks,
     palette = identity,
     labels = labels,
-    guide = "none",
+    guide = default_guide(),
     trans = date_ym_trans,
     super = ggplot2::ScaleContinuousDate,
     position = position,
@@ -272,7 +272,7 @@ scale_date_yw <- function(
     name = name,
     breaks = breaks,
     palette = identity,
-    guide = "none",
+    guide = default_guide(),
     labels = labels,
     trans = date_yw_trans,
     super = ggplot2::ScaleContinuousDate,
@@ -485,4 +485,14 @@ round_frac <- function(
   denom
 ){
   (x %/% 1) + round((x %% 1) * denom) / denom
+}
+
+
+
+default_guide <- function(){
+  if (utils::packageVersion("ggplot2") >= "3.2.1.9000") {
+    ggplot2::waiver()
+  } else {
+    "none"
+  }
 }

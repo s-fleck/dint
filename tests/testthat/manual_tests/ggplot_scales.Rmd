@@ -93,11 +93,12 @@ ggplot(
   p + scale_x_date_yq(breaks = waiver()) + ggtitle("auto breaks")
   p + scale_x_date_yq(breaks = NULL) + ggtitle("no breaks")
   p + scale_x_date_yq(breaks = date_yq(2016, 2:3) ) + ggtitle("manual breaks")
-  p + scale_x_date_yq(breaks = date_yq_breaks(1) ) + ggtitle("function breaks")
+  p + scale_x_date_yq(breaks = date_yq_breaks(4) ) + ggtitle("function breaks")
 
 
 
 ```
+
 ## Print every second quarter
 
 ```{r}

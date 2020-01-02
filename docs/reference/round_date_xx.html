@@ -8,16 +8,18 @@
 
 <title>Rounding of date_xx — round.date_yq • dint</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -32,11 +34,12 @@
 
 
 
-<meta property="og:title" content="Rounding of date_xx — round.date_yq" />
 
+<meta property="og:title" content="Rounding of date_xx — round.date_yq" />
 <meta property="og:description" content="Rounds a date_xx to the first unit of the current year, or the first
 unit of the next year." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -48,6 +51,7 @@ unit of the next year." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -88,7 +92,6 @@ unit of the next year." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/s-fleck/dint">
@@ -103,6 +106,7 @@ unit of the next year." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -114,10 +118,8 @@ unit of the next year." />
     </div>
 
     <div class="ref-description">
-    
     <p>Rounds a <code>date_xx</code> to the first unit of the current year, or the first
 unit of the next year.</p>
-    
     </div>
 
     <pre class="usage"><span class='co'># S3 method for date_yq</span>
@@ -134,7 +136,7 @@ unit of the next year.</p>
 
 <span class='co'># S3 method for date_xx</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>floor</a></span>(<span class='no'>x</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -147,28 +149,26 @@ unit of the next year.</p>
       <td><p>ignored, only there for compatibility with <code><a href='https://rdrr.io/r/base/Round.html'>base::round()</a></code></p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a <code>date_xx</code> of the same subclass as <code>x</code></p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='date_yq.html'>date_yq</a></span>(<span class='fl'>2018</span>, <span class='fl'>2</span>))</div><div class='output co'>#&gt; [1] "2018-Q1"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='date_yq.html'>date_yq</a></span>(<span class='fl'>2018</span>, <span class='fl'>3</span>))</div><div class='output co'>#&gt; [1] "2019-Q1"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='date_ym.html'>date_ym</a></span>(<span class='fl'>2018</span>, <span class='fl'>6</span>))</div><div class='output co'>#&gt; [1] "2018-M01"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='date_ym.html'>date_ym</a></span>(<span class='fl'>2018</span>, <span class='fl'>7</span>))</div><div class='output co'>#&gt; [1] "2019-M01"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='date_yw.html'>date_yw</a></span>(<span class='fl'>2018</span>, <span class='fl'>26</span>))</div><div class='output co'>#&gt; [1] "2018-W01"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='date_yw.html'>date_yw</a></span>(<span class='fl'>2018</span>, <span class='fl'>27</span>))</div><div class='output co'>#&gt; [1] "2019-W01"</div><div class='input'>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -176,13 +176,16 @@ unit of the next year.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

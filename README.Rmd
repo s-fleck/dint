@@ -55,7 +55,6 @@ devtools::install_github("s-fleck/dint")
 
 
 
-
 ## Example
 
 ```{r example}

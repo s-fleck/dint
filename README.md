@@ -1,21 +1,32 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-dint
-====
 
-[![CRAN status](https://www.r-pkg.org/badges/version/dint)](https://cran.r-project.org/package=dint) [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable) [![Travis build status](https://travis-ci.org/s-fleck/dint.svg?branch=master)](https://travis-ci.org/s-fleck/dint) [![Coverage status](https://codecov.io/gh/s-fleck/dint/branch/master/graph/badge.svg)](https://codecov.io/github/s-fleck/dint?branch=master)
+# dint
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/dint)](https://cran.r-project.org/package=dint)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Travis build
+status](https://travis-ci.org/s-fleck/dint.svg?branch=master)](https://travis-ci.org/s-fleck/dint)
+[![Coverage
+status](https://codecov.io/gh/s-fleck/dint/branch/master/graph/badge.svg)](https://codecov.io/github/s-fleck/dint?branch=master)
 
 A Toolkit for Year-Quarter, Year-Month and Year-Isoweek Dates
 
-S3 classes and methods to create and work with year-quarter and year-month vectors. Basic arithmetic operations (such as adding and subtracting) are supported, as well as formatting and converting to and from standard R Date types. For more info please refer to the [package vignette](https://CRAN.R-project.org/package=dint/vignettes/dint.html) or the [documentation](https://s-fleck.github.io/dint/)
+S3 classes and methods to create and work with year-quarter and
+year-month vectors. Basic arithmetic operations (such as adding and
+subtracting) are supported, as well as formatting and converting to and
+from standard R Date types. For more info please refer to the [package
+vignette](https://CRAN.R-project.org/package=dint/vignettes/dint.html)
+or the [documentation](https://s-fleck.github.io/dint/)
 
-Dependencies
-------------
+## Dependencies
 
-dint is implemented strictly in base R and will **always stay dependency-free**. The optional dependencies in Suggests are to ensure interoperability with these packages if you are already using them.
+dint is implemented strictly in base R and will **always stay
+dependency-free**. The optional dependencies in Suggests are to ensure
+interoperability with these packages if you are already using them.
 
-Installation
-------------
+## Installation
 
 Install the release version of dint from CRAN:
 
@@ -30,8 +41,7 @@ Or install the development version from GitHub with:
 devtools::install_github("s-fleck/dint")
 ```
 
-Example
--------
+## Example
 
 ``` r
 library(dint)
@@ -85,7 +95,7 @@ last_of_quarter(q)
 first_of_quarter(q)
 #> [1] "2014-10-01"
 first_of_month(Sys.Date())
-#> [1] "2018-12-01"
+#> [1] "2020-01-01"
 first_of_isoweek(w)
 #> [1] "2016-12-26"
 last_of_isoweek(w)

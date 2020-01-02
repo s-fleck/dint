@@ -10,4 +10,4 @@
 
 ## resubmission 
 
-* fixes `\concept{\link{date_xx} subclasses}` in `date_y.Rd`
+* compatibility with ggplot2 >= 3.2.2

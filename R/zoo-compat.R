@@ -64,7 +64,7 @@ as_yearqtr.yearqtr <- function(x){
 #' @noRd
 #'
 yearqtr <- function(x){
-  assert(all((x %% 1) %in% c(0, 0.25, 0.5, 0.75)))
+  assert(all((x %% 1) %in% c(NA_real_, 0, 0.25, 0.5, 0.75)))
   structure(x, class = c("yearqtr", "numeric"))
 }
 
@@ -111,7 +111,7 @@ as_yearmon.yearmon <- function(x){
 yearmon <- function(x){
   x <- as.numeric(x)
   assert(
-    all(round(x %% 1, 5) %in% round(seq(0, 1, by = 1/12), 5))
+    all(round(x %% 1, 5) %in% c(NA_real_, round(seq(0, 1, by = 1/12), 5)))
   )
   structure(x, class = c("yearmon", "numeric"))
 }
@@ -161,7 +161,7 @@ as_yearweek.yearweek <- function(x){
 yearweek <- function(x){
   x <- as.numeric(x)
   assert(
-    all(round(x %% 1, 5) %in% round(seq(0, 1, by = 1/53), 5))
+    all(round(x %% 1, 5) %in% c(NA_real_, round(seq(0, 1, by = 1/53), 5)))
   )
   structure(x, class = c("yearweek", "numeric"))
 }
