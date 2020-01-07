@@ -89,13 +89,10 @@ it's a good idea to specify manual breaks if you use manual labels)
 Use \code{NA} to refer to the existing minimum or maximum
 \item A function that accepts the existing (automatic) limits and returns
 new limits
-Note that setting limits on positional scales will \strong{remove} data outside of the limits.
-If the purpose is to zoom, use the limit argument in the coordinate system
-(see \code{\link[ggplot2:coord_cartesian]{coord_cartesian()}}).
 }}
 
-\item{position}{For position scales, The position of the axis.
-\code{left} or \code{right} for y axes, \code{top} or \code{bottom} for x axes.}
+\item{position}{The position of the axis. "left" or "right" for vertical
+scales, "top" or "bottom" for horizontal scales}
 }
 \description{
 The \verb{scale_*_date_**} functions provide nice defaults for plotting

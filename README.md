@@ -22,9 +22,10 @@ or the [documentation](https://s-fleck.github.io/dint/)
 
 ## Dependencies
 
-dint is implemented strictly in base R and will **always stay
-dependency-free**. The optional dependencies in Suggests are to ensure
-interoperability with these packages if you are already using them.
+dint is implemented strictly in base R and will **always stay free of
+hard dependencies**. The optional dependencies of dint are just there to
+facilitate interoperability these packages if you are already using
+them; for example by providing ggplot2 scales.
 
 ## Installation
 

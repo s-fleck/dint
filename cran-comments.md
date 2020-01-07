@@ -10,4 +10,4 @@
 
 ## resubmission 
 
-* compatibility with ggplot2 >= 3.2.2
+* compatibility with ggplot2 >= 3.2.2 

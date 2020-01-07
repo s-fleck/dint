@@ -1,6 +1,6 @@
 # dint 2.1.2
 
-* Updated all `scale_date_*()` functions for comptability with ggplot2 >= 3.2.2
+* Updated all `scale_date_*()` functions for compatibility with ggplot2 >= 3.2.2
 
 
 # dint 2.1.1
