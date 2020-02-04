@@ -1,3 +1,9 @@
+# dint 2.1.3
+
+* Fix small documentation mistake in `date_xx_arithmetic`, see 
+  https://bugs.r-project.org/bugzilla/show_bug.cgi?id=16223>
+
+
 # dint 2.1.2
 
 * Updated all `scale_date_*()` functions for compatibility with ggplot2 >= 3.2.2

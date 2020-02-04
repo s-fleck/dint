@@ -109,7 +109,6 @@ Ops.date_xx <- function (
 #'
 #' @param x a [`date_yq`] or [`date_ym`] object
 #' @param y an integer
-#' @param ... currently ignored
 #'
 #' @name date_xx_arithmetic
 #' @seealso  [base::Arithmetic]
