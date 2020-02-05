@@ -1,5 +1,5 @@
 ## Test environments
-* ubuntu 14.04 (via RStudio Server), R 3.6.1
+* ubuntu 18.04 (via RStudio Server), R 3.6.1
 * ubuntu 16.04 (via travis), R 3.6.1
 * win-builder (devel)
 * rhub (rhub::check_for_cran())
@@ -8,6 +8,8 @@
 
 0 errors | 0 warnings | 0 note
 
-## resubmission 
+## submission 
 
-* compatibility with ggplot2 >= 3.2.2 
+Correct a small error in the documentation of `date_xx_arithmetic` that
+triggers a CRAN Warning since the fixing of 
+https://bugs.r-project.org/bugzilla/show_bug.cgi?id=16223>

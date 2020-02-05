@@ -1,6 +1,0 @@
-pandoc: 2.3.1
-pkgdown: 1.4.1.9000
-pkgdown_sha: 03fa5022ff360a6f87586145e45f71fe090c64a2
-articles:
-  dint: dint.html
-
