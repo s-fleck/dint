@@ -14,8 +14,6 @@
 \item{x}{a \code{\link{date_yq}} or \code{\link{date_ym}} object}
 
 \item{y}{an integer}
-
-\item{...}{currently ignored}
 }
 \description{
 The arithmetic operations \code{+}, \code{-} as well as sequence generation with
