@@ -180,7 +180,7 @@ You can get the first and last days of calendar periods with dint
 ```{r}
 q <- date_yq(2015, 1)
 first_of_quarter(q)  # the same as as.Date(q), but more explicit
-last_of_quarter(q)  # the same as as.Date(q), but more explicit
+last_of_quarter(q) 
 ```
 
 These functions work with normal dates
