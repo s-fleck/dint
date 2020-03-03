@@ -16,7 +16,7 @@ Description: S3 classes and methods to create and work
     as well as formatting and converting to and from standard R date
     types.
 License: MIT + file LICENSE
-URL: https://github.com/s-fleck/dint
+URL: https://s-fleck.github.io/dint, https://github.com/s-fleck/dint
 BugReports: https://github.com/s-fleck/dint/issues
 Suggests: 
     covr,
