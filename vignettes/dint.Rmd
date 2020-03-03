@@ -46,7 +46,7 @@ dint provides 4 different S3 classes that inherit from `date_xx`^[`date_xx` is
 just a superclass for all dint date classes, you do not need to use it directly]. 
 
 * `date_yq` for year-quarter dates
-* `date_yw` for year-month dates
+* `date_ym` for year-month dates
 * `date_yw` for year-isoweek dates. Please note that the year for isoweeks does 
   not necessarily correspond to the calendar year 
   [wikipedia](https://en.wikipedia.org/wiki/ISO_week_date)
@@ -272,18 +272,22 @@ w2 <- data.frame(
 )
 
 ggplot(q, aes(x = time, y = value))  + 
-  geom_point()
+  geom_point() + 
+  ggtitle("scale_x_date_ym() by default")
 
 ggplot(m, aes(x = time, y = value))  + 
   geom_line() +
-  scale_x_date_ym(labels = format_ym_shorter)
+  scale_x_date_ym(labels = format_ym_shorter) + 
+  ggtitle("ym_shorter")
 
 ggplot(w, aes(x = time, y = value))  + 
-  geom_col()  + 
-  scale_x_date_yw(labels = format_yw_iso)
+  geom_col() + 
+  scale_x_date_yw(labels = format_yw_iso) + 
+  ggtitle("yw_iso")
 
 ggplot(w2, aes(x = time, y = value)) + 
-  geom_smooth() 
+  geom_smooth() + 
+  ggtitle("yw_short")
 ```
 
 
