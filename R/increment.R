@@ -7,6 +7,14 @@
 #'   An object of the same type as `x` increment by `inc`
 #' @noRd
 increment <- function(x, inc = 1){
+  assert(
+    is_scalar(inc) ||
+    is_equal_length(x, inc) ||
+    is_scalar(x),
+    "When adding or subtracting from date_xx objects, both elements must ",
+    "either be of the same length, or one of them must be of length one."
+  )
+
   UseMethod("increment", x)
 }
 
@@ -14,6 +22,10 @@ increment <- function(x, inc = 1){
 
 
 increment.date_yq <- function(x, inc){
+  if (is_scalar(x) && length(inc) > 1){
+    x <- rep(x, length(inc))
+  }
+
   d <- yqs_matrix_from_numeric(x)
   d[, 2] <- d[, 2] + inc
 
@@ -35,6 +47,10 @@ increment.date_yq <- function(x, inc){
 
 
 increment.date_ym <- function(x, inc){
+  if (is_scalar(x) && length(inc) > 1){
+    x <- rep(x, length(inc))
+  }
+
   d <- yms_matrix_from_numeric(x)
   d[, 2] <- d[, 2] + inc
 
@@ -56,6 +72,10 @@ increment.date_ym <- function(x, inc){
 
 
 increment.date_yw <- function(x, inc){
+  if (is_scalar(x) && length(inc) > 1){
+    x <- rep(x, length(inc))
+  }
+
   x <- first_of_isoweek(x)
   as_date_yw(x + 7L * inc)
 }
@@ -64,5 +84,9 @@ increment.date_yw <- function(x, inc){
 
 
 increment.date_y <- function(x, inc){
+  if (is_scalar(x) && length(inc) > 1){
+    x <- rep(x, length(inc))
+  }
+
   date_y(as.integer(x) + inc)
 }

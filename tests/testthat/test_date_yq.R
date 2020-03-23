@@ -80,6 +80,3 @@ test_that("as_date_yq arithmetic works", {
     date_yq(2016, 1)
   )
 })
-
-
-

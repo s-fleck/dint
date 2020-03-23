@@ -142,3 +142,23 @@ test_that("- works for two date_xx", {
 
 
 })
+
+
+
+
+
+
+
+test_that("scalar dates are recycled for simple arithmethic operations (#5)",  {
+  expect_identical(date_yq(2020, 1) + 2:4, as_date_yq(c(20203L, 20204L, 20211L)))
+  expect_identical(date_yq(2020, 3) - 2:4, as_date_yq(c(20201L, 20194L, 20193L)))
+
+  expect_identical(date_ym(2020, 1) + 2:4, as_date_ym(c(202003L, 202004L, 202005L)))
+  expect_identical(date_ym(2020, 3) - 2:4, as_date_ym(c(202001L, 201912L, 201911L)))
+
+  expect_identical(date_yw(2020, 1) + 2:4, as_date_yw(c(202003L, 202004L, 202005L)))
+  expect_identical(date_yw(2020, 3) - 2:4, as_date_yw(c(202001L, 201952L, 201951L)))
+
+  # only recyle if date is length 1 or equal length with the subtract vector
+  expect_error(date_yw(2020, 2:5) - 2:3)
+})

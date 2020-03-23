@@ -1,3 +1,9 @@
+# dint (dev version)
+
+* vectors of length 1 are now recycled when adding or subtracting `date_xx` 
+  objects, e.g. `date_yq(2019, 1) + 1:4` is now possible (#5).
+
+
 # dint 2.1.3
 
 * Correct a small error in the documentation of `date_xx_arithmetic` that
