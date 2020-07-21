@@ -7,7 +7,7 @@
 status](https://www.r-pkg.org/badges/version/dint)](https://cran.r-project.org/package=dint)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Travis build
-status](https://travis-ci.org/s-fleck/dint.svg?branch=master)](https://travis-ci.org/s-fleck/dint)
+status](https://travis-ci.com/s-fleck/dint.svg?branch=master)](https://travis-ci.org/s-fleck/com)
 [![Coverage
 status](https://codecov.io/gh/s-fleck/dint/branch/master/graph/badge.svg)](https://codecov.io/github/s-fleck/dint?branch=master)
 
@@ -96,7 +96,7 @@ last_of_quarter(q)
 first_of_quarter(q)
 #> [1] "2014-10-01"
 first_of_month(Sys.Date())
-#> [1] "2020-01-01"
+#> [1] "2020-07-01"
 first_of_isoweek(w)
 #> [1] "2016-12-26"
 last_of_isoweek(w)
