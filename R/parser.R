@@ -42,7 +42,7 @@ yq <- function(x, quiet = FALSE){
 #' @export
 qy <- function(x, quiet = FALSE){
   assert(is.character(x), "'x' must be a character vector")
-  r <- vapply(x, parse_yq, integer(1), pattern = "^[^0-9]*[1-4][^0-9]*\\d{4}[^0-9]*$", USE.NAMES = FALSE)
+  r <- vapply(x, parse_qy, integer(1), pattern = "^[^0-9]*[1-4][^0-9]*\\d{4}[^0-9]*$", USE.NAMES = FALSE)
 
   if (!quiet){
     failed <- sum(is.na(r)) - sum(is.na(x))
@@ -119,6 +119,31 @@ parse_yq <- function(x, pattern){
   pos_y <- regexpr("\\d{4}", x)
   year  <- extr(x, pos_y, 3)
   x     <- gsub("\\d{4}", "", x)
+
+  pos_q <- regexpr("[1-4]{1}[^0-9]*", x)
+  quarter <- extr(x, pos_q, 0)
+
+  as.integer(year) * 10L + as.integer(quarter)
+}
+
+
+
+
+parse_qy <- function(x, pattern){
+  if (!grepl(pattern, x)){
+    return(NA_integer_)
+  }
+
+  extr <- function(string, pos, length){
+    if (identical(pos, -1))
+      NA_integer_
+    else
+      as.integer(substr(string, pos, pos + length))
+  }
+
+  pos_y <- regexpr("\\d{4}[^0-9]*$", x)
+  year  <- extr(x, pos_y, 3)
+  x <- strtrim(x, pos_y - 1L)
 
   pos_q <- regexpr("[1-4]{1}[^0-9]*", x)
   quarter <- extr(x, pos_q, 0)

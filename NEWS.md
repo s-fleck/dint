@@ -2,6 +2,8 @@
 
 * vectors of length 1 are now recycled when adding or subtracting `date_xx` 
   objects, e.g. `date_yq(2019, 1) + 1:4` is now possible (#5).
+* `qy` can now handle inputs without seperator between quarter and year 
+  (e.g. `myfile42019`)
 
 
 # dint 2.1.3
