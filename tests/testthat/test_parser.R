@@ -21,10 +21,8 @@ test_that("yq/qy work as expected", {
     c(20182L, 20174L, NA_integer_, NA_integer_, NA_integer_, NA_integer_)
   )
 
-  expect_identical(qy("stpQ42015"))
-
-
-
+  expect_identical(qy("stpQ42015"), dint::date_yq(2015, 4))
+  expect_identical(yq("stp20154"), dint::date_yq(2015, 4))
 })
 
 
@@ -58,4 +56,6 @@ test_that("ym/my work as expected", {
     c(201802L, 201712L, NA_integer_, NA_integer_, NA_integer_, NA_integer_)
   )
 
+  expect_identical(my("stpm042015"), dint::date_ym(2015, 4))
+  expect_identical(ym("stpm201504"), dint::date_ym(2015, 4))
 })
