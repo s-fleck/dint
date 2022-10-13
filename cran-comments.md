@@ -10,6 +10,5 @@
 
 ## submission 
 
-Correct a small error in the documentation of `date_xx_arithmetic` that
-triggers a CRAN Warning since the fixing of 
-https://bugs.r-project.org/bugzilla/show_bug.cgi?id=16223>
+Update `as.POSIXlt.date_xx()` and `as.POSIXct.date_xx()` to be consistent with
+tzone behaviour of `as.POSIXct.Date()` and `as.POSIXlt.Date()` in R-devel

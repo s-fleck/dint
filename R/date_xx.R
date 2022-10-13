@@ -133,7 +133,7 @@ NULL
 #' @rdname as.Date.date_xx
 #' @inheritParams base::as.POSIXlt
 #' @export
-as.POSIXlt.date_xx <- function(x, tz = "", ...){
+as.POSIXlt.date_xx <- function(x, tz = "UTC", ...){
   as.POSIXlt(as.Date(x), tz = tz, ...)
 }
 
@@ -143,7 +143,7 @@ as.POSIXlt.date_xx <- function(x, tz = "", ...){
 #' @rdname as.Date.date_xx
 #' @inheritParams base::as.POSIXlt
 #' @export
-as.POSIXct.date_xx <- function(x, tz = "", ...){
+as.POSIXct.date_xx <- function(x, tz = "UTC", ...){
   as.POSIXct(as.Date(x, tz = tz), tz = tz, ...)
 }
 
