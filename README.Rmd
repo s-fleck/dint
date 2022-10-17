@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 # dint
 
 [![CRAN status](https://www.r-pkg.org/badges/version/dint)](https://cran.r-project.org/package=dint)
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Travis build status](https://travis-ci.com/s-fleck/dint.svg?branch=master)](https://travis-ci.org/s-fleck/com)
 [![Coverage status](https://codecov.io/gh/s-fleck/dint/branch/master/graph/badge.svg)](https://codecov.io/github/s-fleck/dint?branch=master)
 

@@ -12,3 +12,4 @@
 ^CRAN-RELEASE$
 ^\.travis\.yml$
 ^benchmarks$
+^CRAN-SUBMISSION$
