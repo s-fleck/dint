@@ -101,6 +101,11 @@ test_that("date_ym_breaks doesnt fail for a variety of inputs", {
 
 
 test_that("date_ym_trans is reversible", {
+
+  if (!requireNamespace("scales", quietly = TRUE)){
+    skip("test requires scales")
+  }
+
   x <- seq(date_ym(1950, 1), date_ym(2050, 1))
   trn <- date_ym_trans$transform(x)
   inv <- date_ym_trans$inverse(trn)

@@ -123,20 +123,36 @@ scale_date_yq <- function(
   limits = NULL,
   position = "bottom"
 ){
-  ggplot2::continuous_scale(
-    aesthetics,
-    scale_name = "date_yq",
-    name = name,
-    palette = identity,
-    labels = labels,
-    guide = default_guide(),
-    trans = date_yq_trans,
-    super = ggplot2::ScaleContinuousDate,
-    position = position,
-    limits = limits,
-    breaks = breaks,
-    expand = c(0.04, 0)
-  )
+  if (utils::packageVersion("ggplot2") < "3.5.0"){
+    ggplot2::continuous_scale(
+      aesthetics,
+      scale_name = "date_yq",
+      name = name,
+      palette = identity,
+      labels = labels,
+      guide = default_guide(),
+      trans = date_yq_trans,
+      super = ggplot2::ScaleContinuousDate,
+      position = position,
+      limits = limits,
+      breaks = breaks,
+      expand = c(0.04, 0)
+    )
+  } else {
+    ggplot2::continuous_scale(
+      aesthetics,
+      name = name,
+      palette = identity,
+      labels = labels,
+      guide = default_guide(),
+      transform = date_yq_trans,
+      super = ggplot2::ScaleContinuousDate,
+      position = position,
+      limits = limits,
+      breaks = breaks,
+      expand = c(0.04, 0)
+    )
+  }
 }
 
 
@@ -196,20 +212,36 @@ scale_date_ym <- function(
   limits = NULL,
   position = "left"
 ){
-  ggplot2::continuous_scale(
-    aesthetics,
-    scale_name = "date_ym",
-    name = name,
-    breaks = breaks,
-    palette = identity,
-    labels = labels,
-    guide = default_guide(),
-    trans = date_ym_trans,
-    super = ggplot2::ScaleContinuousDate,
-    position = position,
-    limits = limits,
-    expand = c(0.04, 0)
-  )
+  if (utils::packageVersion("ggplot2") < "3.5.0"){
+    ggplot2::continuous_scale(
+      aesthetics,
+      scale_name = "date_ym",
+      name = name,
+      breaks = breaks,
+      palette = identity,
+      labels = labels,
+      guide = default_guide(),
+      trans = date_ym_trans,
+      super = ggplot2::ScaleContinuousDate,
+      position = position,
+      limits = limits,
+      expand = c(0.04, 0)
+    )
+  } else {
+    ggplot2::continuous_scale(
+      aesthetics,
+      name = name,
+      breaks = breaks,
+      palette = identity,
+      labels = labels,
+      guide = default_guide(),
+      transform = date_ym_trans,
+      super = ggplot2::ScaleContinuousDate,
+      position = position,
+      limits = limits,
+      expand = c(0.04, 0)
+    )
+  }
 }
 
 
@@ -266,20 +298,36 @@ scale_date_yw <- function(
   limits = NULL,
   position = "bottom"
 ){
-  ggplot2::continuous_scale(
-    aesthetics,
-    scale_name = "date_yw",
-    name = name,
-    breaks = breaks,
-    palette = identity,
-    guide = default_guide(),
-    labels = labels,
-    trans = date_yw_trans,
-    super = ggplot2::ScaleContinuousDate,
-    position = position,
-    limits = limits,
-    expand = ggplot2::waiver()
-  )
+  if (utils::packageVersion("ggplot2") < "3.5.0"){
+    ggplot2::continuous_scale(
+      aesthetics,
+      scale_name = "date_yw",
+      name = name,
+      breaks = breaks,
+      palette = identity,
+      guide = default_guide(),
+      labels = labels,
+      trans = date_yw_trans,
+      super = ggplot2::ScaleContinuousDate,
+      position = position,
+      limits = limits,
+      expand = ggplot2::waiver()
+    )
+  } else {
+    ggplot2::continuous_scale(
+      aesthetics,
+      name = name,
+      breaks = breaks,
+      palette = identity,
+      guide = default_guide(),
+      labels = labels,
+      transform = date_yw_trans,
+      super = ggplot2::ScaleContinuousDate,
+      position = position,
+      limits = limits,
+      expand = ggplot2::waiver()
+    )
+  }
 }
 
 

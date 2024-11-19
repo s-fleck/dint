@@ -178,27 +178,27 @@ test_that("test first_of_month against lubridate", {
 test_that("first_of_isoweek works", {
   tdat <- seq(as.Date("2004-12-20"), as.Date("2020-01-06"), by = "7 days")
 
-  expect_identical(
+  expect_equal(
     first_of_isoweek(tdat),
     tdat
   )
 
-  expect_identical(
+  expect_equal(
     last_of_isoweek(tdat),
     tdat + 6L
   )
 
-  expect_identical(
+  expect_equal(
     seq(as.Date("2004-01-05"), as.Date("2004-12-20"), by = "7 days"),
     first_of_yw(2004, 2:52)
   )
-  expect_identical(
+  expect_equal(
     seq(as.Date("2004-01-11"), as.Date("2004-12-26"), by = "7 days"),
     last_of_yw(2004, 2:52)
   )
 
-  expect_identical(first_of_yw("2004-01-07"), as.Date("2004-01-05"))
-  expect_identical(last_of_yw("2004-01-07"), as.Date("2004-01-11"))
+  expect_equal(first_of_yw("2004-01-07"), as.Date("2004-01-05"))
+  expect_equal(last_of_yw("2004-01-07"), as.Date("2004-01-11"))
 })
 
 

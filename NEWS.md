@@ -1,8 +1,13 @@
+# dint 2.1.5
+
+* Minor fixes to tests due to changes in R-base
+  
+  
 # dint 2.1.4
 
 * vectors of length 1 are now recycled when adding or subtracting `date_xx` 
   objects, e.g. `date_yq(2019, 1) + 1:4` is now possible (#5).
-* `qy` can now handle inputs without seperator between quarter and year 
+* `qy` can now handle inputs without sepperator between quarter and year 
   (e.g. `myfile42019`)
 * `as.POSIXlt.date_xx()` and `as.POSIXct.date_xx()` now set UTC timezone by 
   default (for compatibility with `as.POSIXct.Date()` changes in latest R version)

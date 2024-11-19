@@ -44,7 +44,7 @@ test_that("date_xx coercion to POSIXt works", {
 
 
 test_that("Sys.date_** return the appropriate types", {
-  is_date_yq(Sys.date_yq())
-  is_date_ym(Sys.date_ym())
-  is_date_yw(Sys.date_yw())
+  expect_true(is_date_yq(Sys.date_yq()))
+  expect_true(is_date_ym(Sys.date_ym()))
+  expect_true(is_date_yw(Sys.date_yw()))
 })

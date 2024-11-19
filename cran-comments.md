@@ -1,8 +1,6 @@
-## Test environments
+* Fix failing tests due to changes in R-devel
+* Compat with ggplot > 3.5.0
 
-* rhub (rhub::check_for_cran())
-* winbuilder (R-devel)
 
-## re-submission 
 
-fix moved url in README
+
