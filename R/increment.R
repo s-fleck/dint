@@ -3,9 +3,9 @@
 #' @param x object to increment
 #' @param inc Value by which to increment (usually integer)
 #'
+#' @export
 #' @return
 #'   An object of the same type as `x` increment by `inc`
-#' @noRd
 increment <- function(x, inc = 1){
   assert(
     is_scalar(inc) ||
@@ -20,7 +20,8 @@ increment <- function(x, inc = 1){
 
 
 
-
+#' @rdname increment
+#' @export
 increment.date_yq <- function(x, inc){
   if (is_scalar(x) && length(inc) > 1){
     x <- rep(x, length(inc))
@@ -46,6 +47,8 @@ increment.date_yq <- function(x, inc){
 
 
 
+#' @rdname increment
+#' @export
 increment.date_ym <- function(x, inc){
   if (is_scalar(x) && length(inc) > 1){
     x <- rep(x, length(inc))
@@ -71,6 +74,8 @@ increment.date_ym <- function(x, inc){
 
 
 
+#' @rdname increment
+#' @export
 increment.date_yw <- function(x, inc){
   if (is_scalar(x) && length(inc) > 1){
     x <- rep(x, length(inc))
@@ -83,6 +88,8 @@ increment.date_yw <- function(x, inc){
 
 
 
+#' @rdname increment
+#' @export
 increment.date_y <- function(x, inc){
   if (is_scalar(x) && length(inc) > 1){
     x <- rep(x, length(inc))

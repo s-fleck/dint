@@ -14,9 +14,9 @@
 \alias{as.Date.date_yw}
 \title{Coerce dint Objects to Base R Date Types}
 \usage{
-\method{as.POSIXlt}{date_xx}(x, tz = "", ...)
+\method{as.POSIXlt}{date_xx}(x, tz = "UTC", ...)
 
-\method{as.POSIXct}{date_xx}(x, tz = "", ...)
+\method{as.POSIXct}{date_xx}(x, tz = "UTC", ...)
 
 Sys.date_yq()
 
@@ -35,11 +35,11 @@ Sys.date_yw()
 \arguments{
 \item{x}{any \R object}
 
-\item{tz}{time zone specification to be used for the conversion,
-    \emph{if one is required}.  System-specific (see \link[base]{time zones}),
-    but \code{""} is the current time zone, and \code{"GMT"} is UTC
-    (Universal Time, Coordinated).  Invalid values are most commonly
-    treated as UTC, on some platforms with a warning.}
+\item{tz}{a character string.  The time zone specification to be used
+    for the conversion, \emph{if one is required}.  System-specific (see
+    \link[base]{time zones}), but \code{""} is the current time zone, and
+    \code{"GMT"} is UTC (Universal Time, Coordinated).  Invalid values
+    are most commonly treated as UTC, on some platforms with a warning.}
 
 \item{...}{passed on to methods}
 }

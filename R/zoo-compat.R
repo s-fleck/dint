@@ -48,6 +48,7 @@ as_yearqtr.date_yq <- function(x){
 
 
 #' @rdname as_yearqtr
+#' @export
 as_yearqtr.yearqtr <- function(x){
   x
 }
@@ -91,7 +92,7 @@ as_yearmon.date_ym <- function(x){
 
 
 
-
+#' @export
 #' @rdname as_yearqtr
 as_yearmon.yearmon <- function(x){
   x
@@ -152,12 +153,11 @@ as_yearweek.yearweek <- function(x){
 
 #' For Compatibility With zoo
 #'
-#' Internaly used constructor. If you use zoo, please use [zoo::yearweek()]
+#' Internaly used constructor. If you use zoo, please use `zoo::yearweek()`
 #' instead
 #'
 #' @param x a vector with dates in the form 2000.0 for Q1, 2000.25 for Q2, usw
 #' @noRd
-#'
 yearweek <- function(x){
   x <- as.numeric(x)
   assert(

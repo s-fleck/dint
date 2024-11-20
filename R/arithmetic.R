@@ -146,7 +146,7 @@ NULL
 # range -------------------------------------------------------------------
 
 
-
+#' @export
 range.date_yq <- function(..., na.rm = FALSE) {
   as_date_yq(range(as.integer(c(...), na.rm = na.rm)))
 }
@@ -154,6 +154,7 @@ range.date_yq <- function(..., na.rm = FALSE) {
 
 
 
+#' @export
 range.date_ym <- function(..., na.rm = FALSE) {
   as_date_ym(range(as.integer(c(...), na.rm = na.rm)))
 }
@@ -161,6 +162,7 @@ range.date_ym <- function(..., na.rm = FALSE) {
 
 
 
+#' @export
 range.date_yw <- function(..., na.rm = FALSE) {
   as_date_yw(range(as.integer(c(...), na.rm = na.rm)))
 }
@@ -168,6 +170,7 @@ range.date_yw <- function(..., na.rm = FALSE) {
 
 
 
+#' @export
 range.date_y <- function(..., na.rm = FALSE) {
   as_date_y(range(as.integer(c(...), na.rm = na.rm)))
 }

@@ -323,7 +323,6 @@ format_ym <- function(x, m = NULL, format = "%Y-M%m"){
 #' format_yw(2015, 5)
 #' format_yw(201505, format = "%Y.%V")
 #' format_yw(as_date_yw(201505), format = "%y.%V")
-#'
 format_yw <- function(
   x,
   w = NULL,

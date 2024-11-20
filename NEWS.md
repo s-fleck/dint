@@ -1,6 +1,7 @@
 # dint 2.1.5
 
 * Minor fixes to tests due to changes in R-base
+* Export `increment()` utility function
   
   
 # dint 2.1.4

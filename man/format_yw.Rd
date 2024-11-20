@@ -49,7 +49,6 @@ This is notably handy as they can be used as a labeling function for
 format_yw(2015, 5)
 format_yw(201505, format = "\%Y.\%V")
 format_yw(as_date_yw(201505), format = "\%y.\%V")
-
 }
 \seealso{
 \code{\link[=format.date_yw]{format.date_yw()}}
